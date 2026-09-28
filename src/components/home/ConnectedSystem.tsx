@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { useMotionValueEvent, useReducedMotion, useScroll } from "motion/react";
+import { useMotionValueEvent, useScroll } from "motion/react";
+import { useReducedMotion } from "@/lib/useReducedMotion";
 import { clamp, progress } from "@/lib/motion";
 import styles from "./ConnectedSystem.module.css";
 

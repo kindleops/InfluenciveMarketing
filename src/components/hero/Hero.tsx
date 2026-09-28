@@ -1,7 +1,8 @@
 "use client";
 
 import { useRef } from "react";
-import { useMotionValueEvent, useReducedMotion, useScroll } from "motion/react";
+import { useMotionValueEvent, useScroll } from "motion/react";
+import { useReducedMotion } from "@/lib/useReducedMotion";
 import { progress as range } from "@/lib/motion";
 import { Button } from "@/components/ui/Button";
 import { Chars } from "@/components/ui/Typography";

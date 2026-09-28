@@ -1,8 +1,9 @@
 "use client";
 
 import Image from "next/image";
-import { useRef } from "react";
-import { useMotionValueEvent, useReducedMotion, useScroll } from "motion/react";
+import { useEffect, useRef } from "react";
+import { useMotionValueEvent, useScroll } from "motion/react";
+import { useReducedMotion } from "@/lib/useReducedMotion";
 import { progress as range } from "@/lib/motion";
 import horizon from "@/assets/plates/horizon.jpg";
 import styles from "./Horizon.module.css";
@@ -28,6 +29,14 @@ export function Horizon() {
     el.style.setProperty("--l1", range(p, 0.6, 0.76).toFixed(3));
     el.style.setProperty("--l2", range(p, 0.68, 0.86).toFixed(3));
   });
+
+  // If reduced motion resolves (or is switched on) after a scroll has
+  // already written the choreography, hand control back to the resting CSS.
+  useEffect(() => {
+    const el = stageRef.current;
+    if (!el || !reduced) return;
+    for (const v of ["--open", "--zoom", "--l1", "--l2"]) el.style.removeProperty(v);
+  }, [reduced]);
 
   return (
     <section

@@ -1,7 +1,8 @@
 "use client";
 
 import { useRef, type CSSProperties } from "react";
-import { useMotionValueEvent, useReducedMotion, useScroll } from "motion/react";
+import { useMotionValueEvent, useScroll } from "motion/react";
+import { useReducedMotion } from "@/lib/useReducedMotion";
 import styles from "./Thesis.module.css";
 
 /**

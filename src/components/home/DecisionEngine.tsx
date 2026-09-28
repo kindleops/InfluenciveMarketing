@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState, type CSSProperties } from "react";
-import { useReducedMotion } from "motion/react";
+import { useReducedMotion } from "@/lib/useReducedMotion";
 import { scenarios } from "@/content/intelligence";
 import styles from "./DecisionEngine.module.css";
 
