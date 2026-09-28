@@ -83,11 +83,12 @@ export function Section({
    AmbientGlow — a local light source. Diffused, slow, never a "blob".
 --------------------------------------------------------------------------- */
 const glowColors = {
-  brand: "74 114 255",
-  violet: "155 140 255",
-  cyan: "127 224 255",
-  gold: "220 192 143",
-  ivory: "246 243 238",
+  // Moonlight, not neon: low-saturation light sources.
+  brand: "170 186 235",
+  violet: "190 182 232",
+  cyan: "178 220 232",
+  gold: "226 204 164",
+  ivory: "247 245 240",
 } as const;
 
 export function AmbientGlow({

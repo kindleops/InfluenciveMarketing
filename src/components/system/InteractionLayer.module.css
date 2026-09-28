@@ -25,8 +25,8 @@
   border-radius: 50%;
   background: radial-gradient(
     circle,
-    rgb(122 155 255 / 0.075) 0%,
-    rgb(122 155 255 / 0.03) 30%,
+    rgb(255 255 255 / 0.037) 0%,
+    rgb(255 255 255 / 0.015) 30%,
     transparent 62%
   );
 }

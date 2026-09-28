@@ -41,7 +41,7 @@ export default function AboutPage() {
     <>
       <PageHero
         eyebrow="About"
-        title={["The company", <>behind the <em key="a" className="t-accent">machine.</em></>]}
+        title={["The company", <em key="a" className="t-accent">behind the machine.</em>]}
         lead={`${brand.name} is a strategy, design and engineering company. We build the connected systems that let ambitious companies look better, sell better and operate better — at the same time.`}
       />
 
@@ -51,7 +51,7 @@ export default function AboutPage() {
           id="nature-title"
           eyebrow="What we are"
           layout="split"
-          title={["Three companies,", <>one <em key="a" className="t-accent">standard.</em></>]}
+          title={["Three companies,", <em key="a" className="t-accent">one standard.</em>]}
           lead="Most firms are great at one of these. The work only compounds when all three sit at the same table."
         />
         <div className={styles.nature}>
@@ -70,7 +70,7 @@ export default function AboutPage() {
           id="disciplines-title"
           eyebrow="Under one roof"
           layout="split"
-          title={["Six disciplines.", <>One <em key="a" className="t-accent">team.</em></>]}
+          title={["Six disciplines.", <em key="a" className="t-accent">One team.</em>]}
           lead="Every engagement is staffed across the disciplines it needs, led by one accountable principal."
         />
         <ol className={styles.disciplines} role="list" data-stagger="">
@@ -89,7 +89,7 @@ export default function AboutPage() {
           id="clients-title"
           eyebrow="Who we work with"
           layout="split"
-          title={["Built for companies", <>with <em key="a" className="t-accent">momentum.</em></>]}
+          title={["Built for companies", <em key="a" className="t-accent">with momentum.</em>]}
         />
         <div className={styles.clients}>
           {clients.map((c, i) => (

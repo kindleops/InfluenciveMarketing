@@ -1,4 +1,5 @@
 import { Hero } from "@/components/hero/Hero";
+import { Platform } from "@/components/home/Platform";
 import { Thesis } from "@/components/home/Thesis";
 import { CapabilityStack } from "@/components/home/CapabilityStack";
 import { ConnectedSystem } from "@/components/home/ConnectedSystem";
@@ -33,15 +34,17 @@ export default function Home() {
     <>
       <Hero />
       <Thesis />
+      <Platform />
 
       <Section tone="dark" labelledBy="capabilities-title">
         <AmbientGlow color="brand" size={900} x="85%" y="55%" intensity={0.08} />
         <SectionHeading
           id="capabilities-title"
           eyebrow="Capabilities"
-          index="02"
+          index="03"
+          aside="6 layers · 12 capabilities"
           layout="split"
-          title={["Twelve capabilities.", <>One <em className="t-accent">machine.</em></>]}
+          title={["Twelve capabilities.", <em key="a" className="t-accent">Built to connect.</em>]}
           lead="We build every layer of modern growth — and, more importantly, the connections between them. Select a layer to see what it does."
         />
         <CapabilityStack />
@@ -63,9 +66,9 @@ export default function Home() {
         <SectionHeading
           id="insights-title"
           eyebrow="Insights"
-          index="09"
+          index="10"
           layout="split"
-          title={["Thinking,", <>in <em className="t-accent">public.</em></>]}
+          title={["Thinking,", <em key="a" className="t-accent">in public.</em>]}
           lead="Notes on systems, intelligence and the craft of building companies people choose."
         />
         <div style={{ marginTop: "var(--space-9)" }}>

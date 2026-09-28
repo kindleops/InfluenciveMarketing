@@ -1,0 +1,55 @@
+.intro {
+  display: none;
+}
+:global(html[data-intro="running"]) .intro,
+:global(html[data-intro="leaving"]) .intro {
+  position: fixed;
+  inset: 0;
+  z-index: calc(var(--z-grain) + 1);
+  display: grid;
+  place-items: center;
+  background: var(--color-void);
+}
+:global(html[data-intro="leaving"]) .intro {
+  animation: lift 1100ms var(--ease-emphasized) forwards;
+}
+@keyframes lift {
+  to {
+    clip-path: inset(0 0 100% 0);
+  }
+}
+.center {
+  color: var(--light);
+  transform: translateY(-3.5rem);
+}
+:global(html[data-intro="leaving"]) .center {
+  animation: fade-away 500ms var(--ease-out) forwards;
+}
+@keyframes fade-away {
+  to {
+    opacity: 0;
+    transform: translateY(-4.5rem) scale(0.9);
+    filter: blur(6px);
+  }
+}
+.line {
+  position: absolute;
+  left: 15%;
+  right: 15%;
+  top: 50%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgb(255 255 255 / 0.85), transparent);
+  box-shadow: 0 0 24px rgb(170 186 235 / 0.6);
+  transform: scaleX(0);
+}
+.foot {
+  position: absolute;
+  inset: auto var(--gutter) 1.75rem;
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-mono);
+  font-size: var(--fs-label);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--text-muted);
+}

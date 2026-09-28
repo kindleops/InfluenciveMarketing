@@ -61,7 +61,7 @@
   box-shadow:
     inset 0 1px 0 rgb(255 255 255 / 0.9),
     inset 0 -1px 0 rgb(0 0 0 / 0.12),
-    0 12px 32px -14px rgb(122 155 255 / 0.55),
+    0 12px 32px -14px rgb(255 255 255 / 0.275),
     0 2px 6px -2px rgb(0 0 0 / 0.5);
 }
 .primary::before {
@@ -70,7 +70,7 @@
   inset: 0 auto 0 0;
   width: 45%;
   z-index: -1;
-  background: linear-gradient(90deg, transparent, rgb(122 155 255 / 0.28), transparent);
+  background: linear-gradient(90deg, transparent, rgb(255 255 255 / 0.14), transparent);
   transform: translateX(-120%) skewX(-18deg);
 }
 .primary::after {
@@ -79,7 +79,7 @@
   inset: 0;
   z-index: -2;
   border-radius: inherit;
-  background: radial-gradient(120% 140% at 50% 120%, rgb(122 155 255 / 0.22), transparent 60%);
+  background: radial-gradient(120% 140% at 50% 120%, rgb(255 255 255 / 0.11), transparent 60%);
   opacity: 0;
   transition: opacity var(--dur-ui) var(--ease-soft);
 }
@@ -89,7 +89,7 @@
     box-shadow:
       inset 0 1px 0 rgb(255 255 255 / 1),
       inset 0 -1px 0 rgb(0 0 0 / 0.1),
-      0 18px 44px -14px rgb(122 155 255 / 0.75),
+      0 18px 44px -14px rgb(255 255 255 / 0.375),
       0 2px 6px -2px rgb(0 0 0 / 0.5);
   }
   .primary:hover::before {
@@ -116,7 +116,7 @@
     box-shadow:
       inset 0 0 0 1px var(--border-strong),
       inset 0 1px 0 rgb(255 255 255 / 0.14),
-      0 14px 36px -18px rgb(122 155 255 / 0.45);
+      0 14px 36px -18px rgb(255 255 255 / 0.225);
   }
 }
 

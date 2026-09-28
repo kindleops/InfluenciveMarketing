@@ -89,7 +89,7 @@ h1,
 h2,
 h3,
 h4 {
-  font-weight: 500;
+  font-weight: 460;
   text-wrap: balance;
 }
 
@@ -104,12 +104,12 @@ ol[role="list"] {
 }
 
 ::selection {
-  background: var(--brand);
-  color: var(--light);
+  background: var(--light);
+  color: var(--text-inverse);
 }
 
 :focus-visible {
-  outline: 1.5px solid var(--brand-bright);
+  outline: 1.5px solid var(--light);
   outline-offset: 3px;
   border-radius: var(--radius-xs);
 }
@@ -155,7 +155,7 @@ ol[role="list"] {
 .t-display-1,
 .t-display-2,
 .t-display-3 {
-  font-weight: 500;
+  font-weight: var(--weight-display);
   line-height: var(--lh-display);
   letter-spacing: var(--tracking-display);
   font-feature-settings: "ss01", "ss02", "cv11", "kern";
@@ -227,18 +227,17 @@ ol[role="list"] {
   letter-spacing: 0;
 }
 
-/* Editorial accent: the serif is used for single words and short phrases
-   inside display type — never for body copy. */
-.t-serif,
+/* Two-tone display type: the accent is a quieter second voice, not a
+   different typeface. The serif is reserved for rare editorial moments. */
 em.t-accent {
+  font-style: normal;
+  color: var(--text-tone);
+}
+.t-serif {
   font-family: var(--font-serif);
   font-style: italic;
   font-weight: 400;
-  letter-spacing: -0.02em;
-}
-em.t-accent {
-  font-size: 1.06em;
-  padding-right: 0.04em;
+  letter-spacing: -0.015em;
 }
 
 .t-dim {
@@ -268,23 +267,23 @@ em.t-accent {
   color: var(--text-primary);
 }
 [data-split].t-lit .split-line > span {
-  background: linear-gradient(180deg, #fbf9f5 0%, var(--light) 40%, rgb(236 232 225 / 0.64) 100%);
+  background: linear-gradient(180deg, #fffefb 0%, var(--light) 45%, rgb(241 239 234 / 0.72) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 }
+/* Inside a lit (background-clipped) line the second tone must be opaque,
+   otherwise the parent's light paints straight through it. */
 .t-lit em.t-accent {
-  background: linear-gradient(100deg, #dfe6ff 0%, #9fb5ff 45%, #b9adff 75%, #e9d6b0 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  color: var(--text-tone-solid);
+  -webkit-text-fill-color: var(--text-tone-solid);
 }
 
 .t-spectral {
   background: linear-gradient(
     100deg,
     var(--spectral-silver) 0%,
-    var(--brand-bright) 38%,
+    var(--light) 38%,
     var(--spectral-violet) 62%,
     var(--spectral-gold) 100%
   );

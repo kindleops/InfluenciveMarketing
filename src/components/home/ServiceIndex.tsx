@@ -16,9 +16,9 @@ export function ServiceIndex() {
       <SectionHeading
         id="services-title"
         eyebrow="Services"
-        index="05"
+        index="06"
         layout="split"
-        title={["Eight disciplines.", <>One <em className="t-accent">standard.</em></>]}
+        title={["Eight disciplines.", <em key="a" className="t-accent">One standard.</em>]}
         lead="Engage one discipline or the whole system. Either way, every piece is designed to connect to the rest."
       />
 

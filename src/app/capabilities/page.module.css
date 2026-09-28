@@ -23,7 +23,7 @@
 .layerIdx {
   font-family: var(--font-mono);
   font-size: var(--fs-label);
-  color: var(--brand-bright);
+  color: var(--light);
   padding-top: 0.65rem;
 }
 .layerName {

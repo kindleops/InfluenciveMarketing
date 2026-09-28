@@ -35,7 +35,7 @@ export function Thesis() {
     <section className={styles.thesis} aria-label="Thesis">
       <div className={`container ${styles.grid}`}>
         <div className={styles.meta} data-reveal="fade">
-          <span className={styles.metaIndex}>01</span>
+          <span className={styles.metaIndex}>(01)</span>
           <span>Thesis</span>
         </div>
         <p

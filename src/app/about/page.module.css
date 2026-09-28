@@ -62,13 +62,13 @@
   grid-area: idx;
   font-family: var(--font-mono);
   font-size: var(--fs-label);
-  color: var(--brand-bright);
+  color: var(--light);
 }
 .dName {
   grid-area: name;
   font-size: clamp(1.6rem, 1.1rem + 1.6vw, 2.6rem);
   letter-spacing: -0.045em;
-  font-weight: 500;
+  font-weight: var(--weight-display);
 }
 .dDetail {
   grid-area: detail;
@@ -95,7 +95,7 @@
 .clientName {
   font-size: var(--fs-heading);
   letter-spacing: -0.035em;
-  font-weight: 500;
+  font-weight: var(--weight-display);
 }
 .clientDetail {
   color: var(--text-secondary);

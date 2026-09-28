@@ -35,9 +35,9 @@ export function ProcessTimeline({ showHeading = true }: { showHeading?: boolean 
         <SectionHeading
           id="process-title"
           eyebrow="Approach"
-          index="07"
+          index="08"
           layout="split"
-          title={["Methodical by", <>design. <em className="t-accent">Creative</em> by nature.</>]}
+          title={["Methodical by design.", <em key="a" className="t-accent">Creative by nature.</em>]}
           lead="Seven stages, each with defined outputs. The creativity is in the work — the process is deliberately predictable."
         />
       )}

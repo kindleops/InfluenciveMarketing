@@ -22,7 +22,7 @@ export function SiteFooter() {
           <SplitText
             as="h2"
             id="footer-statement"
-            lines={["Build what", <>growth <em className="t-accent">requires.</em></>]}
+            lines={["Build what", <em key="a" className="t-accent">growth requires.</em>]}
             className={`t-display-1 t-lit ${styles.statement}`}
           />
           <div className={styles.leadSide} data-reveal="up">

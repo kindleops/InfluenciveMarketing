@@ -20,7 +20,7 @@ export default function WorkPage() {
     <>
       <PageHero
         eyebrow="Work"
-        title={["Systems we", <>design <em key="a" className="t-accent">and ship.</em></>]}
+        title={["Systems we design", <em key="a" className="t-accent">and ship.</em>]}
         lead="Every engagement is a connected system — measured against the numbers that matter to the business, not the deliverables that were promised."
         meta={[
           { label: "Engagement models", value: blueprints.length },

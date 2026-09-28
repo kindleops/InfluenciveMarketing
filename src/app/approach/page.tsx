@@ -26,7 +26,7 @@ export default function ApproachPage() {
       <PageHero
         eyebrow="Approach"
         accent="gold"
-        title={["Methodical by design.", <><em key="a" className="t-accent">Creative</em> by nature.</>]}
+        title={["Methodical by design.", <em key="a" className="t-accent">Creative by nature.</em>]}
         lead="Seven stages, each with defined outputs. The creativity lives in the work; the process is deliberately predictable — so leadership always knows what happens next."
         meta={[
           { label: "Stages", value: "07" },
@@ -47,7 +47,7 @@ export default function ApproachPage() {
           id="working-title"
           eyebrow="Working together"
           layout="split"
-          title={["How it feels", <>from the <em key="a" className="t-accent">inside.</em></>]}
+          title={["How it feels", <em key="a" className="t-accent">from the inside.</em>]}
           lead="Rigour is only useful if it is visible. These are the commitments that shape every engagement."
         />
         <ol className={styles.working} role="list">

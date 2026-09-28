@@ -25,7 +25,7 @@
   color: var(--text-primary);
 }
 .cat {
-  color: var(--brand-bright);
+  color: var(--light);
 }
 .title {
   max-width: 20ch;
@@ -87,12 +87,12 @@
   top: 0.78em;
   width: 0.65em;
   height: 1px;
-  background: var(--brand-bright);
+  background: var(--light);
 }
 .prose blockquote {
   margin-block: 2.2em;
   padding: 1.2em 0 1.2em 1.4em;
-  border-left: 1px solid var(--brand-bright);
+  border-left: 1px solid var(--light);
 }
 .prose blockquote p {
   font-family: var(--font-serif);

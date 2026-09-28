@@ -17,14 +17,8 @@ export function BrandMark({ size = 22, animate = false }: { size?: number; anima
       fill="none"
       aria-hidden="true"
     >
-      <defs>
-        <linearGradient id="bm-fill" x1="6" y1="2" x2="22" y2="18" gradientUnits="userSpaceOnUse">
-          <stop stopColor="#F6F3EE" />
-          <stop offset="1" stopColor="#F6F3EE" stopOpacity="0.55" />
-        </linearGradient>
-      </defs>
       <rect className={styles.back} x="2.75" y="7.75" width="13.5" height="13.5" rx="2.25" stroke="currentColor" strokeOpacity="0.55" strokeWidth="1.5" />
-      <rect className={styles.front} x="7.75" y="2.75" width="13.5" height="13.5" rx="2.25" fill="url(#bm-fill)" />
+      <rect className={styles.front} x="7.75" y="2.75" width="13.5" height="13.5" rx="2.25" fill="currentColor" />
     </svg>
   );
 }

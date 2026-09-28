@@ -1,0 +1,20 @@
+.canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--color-void);
+  opacity: 0;
+  transition: opacity 1600ms var(--ease-out);
+}
+.canvas[data-ready="true"] {
+  opacity: 1;
+}
+/* No WebGL: a horizon of light carries the composition on its own. */
+.canvas[data-ready="fallback"] {
+  opacity: 1;
+  background:
+    linear-gradient(90deg, transparent 10%, rgb(255 255 255 / 0.55) 50%, transparent 90%) 0 58% / 100% 1px no-repeat,
+    radial-gradient(40% 12% at 50% 58%, rgb(170 186 235 / 0.16), transparent 70%),
+    var(--color-void);
+}

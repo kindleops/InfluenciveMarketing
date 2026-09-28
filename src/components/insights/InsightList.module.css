@@ -16,7 +16,7 @@
   position: absolute;
   inset: 0 calc(var(--gutter) * -1);
   z-index: -1;
-  background: radial-gradient(35% 120% at var(--mx, 30%) 50%, rgb(122 155 255 / 0.08), transparent 70%);
+  background: radial-gradient(35% 120% at var(--mx, 30%) 50%, rgb(255 255 255 / 0.04), transparent 70%);
   opacity: 0;
   transition: opacity 500ms var(--ease-soft);
 }
@@ -45,7 +45,7 @@
   }
 }
 .cat {
-  color: var(--brand-bright);
+  color: var(--light);
 }
 .main {
   display: grid;
@@ -55,7 +55,7 @@
   font-size: var(--fs-heading);
   line-height: 1.1;
   letter-spacing: -0.035em;
-  font-weight: 500;
+  font-weight: var(--weight-display);
   color: var(--text-primary);
   max-width: 28ch;
   transition: transform 700ms var(--ease-out);

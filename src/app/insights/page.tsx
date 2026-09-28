@@ -17,7 +17,7 @@ export default function InsightsPage() {
       <PageHero
         eyebrow="Insights"
         accent="violet"
-        title={["Thinking,", <>in <em key="a" className="t-accent">public.</em></>]}
+        title={["Thinking,", <em key="a" className="t-accent">in public.</em>]}
         lead="Notes on systems, intelligence and experience — written for operators who have to make these decisions, not for search engines."
       />
       <Section tone="dark" spacing="tight" labelledBy="articles-title">

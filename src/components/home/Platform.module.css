@@ -1,0 +1,19 @@
+.section {
+  padding-bottom: clamp(7rem, 4rem + 8vw, 13rem);
+}
+.stage {
+  position: relative;
+  margin-top: clamp(4rem, 2rem + 6vw, 8rem);
+}
+/* A lit floor under the product: a hairline horizon with soft bloom. */
+.floor {
+  position: absolute;
+  left: -10%;
+  right: -10%;
+  bottom: -8rem;
+  height: 160px;
+  pointer-events: none;
+  background:
+    radial-gradient(50% 2px at 50% 50%, rgb(255 255 255 / 0.45), transparent),
+    radial-gradient(45% 50% at 50% 50%, rgb(170 186 235 / 0.1), transparent 70%);
+}

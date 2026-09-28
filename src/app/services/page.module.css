@@ -38,13 +38,13 @@
 .idx {
   font-family: var(--font-mono);
   font-size: var(--fs-label);
-  color: var(--brand-bright);
+  color: var(--light);
 }
 .name {
   font-size: var(--fs-display-2);
   line-height: 0.95;
   letter-spacing: -0.05em;
-  font-weight: 500;
+  font-weight: var(--weight-display);
 }
 .statement {
   font-family: var(--font-serif);
@@ -97,7 +97,7 @@
 }
 .outcomes li::before {
   content: "→";
-  color: var(--brand-bright);
+  color: var(--light);
 }
 
 .chapterFoot {
@@ -162,13 +162,13 @@
   margin-top: var(--space-6);
   font-size: var(--fs-heading);
   letter-spacing: -0.035em;
-  font-weight: 500;
+  font-weight: var(--weight-display);
 }
 .modelDuration {
   font-family: var(--font-mono);
   font-size: var(--fs-label);
   letter-spacing: 0.06em;
-  color: var(--brand-bright);
+  color: var(--light);
 }
 .modelFor {
   margin-top: var(--space-4);

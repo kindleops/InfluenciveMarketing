@@ -46,7 +46,7 @@ export default function ServicesPage() {
       <PageHero
         eyebrow="Services"
         accent="violet"
-        title={["Eight disciplines.", <>One <em key="a" className="t-accent">standard.</em></>]}
+        title={["Eight disciplines.", <em key="a" className="t-accent">One standard.</em>]}
         lead="Engage a single discipline or the whole system. Either way, every piece is designed to connect to — and strengthen — the rest."
       />
 
@@ -117,7 +117,7 @@ export default function ServicesPage() {
           id="models-title"
           eyebrow="Ways to engage"
           layout="split"
-          title={["Shaped around", <>the <em key="a" className="t-accent">problem.</em></>]}
+          title={["Shaped around", <em key="a" className="t-accent">the problem.</em>]}
           lead="Four engagement models. Each is staffed by senior people and measured against outcomes agreed before work begins."
         />
         <ol className={styles.models} role="list">

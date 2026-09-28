@@ -3,25 +3,30 @@ import type { CSSProperties, ElementType, ReactNode } from "react";
 import styles from "./Typography.module.css";
 
 /* ---------------------------------------------------------------------------
-   Eyebrow — section index + label. Sets the technical register of the page.
+   Eyebrow — an editorial running header: index, label, a hairline that runs
+   to the edge of the grid, and optional context. Sets the register of the
+   page the way a running head does in a well-set book.
 --------------------------------------------------------------------------- */
 export function Eyebrow({
   index,
   children,
+  aside,
   className,
   reveal = true,
 }: {
   index?: string;
   children: ReactNode;
+  aside?: ReactNode;
   className?: string;
   reveal?: boolean;
 }) {
   return (
-    <p className={[styles.eyebrow, className].filter(Boolean).join(" ")} data-reveal={reveal ? "fade" : undefined}>
-      {index && <span className={styles.index}>{index}</span>}
-      <span className={styles.rule} aria-hidden="true" />
-      <span>{children}</span>
-    </p>
+    <div className={[styles.eyebrow, className].filter(Boolean).join(" ")} data-reveal={reveal ? "fade" : undefined}>
+      {index && <span className={styles.index}>({index})</span>}
+      <span className={styles.label}>{children}</span>
+      <span className={styles.rule} aria-hidden="true" data-reveal={reveal ? "line" : undefined} />
+      {aside && <span className={styles.aside}>{aside}</span>}
+    </div>
   );
 }
 
@@ -64,6 +69,7 @@ export function SplitText({
 export function SectionHeading({
   eyebrow,
   index,
+  aside,
   title,
   lead,
   size = "2",
@@ -74,6 +80,7 @@ export function SectionHeading({
 }: {
   eyebrow?: ReactNode;
   index?: string;
+  aside?: ReactNode;
   title: ReactNode[];
   lead?: ReactNode;
   size?: "1" | "2" | "3";
@@ -83,16 +90,22 @@ export function SectionHeading({
   id?: string;
 }) {
   return (
-    <header className={[styles.heading, styles[layout], className].filter(Boolean).join(" ")}>
-      <div className={styles.headingMain}>
-        {eyebrow && <Eyebrow index={index}>{eyebrow}</Eyebrow>}
-        <SplitText as={as} id={id} lines={title} className={`t-display-${size} t-lit`} />
-      </div>
-      {lead && (
-        <p className={`t-lead ${styles.lead}`} data-reveal="up" style={{ "--reveal-delay": "180ms" } as CSSProperties}>
-          {lead}
-        </p>
+    <header className={[styles.heading, className].filter(Boolean).join(" ")}>
+      {eyebrow && (
+        <Eyebrow index={index} aside={aside}>
+          {eyebrow}
+        </Eyebrow>
       )}
+      <div className={[styles.headingBody, styles[layout]].join(" ")}>
+        <div className={styles.headingMain}>
+          <SplitText as={as} id={id} lines={title} className={`t-display-${size} t-lit`} />
+        </div>
+        {lead && (
+          <p className={`t-lead ${styles.lead}`} data-reveal="up" style={{ "--reveal-delay": "180ms" } as CSSProperties}>
+            {lead}
+          </p>
+        )}
+      </div>
     </header>
   );
 }

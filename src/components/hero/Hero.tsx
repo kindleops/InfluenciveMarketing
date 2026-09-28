@@ -1,69 +1,81 @@
+"use client";
+
+import { useRef } from "react";
+import { motion, useMotionValueEvent, useReducedMotion, useScroll, useTransform } from "motion/react";
 import { Button } from "@/components/ui/Button";
-import { LiquidField } from "./LiquidField";
-import { SystemConsole } from "./SystemConsole";
+import { GlassObject } from "./GlassObject";
 import styles from "./Hero.module.css";
+
+const LAYERS = ["Brand", "Experience", "Acquisition", "Conversion", "Automation", "Intelligence"];
 
 /**
  * Hero — "Who are you?"
  *
- * Entrance choreography (pure CSS, no JS dependency, so it starts at first
- * paint): light field rises → eyebrow → headline lines lift out of their
- * masks → supporting copy + actions → the console emerges from the horizon.
+ * One object, one sentence. The glass mark sits centre stage over a horizon
+ * of light; type is anchored to the floor of the frame like a title card.
+ * Scrolling turns the object and lets the type drift away at its own depth.
  */
 export function Hero() {
+  const ref = useRef<HTMLElement>(null);
+  const progress = useRef(0);
+  const reduced = useReducedMotion();
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
+  useMotionValueEvent(scrollYProgress, "change", (v) => {
+    progress.current = v;
+  });
+  const titleY = useTransform(scrollYProgress, [0, 1], reduced ? [0, 0] : [0, -120]);
+  const asideY = useTransform(scrollYProgress, [0, 1], reduced ? [0, 0] : [0, -60]);
+  const fade = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
+
   return (
-    <section className={styles.hero} aria-labelledby="hero-title">
-      <div className={styles.field} aria-hidden="true">
-        <LiquidField />
-      </div>
+    <section ref={ref} className={styles.hero} aria-labelledby="hero-title">
+      <GlassObject className={styles.canvas} progressRef={progress} />
+      <div className={styles.shade} aria-hidden="true" />
 
-      <div className={`container ${styles.inner}`}>
-        <div className={styles.top}>
-          <p className={styles.eyebrow}>
-            <span className={styles.eyebrowDot} aria-hidden="true" />
-            Brand <i>·</i> Product <i>·</i> Growth <i>·</i> Intelligence
-          </p>
-
-          <h1 id="hero-title" className={styles.title}>
-            <span className={styles.line}>
-              <span style={{ animationDelay: "320ms" }}>Build what</span>
-            </span>{" "}
-            <span className={`${styles.line} ${styles.indent}`}>
-              <span style={{ animationDelay: "420ms" }}>
-                growth <em className="t-accent">requires.</em>
-              </span>
-            </span>
-          </h1>
+      <div className={`container ${styles.frame}`}>
+        <div className={styles.meta} aria-hidden="true">
+          <span>N° 001</span>
+          <span className={styles.metaCenter}>Brand · Product · Growth · Intelligence</span>
+          <span>Growth systems for ambitious companies</span>
         </div>
 
-        <div className={styles.below}>
-          <p className={styles.cue} aria-hidden="true">
-            <span className={styles.cueLine} />
-            Scroll — the system, live
-          </p>
-          <div className={styles.aside}>
+        <div className={styles.bottom}>
+          <motion.h1 id="hero-title" className={styles.title} style={{ y: titleY, opacity: fade }}>
+            <span className={styles.line}>
+              <span style={{ animationDelay: "280ms" }}>Build what</span>
+            </span>{" "}
+            <span className={styles.line}>
+              <span style={{ animationDelay: "380ms" }} className={styles.tone}>
+                growth requires.
+              </span>
+            </span>
+          </motion.h1>
+
+          <motion.div className={styles.aside} style={{ y: asideY, opacity: fade }}>
             <p className={styles.lead}>
-              We design the systems behind modern growth — combining brand, product, acquisition, automation and
-              intelligence into one connected machine for ambitious companies.
+              We design and build the connected systems behind modern growth — brand, product, acquisition,
+              automation and intelligence, engineered as one machine.
             </p>
             <div className={styles.actions}>
               <Button href="/start" size="lg" arrow magnetic>
                 Start a Project
               </Button>
-              <Button href="/work" size="lg" variant="secondary" magnetic>
-                Explore Our Work
+              <Button href="/work" size="lg" variant="ghost" arrow>
+                Explore the work
               </Button>
             </div>
-          </div>
+          </motion.div>
         </div>
-      </div>
 
-      <div className={`container ${styles.consoleWrap}`}>
-        <span className={styles.horizon} aria-hidden="true" />
-        <SystemConsole />
+        <ol className={styles.bar} aria-label="The system">
+          {LAYERS.map((l, i) => (
+            <li key={l} style={{ animationDelay: `${1100 + i * 70}ms` }}>
+              <span>{String(i + 1).padStart(2, "0")}</span>
+              {l}
+            </li>
+          ))}
+        </ol>
       </div>
-
-      <div className={styles.fade} aria-hidden="true" />
     </section>
   );
 }

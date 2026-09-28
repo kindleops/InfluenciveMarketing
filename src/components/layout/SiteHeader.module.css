@@ -88,9 +88,6 @@
   gap: 2px;
   padding: 4px;
   border-radius: var(--radius-pill);
-  background: rgb(255 255 255 / 0.025);
-  box-shadow: inset 0 0 0 1px var(--border-hairline);
-  transition: background var(--dur-ui) var(--ease-soft), box-shadow var(--dur-ui) var(--ease-soft);
 }
 .header[data-scrolled] .links {
   background: transparent;
@@ -104,8 +101,7 @@
   width: var(--hl-w);
   transform: translateX(var(--hl-x));
   border-radius: var(--radius-pill);
-  background: rgb(255 255 255 / 0.07);
-  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.08);
+  background: rgb(255 255 255 / 0.06);
   opacity: 0;
   transition:
     transform 420ms var(--ease-out),
@@ -121,9 +117,9 @@
   display: inline-flex;
   align-items: center;
   height: 36px;
-  padding: 0 14px;
+  padding: 0 15px;
   border-radius: var(--radius-pill);
-  font-size: 0.875rem;
+  font-size: 0.84rem;
   letter-spacing: -0.008em;
   color: var(--text-secondary);
   transition: color var(--dur-micro) var(--ease-soft);
@@ -144,8 +140,8 @@
   height: 3px;
   margin-left: -1.5px;
   border-radius: 50%;
-  background: var(--brand-bright);
-  box-shadow: 0 0 8px var(--brand-bright);
+  background: var(--light);
+  box-shadow: 0 0 8px var(--light);
 }
 
 .actions {
@@ -251,7 +247,7 @@
   position: absolute;
   inset: -20% -40% auto;
   height: 70%;
-  background: radial-gradient(50% 50% at 50% 30%, rgb(74 114 255 / 0.22), transparent 70%);
+  background: radial-gradient(50% 50% at 50% 30%, rgb(255 255 255 / 0.077), transparent 70%);
   pointer-events: none;
 }
 .menuInner {
@@ -302,7 +298,7 @@
   font-size: clamp(2rem, 1.2rem + 4vw, 3.2rem);
   line-height: 1;
   letter-spacing: -0.045em;
-  font-weight: 500;
+  font-weight: var(--weight-display);
 }
 .menuDesc {
   margin-top: 0.4rem;
@@ -310,7 +306,7 @@
   color: var(--text-muted);
 }
 .menuLink[aria-current="page"] .menuIndex {
-  color: var(--brand-bright);
+  color: var(--light);
 }
 .menuFoot {
   display: grid;
@@ -331,4 +327,11 @@
   .menu {
     display: none;
   }
+}
+
+/* The CTA stays small and quiet in the bar — confidence, not volume. */
+.cta {
+  height: 40px !important;
+  padding: 0 0.6rem 0 1.1rem !important;
+  font-size: 0.84rem !important;
 }

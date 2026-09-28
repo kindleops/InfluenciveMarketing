@@ -52,7 +52,7 @@
   font-size: clamp(1.7rem, 1.1rem + 2vw, 3rem);
   line-height: 1.15;
   letter-spacing: -0.035em;
-  font-weight: 500;
+  font-weight: var(--weight-display);
   max-width: 28ch;
 }
 
@@ -80,7 +80,7 @@
 .stepIdx {
   font-family: var(--font-mono);
   font-size: var(--fs-label);
-  color: var(--brand-bright);
+  color: var(--light);
 }
 .stepName {
   font-size: var(--fs-heading);
@@ -141,7 +141,7 @@
   border-top: 1px solid var(--border-subtle);
   font-size: clamp(1.5rem, 1.1rem + 1.4vw, 2.4rem);
   letter-spacing: -0.035em;
-  font-weight: 500;
+  font-weight: var(--weight-display);
 }
 .signals li:last-child {
   border-bottom: 1px solid var(--border-subtle);
@@ -150,7 +150,7 @@
   font-family: var(--font-mono);
   font-size: var(--fs-label);
   letter-spacing: 0.06em;
-  color: var(--brand-bright);
+  color: var(--light);
   font-weight: 400;
 }
 
@@ -171,7 +171,7 @@
   font-size: clamp(3rem, 2rem + 4vw, 6rem);
   line-height: 1;
   letter-spacing: -0.05em;
-  font-weight: 500;
+  font-weight: var(--weight-display);
 }
 .results p {
   margin-top: var(--space-3);
@@ -198,7 +198,7 @@
   position: absolute;
   inset: 0;
   z-index: -1;
-  background: radial-gradient(60% 90% at 50% 100%, rgb(74 114 255 / 0.18), transparent 70%);
+  background: radial-gradient(60% 90% at 50% 100%, rgb(255 255 255 / 0.063), transparent 70%);
   opacity: 0;
   transition: opacity 700ms var(--ease-soft);
 }
@@ -220,7 +220,7 @@
   font-size: var(--fs-display-1);
   line-height: 0.95;
   letter-spacing: -0.05em;
-  font-weight: 500;
+  font-weight: var(--weight-display);
   transition: transform 900ms var(--ease-out);
 }
 .nextTitle svg {

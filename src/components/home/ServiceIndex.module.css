@@ -36,7 +36,7 @@
   inset: 0 calc(var(--gutter) * -1);
   z-index: -1;
   background:
-    radial-gradient(40% 120% at var(--mx, 30%) 50%, rgb(122 155 255 / 0.09), transparent 70%),
+    radial-gradient(40% 120% at var(--mx, 30%) 50%, rgb(255 255 255 / 0.045), transparent 70%),
     linear-gradient(90deg, transparent, rgb(255 255 255 / 0.02), transparent);
   opacity: 0;
   transition: opacity 500ms var(--ease-soft);
@@ -55,7 +55,7 @@
   font-size: clamp(2rem, 1.3rem + 2.6vw, 4rem);
   line-height: 1;
   letter-spacing: -0.05em;
-  font-weight: 500;
+  font-weight: var(--weight-display);
   color: var(--text-primary);
   transition:
     transform 700ms var(--ease-out),
@@ -124,12 +124,12 @@
     color: var(--text-secondary);
   }
   .row:hover .index {
-    color: var(--brand-bright);
+    color: var(--light);
   }
   .row:hover .arrow {
     background: var(--light);
     color: var(--text-inverse);
-    box-shadow: 0 10px 30px -10px rgb(122 155 255 / 0.6);
+    box-shadow: 0 10px 30px -10px rgb(255 255 255 / 0.3);
     transform: rotate(-45deg);
   }
   .row:hover .detail,

@@ -7,7 +7,7 @@
   content: "";
   position: absolute;
   inset: 0;
-  background: radial-gradient(50% 40% at 70% 60%, rgb(74 114 255 / 0.06), transparent 70%);
+  background: radial-gradient(50% 40% at 70% 60%, rgb(255 255 255 / 0.021), transparent 70%);
   pointer-events: none;
 }
 
@@ -36,7 +36,7 @@
   align-self: start;
 }
 .metaIndex {
-  color: var(--brand-bright);
+  color: var(--light);
 }
 
 .statement {
@@ -44,7 +44,7 @@
   font-size: clamp(1.85rem, 1.1rem + 2.6vw, 3.6rem);
   line-height: 1.12;
   letter-spacing: -0.035em;
-  font-weight: 500;
+  font-weight: var(--weight-display);
   max-width: 24ch;
   color: var(--text-primary);
 }

@@ -40,8 +40,8 @@ Components use tokens only; they never use raw values.
 
 - **Surfaces:** obsidian → charcoal (`--color-void` … `--color-surface-high`)
 - **Text:** ivory, not white (`--text-primary / secondary / muted / faint`)
-- **Light:** controlled cobalt (`--brand*`) plus restrained spectral accents (cyan, violet, gold, silver)
-- **Type:** Geist Sans (primary), Geist Mono (labels and metadata), Instrument Serif italic (editorial accents only). A fluid scale runs from `--fs-mega` down to `--fs-micro`.
+- **Light:** near-monochrome. Light itself is the accent. Cobalt (`--brand*`) is reserved for signals inside product UI; `AmbientGlow` sources are low-saturation "moonlight".
+- **Type:** Geist Sans at a light display weight (`--weight-display`), Geist Mono for labels and metadata. Display type is **two-tone**: `<em className="t-accent">` sets the second phrase in `--text-tone`. Instrument Serif italic (`.t-serif`) is reserved for a few editorial moments (thesis, manifesto, quotes). A fluid scale runs from `--fs-mega` down to `--fs-micro`.
 - **Spacing:** one 4px-root scale, `--space-1` … `--space-11`, plus `--section-y`
 - **Motion:** `--ease-out` (the house curve), `--ease-soft`, `--ease-in-out`, `--ease-emphasized`. Durations: micro 160 · UI 280 · reveal 760 · cinematic 1200 ms. These are mirrored for JavaScript in `src/lib/motion.ts`.
 
@@ -109,7 +109,8 @@ With nothing configured, development logs the inquiry and succeeds. **Production
 
 ## Performance and accessibility
 
-- The hero shader is one fragment shader with no 3D library. It renders at 35–50% resolution, is capped at about 40 fps, and pauses when offscreen or when the tab is hidden.
+- The hero object (`components/hero/GlassObject.tsx`) is the brand mark rendered as glass: a single ray-marched fragment shader with refraction, 6-sample spectral dispersion and Fresnel reflections of a procedural studio. It uses a bounding-sphere early-out and capped resolution with adaptive downscaling, runs at up to ~40 fps, and pauses offscreen or when the tab is hidden. Reduced motion renders one still frame; without WebGL, a CSS horizon stands in.
+- The first homepage visit per session plays a ~1.6s title sequence (`components/system/Intro.tsx`) whose horizon hands off to the one behind the glass. It is skipped for reduced motion. Route changes lift a curtain of the void off the new page without blocking interaction (`app/template.tsx`).
 - Animation uses transform and opacity. Expensive effects (backdrop blur, pinned scenes) are used sparingly and simplified on mobile. Smooth scrolling is desktop-only; touch devices keep native momentum.
 - Semantic landmarks and a skip link are in place. Visible focus states throughout. The mobile menu traps focus and closes on Escape, capability layers are keyboard-navigable tabs, and form errors are announced to screen readers.
 

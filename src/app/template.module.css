@@ -1,8 +1,40 @@
 .route {
-  animation: route-enter 720ms var(--ease-out) both;
+  animation: route-enter 900ms var(--ease-out) 120ms both;
+}
+.curtain {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-overlay);
+  pointer-events: none;
+  background: var(--color-void);
+  animation: curtain 900ms var(--ease-emphasized) forwards;
+}
+.curtain::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgb(255 255 255 / 0.7), transparent);
+}
+@keyframes curtain {
+  from {
+    clip-path: inset(0 0 0 0);
+  }
+  to {
+    clip-path: inset(0 0 100% 0);
+  }
 }
 @media (prefers-reduced-motion: reduce) {
   .route {
     animation: none;
   }
+  .curtain {
+    display: none;
+  }
+}
+/* The title sequence already provides the entrance on first visit. */
+:global(html[data-intro]) .curtain {
+  display: none;
 }

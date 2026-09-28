@@ -8,6 +8,7 @@ import { SiteFooter } from "@/components/layout/SiteFooter";
 import { RevealObserver } from "@/components/system/RevealObserver";
 import { InteractionLayer } from "@/components/system/InteractionLayer";
 import { SmoothScroll } from "@/components/system/SmoothScroll";
+import { Intro } from "@/components/system/Intro";
 import "./globals.css";
 
 const editorial = localFont({
@@ -52,9 +53,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     >
       <head>
         {/* Reveal states are only applied when scripts run — no-JS visitors see everything. */}
-        <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }} />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){var d=document.documentElement;d.classList.add('js');try{if(location.pathname==='/'&&!sessionStorage.getItem('intro-seen')&&!matchMedia('(prefers-reduced-motion: reduce)').matches){d.dataset.intro='running'}}catch(e){}})()`,
+          }}
+        />
       </head>
       <body>
+        <Intro />
         <a href="#main" className="skip-link">
           Skip to content
         </a>

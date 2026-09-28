@@ -93,6 +93,14 @@ html.js [data-stagger]:not([data-inview]) > * {
   transform: translate3d(0, 18px, 0);
 }
 
+/* While the title sequence plays, every entrance underneath holds. */
+html[data-intro="running"] main *,
+html[data-intro="running"] main *::before,
+html[data-intro="running"] main *::after,
+html[data-intro="running"] header * {
+  animation-play-state: paused !important;
+}
+
 /* ---- Keyframes shared across components ------------------------------- */
 
 @keyframes drift {

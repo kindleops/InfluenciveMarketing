@@ -34,8 +34,8 @@
   height: 100%;
   transform-origin: left;
   transform: scaleX(max(0.04, var(--progress)));
-  background: linear-gradient(90deg, var(--spectral-cyan), var(--brand-bright));
-  box-shadow: 0 0 10px var(--brand-bright);
+  background: linear-gradient(90deg, var(--spectral-cyan), var(--light));
+  box-shadow: 0 0 10px var(--light);
   transition: transform 700ms var(--ease-out);
 }
 .rail ol {
@@ -76,7 +76,7 @@
 }
 .rail li[data-state="current"] .railIdx,
 .rail li[data-state="done"] .railIdx {
-  color: var(--brand-bright);
+  color: var(--light);
 }
 .railLabel {
   grid-area: label;
@@ -121,7 +121,7 @@
   height: 100%;
   transform-origin: left;
   transform: scaleX(max(0.04, var(--progress)));
-  background: var(--brand-bright);
+  background: var(--light);
   transition: transform 700ms var(--ease-out);
 }
 @media (min-width: 1000px) {
@@ -158,14 +158,14 @@
   font-size: var(--fs-label);
   letter-spacing: var(--tracking-label);
   text-transform: uppercase;
-  color: var(--brand-bright);
+  color: var(--light);
 }
 .question {
   margin-top: var(--space-4);
   font-size: var(--fs-display-3);
   line-height: 1.02;
   letter-spacing: -0.045em;
-  font-weight: 500;
+  font-weight: var(--weight-display);
   outline: none;
 }
 .hint {
@@ -196,7 +196,7 @@
   color: var(--text-faint);
 }
 .textarea:focus {
-  border-bottom-color: var(--brand-bright);
+  border-bottom-color: var(--light);
 }
 
 /* Options */
@@ -240,14 +240,14 @@
   pointer-events: none;
 }
 .option:has(input:focus-visible) {
-  outline: 1.5px solid var(--brand-bright);
+  outline: 1.5px solid var(--light);
   outline-offset: 2px;
 }
 .option[data-on] {
-  background: rgb(122 155 255 / 0.1);
+  background: rgb(255 255 255 / 0.05);
   box-shadow:
-    inset 0 0 0 1px rgb(122 155 255 / 0.6),
-    0 10px 30px -18px rgb(122 155 255 / 0.8);
+    inset 0 0 0 1px rgb(255 255 255 / 0.3),
+    0 10px 30px -18px rgb(255 255 255 / 0.4);
 }
 .key {
   display: grid;
@@ -261,7 +261,7 @@
   box-shadow: inset 0 0 0 1px var(--border-default);
 }
 .option[data-on] .key {
-  background: var(--brand-bright);
+  background: var(--light);
   color: var(--text-inverse);
   box-shadow: none;
 }
@@ -290,7 +290,7 @@
 .option[data-on] .check,
 .option[data-on] .radio {
   background: var(--light);
-  box-shadow: inset 0 0 0 4px rgb(122 155 255 / 1);
+  box-shadow: inset 0 0 0 4px rgb(255 255 255 / 0.5);
 }
 
 /* Contact */
@@ -332,7 +332,7 @@
   transition: border-color var(--dur-ui);
 }
 .input input:focus {
-  border-bottom-color: var(--brand-bright);
+  border-bottom-color: var(--light);
 }
 .input input[aria-invalid="true"] {
   border-bottom-color: var(--signal-negative);
@@ -368,7 +368,7 @@
 }
 .review button {
   font-size: var(--fs-small);
-  color: var(--brand-bright);
+  color: var(--light);
 }
 
 .error {
@@ -444,7 +444,7 @@
   border-radius: 50%;
   background: var(--light);
   color: var(--text-inverse);
-  box-shadow: 0 0 40px rgb(122 155 255 / 0.6);
+  box-shadow: 0 0 40px rgb(255 255 255 / 0.3);
 }
 .doneTitle {
   font-size: var(--fs-display-3);
@@ -470,7 +470,7 @@
 .nextSteps span {
   font-family: var(--font-mono);
   font-size: var(--fs-micro);
-  color: var(--brand-bright);
+  color: var(--light);
   padding-top: 0.3rem;
 }
 .nextSteps b {

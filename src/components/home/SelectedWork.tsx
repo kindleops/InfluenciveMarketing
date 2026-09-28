@@ -15,9 +15,9 @@ export function SelectedWork() {
       <SectionHeading
         id="work-title"
         eyebrow="Selected work"
-        index="04"
+        index="05"
         layout="split"
-        title={["Systems,", <>not <em className="t-accent">deliverables.</em></>]}
+        title={["Systems,", <em key="a" className="t-accent">not deliverables.</em>]}
         lead={
           hasCaseStudies
             ? "Selected engagements — each a connected system, measured against the numbers that matter to the business."

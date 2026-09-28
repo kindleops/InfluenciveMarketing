@@ -10,7 +10,7 @@ export function PointOfView() {
     <Section tone="warm" labelledBy="pov-title" className={styles.section}>
       <AmbientGlow color="gold" size={1200} x="30%" y="100%" intensity={0.08} />
 
-      <Eyebrow index="08">Point of view</Eyebrow>
+      <Eyebrow index="09">Point of view</Eyebrow>
       <SplitText
         as="h2"
         id="pov-title"
@@ -18,7 +18,7 @@ export function PointOfView() {
         lines={[
           <span key="0" className={styles.dim}>{manifesto[0]}</span>,
           <span key="1" className={styles.mid}>{manifesto[1]}</span>,
-          <em key="2" className={`t-accent ${styles.lit}`}>{manifesto[2]}</em>,
+          <em key="2" className={`t-serif ${styles.lit}`}>{manifesto[2]}</em>,
         ]}
       />
 

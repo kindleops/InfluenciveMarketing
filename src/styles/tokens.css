@@ -8,31 +8,35 @@
   color-scheme: dark;
 
   /* ---- Surfaces: obsidian → charcoal, slightly warm ------------------- */
-  --color-void: #040506;
-  --color-background: #07080a;
-  --color-background-warm: #0b0a09;
-  --color-surface: #0e0f12;
-  --color-surface-raised: #13151a;
-  --color-surface-elevated: #191b21;
-  --color-surface-high: #22252d;
+  --color-void: #030303;
+  --color-background: #060606;
+  --color-background-warm: #0a0908;
+  --color-surface: #0c0c0d;
+  --color-surface-raised: #111112;
+  --color-surface-elevated: #18181a;
+  --color-surface-high: #222225;
 
   /* ---- Text: ivory, not white ----------------------------------------- */
-  --color-ivory: #ece8e1;
-  --text-primary: #ece8e1;
-  --text-secondary: rgb(236 232 225 / 0.68);
-  --text-muted: rgb(236 232 225 / 0.56);
-  --text-faint: rgb(236 232 225 / 0.32);
+  --color-ivory: #f1efea;
+  --text-primary: #f1efea;
+  --text-secondary: rgb(241 239 234 / 0.66);
+  --text-muted: rgb(241 239 234 / 0.52);
+  --text-faint: rgb(241 239 234 / 0.3);
+  /* The second tone of two-tone display type. */
+  --text-tone: rgb(241 239 234 / 0.38);
+  /* Opaque equivalent, for type set inside background-clipped lines. */
+  --text-tone-solid: #6f6d69;
   --text-inverse: #0a0b0d;
 
   /* ---- Lines ---------------------------------------------------------- */
-  --border-hairline: rgb(236 232 225 / 0.06);
-  --border-subtle: rgb(236 232 225 / 0.09);
-  --border-default: rgb(236 232 225 / 0.14);
-  --border-strong: rgb(236 232 225 / 0.24);
+  --border-hairline: rgb(241 239 234 / 0.06);
+  --border-subtle: rgb(241 239 234 / 0.09);
+  --border-default: rgb(241 239 234 / 0.14);
+  --border-strong: rgb(241 239 234 / 0.24);
 
   /* ---- Light: controlled cobalt + restrained spectral accents --------- */
-  --brand: #4a72ff;
-  --brand-bright: #7a9bff;
+  --brand: #5b7cff;
+  --brand-bright: #9db0ff;
   --brand-deep: #1d36b8;
   --brand-soft: rgb(74 114 255 / 0.14);
   --brand-glow: rgb(74 114 255 / 0.35);
@@ -40,8 +44,8 @@
   --spectral-violet: #9b8cff;
   --spectral-gold: #dcc08f;
   --spectral-silver: #c7cedb;
-  --light: #f6f3ee;
-  --glow: rgb(122 155 255 / 0.22);
+  --light: #f7f5f0;
+  --glow: rgb(255 255 255 / 0.08);
 
   --signal-positive: #7fe3b0;
   --signal-warning: #f0c47a;
@@ -54,9 +58,9 @@
 
   /* Fluid scale — architectural at the top, calm at the bottom */
   --fs-mega: clamp(3.6rem, 1.1rem + 8.4vw, 11rem);
-  --fs-display-1: clamp(3rem, 1.35rem + 5.6vw, 7.5rem);
-  --fs-display-2: clamp(2.35rem, 1.35rem + 3.7vw, 5.25rem);
-  --fs-display-3: clamp(1.95rem, 1.35rem + 2.25vw, 3.5rem);
+  --fs-display-1: clamp(3rem, 1.2rem + 6.2vw, 8.25rem);
+  --fs-display-2: clamp(2.4rem, 1.2rem + 4.4vw, 6rem);
+  --fs-display-3: clamp(1.95rem, 1.3rem + 2.4vw, 3.6rem);
   --fs-heading: clamp(1.45rem, 1.18rem + 0.95vw, 2.1rem);
   --fs-title: clamp(1.15rem, 1.06rem + 0.35vw, 1.4rem);
   --fs-lead: clamp(1.13rem, 1.03rem + 0.4vw, 1.4rem);
@@ -70,7 +74,8 @@
   --lh-title: 1.25;
   --lh-body: 1.62;
 
-  --tracking-display: -0.048em;
+  --tracking-display: -0.055em;
+  --weight-display: 430;
   --tracking-heading: -0.032em;
   --tracking-title: -0.018em;
   --tracking-body: -0.006em;
@@ -95,7 +100,7 @@
   --gutter: clamp(1.25rem, 0.6rem + 2.8vw, 3.5rem);
   --container: 1480px;
   --container-narrow: 1080px;
-  --section-y: clamp(6.5rem, 3.5rem + 9vw, 13rem);
+  --section-y: clamp(5.5rem, 3rem + 7vw, 10.5rem);
   --section-y-tight: clamp(4.5rem, 3rem + 5vw, 8rem);
 
   /* ---- Radii: restrained --------------------------------------------- */

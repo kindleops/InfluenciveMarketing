@@ -30,7 +30,7 @@
 }
 .qLink {
   font-size: var(--fs-small);
-  color: var(--brand-bright);
+  color: var(--light);
 }
 .logos {
   display: grid;

@@ -19,7 +19,7 @@ export default function CapabilitiesPage() {
       <PageHero
         eyebrow="Capabilities"
         accent="cyan"
-        title={["The full stack", <>of <em key="a" className="t-accent">growth.</em></>]}
+        title={["The full stack", <em key="a" className="t-accent">of growth.</em>]}
         lead="Six layers, twelve capabilities, one operating system. We build each layer to feed the next — so improvements travel through the whole machine."
         meta={capabilityLayers.slice(0, 3).map((l) => ({ label: `Layer ${l.index}`, value: l.layer }))}
       />
@@ -43,7 +43,7 @@ export default function CapabilitiesPage() {
           id="index-title"
           eyebrow="Index"
           layout="split"
-          title={["Every capability,", <>in <em key="a" className="t-accent">detail.</em></>]}
+          title={["Every capability,", <em key="a" className="t-accent">in detail.</em>]}
         />
         <div className={styles.index}>
           {capabilityLayers.map((l) => (

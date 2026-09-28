@@ -25,8 +25,8 @@
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: var(--brand-bright);
-  box-shadow: 0 0 12px var(--brand-bright);
+  background: var(--light);
+  box-shadow: 0 0 12px var(--light);
 }
 .title {
   max-width: 16ch;

@@ -114,7 +114,7 @@
   margin-bottom: -0.18em;
   overflow: hidden;
   font-size: clamp(3.5rem, 1rem + 9vw, 11rem);
-  font-weight: 500;
+  font-weight: var(--weight-display);
   line-height: 0.82;
   letter-spacing: -0.06em;
   white-space: nowrap;
@@ -141,7 +141,7 @@
   width: 0.14em;
   height: 0.14em;
   border-radius: 50%;
-  background: rgb(122 155 255 / 0.35);
+  background: rgb(255 255 255 / 0.175);
 }
 @keyframes horizon-drift {
   to {

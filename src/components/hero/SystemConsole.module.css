@@ -219,7 +219,7 @@
 }
 .specSans {
   font-size: 44px;
-  font-weight: 500;
+  font-weight: var(--weight-display);
   letter-spacing: -0.05em;
 }
 .specSerif {
@@ -341,7 +341,7 @@
 }
 .readValue {
   font-size: 30px;
-  font-weight: 500;
+  font-weight: var(--weight-display);
   letter-spacing: -0.04em;
   color: var(--text-primary);
   line-height: 1;
