@@ -1,36 +1,115 @@
+/* ==========================================================================
+   Interior opening scene. Depth: 0 sky/plate · 1 floor + horizon ·
+   3 signature object · 4 copy.
+   ========================================================================== */
 .hero {
+  --acc: var(--light-blue);
+  --hz: 86%;
   position: relative;
   isolation: isolate;
   overflow: clip;
+  display: flex;
+  flex-direction: column;
+  min-height: min(100svh, 1040px);
   padding-top: calc(var(--header-h) + 1.25rem);
-  padding-bottom: clamp(4rem, 2.5rem + 5vw, 8rem);
-  background: var(--color-background);
+  /* Copy ends just above the horizon line. */
+  padding-bottom: calc(min(100svh, 1040px) * 0.14 + 2rem);
+  background: var(--color-void);
 }
-.light {
+.hero[data-accent="violet"] {
+  --acc: var(--light-violet);
+}
+.hero[data-accent="cyan"] {
+  --acc: var(--light-teal);
+}
+.hero[data-accent="gold"] {
+  --acc: var(--light-gold);
+}
+
+/* ---- The set ---------------------------------------------------------- */
+.set {
   position: absolute;
   inset: 0;
   z-index: -1;
-}
-/* Light falls off before the next scene, so there is never a hard seam. */
-.hero::after {
-  content: "";
-  position: absolute;
-  inset: auto 0 0 0;
-  height: 40%;
-  z-index: -1;
-  background: linear-gradient(180deg, transparent, var(--color-background));
   pointer-events: none;
 }
-/* The signature horizon: every page sits on the same line of light. */
-.horizon {
+.set > span {
   position: absolute;
+}
+.sky {
+  inset: 0;
+  background:
+    radial-gradient(55% 45% at 72% var(--hz), rgb(var(--acc) / 0.16), transparent 72%),
+    radial-gradient(40% 35% at 20% 10%, rgb(var(--acc) / 0.06), transparent 72%),
+    linear-gradient(180deg, var(--color-void) 0%, #07080c 70%, #040405 100%);
+}
+/* Photograph, graded: darkened, cooled, fading into the floor. */
+.plate {
+  z-index: 0;
+  object-fit: cover;
+  /* Graded by opacity over the void (no per-frame filter). */
+  opacity: 0.4;
+  -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 55%, transparent calc(var(--hz) + 4%));
+  mask-image: linear-gradient(180deg, #000 0%, #000 55%, transparent calc(var(--hz) + 4%));
+  transform-origin: 60% 40%;
+  animation: plate-drift 40s var(--ease-in-out) infinite alternate;
+}
+@keyframes plate-drift {
+  from {
+    transform: scale(1.04);
+  }
+  to {
+    transform: scale(1.12) translate3d(-1.5%, 1%, 0);
+  }
+}
+.beam {
+  z-index: 1;
+  left: 70%;
+  top: -14%;
+  width: min(80vw, 1200px);
+  height: calc(var(--hz) + 16%);
+  translate: -50% 0;
+  background: linear-gradient(180deg, rgb(230 236 255 / 0.09), rgb(230 236 255 / 0.025) 60%, transparent);
+  clip-path: polygon(44% 0, 56% 0, 100% 100%, 0 100%);
+  filter: blur(30px);
+}
+.floor {
+  z-index: 1;
+  left: -30%;
+  right: -30%;
+  top: var(--hz);
+  bottom: -60%;
+  background-image:
+    linear-gradient(rgb(255 255 255 / 0.065) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(255 255 255 / 0.065) 1px, transparent 1px);
+  background-size: 76px 76px;
+  background-position: center top;
+  transform: perspective(520px) rotateX(72deg);
+  transform-origin: 50% 0;
+  -webkit-mask-image: radial-gradient(60% 70% at 64% 0%, #000 0%, transparent 80%);
+  mask-image: radial-gradient(60% 70% at 64% 0%, #000 0%, transparent 80%);
+}
+.pool {
+  z-index: 1;
+  left: 70%;
+  top: var(--hz);
+  width: min(80vw, 1100px);
+  height: 30%;
+  translate: -50% 0;
+  background: radial-gradient(46% 60% at 50% 0%, rgb(var(--acc) / 0.18), transparent 72%);
+}
+/* The signature horizon: every page stands on the same line of light. */
+.horizon {
+  z-index: 1;
   left: 0;
   right: 0;
-  bottom: 0;
+  top: var(--hz);
   height: 1px;
-  background: linear-gradient(90deg, transparent 4%, rgb(255 255 255 / 0.5) 50%, transparent 96%);
-  box-shadow: 0 0 40px 2px rgb(170 186 235 / 0.18);
-  transform-origin: center;
+  background: linear-gradient(90deg, transparent 0%, rgb(210 222 255 / 0.45) 30%, #f1f3ff 68%, rgb(210 222 255 / 0.45) 88%, transparent 100%);
+  box-shadow:
+    0 0 14px 1px rgb(150 172 255 / 0.4),
+    0 0 60px 6px rgb(var(--acc) / 0.14);
+  transform-origin: 68% 50%;
   animation: horizon 1800ms var(--ease-emphasized) 200ms both;
 }
 @keyframes horizon {
@@ -39,12 +118,26 @@
     opacity: 0;
   }
 }
+.vignette {
+  z-index: 1;
+  inset: 0;
+  background:
+    radial-gradient(120% 90% at 50% 45%, transparent 55%, rgb(0 0 0 / 0.65) 100%),
+    linear-gradient(0deg, var(--color-background) 0%, transparent 12%);
+}
 
+/* ---- Copy --------------------------------------------------------------- */
+.frame {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
 .topline {
   display: grid;
   grid-template-columns: 1fr auto 1fr;
   gap: var(--space-5);
-  margin-bottom: clamp(4rem, 2rem + 8vh, 8rem);
   padding-top: var(--space-4);
   border-top: 1px solid var(--border-hairline);
   font-family: var(--font-mono);
@@ -63,29 +156,23 @@
 .toplineCenter {
   color: var(--text-secondary);
 }
-@media (max-width: 720px) {
-  .topline {
-    grid-template-columns: 1fr auto;
-  }
-  .toplineCenter {
-    display: none;
-  }
-}
 @keyframes eyebrow-in {
   from {
     opacity: 0;
     transform: translate3d(0, 10px, 0);
   }
 }
-
+.copy {
+  margin-top: auto;
+  padding-top: clamp(3rem, 2rem + 6vh, 7rem);
+}
 .title {
   max-width: 15ch;
 }
-
 .below {
   display: grid;
   gap: var(--space-7);
-  margin-top: var(--space-8);
+  margin-top: var(--space-7);
 }
 @media (min-width: 1000px) {
   .below {
@@ -112,10 +199,58 @@
   font-size: var(--fs-micro);
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--text-faint);
+  color: var(--text-muted);
 }
 .meta dd {
   margin: 0;
   font-size: var(--fs-small);
   color: var(--text-primary);
+}
+
+/* ---- With a signature object: copy left, object on the horizon right --- */
+.visual {
+  position: absolute;
+  z-index: 2;
+  pointer-events: none;
+}
+@media (min-width: 1000px) {
+  .hero[data-visual] .copy {
+    max-width: 52%;
+  }
+  .hero[data-visual] .below {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-6);
+  }
+  .visual {
+    right: max(var(--gutter), calc((100% - var(--container)) / 2 + var(--gutter)));
+    bottom: calc(100% - var(--hz));
+    width: min(44vw, 700px);
+    height: min(66svh, 600px);
+  }
+}
+@media (max-width: 999px) {
+  /* The object (if any) closes the scene; the horizon sits at its foot. */
+  .hero {
+    --hz: calc(100% - 4rem);
+    padding-bottom: 4rem;
+  }
+  .visual {
+    position: relative;
+    order: 2;
+    width: calc(100% - var(--gutter) * 2);
+    height: min(80vw, 420px);
+    margin: var(--space-7) auto 0;
+  }
+  .topline {
+    grid-template-columns: 1fr auto;
+  }
+  .toplineCenter {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .plate {
+    animation: none;
+  }
 }

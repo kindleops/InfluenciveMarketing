@@ -94,7 +94,9 @@ export function RevealObserver() {
   // packets), which ignores CSS and would otherwise invalidate layout every
   // frame — so an idle page costs nothing for what can't be seen.
   useEffect(() => {
-    const scenes = document.querySelectorAll<HTMLElement>("main section:not(section section), footer");
+    const scenes = document.querySelectorAll<HTMLElement>(
+      "main section:not(section section), footer, [data-pause-offscreen]",
+    );
     const io = new IntersectionObserver(
       (entries) => {
         for (const e of entries) {

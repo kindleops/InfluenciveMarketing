@@ -273,13 +273,14 @@ test.describe("accessibility", () => {
     for (const path of paths) {
       await page.goto(path, { waitUntil: "networkidle" });
       await traverse(page, 900);
+      await page.waitForTimeout(1200);
       await page.addScriptTag({ path: AXE_PATH });
       const violations = await page.evaluate(async () => {
         // @ts-expect-error injected
         const r = await window.axe.run(document, { runOnly: ["wcag2a", "wcag2aa"] });
         return r.violations
           .filter((v: { impact: string }) => v.impact === "serious" || v.impact === "critical")
-          .map((v: { id: string }) => v.id);
+          .map((v: { id: string; nodes: { target: string[] }[] }) => `${v.id}: ${v.nodes.slice(0, 3).map((n) => n.target.join(" ")).join(" | ")}`);
       });
       expect(violations, path).toEqual([]);
     }

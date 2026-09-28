@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import type { CSSProperties } from "react";
 import { getWork, work } from "@/content/work";
 import { PageHero } from "@/components/layout/PageHero";
-import { WorkVisual } from "@/components/work/WorkVisual";
+import { WorkVisual, workPlates } from "@/components/work/WorkVisual";
 import { ProjectCTA } from "@/components/home/ProjectCTA";
 import { Quote } from "@/components/proof/Proof";
 import { Eyebrow } from "@/components/ui/Typography";
@@ -36,6 +36,7 @@ export default async function WorkDetail({ params }: Props) {
       <PageHero
         eyebrow={isCase ? "Case study" : "Engagement blueprint"}
         accent={item.accent}
+        plate={workPlates[item.visual]}
         title={[isCase && item.client ? item.client : item.title]}
         lead={item.summary}
         meta={[

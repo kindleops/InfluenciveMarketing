@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import type { CSSProperties } from "react";
 import { brand } from "@/config/brand";
 import { PageHero } from "@/components/layout/PageHero";
+import relaunch from "@/assets/plates/relaunch.jpg";
 import { PointOfView } from "@/components/home/PointOfView";
 import { ProjectCTA } from "@/components/home/ProjectCTA";
 import { ProofSection } from "@/components/proof/Proof";
@@ -41,6 +42,7 @@ export default function AboutPage() {
     <>
       <PageHero
         eyebrow="About"
+        plate={relaunch}
         title={["The company", <em key="a" className="t-accent">behind the machine.</em>]}
         lead={`${brand.name} is a strategy, design and engineering company. We build the connected systems that let ambitious companies look better, sell better and operate better — at the same time.`}
       />

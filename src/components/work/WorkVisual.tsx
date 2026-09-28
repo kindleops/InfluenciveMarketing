@@ -9,7 +9,8 @@ import styles from "./WorkVisual.module.css";
 
 /* Photographic stages — abstract, art-directed environments (no products,
    people or brands) that set the mood each system is presented in. */
-const plates: Record<Kind, StaticImageData> = { identity: relaunch, growth, operations, product };
+export const workPlates: Record<Kind, StaticImageData> = { identity: relaunch, growth, operations, product };
+const plates = workPlates;
 
 /**
  * Art-directed compositions for each engagement type: interface glass

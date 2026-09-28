@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { work } from "@/content/work";
 import { PageHero } from "@/components/layout/PageHero";
+import { WorkDeck } from "@/components/layout/HeroVisuals";
 import { CaseStudyPreview } from "@/components/work/CaseStudyPreview";
 import { ProjectCTA } from "@/components/home/ProjectCTA";
 import { ProofSection } from "@/components/proof/Proof";
@@ -20,6 +21,7 @@ export default function WorkPage() {
     <>
       <PageHero
         eyebrow="Work"
+        visual={<WorkDeck />}
         title={["Systems we design", <em key="a" className="t-accent">and ship.</em>]}
         lead="Every engagement is a connected system — measured against the numbers that matter to the business, not the deliverables that were promised."
         meta={[

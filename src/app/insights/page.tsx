@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { insights } from "@/content/insights";
 import { PageHero } from "@/components/layout/PageHero";
+import { LightSlabs } from "@/components/layout/HeroVisuals";
 import { InsightCards } from "@/components/insights/InsightCards";
 import { ProjectCTA } from "@/components/home/ProjectCTA";
 import { Section } from "@/components/ui/Surface";
@@ -17,6 +18,7 @@ export default function InsightsPage() {
       <PageHero
         eyebrow="Insights"
         accent="violet"
+        visual={<LightSlabs />}
         title={["Thinking,", <em key="a" className="t-accent">in public.</em>]}
         lead="Notes on systems, intelligence and experience — written for operators who have to make these decisions, not for search engines."
       />

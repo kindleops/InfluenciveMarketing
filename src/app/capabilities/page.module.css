@@ -12,7 +12,43 @@
   .layer {
     grid-template-columns: minmax(0, 4fr) minmax(0, 8fr);
     gap: var(--space-7);
+    padding-block: var(--space-9);
   }
+  .layerSide {
+    position: sticky;
+    top: calc(var(--header-h) + 3rem);
+    align-self: start;
+  }
+}
+.layerSide {
+  display: grid;
+  gap: var(--space-6);
+  align-content: start;
+}
+.layerOutput {
+  display: grid;
+  gap: var(--space-2);
+  max-width: 30ch;
+  padding-left: 2.5rem;
+  font-size: var(--fs-small);
+  line-height: 1.55;
+  color: var(--text-secondary);
+}
+.layerOutput span {
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.layerBody {
+  display: grid;
+  gap: var(--space-8);
+}
+/* The layer's module, shown as product on a lit stage. */
+.moduleWrap {
+  max-width: 34rem;
+  margin-bottom: var(--space-4);
 }
 .layerHead {
   display: grid;

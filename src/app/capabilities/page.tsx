@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import { capabilityLayers } from "@/content/capabilities";
 import { PageHero } from "@/components/layout/PageHero";
+import { LayerStack } from "@/components/layout/HeroVisuals";
 import { CapabilityStack } from "@/components/home/CapabilityStack";
 import { ConnectedSystem } from "@/components/home/ConnectedSystem";
 import { ProjectCTA } from "@/components/home/ProjectCTA";
+import { ModuleCard } from "@/components/hero/ModuleCard";
 import { SectionHeading } from "@/components/ui/Typography";
 import { Section } from "@/components/ui/Surface";
 import styles from "./page.module.css";
@@ -19,6 +21,7 @@ export default function CapabilitiesPage() {
       <PageHero
         eyebrow="Capabilities"
         accent="cyan"
+        visual={<LayerStack />}
         title={["The full stack", <em key="a" className="t-accent">of growth.</em>]}
         lead="Six layers, twelve capabilities, one operating system. We build each layer to feed the next — so improvements travel through the whole machine."
         meta={capabilityLayers.slice(0, 3).map((l) => ({ label: `Layer ${l.index}`, value: l.layer }))}
@@ -48,13 +51,23 @@ export default function CapabilitiesPage() {
         <div className={styles.index}>
           {capabilityLayers.map((l) => (
             <section key={l.id} className={styles.layer} aria-labelledby={`idx-${l.id}`}>
-              <div className={styles.layerHead} data-reveal="up">
-                <span className={styles.layerIdx}>{l.index}</span>
-                <h3 id={`idx-${l.id}`} className={styles.layerName}>
-                  {l.layer}
-                </h3>
-                <p className={styles.layerQ}>{l.question}</p>
+              <div className={styles.layerSide}>
+                <div className={styles.layerHead} data-reveal="up">
+                  <span className={styles.layerIdx}>{l.index}</span>
+                  <h3 id={`idx-${l.id}`} className={styles.layerName}>
+                    {l.layer}
+                  </h3>
+                  <p className={styles.layerQ}>{l.question}</p>
+                </div>
+                <p className={styles.layerOutput} data-reveal="up">
+                  <span>Output</span>
+                  {l.output}
+                </p>
               </div>
+              <div className={styles.layerBody}>
+                <div className={styles.moduleWrap} data-reveal="scale">
+                  <ModuleCard layer={l.id} />
+                </div>
               <div className={styles.caps}>
                 {l.capabilities.map((c) => (
                   <div key={c.name} className={styles.cap} data-reveal="up">
@@ -67,6 +80,7 @@ export default function CapabilitiesPage() {
                     </ul>
                   </div>
                 ))}
+                </div>
               </div>
             </section>
           ))}

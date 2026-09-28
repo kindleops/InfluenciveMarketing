@@ -2,8 +2,10 @@ import type { Metadata } from "next";
 import type { CSSProperties } from "react";
 import { services } from "@/content/services";
 import { PageHero } from "@/components/layout/PageHero";
+import { DisciplineWall } from "@/components/layout/HeroVisuals";
 import { ServiceNav } from "@/components/services/ServiceNav";
 import { ProjectCTA } from "@/components/home/ProjectCTA";
+import { ServiceArt } from "@/components/home/ServiceArt";
 import { SectionHeading } from "@/components/ui/Typography";
 import { Section } from "@/components/ui/Surface";
 import styles from "./page.module.css";
@@ -46,6 +48,7 @@ export default function ServicesPage() {
       <PageHero
         eyebrow="Services"
         accent="violet"
+        visual={<DisciplineWall />}
         title={["Eight disciplines.", <em key="a" className="t-accent">One standard.</em>]}
         lead="Engage a single discipline or the whole system. Either way, every piece is designed to connect to — and strengthen — the rest."
       />
@@ -62,15 +65,25 @@ export default function ServicesPage() {
           <div className={styles.chapters}>
             {services.map((s) => (
               <article key={s.id} id={s.id} className={styles.chapter} aria-labelledby={`${s.id}-name`}>
-                <header className={styles.chapterHead}>
-                  <span className={styles.idx}>{s.index}</span>
-                  <h3 id={`${s.id}-name`} className={styles.name} data-reveal="up">
-                    {s.name}
-                  </h3>
-                  <p className={styles.statement} data-reveal="up" style={{ "--reveal-delay": "80ms" } as CSSProperties}>
-                    {s.statement}
-                  </p>
-                </header>
+                <div className={styles.chapterTop}>
+                  <header className={styles.chapterHead}>
+                    <span className={styles.idx}>{s.index}</span>
+                    <h3 id={`${s.id}-name`} className={styles.name} data-reveal="up">
+                      {s.name}
+                    </h3>
+                    <p className={styles.statement} data-reveal="up" style={{ "--reveal-delay": "80ms" } as CSSProperties}>
+                      {s.statement}
+                    </p>
+                  </header>
+                  <div className={styles.artStage} data-reveal="scale" data-pause-offscreen="" aria-hidden="true">
+                    <span className={styles.artLight} />
+                    <ServiceArt id={s.id} />
+                    <span className={styles.artMeta}>
+                      <span>{s.index} / 08</span>
+                      <span>{s.engagement}</span>
+                    </span>
+                  </div>
+                </div>
 
                 <p className={styles.summary} data-reveal="up">
                   {s.summary}

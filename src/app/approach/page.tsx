@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import type { CSSProperties } from "react";
 import { PageHero } from "@/components/layout/PageHero";
+import { ProcessArc } from "@/components/layout/HeroVisuals";
 import { ProcessTimeline } from "@/components/home/ProcessTimeline";
 import { PointOfView } from "@/components/home/PointOfView";
 import { ProjectCTA } from "@/components/home/ProjectCTA";
@@ -26,6 +27,7 @@ export default function ApproachPage() {
       <PageHero
         eyebrow="Approach"
         accent="gold"
+        visual={<ProcessArc />}
         title={["Methodical by design.", <em key="a" className="t-accent">Creative by nature.</em>]}
         lead="Seven stages, each with defined outputs. The creativity lives in the work; the process is deliberately predictable — so leadership always knows what happens next."
         meta={[
