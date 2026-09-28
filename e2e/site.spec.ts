@@ -93,11 +93,16 @@ test.describe("home page", () => {
 
     // Finale: the scene settles as the glass reaches the centre.
     await page.locator("section[aria-labelledby='cta-title'] [class*='stageGap']").scrollIntoViewIfNeeded();
-    await page.waitForTimeout(600);
-    const settle = await page.evaluate(() =>
-      parseFloat(getComputedStyle(document.querySelector("section[aria-labelledby='cta-title']")!).getPropertyValue("--settle")),
-    );
-    expect(settle).toBeGreaterThan(0.5);
+    const readSettle = () =>
+      page.evaluate(() =>
+        parseFloat(getComputedStyle(document.querySelector("section[aria-labelledby='cta-title']")!).getPropertyValue("--settle")),
+      );
+    await expect
+      .poll(async () => {
+        await page.mouse.wheel(0, 40); // arrive the way a visitor does
+        return readSettle();
+      }, { timeout: 8000 })
+      .toBeGreaterThan(0.5);
   });
 
   test("disciplines respond to keyboard and pointer", async ({ page }) => {
@@ -216,6 +221,8 @@ test.describe("accessibility", () => {
     await skipIntro(page);
     await page.goto("/", { waitUntil: "networkidle" });
     await traverse(page);
+    // Scroll-linked states pass through intermediate values; audit at rest.
+    await page.waitForTimeout(1500);
     await page.addScriptTag({ path: AXE_PATH });
     const result = await page.evaluate(async () => {
       // @ts-expect-error injected
