@@ -67,6 +67,11 @@ vec3 env(vec3 d) {
   c += vec3(0.7, 0.76, 0.95) * exp(-abs(dy) * 40.0) * 0.16 * span * behind;
   c += vec3(0.42, 0.48, 0.68) * exp(-(d.x * d.x * 3.0 + dy * dy * 60.0)) * 0.1 * behind;
 
+  // A tinted light wall behind the object — cool at left, warm at right —
+  // so the glass has colour to bend.
+  vec3 wall = mix(vec3(0.07, 0.09, 0.2), vec3(0.18, 0.12, 0.08), smoothstep(-0.35, 0.35, d.x));
+  c += wall * behind * exp(-dy * dy * 22.0) * 0.36;
+
   // Studio (only reachable by reflected / refracted rays).
   float front = smoothstep(-0.1, 0.4, d.z);
   float top = smoothstep(0.42, 0.78, d.y) * (1.0 - smoothstep(0.3, 0.85, abs(d.x)));
@@ -137,8 +142,8 @@ void main() {
       // by its own index: smooth dispersion rather than RGB fringes.
       vec3 refr = vec3(0.0);
       vec3 wsum = vec3(0.0);
-      for (int k = 0; k < 6; k++) {
-        float x = (float(k) + 0.5) / 6.0;
+      for (int k = 0; k < 12; k++) {
+        float x = (float(k) + 0.5) / 12.0;
         vec3 w = spectrum(x);
         vec3 o = refract(rin, -ne, mix(1.448, 1.502, x));
         if (dot(o, o) < 0.01) o = reflect(rin, -ne);
@@ -147,11 +152,14 @@ void main() {
       }
       refr /= wsum;
 
-      vec3 absorb = exp(-s * vec3(0.55, 0.42, 0.3));
+      vec3 absorb = exp(-s * vec3(0.3, 0.24, 0.18));
       vec3 refl = env(reflect(rd, n));
-      vec3 glass = refr * absorb * (1.0 - F) + refl * F;
-      glass += vec3(0.018, 0.02, 0.026) * (1.0 - F);            // internal scatter
-      glass += vec3(1.0) * pow(1.0 - cosi, 3.0) * 0.06;           // edge sheen
+      // Light that bounces back inside the slab from its far face: this is
+      // what makes glass look luminous rather than like an empty frame.
+      vec3 inner = env(reflect(rin, -ne)) * 0.38 * absorb;
+      vec3 glass = (refr * absorb + inner) * (1.0 - F) + refl * F;
+      glass += vec3(0.02, 0.022, 0.03) * (1.0 - F);               // internal scatter
+      glass += vec3(1.0) * pow(1.0 - cosi, 3.0) * 0.07;           // edge sheen
 
       col = mix(col, glass, smoothstep(0.0, 1.0, u_reveal));
     }
@@ -177,7 +185,16 @@ function rotation(yaw: number, pitch: number, roll: number) {
   return new Float32Array(m);
 }
 
-export function GlassObject({ className, progressRef }: { className?: string; progressRef?: React.RefObject<number> }) {
+export function GlassObject({
+  className,
+  progressRef,
+  framing = "hero",
+}: {
+  className?: string;
+  progressRef?: React.RefObject<number>;
+  /** "finale" frames the mark smaller and dead-centre, for the closing scene. */
+  framing?: "hero" | "finale";
+}) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
@@ -215,9 +232,9 @@ export function GlassObject({ className, progressRef }: { className?: string; pr
 
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const mobile = window.matchMedia("(max-width: 720px)").matches;
-    let scale = mobile ? 0.55 : 0.8;
+    let scale = mobile ? 0.6 : 1;
     let narrow = false;
-    const maxPixels = mobile ? 320_000 : 900_000;
+    const maxPixels = mobile ? 380_000 : 1_300_000;
 
     const resize = () => {
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
@@ -234,7 +251,7 @@ export function GlassObject({ className, progressRef }: { className?: string; pr
       gl.uniform2f(uRes, w, h);
       // Composition: object centred, lifted; higher on narrow screens.
       const aspect = canvas.clientWidth / Math.max(1, canvas.clientHeight);
-      gl.uniform2f(uCenter, 0, aspect < 0.8 ? 0.27 : 0.075);
+      gl.uniform2f(uCenter, 0, framing === "finale" ? 0 : aspect < 0.8 ? 0.27 : 0.075);
       narrow = aspect < 0.8;
     };
 
@@ -265,7 +282,7 @@ export function GlassObject({ className, progressRef }: { className?: string; pr
       const roll = -0.08 + Math.sin(t * 0.11) * 0.03;
       gl.uniformMatrix3fv(uRot, false, rotation(yaw, pitch, roll));
       gl.uniform1f(uTime, t);
-      gl.uniform1f(uDist, (narrow ? 20 : 12.8) - push * (narrow ? 6 : 5.4) + (1 - ease) * 2.5);
+      gl.uniform1f(uDist, (narrow ? 20 : 12.8) + (framing === "finale" ? (narrow ? -7 : -0.8) : 0) - push * (narrow ? 6 : 5.4) + (1 - ease) * 2.5);
       gl.uniform1f(uReveal, ease);
       gl.drawArrays(gl.TRIANGLES, 0, 3);
     };
@@ -323,7 +340,7 @@ export function GlassObject({ className, progressRef }: { className?: string; pr
       document.removeEventListener("visibilitychange", onVis);
       window.removeEventListener("pointermove", onPointer);
     };
-  }, [progressRef]);
+  }, [progressRef, framing]);
 
   return <canvas ref={canvasRef} className={[styles.canvas, className].filter(Boolean).join(" ")} aria-hidden="true" />;
 }

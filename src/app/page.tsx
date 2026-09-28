@@ -3,13 +3,13 @@ import { Thesis } from "@/components/home/Thesis";
 import { Platform } from "@/components/home/Platform";
 import { ConnectedSystem } from "@/components/home/ConnectedSystem";
 import { WorkReel } from "@/components/home/WorkReel";
-import { ServiceIndex } from "@/components/home/ServiceIndex";
+import { ServiceExplorer } from "@/components/home/ServiceExplorer";
 import { IntelligenceLayer } from "@/components/home/IntelligenceLayer";
 import { ProcessTimeline } from "@/components/home/ProcessTimeline";
 import { PointOfView } from "@/components/home/PointOfView";
 import { ProjectCTA } from "@/components/home/ProjectCTA";
 import { ProofSection } from "@/components/proof/Proof";
-import { InsightList } from "@/components/insights/InsightList";
+import { InsightCards } from "@/components/insights/InsightCards";
 import { SectionHeading, TextLink } from "@/components/ui/Typography";
 import { Section } from "@/components/ui/Surface";
 import { insights } from "@/content/insights";
@@ -36,7 +36,7 @@ export default function Home() {
       <Platform />
       <ConnectedSystem />
       <WorkReel />
-      <ServiceIndex />
+      <ServiceExplorer />
       <IntelligenceLayer />
 
       <Section tone="dark" labelledBy="process-title" chapter="07|Approach">
@@ -56,7 +56,7 @@ export default function Home() {
           lead="Notes on systems, intelligence and the craft of building companies people choose."
         />
         <div style={{ marginTop: "var(--space-9)" }}>
-          <InsightList items={insights.slice(0, 3)} />
+          <InsightCards items={insights.slice(0, 3)} />
         </div>
         <div style={{ display: "flex", justifyContent: "flex-end", marginTop: "var(--space-7)" }} data-reveal="up">
           <TextLink href="/insights">All insights</TextLink>

@@ -3,6 +3,30 @@
 import { useEffect } from "react";
 import { usePathname } from "next/navigation";
 
+const GLYPHS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789/·—";
+
+/** Resolve a label from noise, left to right — the decode of a system label. */
+function scramble(el: HTMLElement) {
+  if (el.dataset.scrambled) return;
+  el.dataset.scrambled = "1";
+  const final = el.textContent ?? "";
+  const start = performance.now();
+  const dur = 520 + final.length * 18;
+  const frame = (now: number) => {
+    const p = Math.min(1, (now - start) / dur);
+    const settled = Math.floor(p * final.length);
+    let out = "";
+    for (let i = 0; i < final.length; i++) {
+      const ch = final[i];
+      out += i < settled || ch === " " ? ch : GLYPHS[(Math.random() * GLYPHS.length) | 0];
+    }
+    el.textContent = out;
+    if (p < 1) requestAnimationFrame(frame);
+    else el.textContent = final;
+  };
+  requestAnimationFrame(frame);
+}
+
 const SELECTOR = "[data-reveal]:not([data-inview]), [data-split]:not([data-inview]), [data-stagger]:not([data-inview])";
 
 /**
@@ -16,12 +40,14 @@ export function RevealObserver() {
   const pathname = usePathname();
 
   useEffect(() => {
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const io = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {
           if (!entry.isIntersecting) continue;
           entry.target.setAttribute("data-inview", "");
           io.unobserve(entry.target);
+          if (!reduced) entry.target.querySelectorAll<HTMLElement>("[data-scramble]").forEach(scramble);
         }
       },
       { rootMargin: "0px 0px -10% 0px", threshold: 0.01 },

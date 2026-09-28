@@ -73,6 +73,11 @@ Use `<GlassSurface level={3} interactive />`, or `className="glass" data-level="
 
 ### Primitives
 
+**Display type** reveals character by character (`<SplitText>` default `mode="chars"`; `<Chars>` for custom markup). Lines with their own clipped gradients use `mode="lines"`. Elements with `data-scramble` decode from noise when revealed (running-header labels use it).
+
+**Signature components:** `GlassObject` (hero + `framing="finale"` bookend in the closing CTA), `ServiceExplorer` + `ServiceArt` (eight looping discipline illustrations, auto-advancing tour), `InsightCards` (generative light-field covers per category), `WorkReel`, `Platform`.
+
+
 `Button` (primary / secondary / ghost, magnetic, arrow) · `TextLink` · `Eyebrow` · `SplitText` · `SectionHeading` · `GlassSurface` · `Section` · `AmbientGlow` · `PageHero` · `CaseStudyPreview` · `WorkVisual` · `Quote` · `LogoWall` · `InsightList`
 
 ---

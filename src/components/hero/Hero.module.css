@@ -131,13 +131,17 @@
 }
 .line > span {
   display: inline-block;
+}
+/* Letters rise from the floor of their line, one after another. */
+.line :global(.char) {
   background: linear-gradient(180deg, #fffefb 0%, #f1efea 50%, rgb(241 239 234 / 0.8) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  animation: line-up 1400ms var(--ease-emphasized) both;
+  animation: line-up 1300ms var(--ease-emphasized) both;
+  animation-delay: calc(260ms + var(--ci) * 26ms);
 }
-.line > .tone {
+.line > .tone :global(.char) {
   background: linear-gradient(180deg, rgb(241 239 234 / 0.52) 0%, rgb(241 239 234 / 0.3) 100%);
   -webkit-background-clip: text;
   background-clip: text;
@@ -145,6 +149,7 @@
 @keyframes line-up {
   from {
     transform: translate3d(0, 108%, 0);
+    filter: blur(6px);
   }
   to {
     transform: none;
@@ -255,7 +260,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .line > span,
+  .line :global(.char),
   .lead,
   .actions,
   .meta,

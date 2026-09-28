@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { insights } from "@/content/insights";
 import { PageHero } from "@/components/layout/PageHero";
-import { InsightList } from "@/components/insights/InsightList";
+import { InsightCards } from "@/components/insights/InsightCards";
 import { ProjectCTA } from "@/components/home/ProjectCTA";
 import { Section } from "@/components/ui/Surface";
 
@@ -24,7 +24,7 @@ export default function InsightsPage() {
         <h2 id="articles-title" className="sr-only">
           Articles
         </h2>
-        <InsightList items={sorted} size="large" />
+        <InsightCards items={sorted} />
       </Section>
       <ProjectCTA />
     </>

@@ -4,6 +4,7 @@ import { useRef } from "react";
 import { useMotionValueEvent, useReducedMotion, useScroll } from "motion/react";
 import { progress as range } from "@/lib/motion";
 import { Button } from "@/components/ui/Button";
+import { Chars } from "@/components/ui/Typography";
 import { GlassObject } from "./GlassObject";
 import styles from "./Hero.module.css";
 
@@ -56,13 +57,15 @@ export function Hero() {
           </div>
 
           <div className={styles.bottom}>
-            <h1 id="hero-title" className={`${styles.title} ${styles.card} ${styles.liftTitle}`}>
-              <span className={styles.line}>
-                <span style={{ animationDelay: "280ms" }}>Build what</span>
+            <h1 id="hero-title" aria-label="Build what growth requires." className={`${styles.title} ${styles.card} ${styles.liftTitle}`}>
+              <span className={styles.line} aria-hidden="true">
+                <span>
+                  <Chars>Build what</Chars>
+                </span>
               </span>{" "}
-              <span className={styles.line}>
-                <span style={{ animationDelay: "380ms" }} className={styles.tone}>
-                  growth requires.
+              <span className={styles.line} aria-hidden="true">
+                <span className={styles.tone}>
+                  <Chars start={10}>growth requires.</Chars>
                 </span>
               </span>
             </h1>

@@ -3,7 +3,7 @@ import type { CSSProperties } from "react";
 import { needs } from "@/content/intake";
 import { Button } from "@/components/ui/Button";
 import { SplitText } from "@/components/ui/Typography";
-import { AmbientGlow } from "@/components/ui/Surface";
+import { GlassObject } from "@/components/hero/GlassObject";
 import styles from "./ProjectCTA.module.css";
 
 /**
@@ -14,11 +14,6 @@ import styles from "./ProjectCTA.module.css";
 export function ProjectCTA() {
   return (
     <section className={styles.cta} aria-labelledby="cta-title" data-chapter="10|Start a project">
-      <div className={styles.light} aria-hidden="true">
-        <AmbientGlow color="brand" size={1400} x="50%" y="62%" intensity={0.26} drift />
-        <AmbientGlow color="violet" size={800} x="70%" y="40%" intensity={0.1} />
-        <span className={styles.beam} />
-      </div>
 
       <div className="container">
         <div className={styles.inner}>
@@ -31,6 +26,11 @@ export function ProjectCTA() {
             className={`t-display-1 t-lit ${styles.title}`}
             lines={["The next version", <>of your company <em className="t-accent">starts here.</em></>]}
           />
+          {/* The closing shot returns to the opening one: the glass mark on
+              its horizon — the site begins and ends on the same object. */}
+          <div className={styles.stageGap} aria-hidden="true">
+            <GlassObject framing="finale" className={styles.canvas} />
+          </div>
 
           <div className={`glass ${styles.ask}`} data-level="3" data-pointer-light="" data-reveal="scale">
             <p className={styles.askQ}>What do you need help with?</p>

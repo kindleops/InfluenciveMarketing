@@ -2,7 +2,7 @@
   position: relative;
   isolation: isolate;
   overflow: clip;
-  padding-block: clamp(8rem, 5rem + 10vw, 16rem);
+  padding-block: clamp(7rem, 5rem + 6vw, 11rem);
   background: linear-gradient(180deg, var(--color-background) 0%, var(--color-void) 25%);
 }
 .light {
@@ -10,18 +10,27 @@
   inset: 0;
   z-index: -1;
 }
-/* A vertical key light falling onto the question. */
-.beam {
-  position: absolute;
-  left: 50%;
-  top: -10%;
-  width: min(70vw, 900px);
-  height: 90%;
-  translate: -50% 0;
-  background: conic-gradient(from 180deg at 50% 0%, transparent 160deg, rgb(160 180 255 / 0.1) 180deg, transparent 200deg);
-  filter: blur(20px);
-  pointer-events: none;
+.stageGap {
+  position: relative;
+  width: 100%;
+  height: clamp(18rem, 40vh, 26rem);
 }
+/* The canvas bleeds past the gap and the page width; its edges are
+   feathered so the horizon runs off into the void. */
+.stageGap .canvas {
+  position: absolute;
+  inset: auto;
+  height: auto;
+  top: -32%;
+  bottom: -32%;
+  left: 50%;
+  width: 100vw;
+  max-width: none;
+  translate: -50% 0;
+  -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 26%, #000 74%, transparent 100%);
+  mask-image: linear-gradient(180deg, transparent 0%, #000 26%, #000 74%, transparent 100%);
+}
+
 
 .inner {
   display: grid;

@@ -72,13 +72,35 @@ html.js [data-reveal="line"]:not([data-inview]) {
   display: inline-block;
   will-change: transform;
 }
-html.js [data-split]:not([data-inview]) .split-line > span {
+html.js [data-split="lines"]:not([data-inview]) .split-line > span {
   transform: translate3d(0, 108%, 0) rotate(1.5deg);
 }
-html.js [data-split] .split-line > span {
+html.js [data-split="lines"] .split-line > span {
   transition: transform 1150ms var(--ease-emphasized);
   transition-delay: calc(var(--reveal-delay, 0ms) + var(--line-index, 0) * 90ms);
   transform-origin: left bottom;
+}
+
+/* Character reveal: each letter rises out of its line's mask, staggered
+   across the whole heading, with a short focus pull. */
+.word {
+  display: inline-block;
+  white-space: nowrap;
+}
+.char {
+  display: inline-block;
+}
+html.js [data-split="chars"] .char {
+  transition:
+    transform 1050ms var(--ease-emphasized),
+    opacity 700ms var(--ease-out),
+    filter 900ms var(--ease-out);
+  transition-delay: calc(var(--reveal-delay, 0ms) + var(--line-index, 0) * 90ms + var(--ci, 0) * 15ms);
+}
+html.js [data-split="chars"]:not([data-inview]) .char {
+  transform: translate3d(0, 104%, 0);
+  opacity: 0;
+  filter: blur(5px);
 }
 
 /* Staggered children: parent carries [data-stagger]. */
@@ -153,7 +175,8 @@ html[data-intro="running"] header * {
 @media (prefers-reduced-motion: reduce) {
   html.js [data-reveal],
   html.js [data-stagger] > *,
-  html.js [data-split] .split-line > span {
+  html.js [data-split] .split-line > span,
+  html.js [data-split="chars"] .char {
     transition-duration: 400ms !important;
     transition-delay: 0ms !important;
     transition-property: opacity !important;
@@ -167,6 +190,10 @@ html[data-intro="running"] header * {
   html.js [data-split]:not([data-inview]) .split-line > span {
     transform: none !important;
     opacity: 0;
+  }
+  html.js [data-split="chars"]:not([data-inview]) .char {
+    transform: none !important;
+    filter: none !important;
   }
   html.js [data-split][data-inview] .split-line > span {
     opacity: 1;

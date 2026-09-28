@@ -1,5 +1,5 @@
 import Link from "next/link";
-import type { CSSProperties, ElementType, ReactNode } from "react";
+import { Fragment, cloneElement, isValidElement, type CSSProperties, type ElementType, type ReactNode } from "react";
 import styles from "./Typography.module.css";
 
 /* ---------------------------------------------------------------------------
@@ -23,7 +23,9 @@ export function Eyebrow({
   return (
     <div className={[styles.eyebrow, className].filter(Boolean).join(" ")} data-reveal={reveal ? "fade" : undefined}>
       {index && <span className={styles.index}>({index})</span>}
-      <span className={styles.label}>{children}</span>
+      <span className={styles.label} data-scramble={typeof children === "string" ? "" : undefined}>
+        {children}
+      </span>
       <span className={styles.rule} aria-hidden="true" data-reveal={reveal ? "line" : undefined} />
       {aside && <span className={styles.aside}>{aside}</span>}
     </div>
@@ -31,9 +33,52 @@ export function Eyebrow({
 }
 
 /* ---------------------------------------------------------------------------
-   SplitText — display type revealed line by line out of individual masks.
-   Lines are art-directed (explicit), never computed from the DOM, so there is
-   no layout measurement and no flash.
+   Character splitting — display type rises letter by letter out of its line
+   mask. Strings are split; one level of inline elements (e.g. the two-tone
+   <em>) is preserved with its own characters split inside.
+--------------------------------------------------------------------------- */
+export function toText(node: ReactNode): string {
+  if (node == null || typeof node === "boolean") return "";
+  if (typeof node === "string" || typeof node === "number") return String(node);
+  if (Array.isArray(node)) return node.map(toText).join("");
+  if (isValidElement<{ children?: ReactNode }>(node)) return toText(node.props.children);
+  return "";
+}
+
+function splitString(text: string, counter: { n: number }) {
+  const words = text.split(/(\s+)/);
+  return words.map((w, wi) => {
+    if (/^\s+$/.test(w)) return " ";
+    if (!w) return null;
+    return (
+      <span className="word" key={wi}>
+        {Array.from(w).map((ch, ci) => (
+          <span className="char" key={ci} style={{ "--ci": counter.n++ } as CSSProperties}>
+            {ch}
+          </span>
+        ))}
+      </span>
+    );
+  });
+}
+
+export function Chars({ children, start = 0 }: { children: ReactNode; start?: number }) {
+  const counter = { n: start };
+  const walk = (node: ReactNode, key?: number): ReactNode => {
+    if (typeof node === "string") return splitString(node, counter);
+    if (Array.isArray(node)) return node.map((n, i) => <Fragment key={i}>{walk(n, i)}</Fragment>);
+    if (isValidElement<{ children?: ReactNode }>(node)) {
+      return cloneElement(node, { key }, walk(node.props.children));
+    }
+    return node;
+  };
+  return <>{walk(children)}</>;
+}
+
+/* ---------------------------------------------------------------------------
+   SplitText — art-directed lines (never measured from the DOM), each in its
+   own mask. mode="chars" (default) staggers individual letters; "lines"
+   moves whole lines (for lines styled with their own clipped gradients).
 --------------------------------------------------------------------------- */
 export function SplitText({
   as: Tag = "h2",
@@ -41,23 +86,37 @@ export function SplitText({
   className,
   delay = 0,
   id,
+  mode = "chars",
 }: {
   as?: ElementType;
   lines: ReactNode[];
   className?: string;
   delay?: number;
   id?: string;
+  mode?: "chars" | "lines";
 }) {
+  let offset = 0;
+  const label = lines.map(toText).join(" ");
   return (
-    <Tag id={id} className={className} data-split="" style={{ "--reveal-delay": `${delay}ms` } as CSSProperties}>
-      {lines.map((line, i) => (
-        <span className="split-line" key={i}>
-          <span style={{ "--line-index": i } as CSSProperties}>
-            {line}
-            {i < lines.length - 1 ? " " : null}
+    <Tag
+      id={id}
+      className={className}
+      data-split={mode}
+      aria-label={mode === "chars" ? label : undefined}
+      style={{ "--reveal-delay": `${delay}ms` } as CSSProperties}
+    >
+      {lines.map((line, i) => {
+        const start = offset;
+        offset += toText(line).length;
+        return (
+          <span className="split-line" key={i} aria-hidden={mode === "chars" ? true : undefined}>
+            <span style={{ "--line-index": i } as CSSProperties}>
+              {mode === "chars" ? <Chars start={start}>{line}</Chars> : line}
+              {i < lines.length - 1 ? " " : null}
+            </span>
           </span>
-        </span>
-      ))}
+        );
+      })}
     </Tag>
   );
 }

@@ -15,6 +15,7 @@ export function PointOfView() {
         as="h2"
         id="pov-title"
         className={`t-display-1 ${styles.manifesto}`}
+        mode="lines"
         lines={[
           <span key="0" className={styles.dim}>{manifesto[0]}</span>,
           <span key="1" className={styles.mid}>{manifesto[1]}</span>,
