@@ -172,7 +172,8 @@
   position: absolute;
   left: 50%;
   top: var(--hz);
-  width: min(78vw, 1180px, calc((100svh - 300px) * 2.3));
+  /* Laid out at the design width; the camera scales it to fit. */
+  width: 1180px;
   transform: translate(-50%, -100%);
 }
 /* Arrival: in off the horizon — far and small, then standing close. */
@@ -379,11 +380,12 @@
     display: grid;
     gap: var(--space-8);
   }
-  .list ol {
+  /* Direct children only: the console inside has lists of its own. */
+  .list > ol {
     display: grid;
     border-top: 1px solid var(--border-subtle);
   }
-  .list li {
+  .list > ol > li {
     display: grid;
     grid-template-columns: 2.5rem 1fr;
     grid-template-areas: "idx title" ". text";

@@ -20,8 +20,9 @@ const LAYER_COUNT = capabilityLayers.length;
 const SEGMENTS = LAYER_COUNT + 2;
 
 type Shot = { transform: string; orbit: string };
-const WIDE: Shot = { transform: "translate3d(0px, 0px, 0) scale(1)", orbit: "rotateX(9deg) rotateY(0deg)" };
-const PULLBACK: Shot = { transform: "translate3d(0px, -1.5%, 0) scale(0.97)", orbit: "rotateX(4deg) rotateY(0deg)" };
+/** The console is laid out at one design width and scaled by the camera,
+    like a product render — its layout never reflows with the viewport. */
+const DESIGN_WIDTH = 1180;
 
 /**
  * The product story, shot as a film in the hero's world.
@@ -71,7 +72,22 @@ export function Platform() {
     const root = consoleRef.current;
     if (!camera || !orbit || !stage || !anchor || !root) return;
 
-    let shot: Shot = beat >= LAYER_COUNT ? PULLBACK : WIDE;
+    const s = stage.getBoundingClientRect();
+    const a = anchor.getBoundingClientRect();
+    const cw = root.offsetWidth;
+    const ch = root.offsetHeight;
+    // Fit: the whole machine stands between the header and the horizon.
+    const header = parseFloat(getComputedStyle(stage).getPropertyValue("--header-h")) || 72;
+    const room = s.height * 0.74 - header - 40;
+    const fit = Math.min(s.width * 0.8, DESIGN_WIDTH, room * (cw / ch)) / DESIGN_WIDTH;
+    // A wide shot scales about the console's foot, so it stays on the horizon.
+    const wide = (f: number, lift = 0): string =>
+      `translate3d(${(((1 - f) * cw) / 2).toFixed(1)}px, ${((1 - f) * ch - lift).toFixed(1)}px, 0) scale(${f.toFixed(4)})`;
+
+    let shot: Shot =
+      beat >= LAYER_COUNT
+        ? { transform: wide(fit * 0.97, s.height * 0.015), orbit: "rotateX(4deg) rotateY(0deg)" }
+        : { transform: wide(fit), orbit: "rotateX(9deg) rotateY(0deg)" };
     if (beat >= 0 && beat < LAYER_COUNT) {
       const mod = root.querySelector<HTMLElement>(`[data-module="${capabilityLayers[beat].layer}"]`);
       if (mod) {
@@ -87,12 +103,12 @@ export function Platform() {
         }
         const mw = mod.offsetWidth;
         const mh = mod.offsetHeight;
-        const s = stage.getBoundingClientRect();
-        const a = anchor.getBoundingClientRect();
         const narrow = s.width < 1100;
-        const fx = s.width * (narrow ? 0.5 : 0.6);
-        const fy = s.height * 0.42;
-        const scale = Math.max(1.15, Math.min(2.1, (s.width * (narrow ? 0.7 : 0.5)) / mw, (s.height * 0.5) / mh));
+        // Leave room on the side the module's annotations extend to.
+        const annotRight = mod.querySelector("[data-side='right']") !== null;
+        const fx = s.width * (narrow ? 0.5 : annotRight ? 0.4 : 0.62);
+        const fy = s.height * 0.44;
+        const scale = Math.max(1.15, Math.min(2.3, (s.width * (narrow ? 0.62 : 0.46)) / mw, (s.height * 0.6) / mh));
         const cx = mx + mw / 2;
         const cy = my + mh / 2;
         const tx = fx - (a.left - s.left) - scale * cx;
