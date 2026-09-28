@@ -1,0 +1,294 @@
+.section {
+  position: relative;
+  background:
+    radial-gradient(45% 40% at 72% 50%, rgb(74 114 255 / 0.12), transparent 70%),
+    radial-gradient(30% 30% at 20% 20%, rgb(155 140 255 / 0.05), transparent 70%),
+    var(--color-void);
+  border-block: 1px solid var(--border-hairline);
+}
+
+/* The scene is tall; the stage is pinned while the story plays. */
+.scene {
+  position: relative;
+  height: 320vh;
+}
+.sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  height: 100svh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+.layout {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+  align-items: center;
+  gap: var(--space-8);
+}
+
+/* ---- Copy: three acts, crossfading in place ---------------------------- */
+.copy {
+  position: relative;
+}
+.eyebrow {
+  display: flex;
+  gap: 0.75rem;
+  margin-bottom: var(--space-7);
+  font-family: var(--font-mono);
+  font-size: var(--fs-label);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.eyebrowIdx {
+  color: var(--brand-bright);
+}
+.acts {
+  display: grid;
+}
+.act {
+  grid-area: 1 / 1;
+  display: grid;
+  gap: var(--space-5);
+  align-content: start;
+  transition:
+    opacity 700ms var(--ease-out),
+    transform 900ms var(--ease-out),
+    filter 700ms var(--ease-out);
+}
+.act[data-state="next"] {
+  opacity: 0;
+  transform: translate3d(0, 36px, 0);
+  filter: blur(6px);
+}
+.act[data-state="past"] {
+  opacity: 0;
+  transform: translate3d(0, -36px, 0);
+  filter: blur(6px);
+}
+.actLabel {
+  font-family: var(--font-mono);
+  font-size: var(--fs-label);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+.actTitle {
+  font-size: clamp(2.2rem, 1rem + 3vw, 4.1rem);
+  line-height: 0.98;
+  letter-spacing: -0.048em;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+.actTitle em {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  background: linear-gradient(100deg, #dfe6ff, #9fb5ff 50%, #e9d6b0);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  padding-right: 0.06em;
+}
+.actBody {
+  font-size: var(--fs-lead);
+  line-height: 1.5;
+  color: var(--text-secondary);
+  max-width: 34ch;
+}
+.progress {
+  display: flex;
+  gap: 6px;
+  margin-top: var(--space-8);
+  list-style: none;
+  padding: 0;
+}
+.progress li {
+  width: 36px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--border-default);
+  transition: background 500ms var(--ease-soft), box-shadow 500ms;
+}
+.progress li[data-on] {
+  background: var(--brand-bright);
+  box-shadow: 0 0 10px rgb(122 155 255 / 0.6);
+}
+
+/* ---- Diagram ----------------------------------------------------------- */
+.diagramWrap {
+  position: relative;
+  aspect-ratio: 1;
+  width: 100%;
+  max-width: 680px;
+  justify-self: end;
+}
+.diagram {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+.guide {
+  fill: none;
+  stroke: rgb(255 255 255 / 0.05);
+  stroke-width: 1;
+  stroke-dasharray: 2 6;
+}
+.ring {
+  fill: none;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+}
+.spoke {
+  stroke: rgb(122 155 255 / 0.3);
+  stroke-width: 1;
+  stroke-dasharray: 3 5;
+  animation: spoke-flow 1.6s linear infinite;
+}
+@keyframes spoke-flow {
+  to {
+    stroke-dashoffset: -16;
+  }
+}
+
+.core {
+  transform-origin: 320px 320px;
+  transform-box: view-box;
+}
+.coreRing {
+  fill: none;
+  stroke: rgb(159 181 255 / 0.35);
+  stroke-width: 1;
+  transform-origin: 320px 320px;
+  animation: core-breathe 4.8s var(--ease-in-out) infinite;
+}
+.coreRingSlow {
+  stroke: rgb(159 181 255 / 0.16);
+  animation-delay: -2.4s;
+}
+@keyframes core-breathe {
+  0%,
+  100% {
+    transform: scale(0.92);
+    opacity: 0.6;
+  }
+  50% {
+    transform: scale(1.06);
+    opacity: 1;
+  }
+}
+.coreLabel {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  fill: var(--text-primary);
+}
+.coreSub {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 17px;
+  fill: var(--text-secondary);
+}
+
+.pulseOrbit {
+  transform-origin: 320px 320px;
+  animation: orbit 7s linear infinite;
+}
+@keyframes orbit {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.pulseGlow {
+  fill: var(--brand-bright);
+  opacity: 0.8;
+}
+.pulse {
+  fill: var(--light);
+}
+
+.node {
+  --lit: 0.35;
+}
+.fragment {
+  stroke: rgb(236 232 225 / 0.22);
+  stroke-width: 1;
+  stroke-dasharray: 3 4;
+}
+.halo {
+  fill: rgb(122 155 255 / calc(var(--lit) * 0.14));
+  stroke: rgb(122 155 255 / calc(var(--lit) * 0.5));
+  stroke-width: 1;
+}
+.dot {
+  fill: rgb(236 232 225 / var(--lit));
+}
+.label {
+  font-family: var(--font-sans);
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  fill: rgb(236 232 225 / calc(0.3 + var(--lit) * 0.7));
+}
+
+/* ---- Tablet / mobile: stack; keep the pin but compose vertically ------- */
+@media (max-width: 999px) {
+  .scene {
+    height: 300vh;
+  }
+  .layout {
+    grid-template-columns: 1fr;
+    gap: var(--space-5);
+    align-content: center;
+    height: 100%;
+    padding-block: calc(var(--header-h) + 0.5rem) var(--space-5);
+  }
+  .sticky {
+    align-items: stretch;
+  }
+  .eyebrow {
+    margin-bottom: var(--space-4);
+  }
+  .actTitle {
+    font-size: clamp(2rem, 1.2rem + 4vw, 3rem);
+  }
+  .actBody {
+    font-size: var(--fs-small);
+  }
+  .progress {
+    margin-top: var(--space-4);
+  }
+  .diagramWrap {
+    justify-self: center;
+    max-width: min(440px, 92vw, 46svh);
+  }
+  .label {
+    font-size: 19px;
+  }
+}
+
+/* Reduced motion: no pin, no scrub — the finished system, presented still. */
+.scene[data-reduced] {
+  height: auto;
+}
+.scene[data-reduced] .sticky {
+  position: relative;
+  height: auto;
+  padding-block: var(--section-y);
+}
+.scene[data-reduced] .act {
+  position: relative;
+}
+.scene[data-reduced] .act[data-state] {
+  opacity: 1;
+  transform: none;
+  filter: none;
+}
+.scene[data-reduced] .acts {
+  gap: var(--space-7);
+}
+.scene[data-reduced] .act {
+  grid-area: auto;
+}

@@ -1,0 +1,74 @@
+.thesis {
+  position: relative;
+  padding-block: clamp(7rem, 4rem + 10vw, 14rem) clamp(4rem, 2rem + 6vw, 8rem);
+  background: linear-gradient(180deg, var(--color-background) 0%, var(--color-void) 30%, var(--color-void) 75%, var(--color-background) 100%);
+}
+.thesis::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(50% 40% at 70% 60%, rgb(74 114 255 / 0.06), transparent 70%);
+  pointer-events: none;
+}
+
+.grid {
+  position: relative;
+  display: grid;
+  gap: var(--space-6);
+}
+@media (min-width: 1000px) {
+  .grid {
+    grid-template-columns: minmax(0, 3fr) minmax(0, 9fr);
+    gap: var(--space-7);
+  }
+}
+
+.meta {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: var(--fs-label);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--text-muted);
+  padding-top: 0.9rem;
+  align-self: start;
+}
+.metaIndex {
+  color: var(--brand-bright);
+}
+
+.statement {
+  --p: 0;
+  font-size: clamp(1.85rem, 1.1rem + 2.6vw, 3.6rem);
+  line-height: 1.12;
+  letter-spacing: -0.035em;
+  font-weight: 500;
+  max-width: 24ch;
+  color: var(--text-primary);
+}
+@media (min-width: 1000px) {
+  .statement {
+    max-width: 26ch;
+  }
+}
+
+/* Each word's light is a function of scroll progress and its position. */
+.statement span {
+  opacity: clamp(0.14, calc((var(--p) * (var(--n) + 6) - var(--i)) / 6), 1);
+  transition: opacity 120ms linear;
+}
+.statement .accent {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.015em;
+  color: var(--spectral-silver);
+}
+.statement[data-static] span {
+  opacity: 1;
+}
+:global(html:not(.js)) .statement span {
+  opacity: 1;
+}

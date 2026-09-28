@@ -1,0 +1,63 @@
+/* The aura is a light source, not a cursor replacement: the native pointer
+   stays. It softly illuminates what you look at, and carries a context label
+   over work items. */
+.aura {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: var(--z-cursor);
+  width: 0;
+  height: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 500ms var(--ease-soft);
+}
+.aura[data-visible] {
+  opacity: 1;
+}
+
+.light {
+  position: absolute;
+  width: 520px;
+  height: 520px;
+  left: -260px;
+  top: -260px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgb(122 155 255 / 0.075) 0%,
+    rgb(122 155 255 / 0.03) 30%,
+    transparent 62%
+  );
+}
+
+.label {
+  position: absolute;
+  left: 18px;
+  top: 18px;
+  padding: 6px 12px 6px 11px;
+  border-radius: var(--radius-pill);
+  background: rgb(246 243 238 / 0.94);
+  color: var(--text-inverse);
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  opacity: 0;
+  transform: scale(0.6) translate3d(-8px, -8px, 0);
+  transform-origin: top left;
+  transition:
+    opacity var(--dur-micro) var(--ease-soft),
+    transform var(--dur-ui) var(--ease-out);
+}
+.aura[data-labelled] .label {
+  opacity: 1;
+  transform: none;
+}
+
+@media (hover: none), (pointer: coarse) {
+  .aura {
+    display: none;
+  }
+}

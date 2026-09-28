@@ -1,0 +1,53 @@
+.quotes {
+  display: grid;
+  gap: var(--space-9);
+  margin-top: var(--space-8);
+}
+.quote {
+  display: grid;
+  gap: var(--space-6);
+  max-width: 60rem;
+}
+.quote blockquote p {
+  font-family: var(--font-serif);
+  font-size: clamp(1.8rem, 1.2rem + 2.2vw, 3.2rem);
+  line-height: 1.15;
+  letter-spacing: -0.015em;
+  color: var(--text-primary);
+}
+.quote figcaption {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 1rem;
+  align-items: baseline;
+}
+.qName {
+  font-weight: 500;
+}
+.qRole {
+  color: var(--text-muted);
+  font-size: var(--fs-small);
+}
+.qLink {
+  font-size: var(--fs-small);
+  color: var(--brand-bright);
+}
+.logos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: var(--space-6);
+  align-items: center;
+  margin-top: var(--space-7);
+  padding-block: var(--space-7);
+  border-block: 1px solid var(--border-hairline);
+}
+.logo {
+  height: 28px;
+  width: auto;
+  opacity: 0.6;
+  filter: grayscale(1) brightness(1.8);
+  transition: opacity var(--dur-ui);
+}
+.logo:hover {
+  opacity: 1;
+}

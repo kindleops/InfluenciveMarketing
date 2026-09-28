@@ -1,0 +1,178 @@
+/* ==========================================================================
+   Motion — reveal choreography
+
+   Elements opt in with [data-reveal="<variant>"]; <Reveal> / useReveal toggle
+   [data-inview]. States are only hidden when JS is present (html.js), so the
+   site is fully readable without scripts.
+
+   Variants
+     up      rise + fade (default content entrance)
+     fade    opacity only
+     mask    clip-path wipe from below — for display type & media
+     blur    focus pull — for atmospheric elements
+     scale   depth settle — for surfaces and media frames
+     line    horizontal draw — for rules and progress lines
+   ========================================================================== */
+
+html.js [data-reveal] {
+  --reveal-delay: 0ms;
+  --reveal-dur: var(--dur-reveal);
+  transition-property: opacity, transform, clip-path, filter;
+  transition-duration: var(--reveal-dur);
+  transition-timing-function: var(--ease-out);
+  transition-delay: var(--reveal-delay);
+}
+
+html.js [data-reveal="up"]:not([data-inview]) {
+  opacity: 0;
+  transform: translate3d(0, 28px, 0);
+}
+html.js [data-reveal="fade"]:not([data-inview]) {
+  opacity: 0;
+}
+html.js [data-reveal="mask"] {
+  --reveal-dur: 1100ms;
+  transition-timing-function: var(--ease-emphasized);
+}
+html.js [data-reveal="mask"]:not([data-inview]) {
+  clip-path: inset(0 0 100% 0);
+  transform: translate3d(0, 6%, 0);
+}
+html.js [data-reveal="mask"][data-inview] {
+  clip-path: inset(0 0 0 0);
+}
+html.js [data-reveal="blur"]:not([data-inview]) {
+  opacity: 0;
+  filter: blur(14px);
+  transform: scale(1.02);
+}
+html.js [data-reveal="scale"] {
+  --reveal-dur: var(--dur-cinematic);
+}
+html.js [data-reveal="scale"]:not([data-inview]) {
+  opacity: 0;
+  transform: perspective(1400px) translate3d(0, 40px, -60px) rotateX(6deg);
+}
+html.js [data-reveal="line"] {
+  --reveal-dur: 1400ms;
+  transform-origin: left center;
+}
+html.js [data-reveal="line"]:not([data-inview]) {
+  transform: scaleX(0);
+}
+
+/* Split-line display type: each line rises out of its own mask. */
+.split-line {
+  display: block;
+  overflow: clip;
+  padding-bottom: 0.08em;
+  margin-bottom: -0.08em;
+}
+.split-line > span {
+  display: inline-block;
+  will-change: transform;
+}
+html.js [data-split]:not([data-inview]) .split-line > span {
+  transform: translate3d(0, 108%, 0) rotate(1.5deg);
+}
+html.js [data-split] .split-line > span {
+  transition: transform 1150ms var(--ease-emphasized);
+  transition-delay: calc(var(--reveal-delay, 0ms) + var(--line-index, 0) * 90ms);
+  transform-origin: left bottom;
+}
+
+/* Staggered children: parent carries [data-stagger]. */
+html.js [data-stagger] > * {
+  transition:
+    opacity var(--dur-reveal) var(--ease-out),
+    transform var(--dur-reveal) var(--ease-out);
+  transition-delay: calc(var(--reveal-delay, 0ms) + var(--i, 0) * var(--stagger));
+}
+html.js [data-stagger]:not([data-inview]) > * {
+  opacity: 0;
+  transform: translate3d(0, 18px, 0);
+}
+
+/* ---- Keyframes shared across components ------------------------------- */
+
+@keyframes drift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -10px, 0);
+  }
+}
+
+@keyframes pulse-dot {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: scale(0.85);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes sheen-sweep {
+  from {
+    transform: translateX(-120%) skewX(-18deg);
+  }
+  to {
+    transform: translateX(220%) skewX(-18deg);
+  }
+}
+
+@keyframes route-enter {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 14px, 0);
+    filter: blur(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+}
+
+/* ---- Reduced motion ---------------------------------------------------- */
+/* Movement is removed; composition, light and material are kept. Content
+   still fades in quickly so the page keeps its sense of arrival. */
+@media (prefers-reduced-motion: reduce) {
+  html.js [data-reveal],
+  html.js [data-stagger] > *,
+  html.js [data-split] .split-line > span {
+    transition-duration: 400ms !important;
+    transition-delay: 0ms !important;
+    transition-property: opacity !important;
+  }
+  html.js [data-reveal]:not([data-inview]),
+  html.js [data-stagger]:not([data-inview]) > * {
+    transform: none !important;
+    filter: none !important;
+    clip-path: none !important;
+  }
+  html.js [data-split]:not([data-inview]) .split-line > span {
+    transform: none !important;
+    opacity: 0;
+  }
+  html.js [data-split][data-inview] .split-line > span {
+    opacity: 1;
+  }
+  html.js [data-reveal="line"]:not([data-inview]) {
+    transform: none !important;
+    opacity: 0;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+  }
+}

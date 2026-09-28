@@ -1,0 +1,98 @@
+/* ---- Eyebrow ------------------------------------------------------------ */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: var(--space-6);
+  font-family: var(--font-mono);
+  font-size: var(--fs-label);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.index {
+  color: var(--brand-bright);
+}
+.rule {
+  width: 28px;
+  height: 1px;
+  background: linear-gradient(90deg, var(--border-strong), transparent);
+}
+
+/* ---- Section heading --------------------------------------------------- */
+.heading {
+  display: grid;
+  gap: var(--space-6);
+}
+.headingMain {
+  max-width: 17ch;
+}
+.headingMain :global(.t-display-1) {
+  max-width: 14ch;
+}
+.lead {
+  max-width: 46ch;
+}
+
+.split {
+  grid-template-columns: 1fr;
+}
+@media (min-width: 960px) {
+  .split {
+    grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+    align-items: end;
+    gap: var(--space-8);
+  }
+  .split .lead {
+    justify-self: end;
+    padding-bottom: 0.6rem;
+  }
+  .split .headingMain {
+    max-width: none;
+  }
+}
+
+.center {
+  justify-items: center;
+  text-align: center;
+}
+.center .headingMain {
+  max-width: 20ch;
+  display: grid;
+  justify-items: center;
+}
+
+/* ---- Text link --------------------------------------------------------- */
+.textLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  color: var(--text-primary);
+  font-size: var(--fs-small);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+.textLinkLabel {
+  padding-bottom: 3px;
+  background: linear-gradient(var(--border-strong), var(--border-strong)) 0 100% / 100% 1px no-repeat,
+    linear-gradient(currentColor, currentColor) right 100% / 0 1px no-repeat;
+  transition: background-size 480ms var(--ease-out);
+}
+.textLinkArrow {
+  transition: transform var(--dur-ui) var(--ease-out);
+  color: var(--text-muted);
+}
+@media (hover: hover) {
+  .textLink:hover .textLinkLabel {
+    background-size:
+      100% 1px,
+      100% 1px;
+    background-position:
+      0 100%,
+      left 100%;
+  }
+  .textLink:hover .textLinkArrow {
+    transform: translate(2px, -2px);
+    color: var(--text-primary);
+  }
+}

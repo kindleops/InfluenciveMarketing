@@ -1,0 +1,8 @@
+.route {
+  animation: route-enter 720ms var(--ease-out) both;
+}
+@media (prefers-reduced-motion: reduce) {
+  .route {
+    animation: none;
+  }
+}

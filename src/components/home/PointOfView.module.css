@@ -1,0 +1,73 @@
+.section {
+  border-top: 1px solid var(--border-hairline);
+}
+.manifesto {
+  max-width: 16ch;
+}
+.dim {
+  color: rgb(236 232 225 / 0.34);
+}
+.mid {
+  color: rgb(236 232 225 / 0.64);
+}
+.lit {
+  background: linear-gradient(100deg, #f6f3ee 0%, #e9d6b0 60%, #dcc08f 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.principles {
+  display: grid;
+  gap: 0;
+  margin-top: var(--space-10);
+  border-top: 1px solid var(--border-subtle);
+}
+@media (min-width: 900px) {
+  .principles {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .principle:nth-child(odd) {
+    padding-right: var(--space-8);
+    border-right: 1px solid var(--border-hairline);
+  }
+  .principle:nth-child(even) {
+    padding-left: var(--space-8);
+  }
+}
+.principle {
+  display: grid;
+  grid-template-columns: 3rem 1fr;
+  grid-template-areas:
+    "num title"
+    ". detail";
+  row-gap: var(--space-4);
+  padding-block: var(--space-7);
+  border-bottom: 1px solid var(--border-hairline);
+}
+.numeral {
+  grid-area: num;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.4rem;
+  color: var(--spectral-gold);
+  line-height: 1.2;
+}
+.pTitle {
+  grid-area: title;
+  font-size: var(--fs-heading);
+  line-height: 1.12;
+  letter-spacing: -0.03em;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+.pTitle span {
+  color: var(--text-muted);
+}
+.pDetail {
+  grid-area: detail;
+  font-size: var(--fs-small);
+  line-height: 1.65;
+  color: var(--text-secondary);
+  max-width: 46ch;
+}

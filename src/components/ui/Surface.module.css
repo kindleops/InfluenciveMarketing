@@ -1,0 +1,108 @@
+/* ---- Tilt ---------------------------------------------------------------- */
+.tilt {
+  --rx: 0deg;
+  --ry: 0deg;
+  transform: perspective(1200px) rotateX(var(--rx)) rotateY(var(--ry));
+  transition: transform 900ms var(--ease-out);
+  will-change: transform;
+}
+
+/* ---- Section scenes ------------------------------------------------------ */
+.section {
+  position: relative;
+  isolation: isolate;
+  overflow-x: clip;
+}
+.space-default {
+  padding-block: var(--section-y);
+}
+.space-tight {
+  padding-block: var(--section-y-tight);
+}
+.space-none {
+  padding-block: 0;
+}
+
+/* void — the darkest scene; used for contemplative statements. */
+.void {
+  background: linear-gradient(
+    180deg,
+    var(--color-background) 0%,
+    var(--color-void) 16%,
+    var(--color-void) 84%,
+    var(--color-background) 100%
+  );
+}
+
+/* dark — the default scene; a faint top light keeps it from feeling flat. */
+.dark {
+  background:
+    radial-gradient(120% 60% at 50% 0%, rgb(255 255 255 / 0.018), transparent 60%),
+    var(--color-background);
+}
+
+/* raised — a lifted charcoal plane with a hairline horizon. */
+.raised {
+  background:
+    radial-gradient(90% 50% at 50% 0%, rgb(122 155 255 / 0.05), transparent 70%),
+    linear-gradient(180deg, var(--color-surface) 0%, var(--color-background) 100%);
+}
+.raised::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border-subtle) 20%, var(--border-subtle) 80%, transparent);
+}
+
+/* lit — the scene opens up: cobalt key light from above, cool falloff. */
+.lit {
+  background:
+    radial-gradient(60% 55% at 50% -5%, rgb(74 114 255 / 0.22), transparent 70%),
+    radial-gradient(40% 40% at 85% 20%, rgb(155 140 255 / 0.08), transparent 70%),
+    var(--color-background);
+}
+
+/* warm — soft-black with a low gold horizon; for philosophy & closing. */
+.warm {
+  background:
+    radial-gradient(70% 45% at 50% 105%, rgb(220 192 143 / 0.09), transparent 70%),
+    linear-gradient(180deg, var(--color-background) 0%, var(--color-background-warm) 22%, var(--color-background-warm) 82%, var(--color-background) 100%);
+}
+
+/* ---- Ambient glow -------------------------------------------------------- */
+.glow {
+  position: absolute;
+  z-index: -1;
+  left: var(--glow-x);
+  top: var(--glow-y);
+  width: var(--glow-size);
+  height: var(--glow-size);
+  translate: -50% -50%;
+  border-radius: 50%;
+  pointer-events: none;
+  background: radial-gradient(
+    closest-side,
+    rgb(var(--glow-rgb) / var(--glow-a)),
+    rgb(var(--glow-rgb) / calc(var(--glow-a) * 0.35)) 45%,
+    transparent
+  );
+}
+.drift {
+  animation: glow-drift var(--dur-ambient) var(--ease-in-out) infinite alternate;
+}
+@keyframes glow-drift {
+  0% {
+    transform: translate3d(-4%, 2%, 0) scale(1);
+  }
+  100% {
+    transform: translate3d(5%, -3%, 0) scale(1.08);
+  }
+}
+
+@media (max-width: 720px) {
+  .glow {
+    width: min(var(--glow-size), 160vw);
+    height: min(var(--glow-size), 160vw);
+  }
+}

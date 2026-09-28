@@ -1,0 +1,171 @@
+/* ==========================================================================
+   Design tokens
+   The whole system resolves through these values. Components never use raw
+   colors, radii, durations or easing curves — only tokens.
+   ========================================================================== */
+
+:root {
+  color-scheme: dark;
+
+  /* ---- Surfaces: obsidian → charcoal, slightly warm ------------------- */
+  --color-void: #040506;
+  --color-background: #07080a;
+  --color-background-warm: #0b0a09;
+  --color-surface: #0e0f12;
+  --color-surface-raised: #13151a;
+  --color-surface-elevated: #191b21;
+  --color-surface-high: #22252d;
+
+  /* ---- Text: ivory, not white ----------------------------------------- */
+  --color-ivory: #ece8e1;
+  --text-primary: #ece8e1;
+  --text-secondary: rgb(236 232 225 / 0.68);
+  --text-muted: rgb(236 232 225 / 0.46);
+  --text-faint: rgb(236 232 225 / 0.28);
+  --text-inverse: #0a0b0d;
+
+  /* ---- Lines ---------------------------------------------------------- */
+  --border-hairline: rgb(236 232 225 / 0.06);
+  --border-subtle: rgb(236 232 225 / 0.09);
+  --border-default: rgb(236 232 225 / 0.14);
+  --border-strong: rgb(236 232 225 / 0.24);
+
+  /* ---- Light: controlled cobalt + restrained spectral accents --------- */
+  --brand: #4a72ff;
+  --brand-bright: #7a9bff;
+  --brand-deep: #1d36b8;
+  --brand-soft: rgb(74 114 255 / 0.14);
+  --brand-glow: rgb(74 114 255 / 0.35);
+  --spectral-cyan: #7fe0ff;
+  --spectral-violet: #9b8cff;
+  --spectral-gold: #dcc08f;
+  --spectral-silver: #c7cedb;
+  --light: #f6f3ee;
+  --glow: rgb(122 155 255 / 0.22);
+
+  --signal-positive: #7fe3b0;
+  --signal-warning: #f0c47a;
+  --signal-negative: #ff8a7a;
+
+  /* ---- Typography ----------------------------------------------------- */
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, "SF Mono", Menlo, monospace;
+  --font-serif: var(--font-editorial), "Iowan Old Style", "Times New Roman", serif;
+
+  /* Fluid scale — architectural at the top, calm at the bottom */
+  --fs-mega: clamp(3.6rem, 1.1rem + 8.4vw, 11rem);
+  --fs-display-1: clamp(3rem, 1.35rem + 5.6vw, 7.5rem);
+  --fs-display-2: clamp(2.35rem, 1.35rem + 3.7vw, 5.25rem);
+  --fs-display-3: clamp(1.95rem, 1.35rem + 2.25vw, 3.5rem);
+  --fs-heading: clamp(1.45rem, 1.18rem + 0.95vw, 2.1rem);
+  --fs-title: clamp(1.15rem, 1.06rem + 0.35vw, 1.4rem);
+  --fs-lead: clamp(1.13rem, 1.03rem + 0.4vw, 1.4rem);
+  --fs-body: 1.0625rem;
+  --fs-small: 0.9375rem;
+  --fs-label: 0.72rem;
+  --fs-micro: 0.66rem;
+
+  --lh-display: 0.94;
+  --lh-heading: 1.08;
+  --lh-title: 1.25;
+  --lh-body: 1.62;
+
+  --tracking-display: -0.048em;
+  --tracking-heading: -0.032em;
+  --tracking-title: -0.018em;
+  --tracking-body: -0.006em;
+  --tracking-label: 0.14em;
+
+  --measure: 62ch;
+  --measure-narrow: 44ch;
+
+  /* ---- Spacing: one scale, 4px root ----------------------------------- */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4rem;
+  --space-9: 6rem;
+  --space-10: 8rem;
+  --space-11: 11rem;
+
+  --gutter: clamp(1.25rem, 0.6rem + 2.8vw, 3.5rem);
+  --container: 1480px;
+  --container-narrow: 1080px;
+  --section-y: clamp(6.5rem, 3.5rem + 9vw, 13rem);
+  --section-y-tight: clamp(4.5rem, 3rem + 5vw, 8rem);
+
+  /* ---- Radii: restrained --------------------------------------------- */
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+  --radius-xl: 26px;
+  --radius-pill: 999px;
+
+  /* ---- Materials: glass levels --------------------------------------- */
+  /* L1 — navigation. Barely there. */
+  --glass-1-fill: rgb(12 13 17 / 0.42);
+  --glass-1-blur: 14px;
+  --glass-1-sat: 150%;
+  /* L2 — interface cards. */
+  --glass-2-fill: rgb(16 18 24 / 0.52);
+  --glass-2-blur: 18px;
+  --glass-2-sat: 160%;
+  /* L3 — hero / feature glass. Richer depth. */
+  --glass-3-fill: rgb(20 23 31 / 0.46);
+  --glass-3-blur: 24px;
+  --glass-3-sat: 175%;
+  /* L4 — interactive glass. Responds to pointer. */
+  --glass-4-fill: rgb(22 25 34 / 0.5);
+  --glass-4-blur: 26px;
+  --glass-4-sat: 180%;
+
+  --edge-light: rgb(255 255 255 / 0.22);
+  --edge-shadow: rgb(0 0 0 / 0.4);
+  --elevation-1: 0 1px 0 rgb(255 255 255 / 0.04) inset, 0 10px 30px -18px rgb(0 0 0 / 0.7);
+  --elevation-2: 0 1px 0 rgb(255 255 255 / 0.06) inset, 0 24px 60px -30px rgb(0 0 0 / 0.85);
+  --elevation-3: 0 1px 0 rgb(255 255 255 / 0.08) inset, 0 40px 100px -40px rgb(0 0 0 / 0.95),
+    0 0 0 1px rgb(0 0 0 / 0.35);
+
+  /* ---- Motion --------------------------------------------------------- */
+  /* Confident deceleration — the house curve. */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  /* Softer settle for UI state changes. */
+  --ease-soft: cubic-bezier(0.25, 1, 0.5, 1);
+  /* Symmetric, for things that travel. */
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  /* Emphasized entrance — weighty, physical. */
+  --ease-emphasized: cubic-bezier(0.2, 0, 0, 1);
+  /* Exits get out of the way. */
+  --ease-in: cubic-bezier(0.55, 0, 1, 0.45);
+
+  --dur-micro: 160ms;
+  --dur-ui: 280ms;
+  --dur-reveal: 760ms;
+  --dur-cinematic: 1200ms;
+  --dur-ambient: 24s;
+
+  --stagger: 70ms;
+
+  /* ---- Layers --------------------------------------------------------- */
+  --z-base: 1;
+  --z-raised: 10;
+  --z-header: 100;
+  --z-menu: 200;
+  --z-overlay: 300;
+  --z-cursor: 400;
+  --z-grain: 500;
+
+  --header-h: 72px;
+}
+
+@media (max-width: 720px) {
+  :root {
+    --header-h: 64px;
+    --fs-body: 1rem;
+  }
+}
