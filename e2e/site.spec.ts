@@ -74,16 +74,24 @@ test.describe("home page", () => {
     // Hero glass renders into a WebGL canvas.
     await expect(page.locator("section[aria-labelledby='hero-title'] canvas")).toHaveCount(1);
 
-    // Platform: arrives, pins and settles face-on.
-    const platform = page.locator("#platform-title");
-    await platform.scrollIntoViewIfNeeded();
-    const track = page.locator("section[aria-labelledby='platform-title'] [class*='track']");
-    await page.evaluate(() => {
-      const t = document.querySelector("section[aria-labelledby='platform-title'] [class*='track']") as HTMLElement;
-      window.scrollTo(0, t.getBoundingClientRect().top + window.scrollY + 40);
-    });
-    await page.waitForTimeout(800);
-    await expect(track.locator("[data-settled]")).toHaveCount(1);
+    // Platform: the machine lands on the horizon, then the camera takes
+    // each layer in turn and pulls back to the whole.
+    const stage = page.locator("section[aria-labelledby='platform-title'] [data-beat]");
+    const scrollTrack = (segments: number) =>
+      page.evaluate((k) => {
+        const t = document.querySelector("section[aria-labelledby='platform-title'] [class*='track']") as HTMLElement;
+        const seg = (t.offsetHeight - window.innerHeight) / 8;
+        window.scrollTo(0, t.getBoundingClientRect().top + window.scrollY + seg * k);
+      }, segments);
+    await scrollTrack(0.95);
+    await expect(stage).toHaveAttribute("data-landed");
+    await scrollTrack(3.5);
+    await expect(stage).toHaveAttribute("data-beat", "2");
+    await expect(stage).toHaveAttribute("data-focus");
+    await expect(stage.locator("[data-module='Acquisition'][data-active]")).toHaveCount(1);
+    await scrollTrack(7.5);
+    await expect(stage).toHaveAttribute("data-beat", "6");
+    await expect(stage).not.toHaveAttribute("data-focus");
 
     // AI infrastructure: the field assembles when it arrives.
     const field = page.locator("[class*='IntelligenceField'][class*='field']").first();
@@ -205,6 +213,15 @@ test.describe("reduced motion", () => {
     });
     expect(heroOpacity).toBeGreaterThan(0.95);
     await traverse(page);
+
+    // The system's chapter card is shown as a still frame, readable.
+    await page.evaluate(() => {
+      const t = document.querySelector("section[aria-labelledby='platform-title'] [class*='track']") as HTMLElement;
+      window.scrollTo(0, t.getBoundingClientRect().top + window.scrollY + 20);
+    });
+    await expect
+      .poll(() => page.evaluate(() => parseFloat(getComputedStyle(document.querySelector("#platform-title")!.parentElement!).opacity)))
+      .toBeGreaterThan(0.95);
 
     // Unpinned scenes are recomposed, not left to overflow.
     const overflow = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);

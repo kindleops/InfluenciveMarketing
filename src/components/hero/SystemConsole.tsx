@@ -105,7 +105,7 @@ export function SystemConsole({ layer, flat = false }: { layer?: number; flat?: 
   const mod = (i: number) => ({ "data-active": active === i || undefined, "data-module": LAYERS[i] });
 
   return (
-    <div ref={stageRef} className={styles.stage}>
+    <div ref={stageRef} className={styles.stage} data-flat={flat || undefined}>
       <motion.div className={styles.tiltOuter} style={{ rotateX, scale, y }}>
         <div className={styles.tiltInner} data-tilt="3">
           <div
@@ -283,11 +283,11 @@ export function SystemConsole({ layer, flat = false }: { layer?: number; flat?: 
           </div>
 
           {/* Floating surfaces at different depths — parallax with tilt. */}
-          <div className={`glass ${styles.float} ${styles.floatA}`} data-level="4" aria-hidden="true">
+          <div className={`glass ${styles.float} ${styles.floatA}`} data-level="4" data-float="" aria-hidden="true">
             <span className={styles.floatLabel}>Signal</span>
             <span className={styles.floatValue}>Intent ↑</span>
           </div>
-          <div className={`glass ${styles.float} ${styles.floatB}`} data-level="4" aria-hidden="true">
+          <div className={`glass ${styles.float} ${styles.floatB}`} data-level="4" data-float="" aria-hidden="true">
             <span className={styles.floatDot} />
             <span className={styles.floatLabel}>Workflow live</span>
           </div>

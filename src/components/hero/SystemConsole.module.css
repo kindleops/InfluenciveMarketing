@@ -5,6 +5,10 @@
   perspective-origin: 50% 0%;
   animation: console-rise 1600ms var(--ease-emphasized) 650ms both;
 }
+/* Hosted in a scene that directs its own entrance. */
+.stage[data-flat] {
+  animation: none;
+}
 @keyframes console-rise {
   from {
     opacity: 0;
