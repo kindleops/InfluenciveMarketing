@@ -53,7 +53,7 @@ const ACTS = [
 const ease = (t: number) => 1 - Math.pow(1 - t, 3);
 const easeInOut = (t: number) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
 
-export function ConnectedSystem() {
+export function ConnectedSystem({ index = "03" }: { index?: string }) {
   const sceneRef = useRef<HTMLDivElement>(null);
   const nodeRefs = useRef<(SVGGElement | null)[]>([]);
   const fragRefs = useRef<(SVGLineElement | null)[]>([]);
@@ -112,7 +112,7 @@ export function ConnectedSystem() {
           <div className={`container ${styles.layout}`}>
             <div className={styles.copy}>
               <p className={styles.eyebrow}>
-                <span className={styles.eyebrowIdx}>03</span> The difference
+                <span className={styles.eyebrowIdx}>{index}</span> The difference
               </p>
               <h2 id="difference-title" className="sr-only">
                 Most agencies sell disconnected services. We build connected systems.

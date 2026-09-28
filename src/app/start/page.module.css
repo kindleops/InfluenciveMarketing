@@ -1,0 +1,43 @@
+.page {
+  position: relative;
+  isolation: isolate;
+  overflow: clip;
+  min-height: 100svh;
+  padding-top: calc(var(--header-h) + clamp(3rem, 2rem + 5vh, 6rem));
+  padding-bottom: var(--section-y-tight);
+}
+.head {
+  display: grid;
+  gap: var(--space-5);
+  margin-bottom: var(--space-8);
+}
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--font-mono);
+  font-size: var(--fs-label);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+.eyebrow span {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--brand-bright);
+  box-shadow: 0 0 12px var(--brand-bright);
+}
+.title {
+  max-width: 16ch;
+}
+.lead {
+  color: var(--text-secondary);
+}
+.mail {
+  color: var(--text-primary);
+  border-bottom: 1px solid var(--border-strong);
+}
+.fallback {
+  min-height: 640px;
+}

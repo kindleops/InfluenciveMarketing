@@ -1,0 +1,54 @@
+.page {
+  padding-top: calc(var(--header-h) + clamp(3rem, 2rem + 5vh, 6rem));
+  padding-bottom: var(--section-y-tight);
+}
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: var(--fs-label);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.title {
+  margin-top: var(--space-4);
+  font-size: var(--fs-display-2);
+  line-height: 1;
+  letter-spacing: -0.05em;
+}
+.updated {
+  margin-top: var(--space-4);
+  font-family: var(--font-mono);
+  font-size: var(--fs-label);
+  color: var(--text-faint);
+}
+.notice {
+  margin-top: var(--space-7);
+  padding: var(--space-4) var(--space-5);
+  border-radius: var(--radius-md);
+  background: rgb(240 196 122 / 0.06);
+  box-shadow: inset 0 0 0 1px rgb(240 196 122 / 0.25);
+  font-size: var(--fs-small);
+  color: var(--signal-warning);
+}
+.prose {
+  max-width: 68ch;
+  margin-top: var(--space-8);
+  color: var(--text-secondary);
+  line-height: 1.75;
+}
+.prose > * + * {
+  margin-top: 1.2em;
+}
+.prose h2 {
+  margin-top: 2.2em;
+  font-size: var(--fs-title);
+  color: var(--text-primary);
+}
+.prose ul {
+  padding-left: 1.2em;
+}
+.prose a {
+  color: var(--text-primary);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}

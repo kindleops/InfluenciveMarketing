@@ -262,7 +262,7 @@
   }
   .diagramWrap {
     justify-self: center;
-    max-width: min(440px, 92vw, 46svh);
+    width: min(400px, 76vw, 44svh);
   }
   .label {
     font-size: 19px;

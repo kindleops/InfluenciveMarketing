@@ -43,8 +43,6 @@
     inset 0 0 0 1px rgb(255 255 255 / 0.07),
     inset 0 1px 0 rgb(255 255 255 / 0.08),
     0 1.6em 3em -1.6em rgb(0 0 0 / 0.8);
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
   padding: 1.1em 1.2em;
   color: var(--text-secondary);
   transition: transform 900ms var(--ease-out);
@@ -271,8 +269,8 @@
 }
 .gAttr {
   display: grid;
+  grid-template-rows: auto repeat(5, 1fr);
   gap: 0.7em;
-  align-content: start;
 }
 .attrRow {
   display: grid;

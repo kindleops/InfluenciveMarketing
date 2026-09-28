@@ -1,0 +1,30 @@
+.groupHead {
+  display: grid;
+  gap: var(--space-5);
+  padding-bottom: var(--space-7);
+  border-bottom: 1px solid var(--border-subtle);
+}
+@media (min-width: 900px) {
+  .groupHead {
+    grid-template-columns: 1fr 1fr;
+    align-items: end;
+  }
+}
+.groupTitle {
+  font-family: var(--font-mono);
+  font-size: var(--fs-label);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--text-muted);
+  font-weight: 400;
+}
+.note {
+  font-size: var(--fs-small);
+  color: var(--text-secondary);
+  max-width: 52ch;
+}
+.list {
+  display: grid;
+  gap: clamp(5rem, 3rem + 7vw, 11rem);
+  margin-top: var(--space-9);
+}
