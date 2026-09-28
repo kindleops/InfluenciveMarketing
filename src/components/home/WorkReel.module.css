@@ -193,6 +193,28 @@
   box-shadow: 0 0 10px rgb(255 255 255 / 0.4);
 }
 
+/* ---- Unpinned on wide screens (reduced motion): a composed grid --------- */
+@media (min-width: 900px) {
+  .section:not([data-pinned]) .track {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-8) var(--space-6);
+    width: auto;
+    max-width: calc(var(--container) + var(--gutter) * 2);
+    margin-inline: auto;
+    will-change: auto;
+  }
+  .section:not([data-pinned]) .panel {
+    width: auto;
+  }
+  .section:not([data-pinned]) .end {
+    grid-column: 1 / -1;
+    width: auto;
+    aspect-ratio: auto;
+    padding: var(--space-7);
+  }
+}
+
 /* ---- Phones: the reel becomes a vertical sequence ---------------------- */
 @media (max-width: 899px) {
   .track {

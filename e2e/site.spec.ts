@@ -192,7 +192,23 @@ test.describe("reduced motion", () => {
     await page.goto("/", { waitUntil: "networkidle" });
     await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
     await expect(page.locator("section[aria-label='Interlude']")).toHaveAttribute("data-reduced");
+    // The hero holds its opening frame (visibility checks ignore opacity).
+    await page.waitForTimeout(500);
+    const heroOpacity = await page.evaluate(() => {
+      let el: Element | null = document.querySelector("#hero-title");
+      let o = 1;
+      while (el) {
+        o *= parseFloat(getComputedStyle(el).opacity);
+        el = el.parentElement;
+      }
+      return o;
+    });
+    expect(heroOpacity).toBeGreaterThan(0.95);
     await traverse(page);
+
+    // Unpinned scenes are recomposed, not left to overflow.
+    const overflow = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);
+    expect(overflow).toBeLessThanOrEqual(0);
 
     // The AI field is shown assembled; no signal animation runs.
     const levelOpacity = await page.evaluate(() => {

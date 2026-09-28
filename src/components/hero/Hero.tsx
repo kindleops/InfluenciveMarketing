@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { useMotionValueEvent, useScroll } from "motion/react";
 import { useReducedMotion } from "@/lib/useReducedMotion";
 import { progress as range } from "@/lib/motion";
@@ -31,18 +31,25 @@ export function Hero() {
   // One listener writes the whole choreography as CSS variables. (Driving
   // opacity through accelerated scroll timelines drifts inside a pinned,
   // smooth-scrolled section; this stays exact.)
-  useMotionValueEvent(scrollYProgress, "change", (p) => {
+  const write = (raw: number) => {
+    // Reduced motion holds the opening frame: the hero is unpinned, so its
+    // scroll range collapses and raw progress would read as "finished".
+    const p = reduced ? 0 : raw;
     progress.current = p;
     const el = stickyRef.current;
     if (!el) return;
     const lineIn = range(p, 0.32, 0.46);
     const lineOut = 1 - range(p, 0.72, 0.86);
     el.style.setProperty("--card", (1 - range(p, 0, 0.26)).toFixed(3));
-    el.style.setProperty("--lift", reduced ? "0" : range(p, 0, 0.5).toFixed(3));
+    el.style.setProperty("--lift", range(p, 0, 0.5).toFixed(3));
     el.style.setProperty("--line", Math.min(lineIn, lineOut).toFixed(3));
-    el.style.setProperty("--line-y", reduced ? "0" : (24 - range(p, 0.32, 0.86) * 48).toFixed(1));
+    el.style.setProperty("--line-y", (24 - range(p, 0.32, 0.86) * 48).toFixed(1));
     el.style.setProperty("--black", range(p, 0.8, 1).toFixed(3));
-  });
+  };
+  useMotionValueEvent(scrollYProgress, "change", write);
+  useEffect(() => {
+    if (reduced) write(0);
+  }, [reduced]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <section ref={ref} className={styles.hero} aria-labelledby="hero-title" data-reduced={reduced || undefined}>
