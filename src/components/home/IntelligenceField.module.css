@@ -1,0 +1,294 @@
+/* ==========================================================================
+   Intelligence field — the stack assembles from its ground plane, then
+   signals rise through it. Everything is transform/opacity on SVG groups.
+   ========================================================================== */
+.field {
+  --assemble-dur: var(--m-cinematic-dur);
+  --settle: calc(var(--m-cinematic-dur) + 200ms);
+  position: relative;
+}
+.frame {
+  position: relative;
+}
+.svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+/* ---- Assembly -------------------------------------------------------- */
+.level {
+  transition:
+    transform var(--assemble-dur) var(--m-cinematic-ease),
+    opacity calc(var(--assemble-dur) * 0.6) var(--ease-out);
+  transition-delay: calc(var(--k) * 110ms);
+}
+:global(html.js) .field:not([data-assembled]) .level {
+  /* Collapsed onto the ground plane. */
+  transform: translateY(calc(var(--z) * 1px));
+  opacity: 0;
+}
+:global(html.js) .field:not([data-assembled]) .level:first-child {
+  opacity: 0.4;
+}
+.conduit,
+.node,
+.ripple,
+.leader,
+.surface {
+  transition: opacity 900ms var(--ease-out);
+  transition-delay: calc(var(--settle) + var(--k) * 90ms);
+}
+:global(html.js) .field:not([data-assembled]) :is(.conduit, .node, .ripple, .leader, .surface) {
+  opacity: 0;
+}
+
+/* ---- Materials ------------------------------------------------------- */
+.plane {
+  fill: url(#if-plane);
+  stroke: rgb(255 255 255 / 0.11);
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+}
+.ground {
+  fill: rgb(130 158 255 / 0.07);
+  stroke: rgb(157 176 255 / 0.4);
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+}
+.grid {
+  fill: none;
+  stroke: rgb(157 176 255 / 0.17);
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+}
+.gridFaint {
+  fill: none;
+  stroke: rgb(255 255 255 / 0.045);
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+}
+.rim {
+  fill: none;
+  stroke: rgb(255 255 255 / 0.3);
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+}
+.surface {
+  fill: rgb(255 255 255 / 0.035);
+  stroke: rgb(255 255 255 / 0.13);
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+}
+.wire {
+  fill: none;
+  stroke: rgb(157 176 255 / 0.24);
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+}
+.pulse {
+  fill: none;
+  stroke: #dbe4ff;
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-dasharray: 0.4 3;
+  stroke-dashoffset: 0.4;
+}
+.node {
+  fill: #c9d6ff;
+  opacity: 0.4;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+.source {
+  fill: #dbe4ff;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+.ripple {
+  fill: none;
+  stroke: rgb(157 176 255 / 0.7);
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+.leader {
+  fill: none;
+  stroke: rgb(255 255 255 / 0.13);
+  stroke-width: 1;
+  stroke-dasharray: 2 5;
+  vector-effect: non-scaling-stroke;
+}
+.pool {
+  opacity: 0.85;
+}
+
+/* ---- Signals (only while on screen) --------------------------------- */
+.field[data-live][data-assembled] .pulse {
+  animation: if-pulse var(--period) linear infinite;
+  animation-delay: calc(var(--t) + var(--settle));
+}
+.field[data-live][data-assembled] .node {
+  animation: if-hit var(--period) var(--ease-out) infinite;
+  animation-delay: calc(var(--t) + var(--settle));
+}
+.field[data-live][data-assembled] .source {
+  animation: if-emit var(--period) var(--ease-out) infinite;
+  animation-delay: calc(var(--t) + var(--settle));
+}
+.field[data-live][data-assembled] .ripple {
+  animation: if-ripple var(--period) var(--ease-out) infinite;
+  animation-delay: calc(var(--t) + var(--settle));
+}
+.field[data-live] .pool {
+  animation: if-breathe 7s var(--ease-in-out) infinite alternate;
+}
+@keyframes if-pulse {
+  0% {
+    stroke-dashoffset: 0.4;
+  }
+  7.5%,
+  100% {
+    stroke-dashoffset: -1;
+  }
+}
+@keyframes if-hit {
+  0% {
+    opacity: 1;
+    transform: scale(1.7);
+  }
+  22%,
+  100% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+}
+@keyframes if-emit {
+  0% {
+    transform: scale(1.8);
+  }
+  20%,
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes if-ripple {
+  0% {
+    opacity: 0.7;
+    transform: scale(0.15);
+  }
+  24%,
+  100% {
+    opacity: 0;
+    transform: scale(1);
+  }
+}
+@keyframes if-breathe {
+  from {
+    opacity: 0.65;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* ---- Labels ---------------------------------------------------------- */
+.labels {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.label {
+  position: absolute;
+  left: 63.4%;
+  top: var(--ly);
+  display: grid;
+  gap: 0.2rem;
+  transform: translateY(-50%);
+  transition: opacity 900ms var(--ease-out);
+  transition-delay: calc(var(--settle) + var(--k) * 90ms);
+}
+:global(html.js) .field:not([data-assembled]) .label {
+  opacity: 0;
+}
+.labelName {
+  font-size: clamp(1rem, 0.85rem + 0.5vw, 1.35rem);
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  color: var(--text-primary);
+}
+.labelNote {
+  font-family: var(--font-mono);
+  font-size: var(--fs-label);
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+}
+.label[data-key] .labelName {
+  color: var(--brand-bright);
+}
+
+/* ---- Phones: crop to the stack; labels become a legend --------------- */
+@media (max-width: 699px) {
+  .frame {
+    overflow: hidden;
+    margin-inline: calc(var(--gutter) * -1);
+  }
+  /* Crop the viewBox to the stack (x 120–680 of 1200) and fill the width. */
+  .svg {
+    width: calc(100% * 1200 / 560);
+    margin-left: calc(-100% * 120 / 560);
+  }
+  .leader {
+    display: none;
+  }
+  .labels {
+    position: static;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-5) var(--space-4);
+    margin-top: var(--space-4);
+    padding-inline: var(--gutter);
+  }
+  .label {
+    position: static;
+    transform: none;
+  }
+  .label[data-key] {
+    grid-column: 1 / -1;
+    order: 99;
+    padding-top: var(--space-4);
+    border-top: 1px solid var(--border-subtle);
+  }
+}
+@media (max-width: 699px) {
+  .labels {
+    margin-inline: 0;
+  }
+}
+
+/* ---- Reduced motion: assembled and lit, still ------------------------ */
+@media (prefers-reduced-motion: reduce) {
+  :global(html.js) .field .level,
+  :global(html.js) .field:not([data-assembled]) .level {
+    transition: none;
+    transform: none;
+    opacity: 1;
+  }
+  :global(html.js) .field :is(.conduit, .leader, .surface, .label),
+  :global(html.js) .field:not([data-assembled]) :is(.conduit, .leader, .surface, .label) {
+    transition: none;
+    opacity: 1;
+  }
+  :global(html.js) .field .node,
+  :global(html.js) .field:not([data-assembled]) .node {
+    transition: none;
+    opacity: 0.75;
+  }
+  .ripple,
+  .pulse {
+    display: none;
+  }
+}

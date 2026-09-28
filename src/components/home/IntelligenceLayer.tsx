@@ -3,24 +3,44 @@ import { useCases } from "@/content/intelligence";
 import { Eyebrow, SplitText } from "@/components/ui/Typography";
 import { AmbientGlow, Section } from "@/components/ui/Surface";
 import { DecisionEngine } from "./DecisionEngine";
+import { IntelligenceField } from "./IntelligenceField";
 import styles from "./IntelligenceLayer.module.css";
 
-/** Technology — "How advanced is the company?" */
+/**
+ * Technology — "How advanced is the company?"
+ *
+ * Told wide, then close: the whole architecture first (intelligence as the
+ * ground every layer stands on), then one workflow running end to end.
+ */
 export function IntelligenceLayer() {
   return (
     <Section tone="void" labelledBy="ai-title" className={styles.section} chapter="06|Intelligence">
-      <AmbientGlow color="violet" size={1000} x="78%" y="40%" intensity={0.1} drift />
-      <AmbientGlow color="cyan" size={700} x="10%" y="85%" intensity={0.05} />
+      <AmbientGlow color="brand" size={1300} x="36%" y="30%" intensity={0.09} />
+
+      <div className={styles.head}>
+        <div>
+          <Eyebrow index="06" aside="Architecture">
+            Intelligence &amp; automation
+          </Eyebrow>
+          <SplitText as="h2" id="ai-title" className="t-display-2 t-lit" lines={["AI as", <em key="i" className="t-accent">infrastructure.</em>]} />
+        </div>
+        <p className={`t-lead ${styles.lead}`} data-reveal="up">
+          Not a feature sitting on top. One intelligence layer — shared data, models and guardrails — beneath every
+          surface the company runs, designed into how it actually operates.
+        </p>
+      </div>
+
+      <div className={styles.fieldWrap}>
+        <IntelligenceField />
+      </div>
+
+      <p className={styles.detailLabel} data-reveal="fade">
+        <span>In detail</span>
+        <span>One workflow, end to end</span>
+      </p>
 
       <div className={styles.grid}>
         <div className={styles.copy}>
-          <Eyebrow index="06">Intelligence &amp; automation</Eyebrow>
-          <SplitText as="h2" id="ai-title" className="t-display-2 t-lit" lines={["AI as", <em key="i" className="t-accent">infrastructure.</em>]} />
-          <p className="t-lead" data-reveal="up" style={{ marginTop: "var(--space-6)" }}>
-            Not chatbots bolted onto a website. Workflows with inputs, owners, guardrails and measurable output —
-            designed into how the company actually operates.
-          </p>
-
           <ul className={styles.cases} role="list" data-stagger="">
             {useCases.map((u, i) => (
               <li key={u.name}>
@@ -32,7 +52,7 @@ export function IntelligenceLayer() {
           </ul>
         </div>
 
-        <div className={styles.engineWrap} data-reveal="scale" style={{ "--reveal-delay": "120ms" } as CSSProperties}>
+        <div className={`lit-stage ${styles.engineWrap}`} data-reveal="scale" style={{ "--reveal-delay": "120ms" } as CSSProperties}>
           <DecisionEngine />
         </div>
       </div>
