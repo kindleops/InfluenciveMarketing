@@ -58,6 +58,7 @@ export function Section({
   spacing = "default",
   labelledBy,
   bleed = false,
+  chapter,
 }: {
   as?: ElementType;
   tone?: Tone;
@@ -67,11 +68,14 @@ export function Section({
   spacing?: "default" | "tight" | "none";
   labelledBy?: string;
   bleed?: boolean;
+  /** "NN|Name" — read by the chapter indicator. */
+  chapter?: string;
 }) {
   return (
     <Tag
       id={id}
       aria-labelledby={labelledBy}
+      data-chapter={chapter}
       className={[styles.section, styles[tone], styles[`space-${spacing}`], className].filter(Boolean).join(" ")}
     >
       {bleed ? children : <div className="container">{children}</div>}

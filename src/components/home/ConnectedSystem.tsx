@@ -53,7 +53,7 @@ const ACTS = [
 const ease = (t: number) => 1 - Math.pow(1 - t, 3);
 const easeInOut = (t: number) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
 
-export function ConnectedSystem({ index = "04" }: { index?: string }) {
+export function ConnectedSystem({ index = "03" }: { index?: string }) {
   const sceneRef = useRef<HTMLDivElement>(null);
   const nodeRefs = useRef<(SVGGElement | null)[]>([]);
   const fragRefs = useRef<(SVGLineElement | null)[]>([]);
@@ -106,7 +106,7 @@ export function ConnectedSystem({ index = "04" }: { index?: string }) {
   }, [reduced]);
 
   return (
-    <section className={styles.section} aria-labelledby="difference-title">
+    <section className={styles.section} aria-labelledby="difference-title" data-chapter={`${index}|The difference`}>
       <div ref={sceneRef} className={styles.scene} data-reduced={reduced || undefined}>
         <div className={styles.sticky}>
           <div className={`container ${styles.layout}`}>

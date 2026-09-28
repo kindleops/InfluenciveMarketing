@@ -66,7 +66,8 @@ Use `<GlassSurface level={3} interactive />`, or `className="glass" data-level="
 
 - **Reveals:** add `data-reveal="up | fade | mask | blur | scale | line"`, `data-split` (via `<SplitText>`) or `data-stagger` to any element, including in server components. A single site-wide `IntersectionObserver` (`RevealObserver`) drives all of them.
 - **Pointer:** `InteractionLayer` is one delegated listener for `data-pointer-light` (glass light), `data-tilt` (subtle perspective), `data-magnetic` (buttons) and `data-cursor="Label"` (contextual cursor label). It only runs on fine pointers.
-- **Scroll-linked:** `motion` drives the hero console tilt, the thesis word illumination and the pinned Connected Systems diagram. All three update through refs or CSS variables, not React re-renders.
+- **Scroll-linked:** the homepage is choreographed as pinned scenes: the hero push-in (`Hero`), the product story (`Platform`, which drives `SystemConsole` by scroll), the three-act diagram (`ConnectedSystem`) and the horizontal work reel (`WorkReel`, whose pin length is measured from the strip). Each listens to one `motion` scroll value and writes refs or CSS variables. Opacity is never bound directly to accelerated scroll timelines, because that drifts inside pinned, smooth-scrolled sections. Phones and reduced motion get unpinned, fully composed versions.
+- **Chapters:** add `data-chapter="NN|Name"` to a scene root (or `chapter` on `<Section>`) and `ChapterIndicator` shows it vertically in the right margin on desktop.
 - **Reduced motion:** movement is removed while composition, light and material stay. The pinned diagram is shown in its finished state, reveals become short fades, the shader renders a still frame, and smooth scrolling is disabled.
 - **Without JavaScript:** reveal states only apply under `html.js`, so the site is fully readable without scripts.
 

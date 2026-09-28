@@ -1,19 +1,183 @@
 .section {
-  padding-bottom: clamp(7rem, 4rem + 8vw, 13rem);
+  position: relative;
+  padding-top: var(--section-y);
+  background: linear-gradient(180deg, var(--color-background), var(--color-void) 30%, var(--color-void) 85%, var(--color-background));
+}
+
+/* ---- Pinned stage (desktop / tablet) --------------------------------- */
+.track {
+  position: relative;
+  height: calc(100vh + var(--steps) * 62vh);
+  margin-top: var(--space-8);
+}
+.sticky {
+  position: sticky;
+  top: 0;
+  isolation: isolate;
+  overflow: clip;
+  height: 100vh;
+  height: 100svh;
+  display: flex;
+  align-items: center;
 }
 .stage {
-  position: relative;
-  margin-top: clamp(4rem, 2rem + 6vw, 8rem);
+  display: grid;
+  gap: clamp(1.5rem, 1rem + 2vh, 3rem);
+  justify-items: center;
+  padding-top: calc(var(--header-h) * 0.6);
 }
-/* A lit floor under the product: a hairline horizon with soft bloom. */
+/* The console is sized by the viewport's height so the whole stage always
+   fits the screen: width follows height at the console's aspect ratio. */
+.console {
+  position: relative;
+  width: min(100%, calc((100svh - 340px) * 2.45));
+}
 .floor {
   position: absolute;
-  left: -10%;
-  right: -10%;
-  bottom: -8rem;
-  height: 160px;
+  left: -12%;
+  right: -12%;
+  bottom: -5.5rem;
+  height: 140px;
   pointer-events: none;
   background:
-    radial-gradient(50% 2px at 50% 50%, rgb(255 255 255 / 0.45), transparent),
+    radial-gradient(50% 2px at 50% 50%, rgb(255 255 255 / 0.4), transparent),
     radial-gradient(45% 50% at 50% 50%, rgb(170 186 235 / 0.1), transparent 70%);
+}
+
+.caption {
+  display: grid;
+  grid-template-columns: 7rem minmax(0, 1fr) auto;
+  align-items: start;
+  gap: var(--space-7);
+  width: min(100%, calc((100svh - 340px) * 2.45));
+  padding-top: var(--space-5);
+  border-top: 1px solid var(--border-subtle);
+}
+.captionIdx {
+  font-family: var(--font-mono);
+  font-size: var(--fs-label);
+  letter-spacing: 0.1em;
+  color: var(--text-faint);
+  padding-top: 0.55rem;
+}
+.captionIdx span {
+  color: var(--text-primary);
+}
+.captionBody {
+  display: grid;
+  grid-template-columns: max-content minmax(0, 1fr);
+  align-items: baseline;
+  gap: var(--space-6);
+  animation: caption-in 700ms var(--ease-out) both;
+}
+@keyframes caption-in {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 12px, 0);
+    filter: blur(4px);
+  }
+}
+.captionTitle {
+  font-size: var(--fs-display-3);
+  line-height: 1;
+  letter-spacing: -0.045em;
+  font-weight: var(--weight-display);
+}
+.captionText {
+  font-size: var(--fs-small);
+  line-height: 1.6;
+  color: var(--text-secondary);
+  max-width: 46ch;
+}
+.ticks {
+  display: grid;
+  gap: 6px;
+  padding-top: 0.5rem;
+  list-style: none;
+}
+.ticks li {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  transition: color 500ms var(--ease-soft);
+}
+.ticks li::before {
+  content: "";
+  width: 18px;
+  height: 1px;
+  background: var(--border-default);
+  transition: background 500ms var(--ease-soft), width 500ms var(--ease-out);
+}
+.ticks li[data-on] {
+  color: var(--text-secondary);
+}
+.ticks li[data-on]::before {
+  width: 28px;
+  background: var(--light);
+}
+@media (max-width: 1180px) {
+  .ticks {
+    display: none;
+  }
+  .caption {
+    grid-template-columns: 5rem minmax(0, 1fr);
+  }
+}
+
+/* ---- Phones: composed list instead of a pinned stage ------------------ */
+.list {
+  display: none;
+}
+@media (max-width: 820px) {
+  .track {
+    display: none;
+  }
+  .section {
+    padding-bottom: var(--section-y);
+  }
+  .list {
+    display: grid;
+    gap: var(--space-8);
+    margin-top: var(--space-8);
+  }
+  .list ol {
+    display: grid;
+    border-top: 1px solid var(--border-subtle);
+  }
+  .list li {
+    display: grid;
+    grid-template-columns: 2.5rem 1fr;
+    grid-template-areas: "idx title" ". text";
+    row-gap: 0.35rem;
+    padding: var(--space-5) 0;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+  .listIdx {
+    grid-area: idx;
+    font-family: var(--font-mono);
+    font-size: var(--fs-label);
+    color: var(--text-faint);
+    padding-top: 0.45rem;
+  }
+  .listTitle {
+    grid-area: title;
+    font-size: var(--fs-heading);
+    letter-spacing: -0.035em;
+    font-weight: var(--weight-display);
+  }
+  .listText {
+    grid-area: text;
+    font-size: var(--fs-small);
+    color: var(--text-secondary);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .captionBody {
+    animation: none;
+  }
 }

@@ -1,0 +1,57 @@
+/* Set vertically in the right margin — present, but never over content. */
+.indicator {
+  position: fixed;
+  right: calc(var(--gutter) / 2);
+  top: 50%;
+  z-index: calc(var(--z-header) - 1);
+  display: none;
+  align-items: center;
+  gap: 0.9rem;
+  writing-mode: vertical-rl;
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  opacity: 0;
+  transform: translate3d(50%, -50%, 0);
+  transition: opacity 500ms var(--ease-soft);
+  pointer-events: none;
+  mix-blend-mode: difference;
+}
+@media (min-width: 1100px) and (hover: hover) {
+  .indicator {
+    display: inline-flex;
+  }
+}
+.indicator[data-on] {
+  opacity: 1;
+}
+.index {
+  color: var(--text-primary);
+  animation: swap 500ms var(--ease-out);
+}
+.name {
+  min-height: 9rem;
+  animation: swap 500ms var(--ease-out);
+}
+.track {
+  position: relative;
+  width: 1px;
+  height: 56px;
+  background: var(--border-default);
+  overflow: hidden;
+}
+.bar {
+  position: absolute;
+  inset: 0;
+  background: var(--light);
+  transform-origin: top;
+  transform: scaleY(0);
+}
+@keyframes swap {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 6px, 0);
+  }
+}

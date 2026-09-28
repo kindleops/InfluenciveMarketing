@@ -32,7 +32,7 @@ export function Thesis() {
   const n = words.length;
 
   return (
-    <section className={styles.thesis} aria-label="Thesis">
+    <section className={styles.thesis} aria-label="Thesis" data-chapter="01|Thesis">
       <div className={`container ${styles.grid}`}>
         <div className={styles.meta} data-reveal="fade">
           <span className={styles.metaIndex}>(01)</span>

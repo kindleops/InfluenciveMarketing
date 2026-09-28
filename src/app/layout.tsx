@@ -9,6 +9,7 @@ import { RevealObserver } from "@/components/system/RevealObserver";
 import { InteractionLayer } from "@/components/system/InteractionLayer";
 import { SmoothScroll } from "@/components/system/SmoothScroll";
 import { Intro } from "@/components/system/Intro";
+import { ChapterIndicator } from "@/components/system/ChapterIndicator";
 import "./globals.css";
 
 const editorial = localFont({
@@ -70,6 +71,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </main>
         <SiteFooter />
         <div className="grain" aria-hidden="true" />
+        <ChapterIndicator />
         <RevealObserver />
         <InteractionLayer />
         <SmoothScroll />

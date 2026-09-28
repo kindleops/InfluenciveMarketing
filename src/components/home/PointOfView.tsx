@@ -7,10 +7,10 @@ import styles from "./PointOfView.module.css";
 /** Philosophy — the company's point of view, set as architecture. */
 export function PointOfView() {
   return (
-    <Section tone="warm" labelledBy="pov-title" className={styles.section}>
+    <Section tone="warm" labelledBy="pov-title" className={styles.section} chapter="08|Point of view">
       <AmbientGlow color="gold" size={1200} x="30%" y="100%" intensity={0.08} />
 
-      <Eyebrow index="09">Point of view</Eyebrow>
+      <Eyebrow index="08">Point of view</Eyebrow>
       <SplitText
         as="h2"
         id="pov-title"

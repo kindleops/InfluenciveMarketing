@@ -1,11 +1,59 @@
+/* The hero is taller than the screen: its stage is pinned while the
+   push-in plays, then released straight into the thesis. */
 .hero {
   position: relative;
+  height: 190vh;
+  background: var(--color-void);
+}
+.sticky {
+  --card: 1;
+  --lift: 0;
+  --line: 0;
+  --line-y: 24;
+  --black: 0;
+  position: sticky;
+  top: 0;
   isolation: isolate;
   overflow: clip;
-  min-height: 100vh;
-  min-height: 100svh;
   display: flex;
+  height: 100vh;
+  height: 100svh;
+}
+.pushLine {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 14vh;
+  z-index: 2;
+  text-align: center;
+  font-size: clamp(1.6rem, 1rem + 2vw, 2.8rem);
+  font-weight: var(--weight-display);
+  letter-spacing: -0.035em;
+  color: var(--text-primary);
+  pointer-events: none;
+  opacity: var(--line);
+  transform: translate3d(0, calc(var(--line-y) * 1px), 0);
+}
+.pushLine span {
+  color: var(--text-tone);
+}
+.blackout {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
   background: var(--color-void);
+  pointer-events: none;
+  opacity: var(--black);
+}
+/* Title card elements fade together and lift at their own depths. */
+.card {
+  opacity: var(--card);
+}
+.liftTitle {
+  transform: translate3d(0, calc(var(--lift) * -140px), 0);
+}
+.liftAside {
+  transform: translate3d(0, calc(var(--lift) * -70px), 0);
 }
 .canvas {
   z-index: -2;
@@ -25,7 +73,7 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  min-height: 100svh;
+  height: 100%;
   padding-top: calc(var(--header-h) + 1.25rem);
   padding-bottom: 1.5rem;
 }
@@ -42,7 +90,8 @@
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--text-muted);
-  animation: rise 1200ms var(--ease-out) 900ms both;
+  /* backwards, not both: once finished, the scroll-driven fade takes over. */
+  animation: rise 1200ms var(--ease-out) 900ms backwards;
 }
 .meta > :last-child {
   justify-self: end;
@@ -170,7 +219,23 @@
     row-gap: 0.4rem;
   }
 }
+/* Phones and reduced motion: no pin — the hero is a single, complete frame. */
 @media (max-width: 720px) {
+  .hero {
+    height: auto;
+  }
+  .sticky {
+    position: relative;
+    height: auto;
+    min-height: 100svh;
+  }
+  .frame {
+    min-height: 100svh;
+  }
+  .pushLine,
+  .blackout {
+    display: none;
+  }
   .metaCenter {
     display: none;
   }
@@ -202,4 +267,16 @@
       opacity: 0;
     }
   }
+}
+
+.hero[data-reduced] {
+  height: auto;
+}
+.hero[data-reduced] .sticky {
+  position: relative;
+  min-height: 100svh;
+}
+.hero[data-reduced] .pushLine,
+.hero[data-reduced] .blackout {
+  display: none;
 }

@@ -257,12 +257,15 @@ export function GlassObject({ className, progressRef }: { className?: string; pr
       pointer.y += (pointer.ty - pointer.y) * 0.045;
       const scroll = progressRef?.current ?? 0;
       const ease = 1 - Math.pow(1 - reveal, 3);
-      const yaw = -0.62 + Math.sin(t * 0.21) * 0.14 + pointer.x * 0.28 + scroll * 0.9 + (1 - ease) * 0.6;
-      const pitch = 0.3 + Math.sin(t * 0.17) * 0.05 + pointer.y * 0.14 - scroll * 0.25;
+      // Push-in: as the hero is scrolled the mark turns face-on and comes
+      // toward camera. Smoothstep keeps the move weighty at both ends.
+      const push = scroll * scroll * (3 - 2 * scroll);
+      const yaw = -0.62 + Math.sin(t * 0.21) * 0.14 * (1 - push) + pointer.x * 0.28 * (1 - push) + push * 0.58 + (1 - ease) * 0.6;
+      const pitch = 0.3 + Math.sin(t * 0.17) * 0.05 + pointer.y * 0.14 * (1 - push) - push * 0.26;
       const roll = -0.08 + Math.sin(t * 0.11) * 0.03;
       gl.uniformMatrix3fv(uRot, false, rotation(yaw, pitch, roll));
       gl.uniform1f(uTime, t);
-      gl.uniform1f(uDist, (narrow ? 20 : 12.8) + scroll * 3 + (1 - ease) * 2.5);
+      gl.uniform1f(uDist, (narrow ? 20 : 12.8) - push * (narrow ? 6 : 5.4) + (1 - ease) * 2.5);
       gl.uniform1f(uReveal, ease);
       gl.drawArrays(gl.TRIANGLES, 0, 3);
     };

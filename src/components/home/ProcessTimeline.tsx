@@ -35,7 +35,7 @@ export function ProcessTimeline({ showHeading = true }: { showHeading?: boolean 
         <SectionHeading
           id="process-title"
           eyebrow="Approach"
-          index="08"
+          index="07"
           layout="split"
           title={["Methodical by design.", <em key="a" className="t-accent">Creative by nature.</em>]}
           lead="Seven stages, each with defined outputs. The creativity is in the work — the process is deliberately predictable."

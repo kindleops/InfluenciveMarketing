@@ -1,9 +1,8 @@
 import { Hero } from "@/components/hero/Hero";
-import { Platform } from "@/components/home/Platform";
 import { Thesis } from "@/components/home/Thesis";
-import { CapabilityStack } from "@/components/home/CapabilityStack";
+import { Platform } from "@/components/home/Platform";
 import { ConnectedSystem } from "@/components/home/ConnectedSystem";
-import { SelectedWork } from "@/components/home/SelectedWork";
+import { WorkReel } from "@/components/home/WorkReel";
 import { ServiceIndex } from "@/components/home/ServiceIndex";
 import { IntelligenceLayer } from "@/components/home/IntelligenceLayer";
 import { ProcessTimeline } from "@/components/home/ProcessTimeline";
@@ -12,16 +11,16 @@ import { ProjectCTA } from "@/components/home/ProjectCTA";
 import { ProofSection } from "@/components/proof/Proof";
 import { InsightList } from "@/components/insights/InsightList";
 import { SectionHeading, TextLink } from "@/components/ui/Typography";
-import { AmbientGlow, Section } from "@/components/ui/Surface";
+import { Section } from "@/components/ui/Surface";
 import { insights } from "@/content/insights";
 
 /**
- * Narrative order — each scene answers one question:
- *   Hero          Who are you?
+ * Narrative order — fewer, larger moments; each scene answers one question.
+ *   Hero          Who are you?            (pinned push-in)
  *   Thesis        What do you believe?
- *   Capabilities  What can you do?
- *   Difference    Why are you different?
- *   Work          Can you prove it?
+ *   System        What do you build?      (pinned product story)
+ *   Difference    Why are you different?  (pinned three-act diagram)
+ *   Work          Can you prove it?       (pinned horizontal reel)
  *   Services      How can we engage?
  *   Intelligence  How advanced are you?
  *   Process       How do you operate?
@@ -35,38 +34,23 @@ export default function Home() {
       <Hero />
       <Thesis />
       <Platform />
-
-      <Section tone="dark" labelledBy="capabilities-title">
-        <AmbientGlow color="brand" size={900} x="85%" y="55%" intensity={0.08} />
-        <SectionHeading
-          id="capabilities-title"
-          eyebrow="Capabilities"
-          index="03"
-          aside="6 layers · 12 capabilities"
-          layout="split"
-          title={["Twelve capabilities.", <em key="a" className="t-accent">Built to connect.</em>]}
-          lead="We build every layer of modern growth — and, more importantly, the connections between them. Select a layer to see what it does."
-        />
-        <CapabilityStack />
-      </Section>
-
       <ConnectedSystem />
-      <SelectedWork />
+      <WorkReel />
       <ServiceIndex />
       <IntelligenceLayer />
 
-      <Section tone="dark" labelledBy="process-title">
+      <Section tone="dark" labelledBy="process-title" chapter="07|Approach">
         <ProcessTimeline />
       </Section>
 
       <PointOfView />
       <ProofSection />
 
-      <Section tone="dark" labelledBy="insights-title">
+      <Section tone="dark" labelledBy="insights-title" chapter="09|Insights">
         <SectionHeading
           id="insights-title"
           eyebrow="Insights"
-          index="10"
+          index="09"
           layout="split"
           title={["Thinking,", <em key="a" className="t-accent">in public.</em>]}
           lead="Notes on systems, intelligence and the craft of building companies people choose."

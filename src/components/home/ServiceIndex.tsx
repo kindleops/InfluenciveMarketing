@@ -12,11 +12,11 @@ import styles from "./ServiceIndex.module.css";
  */
 export function ServiceIndex() {
   return (
-    <Section tone="raised" labelledBy="services-title">
+    <Section tone="raised" labelledBy="services-title" chapter="05|Services">
       <SectionHeading
         id="services-title"
         eyebrow="Services"
-        index="06"
+        index="05"
         layout="split"
         title={["Eight disciplines.", <em key="a" className="t-accent">One standard.</em>]}
         lead="Engage one discipline or the whole system. Either way, every piece is designed to connect to the rest."

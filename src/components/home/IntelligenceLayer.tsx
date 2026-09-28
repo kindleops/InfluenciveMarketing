@@ -8,13 +8,13 @@ import styles from "./IntelligenceLayer.module.css";
 /** Technology — "How advanced is the company?" */
 export function IntelligenceLayer() {
   return (
-    <Section tone="void" labelledBy="ai-title" className={styles.section}>
+    <Section tone="void" labelledBy="ai-title" className={styles.section} chapter="06|Intelligence">
       <AmbientGlow color="violet" size={1000} x="78%" y="40%" intensity={0.1} drift />
       <AmbientGlow color="cyan" size={700} x="10%" y="85%" intensity={0.05} />
 
       <div className={styles.grid}>
         <div className={styles.copy}>
-          <Eyebrow index="07">Intelligence &amp; automation</Eyebrow>
+          <Eyebrow index="06">Intelligence &amp; automation</Eyebrow>
           <SplitText as="h2" id="ai-title" className="t-display-2 t-lit" lines={["AI as", <em key="i" className="t-accent">infrastructure.</em>]} />
           <p className="t-lead" data-reveal="up" style={{ marginTop: "var(--space-6)" }}>
             Not chatbots bolted onto a website. Workflows with inputs, owners, guardrails and measurable output —

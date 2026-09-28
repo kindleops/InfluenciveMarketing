@@ -59,20 +59,23 @@ function clock(i: number) {
   return `09:41:${String(s % 60).padStart(2, "0")}`;
 }
 
-export function SystemConsole() {
+export function SystemConsole({ layer, flat = false }: { layer?: number; flat?: boolean } = {}) {
   const stageRef = useRef<HTMLDivElement>(null);
   const rootRef = useRef<HTMLDivElement>(null);
   const reduced = useReducedMotion();
-  const [active, setActive] = useState(0);
+  const [autoActive, setActive] = useState(0);
+  const controlled = typeof layer === "number";
+  const active = controlled ? layer : autoActive;
   const [cursor, setCursor] = useState(5);
   const [running, setRunning] = useState(false);
 
   // Scroll: the console starts tilted back into the horizon and settles
   // flat as it rises into view.
   const { scrollYProgress } = useScroll({ target: stageRef, offset: ["start end", "start 0.2"] });
-  const rotateX = useTransform(scrollYProgress, [0, 1], reduced ? [0, 0] : [18, 0]);
-  const scale = useTransform(scrollYProgress, [0, 1], reduced ? [1, 1] : [0.9, 1]);
-  const y = useTransform(scrollYProgress, [0, 1], reduced ? [0, 0] : [30, 0]);
+  const still = reduced || flat;
+  const rotateX = useTransform(scrollYProgress, [0, 1], still ? [0, 0] : [18, 0]);
+  const scale = useTransform(scrollYProgress, [0, 1], still ? [1, 1] : [0.9, 1]);
+  const y = useTransform(scrollYProgress, [0, 1], still ? [0, 0] : [30, 0]);
 
   // Only animate while visible.
   useEffect(() => {
@@ -85,13 +88,13 @@ export function SystemConsole() {
 
   useEffect(() => {
     if (!running || reduced) return;
-    const a = setInterval(() => setActive((n) => (n + 1) % LAYERS.length), 2400);
+    const a = controlled ? 0 : setInterval(() => setActive((n) => (n + 1) % LAYERS.length), 2400);
     const b = setInterval(() => setCursor((n) => n + 1), 1700);
     return () => {
       clearInterval(a);
       clearInterval(b);
     };
-  }, [running, reduced]);
+  }, [running, reduced, controlled]);
 
   const visibleEvents = Array.from({ length: 6 }, (_, i) => {
     const n = cursor - i;

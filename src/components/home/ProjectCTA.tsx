@@ -13,7 +13,7 @@ import styles from "./ProjectCTA.module.css";
  */
 export function ProjectCTA() {
   return (
-    <section className={styles.cta} aria-labelledby="cta-title">
+    <section className={styles.cta} aria-labelledby="cta-title" data-chapter="10|Start a project">
       <div className={styles.light} aria-hidden="true">
         <AmbientGlow color="brand" size={1400} x="50%" y="62%" intensity={0.26} drift />
         <AmbientGlow color="violet" size={800} x="70%" y="40%" intensity={0.1} />

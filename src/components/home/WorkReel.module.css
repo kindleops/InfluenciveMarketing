@@ -1,0 +1,200 @@
+.section {
+  position: relative;
+  background: var(--color-background);
+}
+.sticky {
+  display: flex;
+  flex-direction: column;
+  padding-block: var(--section-y);
+}
+.section[data-pinned] .sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  height: 100svh;
+  overflow: hidden;
+  justify-content: center;
+  padding-block: calc(var(--header-h) + 0.5rem) 2rem;
+}
+
+.head {
+  flex: none;
+}
+.head > :first-child {
+  margin-bottom: clamp(1.25rem, 0.5rem + 2vh, 2.5rem);
+}
+.headRow {
+  display: grid;
+  gap: var(--space-5);
+}
+@media (min-width: 900px) {
+  .headRow {
+    grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+    align-items: end;
+  }
+}
+.title {
+  font-size: clamp(2.2rem, 1.2rem + 3vw, 4.6rem);
+  line-height: 0.98;
+  letter-spacing: -0.05em;
+  font-weight: var(--weight-display);
+}
+.title span {
+  color: var(--text-tone);
+}
+.note {
+  justify-self: end;
+  max-width: 40ch;
+  font-size: var(--fs-small);
+  color: var(--text-secondary);
+}
+
+/* ---- The strip ---------------------------------------------------------- */
+.track {
+  display: flex;
+  gap: clamp(1rem, 0.5rem + 1.5vw, 2rem);
+  width: max-content;
+  margin-top: clamp(1.5rem, 1rem + 3vh, 3.5rem);
+  padding-inline: var(--gutter);
+  will-change: transform;
+}
+.panel {
+  position: relative;
+  flex: none;
+  width: min(76vw, calc((100svh - 380px) * 1.6));
+  display: grid;
+  gap: 1.1rem;
+}
+.stage {
+  position: relative;
+  aspect-ratio: 16 / 9.4;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow:
+    inset 0 0 0 1px rgb(255 255 255 / 0.08),
+    0 40px 90px -50px rgb(0 0 0 / 0.9);
+  transform: translateZ(0);
+}
+.stage > * {
+  transition: transform 1400ms var(--ease-out);
+}
+@media (hover: hover) {
+  .panel:hover .stage > * {
+    transform: scale(1.03);
+  }
+}
+
+.caption {
+  display: grid;
+  grid-template-columns: 5.5rem minmax(0, 1fr) auto;
+  grid-template-areas:
+    "idx name engagement"
+    ". for for";
+  align-items: baseline;
+  column-gap: var(--space-5);
+  row-gap: 0.2rem;
+}
+.idx {
+  grid-area: idx;
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: 0.1em;
+  color: var(--text-faint);
+}
+.name {
+  grid-area: name;
+  font-size: clamp(1.4rem, 1rem + 1.2vw, 2.2rem);
+  letter-spacing: -0.04em;
+  font-weight: var(--weight-display);
+}
+.engagement {
+  grid-area: engagement;
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.for {
+  grid-area: for;
+  font-size: var(--fs-small);
+  color: var(--text-muted);
+}
+
+/* The last frame: an invitation, not a card. */
+.end {
+  flex: none;
+  display: grid;
+  place-content: center;
+  justify-items: start;
+  gap: var(--space-5);
+  width: min(34vw, 30rem);
+  aspect-ratio: 1 / 1.2;
+  align-self: start;
+  padding: var(--space-7);
+  border-radius: var(--radius-xl);
+  box-shadow: inset 0 0 0 1px var(--border-subtle);
+  transition: box-shadow var(--dur-ui), background var(--dur-ui);
+}
+.end:hover {
+  background: rgb(255 255 255 / 0.03);
+  box-shadow: inset 0 0 0 1px var(--border-strong);
+}
+.endLabel {
+  font-size: clamp(1.8rem, 1.2rem + 1.6vw, 3rem);
+  letter-spacing: -0.045em;
+  line-height: 1;
+  font-weight: var(--weight-display);
+}
+.endArrow {
+  display: grid;
+  place-items: center;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: var(--light);
+  color: var(--text-inverse);
+  transition: transform 600ms var(--ease-out);
+}
+.end:hover .endArrow {
+  transform: translateX(6px);
+}
+
+.progress {
+  margin-top: clamp(1.25rem, 0.5rem + 2vh, 2.5rem);
+}
+.progress span {
+  display: block;
+  height: 1px;
+  background: var(--light);
+  transform-origin: left;
+  box-shadow: 0 0 10px rgb(255 255 255 / 0.4);
+}
+
+/* ---- Phones: the reel becomes a vertical sequence ---------------------- */
+@media (max-width: 899px) {
+  .track {
+    flex-direction: column;
+    width: auto;
+    gap: var(--space-8);
+    padding-inline: var(--gutter);
+  }
+  .panel {
+    width: 100%;
+  }
+  .stage {
+    aspect-ratio: 4 / 3.6;
+  }
+  .caption {
+    grid-template-columns: 3.5rem minmax(0, 1fr);
+    grid-template-areas:
+      "idx name"
+      ". engagement"
+      ". for";
+  }
+  .end {
+    width: 100%;
+    aspect-ratio: auto;
+    padding: var(--space-6);
+  }
+}
