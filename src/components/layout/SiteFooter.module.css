@@ -8,6 +8,29 @@
   border-top: 1px solid var(--border-hairline);
 }
 
+/* After the home page's finale the footer does not ask again: the scene
+   decays into it — no rule, no second call to action, just the horizon
+   line fading out and the index of the company. */
+:global(body:has(#cta-title)) .footer {
+  padding-top: var(--space-8);
+  border-top: 0;
+  background: linear-gradient(180deg, var(--color-void) 0%, var(--color-background-warm) 100%);
+}
+:global(body:has(#cta-title)) .footer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: min(70vw, 60rem);
+  height: 1px;
+  translate: -50% 0;
+  background: linear-gradient(90deg, transparent, rgb(255 255 255 / 0.2), transparent);
+}
+:global(body:has(#cta-title)) .lead,
+:global(body:has(#cta-title)) .lead + :global(.hairline) {
+  display: none;
+}
+
 .lead {
   display: grid;
   gap: var(--space-7);
