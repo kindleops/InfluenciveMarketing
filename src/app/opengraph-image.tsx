@@ -1,5 +1,6 @@
 import { ImageResponse } from "next/og";
 import { brand } from "@/config/brand";
+import { MARK_PATHS } from "@/components/brand/mark";
 
 export const alt = `${brand.name} — ${brand.positioning}`;
 export const size = { width: 1200, height: 630 };
@@ -22,8 +23,11 @@ export default function OpengraphImage() {
           fontFamily: "sans-serif",
         }}
       >
-        <div style={{ display: "flex", alignItems: "center", gap: 14, fontSize: 28, letterSpacing: -1 }}>
-          <div style={{ width: 28, height: 28, borderRadius: 6, background: "#ece8e1" }} />
+        <div style={{ display: "flex", alignItems: "center", gap: 14, fontSize: 34, letterSpacing: -1.5, fontWeight: 500 }}>
+          <svg width="38" height="38" viewBox="0 0 24 24">
+            <path d={MARK_PATHS.rear} fill="#ece8e1" fillOpacity="0.45" />
+            <path d={MARK_PATHS.front} fill="#ece8e1" />
+          </svg>
           {brand.name}
         </div>
         <div style={{ display: "flex", flexDirection: "column", fontSize: 112, lineHeight: 0.92, letterSpacing: -6, fontWeight: 600 }}>

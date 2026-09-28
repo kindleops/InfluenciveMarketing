@@ -3,14 +3,15 @@
  *
  * The visual system, interaction system and content architecture are built
  * to be identity-agnostic. To rebrand, change the values here (and swap the
- * glyph in `components/brand/BrandMark.tsx`). Nothing else in the codebase
+ * mark in `components/brand/BrandMark.tsx`, `app/icon.svg` and
+ * `public/brand/`). Nothing else in the codebase
  * references the company name directly.
  */
 export const brand = {
-  /** Temporary working name. Replace when the final identity is selected. */
-  name: "Influencive",
+  /** The name is always set in lowercase. */
+  name: "ascndix",
   /** Legal entity, used in the footer and legal pages. */
-  legalName: "Influencive",
+  legalName: "ascndix",
   /** Core positioning line. */
   positioning: "Brand. Product. Growth. Intelligence.",
   tagline: "Build what growth requires.",

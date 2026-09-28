@@ -18,15 +18,21 @@ Requires Node ≥ 20.9.
 
 ## Rebranding
 
-The current name is temporary. Identity lives in a handful of files, and nothing else references it:
+The company is **ascndix**, always set in lowercase. The mark is the **apex**: two slabs leaning into one peak, a glass slab behind a solid one, standing on a shared baseline. It is ascent drawn as architecture, and it echoes the two glass slabs of the hero.
+
+Identity lives in a handful of files, and nothing else references it:
 
 | What                          | Where                                         |
 | ----------------------------- | --------------------------------------------- |
 | Name, legal name, email, URL, socials | `src/config/brand.ts`                 |
-| Brand glyph (header, footer)  | `src/components/brand/BrandMark.tsx`          |
-| Favicon                       | `src/app/icon.svg`                            |
+| Mark geometry (single source) | `src/components/brand/mark.ts`                |
+| Mark + wordmark (header, footer, intro) | `src/components/brand/BrandMark.tsx` |
+| Favicon / home-screen icon    | `src/app/icon.svg`, `src/app/apple-icon.tsx`  |
 | Social share image            | `src/app/opengraph-image.tsx`                 |
+| Logo files (outlined, for use anywhere) | `public/brand/ascndix-logo.svg`, `-logo-dark.svg`, `ascndix-mark.svg`, `-mark-dark.svg` |
 | Palette, type, radii, motion  | `src/styles/tokens.css`                       |
+
+The logo files use the wordmark outlined from Geist at weight 520, so they render the same without the font installed. Use the `-dark` versions on light backgrounds.
 
 Social links render only when they have a URL. Set `NEXT_PUBLIC_SITE_URL` in production so canonical URLs, the sitemap and OG metadata resolve correctly.
 

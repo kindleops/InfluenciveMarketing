@@ -7,35 +7,37 @@
 .wordmark {
   display: inline-flex;
   align-items: center;
-  gap: 0.6rem;
-  font-weight: 560;
-  font-size: 1.02rem;
-  letter-spacing: -0.035em;
+  gap: 0.5rem;
   color: var(--text-primary);
 }
 
+/* Set lowercase and tight, with the weight of the display type, so the name
+   reads as one shape beside the mark. */
 .name {
+  font-size: 1.14rem;
+  font-weight: 520;
   line-height: 1;
+  letter-spacing: -0.045em;
+  text-transform: lowercase;
+  /* Optical alignment: lowercase x-height sits against the mark's body. */
+  translate: 0 -0.04em;
 }
 
-/* Emergence: the rear plane draws, then the front plane settles into place. */
-.mark[data-animate] .back {
-  stroke-dasharray: 56;
-  stroke-dashoffset: 56;
-  animation: draw 1100ms var(--ease-emphasized) 150ms forwards;
-}
+/* Ascent: the glass slab rises into place, then the solid one follows it
+   up to the peak. */
+.mark[data-animate] .rear,
 .mark[data-animate] .front {
   opacity: 0;
-  transform: translate(-3px, 3px);
-  animation: settle 900ms var(--ease-out) 550ms forwards;
+  transform: translateY(5px);
+}
+.mark[data-animate] .rear {
+  animation: rise 900ms var(--ease-emphasized) 150ms forwards;
+}
+.mark[data-animate] .front {
+  animation: rise 1000ms var(--ease-emphasized) 420ms forwards;
 }
 
-@keyframes draw {
-  to {
-    stroke-dashoffset: 0;
-  }
-}
-@keyframes settle {
+@keyframes rise {
   to {
     opacity: 1;
     transform: none;
@@ -43,11 +45,10 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .mark[data-animate] .back {
-    stroke-dashoffset: 0;
-  }
+  .mark[data-animate] .rear,
   .mark[data-animate] .front {
     opacity: 1;
     transform: none;
+    animation: none;
   }
 }

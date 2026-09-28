@@ -1,11 +1,8 @@
 import { brand } from "@/config/brand";
+import { MARK_PATHS } from "./mark";
 import styles from "./BrandMark.module.css";
 
-/**
- * Placeholder identity glyph: two offset planes — a surface and the system
- * behind it. Deliberately name-agnostic so the final identity can replace it
- * without touching layout. Swap the <svg> contents here to rebrand.
- */
+/** The apex mark (see ./mark.ts). `animate` plays the ascent on first paint. */
 export function BrandMark({ size = 22, animate = false }: { size?: number; animate?: boolean }) {
   return (
     <svg
@@ -17,16 +14,17 @@ export function BrandMark({ size = 22, animate = false }: { size?: number; anima
       fill="none"
       aria-hidden="true"
     >
-      <rect className={styles.back} x="2.75" y="7.75" width="13.5" height="13.5" rx="2.25" stroke="currentColor" strokeOpacity="0.55" strokeWidth="1.5" />
-      <rect className={styles.front} x="7.75" y="2.75" width="13.5" height="13.5" rx="2.25" fill="currentColor" />
+      <path className={styles.rear} d={MARK_PATHS.rear} fill="currentColor" fillOpacity="0.42" />
+      <path className={styles.front} d={MARK_PATHS.front} fill="currentColor" />
     </svg>
   );
 }
 
+/** Mark + lowercase name. */
 export function Wordmark({ animate = false }: { animate?: boolean }) {
   return (
     <span className={styles.wordmark}>
-      <BrandMark animate={animate} />
+      <BrandMark size={20} animate={animate} />
       <span className={styles.name}>{brand.name}</span>
     </span>
   );
