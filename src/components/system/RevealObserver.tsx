@@ -89,5 +89,32 @@ export function RevealObserver() {
     };
   }, [pathname]);
 
+  // Scenes off screen hold their ambient animations — CSS (drifts, orbits,
+  // breathing type) through [data-offscreen], and SVG SMIL (travelling
+  // packets), which ignores CSS and would otherwise invalidate layout every
+  // frame — so an idle page costs nothing for what can't be seen.
+  useEffect(() => {
+    const scenes = document.querySelectorAll<HTMLElement>("main section:not(section section), footer");
+    const io = new IntersectionObserver(
+      (entries) => {
+        for (const e of entries) {
+          const off = !e.isIntersecting;
+          e.target.toggleAttribute("data-offscreen", off);
+          e.target.querySelectorAll("svg").forEach((svg) => {
+            if (!svg.querySelector("animate, animateMotion, animateTransform")) return;
+            if (off) svg.pauseAnimations();
+            else svg.unpauseAnimations();
+          });
+        }
+      },
+      { rootMargin: "25% 0px 25% 0px" },
+    );
+    scenes.forEach((el) => io.observe(el));
+    return () => {
+      io.disconnect();
+      scenes.forEach((el) => el.removeAttribute("data-offscreen"));
+    };
+  }, [pathname]);
+
   return null;
 }

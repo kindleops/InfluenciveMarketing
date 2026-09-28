@@ -132,6 +132,13 @@ html[data-intro="running"] header * {
   animation-play-state: paused !important;
 }
 
+/* Off-screen scenes hold their ambient animations (see RevealObserver). */
+[data-offscreen] *,
+[data-offscreen] *::before,
+[data-offscreen] *::after {
+  animation-play-state: paused !important;
+}
+
 /* ---- Keyframes shared across components ------------------------------- */
 
 @keyframes drift {
