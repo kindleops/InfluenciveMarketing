@@ -11,6 +11,7 @@
   margin-top: var(--space-8);
 }
 .sticky {
+  --enter: 1;
   position: sticky;
   top: 0;
   isolation: isolate;
@@ -29,8 +30,30 @@
 /* The console is sized by the viewport's height so the whole stage always
    fits the screen: width follows height at the console's aspect ratio. */
 .console {
+  --stage-lit: var(--enter);
   position: relative;
   width: min(100%, calc((100svh - 340px) * 2.45));
+  /* Arrival from depth: tilted back into the horizon, far and soft, then
+     settling face-on. Blur is dropped entirely once settled so the glass
+     inside can sample the light behind it. */
+  transform:
+    perspective(2200px)
+    translate3d(0, calc((1 - var(--enter)) * 16vh), calc((1 - var(--enter)) * -260px))
+    rotateX(calc((1 - var(--enter)) * 28deg));
+  transform-origin: 50% 100%;
+  opacity: calc(0.15 + var(--enter) * 0.85);
+  filter: blur(calc((1 - var(--enter)) * 10px));
+  will-change: transform, opacity, filter;
+}
+.sticky[data-settled] .console,
+.sticky[data-reduced] .console {
+  transform: none;
+  opacity: 1;
+  filter: none;
+  will-change: auto;
+}
+:global(html.js) .sticky:not([data-reduced]) {
+  --enter: 0;
 }
 .floor {
   position: absolute;
@@ -117,8 +140,16 @@
   color: var(--text-secondary);
 }
 .ticks li[data-on]::before {
-  width: 28px;
+  width: 22px;
+  background: var(--border-strong);
+}
+.ticks li[data-current] {
+  color: var(--text-primary);
+}
+.ticks li[data-current]::before {
+  width: 32px;
   background: var(--light);
+  box-shadow: 0 0 8px rgb(255 255 255 / 0.6);
 }
 @media (max-width: 1180px) {
   .ticks {

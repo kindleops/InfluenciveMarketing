@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState, type CSSProperties } from "react";
-import { motion, useReducedMotion, useScroll, useTransform } from "motion/react";
+import { motion, useScroll, useTransform } from "motion/react";
+import { useReducedMotion } from "@/lib/useReducedMotion";
 import { BrandMark } from "@/components/brand/BrandMark";
 import styles from "./SystemConsole.module.css";
 
@@ -107,7 +108,14 @@ export function SystemConsole({ layer, flat = false }: { layer?: number; flat?: 
     <div ref={stageRef} className={styles.stage}>
       <motion.div className={styles.tiltOuter} style={{ rotateX, scale, y }}>
         <div className={styles.tiltInner} data-tilt="3">
-          <div ref={rootRef} className={`glass ${styles.console}`} data-level="3" data-pointer-light="">
+          <div
+            ref={rootRef}
+            className={`glass ${styles.console}`}
+            data-level="3"
+            data-pointer-light=""
+            data-focus={(controlled && active < LAYERS.length) || undefined}
+            data-whole={(controlled && active >= LAYERS.length) || undefined}
+          >
             {/* Chrome */}
             <div className={styles.chrome}>
               <div className={styles.crumbs}>

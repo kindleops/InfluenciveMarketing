@@ -59,6 +59,7 @@
   will-change: transform;
 }
 .panel {
+  --d: 0;
   position: relative;
   flex: none;
   width: min(76vw, calc((100svh - 380px) * 1.6));
@@ -77,6 +78,29 @@
 }
 .stage > * {
   transition: transform 1400ms var(--ease-out);
+}
+/* Depth: off-centre frames recede. Scale sits on the stage; the dimming is
+   an overlay (never a filter, which would stop the glass sampling the
+   photograph beneath it). */
+.section[data-pinned] .stage {
+  transform: translateZ(0) scale(calc(1 - var(--d) * 0.07));
+  transform-origin: 50% 60%;
+}
+.stage::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  border-radius: inherit;
+  pointer-events: none;
+  background: rgb(3 3 3 / 0.6);
+  opacity: 0;
+}
+.section[data-pinned] .stage::after {
+  opacity: calc(var(--d) * 0.85);
+}
+.section[data-pinned] .caption {
+  opacity: calc(1 - var(--d) * 0.55);
 }
 @media (hover: hover) {
   .panel:hover .stage > * {

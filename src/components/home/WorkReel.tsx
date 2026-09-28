@@ -2,7 +2,8 @@
 
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import { motion, useReducedMotion, useScroll, useTransform } from "motion/react";
+import { motion, useMotionValueEvent, useScroll, useTransform } from "motion/react";
+import { useReducedMotion } from "@/lib/useReducedMotion";
 import { work } from "@/content/work";
 import { WorkVisual } from "@/components/work/WorkVisual";
 import { Eyebrow } from "@/components/ui/Typography";
@@ -22,6 +23,8 @@ export function WorkReel() {
   const [distance, setDistance] = useState(0);
   const [pinned, setPinned] = useState(false);
   const reduced = useReducedMotion();
+  // Panel centres along the strip, measured with the layout (not per frame).
+  const centres = useRef<number[]>([]);
 
   useEffect(() => {
     const mq = window.matchMedia("(min-width: 900px)");
@@ -29,6 +32,11 @@ export function WorkReel() {
       const on = mq.matches && !reduced;
       setPinned(on);
       const track = trackRef.current;
+      if (track) {
+        centres.current = Array.from(track.querySelectorAll<HTMLElement>("[data-panel]")).map(
+          (p) => p.offsetLeft + p.offsetWidth / 2,
+        );
+      }
       if (!track || !on) return setDistance(0);
       setDistance(Math.max(0, track.scrollWidth - window.innerWidth));
     };
@@ -47,6 +55,22 @@ export function WorkReel() {
   const { scrollYProgress } = useScroll({ target: sectionRef, offset: ["start start", "end end"] });
   const x = useTransform(scrollYProgress, [0, 1], [0, -distance]);
   const bar = useTransform(scrollYProgress, [0, 1], [0.04, 1]);
+
+  // Depth: the frame at the centre of the screen is the foreground; frames
+  // either side sit a step back — smaller and dimmer — and come forward as
+  // they arrive. Written straight to the DOM as a CSS variable.
+  useMotionValueEvent(x, "change", (v) => {
+    const track = trackRef.current;
+    if (!track || !pinned) return;
+    const mid = window.innerWidth / 2;
+    const panels = track.querySelectorAll<HTMLElement>("[data-panel]");
+    panels.forEach((p, i) => {
+      const c = centres.current[i];
+      if (c === undefined) return;
+      const d = Math.min(1, Math.abs(c + v - mid) / (window.innerWidth * 0.62));
+      p.style.setProperty("--d", d.toFixed(3));
+    });
+  });
 
   return (
     <section
@@ -75,7 +99,14 @@ export function WorkReel() {
 
         <motion.div ref={trackRef} className={styles.track} style={pinned ? { x } : undefined}>
           {work.map((item, i) => (
-            <Link key={item.slug} href={`/work/${item.slug}`} className={styles.panel} data-card="" data-cursor="View">
+            <Link
+              key={item.slug}
+              href={`/work/${item.slug}`}
+              className={styles.panel}
+              data-card=""
+              data-panel=""
+              data-cursor="View"
+            >
               <div className={styles.stage}>
                 <WorkVisual kind={item.visual} accent={item.accent} />
               </div>
