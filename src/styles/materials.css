@@ -12,7 +12,10 @@
    Levels: 1 (nav) · 2 (interface) · 3 (feature) · 4 (interactive)
    ========================================================================== */
 
-.glass {
+/* :where() keeps the material's defaults at zero specificity, so a
+   component's own layout (e.g. position: absolute) always wins regardless
+   of stylesheet order in the production bundle. */
+:where(.glass) {
   --g-fill: var(--glass-2-fill);
   --g-blur: var(--glass-2-blur);
   --g-sat: var(--glass-2-sat);
