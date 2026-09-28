@@ -64,18 +64,22 @@ Use `<GlassSurface level={3} interactive />`, or `className="glass" data-level="
 
 ### Motion
 
+- **Tiers:** every movement uses one of five tiers defined in `tokens.css` (`--m-micro-*`, `--m-interaction-*`, `--m-enter-*`, `--m-reveal-*`, `--m-cinematic-*`), each with a set duration, easing, distance, blur and scale. Surfaces carry inertia and resolve out of a slight defocus rather than bouncing or fading up.
+- **Depth:** six levels: 0 atmosphere, 1 distant geometry, 2 supporting visual, 3 product, 4 foreground glass, 5 navigation and active control (`--depth-*`). Blur falls with depth and shadow rises with it. Colour carries a role: blue for intelligence, gold for resolution, violet for creative transition, teal for system energy (`--light-*`).
+- **Lit stage:** wrap dark product UI in `.lit-stage` (materials.css) to put a key light, a floor reflection and a faint spatial grid behind it. `--stage-key` sets the light role. The UI stays dark and the surrounding light reveals it.
 - **Reveals:** add `data-reveal="up | fade | mask | blur | scale | line"`, `data-split` (via `<SplitText>`) or `data-stagger` to any element, including in server components. A single site-wide `IntersectionObserver` (`RevealObserver`) drives all of them.
 - **Pointer:** `InteractionLayer` is one delegated listener for `data-pointer-light` (glass light), `data-tilt` (subtle perspective), `data-magnetic` (buttons) and `data-cursor="Label"` (contextual cursor label). It only runs on fine pointers.
-- **Scroll-linked:** the homepage is choreographed as pinned scenes: the hero push-in (`Hero`), the product story (`Platform`, which drives `SystemConsole` by scroll), the three-act diagram (`ConnectedSystem`) and the horizontal work reel (`WorkReel`, whose pin length is measured from the strip). Each listens to one `motion` scroll value and writes refs or CSS variables. Opacity is never bound directly to accelerated scroll timelines, because that drifts inside pinned, smooth-scrolled sections. Phones and reduced motion get unpinned, fully composed versions.
+- **Scroll-linked:** the homepage is choreographed as pinned scenes: the hero push-in (`Hero`), the product story (`Platform`: the console arrives from depth, focuses on each layer, then pulls back to the whole machine), the three-act diagram (`ConnectedSystem`) and the horizontal work reel (`WorkReel`, whose pin length is measured from the strip and whose off-centre frames recede). Unpinned scenes: `IntelligenceField` assembles once when it arrives, the point of view resolves clause by clause (`<ScrollScene>` exposes scroll progress as a CSS variable), and `CtaAtmosphere` converges the page's geometry on the finale. Each listens to one `motion` scroll value and writes refs or CSS variables. Opacity is never bound directly to accelerated scroll timelines, because that drifts inside pinned, smooth-scrolled sections. Phones and reduced motion get unpinned, fully composed versions.
 - **Chapters:** add `data-chapter="NN|Name"` to a scene root (or `chapter` on `<Section>`) and `ChapterIndicator` shows it vertically in the right margin on desktop.
-- **Reduced motion:** movement is removed while composition, light and material stay. The pinned diagram is shown in its finished state, reveals become short fades, the shader renders a still frame, and smooth scrolling is disabled.
+- **Reduced motion:** movement is removed while composition, light and material stay. Pinned scenes are unpinned and shown in their finished states, reveals become short fades, the shader renders a still frame, and smooth scrolling is disabled. Use `useReducedMotion` from `@/lib/useReducedMotion`, not motion's hook: it is hydration-safe and follows changes to the setting.
+- **Off-screen scenes** hold their ambient CSS and SMIL animations (`RevealObserver`), so an idle page does almost no work.
 - **Without JavaScript:** reveal states only apply under `html.js`, so the site is fully readable without scripts.
 
 ### Primitives
 
 **Display type** reveals character by character (`<SplitText>` default `mode="chars"`; `<Chars>` for custom markup). Lines with their own clipped gradients use `mode="lines"`. Elements with `data-scramble` decode from noise when revealed (running-header labels use it).
 
-**Signature components:** `GlassObject` (hero + `framing="finale"` bookend in the closing CTA), `ServiceExplorer` + `ServiceArt` (eight looping discipline illustrations, auto-advancing tour), `InsightCards` (generative light-field covers per category), `WorkReel`, `Platform`, `Horizon` (full-bleed photographed interlude that opens from a letterbox on scroll).
+**Signature components:** `GlassObject` (hero + `framing="finale"` bookend in the closing CTA), `ServiceExplorer` + `ServiceArt` (eight looping discipline illustrations, auto-advancing tour, glass selection lens with a signal to the stage), `IntelligenceField` (AI as infrastructure: layers stacked over an intelligence ground plane, signals rising through them), `InsightCards` (generative light-field covers per category), `WorkReel`, `Platform`, `Horizon` (full-bleed photographed interlude that opens from a letterbox on scroll).
 
 ### Photography
 
@@ -122,7 +126,31 @@ With nothing configured, development logs the inquiry and succeeds. **Production
 - The hero object (`components/hero/GlassObject.tsx`) is the brand mark rendered as glass: a single ray-marched fragment shader with refraction, 6-sample spectral dispersion and Fresnel reflections of a procedural studio. It uses a bounding-sphere early-out and capped resolution with adaptive downscaling, runs at up to ~40 fps, and pauses offscreen or when the tab is hidden. Reduced motion renders one still frame; without WebGL, a CSS horizon stands in.
 - The first homepage visit per session plays a ~1.6s title sequence (`components/system/Intro.tsx`) whose horizon hands off to the one behind the glass. It is skipped for reduced motion. Route changes lift a curtain of the void off the new page without blocking interaction (`app/template.tsx`).
 - Animation uses transform and opacity. Expensive effects (backdrop blur, pinned scenes) are used sparingly and simplified on mobile. Smooth scrolling is desktop-only; touch devices keep native momentum.
+- Type has a floor: labels are 12px, micro text is 11px, and every text tone clears 4.5:1 on the darkest scene.
 - Semantic landmarks and a skip link are in place. Visible focus states throughout. The mobile menu traps focus and closes on Escape, capability layers are keyboard-navigable tabs, and form errors are announced to screen readers.
+
+## Testing
+
+```bash
+npm run build && npm run test:e2e   # Playwright + axe against the production build
+npm run verify                      # typecheck + build + e2e
+```
+
+The suite (`e2e/site.spec.ts`) checks:
+
+- console, hydration and page errors
+- horizontal overflow at four viewports
+- that the signature scenes render and settle
+- discipline keyboard and pointer control
+- that the pointer light releases
+- the skip link and visible focus
+- idle CPU
+- reduced motion
+- axe (WCAG A/AA) on the home page and interior routes
+- that every sitemap route renders
+- internal links
+
+On machines without a GPU, WebGL runs on SwiftShader.
 
 ## Structure
 
