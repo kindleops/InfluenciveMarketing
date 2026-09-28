@@ -19,11 +19,13 @@
   /* ---- Text: ivory, not white ----------------------------------------- */
   --color-ivory: #f1efea;
   --text-primary: #f1efea;
-  /* Legibility floor: muted copy stays ≥ 4.5:1 on the darkest scenes, and
-     faint is reserved for ornament (indices, separators), never sentences. */
+  /* Legibility floor: every text tone clears 4.5:1 on the darkest scene
+     (#060606). Faint (~4.8:1) is the quietest voice — indices, metadata —
+     and hierarchy below it is carried by size, family and weight, never by
+     dropping under the floor. */
   --text-secondary: rgb(241 239 234 / 0.7);
   --text-muted: rgb(241 239 234 / 0.58);
-  --text-faint: rgb(241 239 234 / 0.36);
+  --text-faint: rgb(241 239 234 / 0.5);
   /* The second tone of two-tone display type. */
   --text-tone: rgb(241 239 234 / 0.38);
   /* Opaque equivalent, for type set inside background-clipped lines. */

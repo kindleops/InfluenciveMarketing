@@ -196,8 +196,7 @@
     transform var(--m-interaction-dur) var(--m-interaction-ease);
 }
 .console[data-focus] .module:not([data-active]) {
-  opacity: 0.5;
-  transform: scale(0.985);
+  opacity: 0.66;
 }
 .console[data-focus] .module[data-active] {
   background: linear-gradient(180deg, rgb(122 155 255 / 0.07), rgb(255 255 255 / 0.012));

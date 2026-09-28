@@ -99,9 +99,7 @@
 .section[data-pinned] .stage::after {
   opacity: calc(var(--d) * 0.85);
 }
-.section[data-pinned] .caption {
-  opacity: calc(1 - var(--d) * 0.55);
-}
+/* Captions never dim: depth is carried by the imagery, legibility stays. */
 @media (hover: hover) {
   .panel:hover .stage > * {
     transform: scale(1.03);
@@ -123,7 +121,7 @@
   font-family: var(--font-mono);
   font-size: var(--fs-micro);
   letter-spacing: 0.1em;
-  color: var(--text-faint);
+  color: var(--text-muted);
 }
 .name {
   grid-area: name;

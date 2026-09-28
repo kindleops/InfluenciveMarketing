@@ -172,7 +172,8 @@
   pointer-events: none;
   opacity: var(--stage-lit);
   background:
-    radial-gradient(44% 42% at 50% 40%, rgb(var(--stage-key) / 0.2), transparent 72%),
+    radial-gradient(44% 42% at 50% 40%, rgb(var(--stage-key) / 0.24), transparent 72%),
+    radial-gradient(70% 12% at 50% 0%, rgb(255 255 255 / 0.06), transparent 72%),
     radial-gradient(28% 24% at 82% 84%, rgb(var(--light-gold) / 0.075), transparent 72%),
     radial-gradient(24% 20% at 14% 20%, rgb(var(--light-violet) / 0.06), transparent 72%),
     radial-gradient(58% 7% at 50% 91%, rgb(255 255 255 / 0.1), transparent 72%);
