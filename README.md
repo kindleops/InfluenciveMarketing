@@ -75,7 +75,11 @@ Use `<GlassSurface level={3} interactive />`, or `className="glass" data-level="
 
 **Display type** reveals character by character (`<SplitText>` default `mode="chars"`; `<Chars>` for custom markup). Lines with their own clipped gradients use `mode="lines"`. Elements with `data-scramble` decode from noise when revealed (running-header labels use it).
 
-**Signature components:** `GlassObject` (hero + `framing="finale"` bookend in the closing CTA), `ServiceExplorer` + `ServiceArt` (eight looping discipline illustrations, auto-advancing tour), `InsightCards` (generative light-field covers per category), `WorkReel`, `Platform`.
+**Signature components:** `GlassObject` (hero + `framing="finale"` bookend in the closing CTA), `ServiceExplorer` + `ServiceArt` (eight looping discipline illustrations, auto-advancing tour), `InsightCards` (generative light-field covers per category), `WorkReel`, `Platform`, `Horizon` (full-bleed photographed interlude that opens from a letterbox on scroll).
+
+### Photography
+
+`src/assets/plates/` holds art-directed, AI-generated environment plates: abstract architecture, glass and light, with no people, products, text or brands. Each `WorkVisual` stages its interface glass over one of them (`identity` → `relaunch.jpg`, `growth`, `operations`, `product`), and `Horizon` uses `horizon.jpg` (21:9). They're imported statically, so `next/image` serves responsive AVIF/WebP with a blur placeholder. To replace one, drop in a same-named JPEG around 2,700px wide. Keep them dark, near-monochrome and roughly 16:9.
 
 
 `Button` (primary / secondary / ghost, magnetic, arrow) · `TextLink` · `Eyebrow` · `SplitText` · `SectionHeading` · `GlassSurface` · `Section` · `AmbientGlow` · `PageHero` · `CaseStudyPreview` · `WorkVisual` · `Quote` · `LogoWall` · `InsightList`

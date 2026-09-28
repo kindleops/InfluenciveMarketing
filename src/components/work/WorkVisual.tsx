@@ -1,16 +1,38 @@
 import type { CSSProperties } from "react";
+import Image, { type StaticImageData } from "next/image";
 import type { WorkItem, WorkVisual as Kind } from "@/content/work";
+import relaunch from "@/assets/plates/relaunch.jpg";
+import growth from "@/assets/plates/growth.jpg";
+import operations from "@/assets/plates/operations.jpg";
+import product from "@/assets/plates/product.jpg";
 import styles from "./WorkVisual.module.css";
 
+/* Photographic stages — abstract, art-directed environments (no products,
+   people or brands) that set the mood each system is presented in. */
+const plates: Record<Kind, StaticImageData> = { identity: relaunch, growth, operations, product };
+
 /**
- * Art-directed compositions for each engagement type. These are
- * representations of the *kind* of system built — interface content is
- * illustrative. When real case studies land, pass `media` (an image or video
- * element) to <CaseStudyPreview> and these become the fallback.
+ * Art-directed compositions for each engagement type: interface glass
+ * floating in a photographed environment. These are representations of the
+ * *kind* of system built — interface content is illustrative. When real case
+ * studies land, pass `media` (an image or video element) to
+ * <CaseStudyPreview> and these become the fallback.
  */
-export function WorkVisual({ kind, accent = "brand", compact = false }: { kind: Kind; accent?: WorkItem["accent"]; compact?: boolean }) {
+export function WorkVisual({
+  kind,
+  accent = "brand",
+  compact = false,
+  sizes,
+}: {
+  kind: Kind;
+  accent?: WorkItem["accent"];
+  compact?: boolean;
+  sizes?: string;
+}) {
   return (
     <div className={styles.visual} data-kind={kind} data-accent={accent} data-compact={compact || undefined}>
+      <Image src={plates[kind]} alt="" fill sizes={sizes ?? (compact ? "(min-width: 900px) 48vw, 100vw" : "(min-width: 900px) 76vw, 100vw")} placeholder="blur" className={styles.plate} />
+      <span className={styles.shade} aria-hidden="true" />
       <span className={styles.light} aria-hidden="true" />
       {kind === "identity" && <Identity />}
       {kind === "growth" && <Growth />}

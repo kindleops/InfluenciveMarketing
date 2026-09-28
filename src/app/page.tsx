@@ -6,6 +6,7 @@ import { WorkReel } from "@/components/home/WorkReel";
 import { ServiceExplorer } from "@/components/home/ServiceExplorer";
 import { IntelligenceLayer } from "@/components/home/IntelligenceLayer";
 import { ProcessTimeline } from "@/components/home/ProcessTimeline";
+import { Horizon } from "@/components/home/Horizon";
 import { PointOfView } from "@/components/home/PointOfView";
 import { ProjectCTA } from "@/components/home/ProjectCTA";
 import { ProofSection } from "@/components/proof/Proof";
@@ -24,6 +25,7 @@ import { insights } from "@/content/insights";
  *   Services      How can we engage?
  *   Intelligence  How advanced are you?
  *   Process       How do you operate?
+ *   Horizon       (interlude — a single photographed frame)
  *   Point of view What do you stand for?
  *   Insights      How do you think?
  *   CTA           What should I do next?
@@ -43,6 +45,7 @@ export default function Home() {
         <ProcessTimeline />
       </Section>
 
+      <Horizon />
       <PointOfView />
       <ProofSection />
 
