@@ -16,23 +16,25 @@
 
 html.js [data-reveal] {
   --reveal-delay: 0ms;
-  --reveal-dur: var(--dur-reveal);
+  --reveal-dur: var(--m-enter-dur);
   transition-property: opacity, transform, clip-path, filter;
   transition-duration: var(--reveal-dur);
-  transition-timing-function: var(--ease-out);
+  transition-timing-function: var(--m-enter-ease);
   transition-delay: var(--reveal-delay);
 }
 
+/* enter tier — content arrives: a short rise out of a slight defocus. */
 html.js [data-reveal="up"]:not([data-inview]) {
   opacity: 0;
-  transform: translate3d(0, 28px, 0);
+  transform: translate3d(0, var(--m-enter-distance), 0);
+  filter: blur(var(--m-enter-blur));
 }
 html.js [data-reveal="fade"]:not([data-inview]) {
   opacity: 0;
 }
 html.js [data-reveal="mask"] {
-  --reveal-dur: 1100ms;
-  transition-timing-function: var(--ease-emphasized);
+  --reveal-dur: var(--m-reveal-dur);
+  transition-timing-function: var(--m-reveal-ease);
 }
 html.js [data-reveal="mask"]:not([data-inview]) {
   clip-path: inset(0 0 100% 0);
@@ -43,18 +45,23 @@ html.js [data-reveal="mask"][data-inview] {
 }
 html.js [data-reveal="blur"]:not([data-inview]) {
   opacity: 0;
-  filter: blur(14px);
+  filter: blur(var(--m-reveal-blur));
   transform: scale(1.02);
 }
+/* reveal tier — a product surface resolves out of the atmosphere: it
+   arrives from depth, slightly tilted back, and pulls into focus. */
 html.js [data-reveal="scale"] {
-  --reveal-dur: var(--dur-cinematic);
+  --reveal-dur: var(--m-reveal-dur);
+  transition-timing-function: var(--m-reveal-ease);
 }
 html.js [data-reveal="scale"]:not([data-inview]) {
   opacity: 0;
-  transform: perspective(1400px) translate3d(0, 40px, -60px) rotateX(6deg);
+  filter: blur(var(--m-reveal-blur));
+  transform: perspective(1600px) translate3d(0, var(--m-reveal-distance), -80px) rotateX(7deg) scale(var(--m-reveal-scale));
 }
 html.js [data-reveal="line"] {
-  --reveal-dur: 1400ms;
+  --reveal-dur: var(--m-cinematic-dur);
+  transition-timing-function: var(--m-cinematic-ease);
   transform-origin: left center;
 }
 html.js [data-reveal="line"]:not([data-inview]) {
@@ -106,13 +113,15 @@ html.js [data-split="chars"]:not([data-inview]) .char {
 /* Staggered children: parent carries [data-stagger]. */
 html.js [data-stagger] > * {
   transition:
-    opacity var(--dur-reveal) var(--ease-out),
-    transform var(--dur-reveal) var(--ease-out);
+    opacity var(--m-enter-dur) var(--m-enter-ease),
+    transform var(--m-enter-dur) var(--m-enter-ease),
+    filter var(--m-enter-dur) var(--m-enter-ease);
   transition-delay: calc(var(--reveal-delay, 0ms) + var(--i, 0) * var(--stagger));
 }
 html.js [data-stagger]:not([data-inview]) > * {
   opacity: 0;
-  transform: translate3d(0, 18px, 0);
+  transform: translate3d(0, calc(var(--m-enter-distance) * 0.75), 0);
+  filter: blur(calc(var(--m-enter-blur) * 0.6));
 }
 
 /* While the title sequence plays, every entrance underneath holds. */

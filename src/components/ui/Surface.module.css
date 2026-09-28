@@ -13,6 +13,27 @@
   isolation: isolate;
   overflow-x: clip;
 }
+/* Distant geometry (depth 1): two barely-there rules on the content edges,
+   fading in and out with the scene — so open space reads as architecture,
+   not as an empty screen. */
+.section::after {
+  --edge: calc(max(0px, (100% - var(--container) - var(--gutter) * 2) / 2) + var(--gutter));
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    linear-gradient(rgb(255 255 255 / 0.04), rgb(255 255 255 / 0.04)) left var(--edge) top 0 / 1px 100% no-repeat,
+    linear-gradient(rgb(255 255 255 / 0.04), rgb(255 255 255 / 0.04)) right var(--edge) top 0 / 1px 100% no-repeat;
+  -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 22%, #000 78%, transparent 100%);
+  mask-image: linear-gradient(180deg, transparent 0%, #000 22%, #000 78%, transparent 100%);
+}
+@media (max-width: 720px) {
+  .section::after {
+    display: none;
+  }
+}
 .space-default {
   padding-block: var(--section-y);
 }

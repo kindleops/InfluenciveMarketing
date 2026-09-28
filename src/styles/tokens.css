@@ -19,9 +19,11 @@
   /* ---- Text: ivory, not white ----------------------------------------- */
   --color-ivory: #f1efea;
   --text-primary: #f1efea;
-  --text-secondary: rgb(241 239 234 / 0.66);
-  --text-muted: rgb(241 239 234 / 0.52);
-  --text-faint: rgb(241 239 234 / 0.3);
+  /* Legibility floor: muted copy stays ≥ 4.5:1 on the darkest scenes, and
+     faint is reserved for ornament (indices, separators), never sentences. */
+  --text-secondary: rgb(241 239 234 / 0.7);
+  --text-muted: rgb(241 239 234 / 0.58);
+  --text-faint: rgb(241 239 234 / 0.36);
   /* The second tone of two-tone display type. */
   --text-tone: rgb(241 239 234 / 0.38);
   /* Opaque equivalent, for type set inside background-clipped lines. */
@@ -66,8 +68,9 @@
   --fs-lead: clamp(1.13rem, 1.03rem + 0.4vw, 1.4rem);
   --fs-body: 1.0625rem;
   --fs-small: 0.9375rem;
-  --fs-label: 0.72rem;
-  --fs-micro: 0.66rem;
+  /* Practical minimums: nothing a reader needs is set below 11px. */
+  --fs-label: 0.75rem;
+  --fs-micro: 0.6875rem;
 
   --lh-display: 0.94;
   --lh-heading: 1.08;
@@ -155,6 +158,62 @@
   --dur-ambient: 24s;
 
   --stagger: 70ms;
+
+  /* ---- Motion system -------------------------------------------------- */
+  /* Five tiers. Every movement on the site uses one of them, so the page
+     behaves like one physical system: surfaces carry inertia, resolve out
+     of atmosphere (blur → focus) and settle rather than bounce.
+       micro        state feedback (hover colour, press)
+       interaction  controls reacting to the visitor (tabs, lens, chips)
+       enter        content arriving in view
+       reveal       surfaces and product resolving into focus
+       cinematic    scene-scale changes (depth entries, convergence)      */
+  --m-micro-dur: 160ms;
+  --m-micro-ease: var(--ease-soft);
+
+  --m-interaction-dur: 560ms;
+  --m-interaction-ease: cubic-bezier(0.22, 1, 0.36, 1);
+
+  --m-enter-dur: 900ms;
+  --m-enter-ease: var(--ease-out);
+  --m-enter-distance: 22px;
+  --m-enter-blur: 6px;
+
+  --m-reveal-dur: 1300ms;
+  --m-reveal-ease: var(--ease-emphasized);
+  --m-reveal-distance: 48px;
+  --m-reveal-blur: 12px;
+  --m-reveal-scale: 0.955;
+
+  --m-cinematic-dur: 1800ms;
+  --m-cinematic-ease: cubic-bezier(0.7, 0, 0.16, 1);
+
+  /* ---- Depth model ------------------------------------------------------ */
+  /* 0 atmosphere · 1 distant geometry · 2 supporting visual · 3 product ·
+     4 foreground glass · 5 navigation / active control. Blur falls with
+     depth (far things are softer), shadow rises with it. */
+  --depth-0-blur: 40px;
+  --depth-1-blur: 2px;
+  --depth-2-shadow: 0 24px 60px -36px rgb(0 0 0 / 0.8);
+  --depth-3-shadow:
+    0 1px 0 rgb(255 255 255 / 0.06) inset,
+    0 50px 120px -50px rgb(0 0 0 / 0.95),
+    0 0 0 1px rgb(0 0 0 / 0.4);
+  --depth-4-shadow:
+    0 1px 0 rgb(255 255 255 / 0.1) inset,
+    0 30px 80px -30px rgb(0 0 0 / 0.9);
+  --depth-5-shadow: 0 16px 40px -18px rgb(0 0 0 / 0.85);
+
+  /* ---- Light roles ----------------------------------------------------- */
+  /* Colour is information, not decoration:
+       blue    intelligence / computation
+       gold    resolution / emphasis
+       violet  creative transition
+       teal    system energy                                               */
+  --light-blue: 130 158 255;
+  --light-gold: 226 200 150;
+  --light-violet: 176 156 255;
+  --light-teal: 120 214 200;
 
   /* ---- Layers --------------------------------------------------------- */
   --z-base: 1;

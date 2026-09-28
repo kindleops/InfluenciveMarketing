@@ -26,9 +26,15 @@
     background-color var(--dur-ui) var(--ease-soft),
     box-shadow var(--dur-ui) var(--ease-soft);
 }
+/* Liquid compression: pressed, the pill gives a little more vertically
+   than horizontally, then recovers on the house curve. */
 .button:active {
-  transform: translate3d(var(--tx), var(--ty), 0) scale(0.975);
-  transition-duration: 120ms;
+  transform: translate3d(var(--tx), var(--ty), 0) scale(0.985, 0.95);
+  transition-duration: 140ms;
+}
+.button:focus-visible {
+  outline-offset: 4px;
+  border-radius: var(--radius-pill);
 }
 .button:disabled {
   opacity: 0.4;
@@ -215,4 +221,7 @@
     opacity: 1;
     animation-play-state: running;
   }
+}
+.ghost:focus-visible {
+  border-radius: var(--radius-xs);
 }
