@@ -4,8 +4,48 @@
 .manifesto {
   max-width: 16ch;
 }
+
+/* ---- The sequence: clauses resolve in turn ---------------------------- */
+.scene {
+  --pov: 1;
+  position: relative;
+}
+.scene :global(.split-line) {
+  --r: clamp(0, calc((var(--pov) - var(--at)) / 0.28), 1);
+  opacity: calc(0.16 + var(--r) * 0.84);
+  filter: blur(calc((1 - var(--r)) * 7px));
+}
+.scene :global(.split-line):nth-of-type(1) {
+  --at: 0;
+}
+.scene :global(.split-line):nth-of-type(2) {
+  --at: 0.24;
+}
+.scene :global(.split-line):nth-of-type(3) {
+  --at: 0.48;
+}
+/* Once every clause has resolved, the filter is dropped entirely. */
+.scene[style*="--pov: 1"] :global(.split-line) {
+  filter: none;
+}
+/* A spine of light draws down beside the clauses as they resolve. */
+.spine {
+  position: absolute;
+  left: calc(var(--gutter) * -0.5);
+  top: 0.4em;
+  bottom: 0.2em;
+  width: 1px;
+  background: linear-gradient(180deg, rgb(255 255 255 / 0.05), rgb(var(--light-gold) / 0.55));
+  transform: scaleY(clamp(0, calc(var(--pov) * 1.25), 1));
+  transform-origin: top;
+}
+@media (max-width: 720px) {
+  .spine {
+    left: calc(var(--gutter) * -0.55);
+  }
+}
 .dim {
-  color: rgb(236 232 225 / 0.34);
+  color: rgb(236 232 225 / 0.42);
 }
 .mid {
   color: rgb(236 232 225 / 0.64);
