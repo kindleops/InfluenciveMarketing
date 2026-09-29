@@ -36,6 +36,7 @@ export function LandingHero({
   secondary,
   facts,
   visual,
+  backdrop,
 }: {
   crumbs: { name: string; path: string }[];
   eyebrow: string;
@@ -46,10 +47,17 @@ export function LandingHero({
   secondary?: Link2;
   facts?: { label: string; value: ReactNode }[];
   visual?: ReactNode;
+  /** A scene behind the whole hero (e.g. a market's map), under the copy. */
+  backdrop?: ReactNode;
 }) {
   return (
-    <section className={s.hero} data-tone={tone} aria-labelledby="page-title">
+    <section className={s.hero} data-tone={tone} data-backdrop={backdrop ? "" : undefined} aria-labelledby="page-title">
       <LightField tone={tone} />
+      {backdrop && (
+        <div className={s.heroBackdrop} aria-hidden="true">
+          {backdrop}
+        </div>
+      )}
       <span className={s.heroFloor} aria-hidden="true" />
       <div className={`container ${s.heroFrame}`}>
         <nav aria-label="Breadcrumb" className={s.crumbsNav}>

@@ -3,7 +3,9 @@ import { notFound } from "next/navigation";
 import { brand } from "@/config/brand";
 import { ProjectCTA } from "@/components/home/ProjectCTA";
 import { JsonLd } from "@/components/seo/blocks";
-import { AreaPanel, Bento, Chapter, Convert, FaqList, LandingHero, PillLinks, RelatedRail, RoleMap, Statement } from "@/components/landing/Landing";
+import { Bento, Chapter, Convert, FaqList, LandingHero, PillLinks, RelatedRail, Statement } from "@/components/landing/Landing";
+import { MarketBackdrop, MarketReadout } from "@/components/markets/MarketStage";
+import { Ledger, SectorCards } from "@/components/markets/MarketModules";
 import { SectionDock } from "@/components/landing/SectionDock";
 import { breadcrumbLd, serviceLd } from "@/seo/jsonld";
 import { industryBySlug, published, resolveRelated, serviceBySlug } from "@/seo/registry";
@@ -67,7 +69,8 @@ export default async function MarketLanding({ params }: Props) {
           { label: "Working hours", value: p.timeZone },
           { label: "Presence", value: p.presence === "remote" ? "Remote team" : p.presence === "office" ? p.address : "Team on the ground" },
         ]}
-        visual={<AreaPanel city={p.city} region={p.region} timeZone={p.timeZone} area={p.serviceArea} presence={p.presence} />}
+        backdrop={<MarketBackdrop slug={p.slug} neighbors={published.locations.filter((m) => m.slug !== p.slug).map((m) => ({ slug: m.slug, city: m.city.split(/[–,]/)[0] }))} />}
+        visual={<MarketReadout slug={p.slug} city={p.city} timeZone={p.timeZone} area={p.serviceArea} presence={p.presence} />}
       />
 
       <Chapter id="market" eyebrow={`${p.city} · ${p.regionCode}`} title={[p.market.heading, ""]}>
@@ -79,11 +82,11 @@ export default async function MarketLanding({ params }: Props) {
       </Chapter>
 
       <Chapter id="sectors" eyebrow="Where the demand is" title={["The industries", "we focus on here."]}>
-        <RoleMap items={p.sectors.map((x) => ({ name: industryBySlug(x.industry)?.name ?? x.industry, role: x.note, href: `/industries/${x.industry}` }))} />
+        <SectorCards items={p.sectors.map((x) => ({ name: industryBySlug(x.industry)?.name ?? x.industry, note: x.note, href: `/industries/${x.industry}` }))} />
       </Chapter>
 
-      <Chapter id="rules" eyebrow={`${p.region} rules`} title={["What changes", "the marketing here."]} lead="Not legal advice — the rules we plan around, and check with your counsel." light tone="violet" raised>
-        <Bento items={p.rules} />
+      <Chapter id="rules" eyebrow={`${p.region} rules`} title={["What changes", "the marketing here."]} light tone="violet" raised>
+        <Ledger region={p.region} code={p.regionCode} items={p.rules} />
       </Chapter>
 
       {p.remote && (
