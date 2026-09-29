@@ -127,6 +127,62 @@ With nothing configured, development logs the inquiry and succeeds. **Production
 
 ---
 
+## Search: commercial pages and the library
+
+The site carries a commercial search layer and an editorial library, all
+generated from typed content and one registry (`src/seo/registry.ts`) that
+drives routes, hubs, internal links, JSON-LD and the sitemap.
+
+| Collection | Route | Content |
+| --- | --- | --- |
+| Service pages | `/services/[slug]` | `content/commercial/services.ts` |
+| Service × industry | `/services/[service]/[industry]` | `content/commercial/combos.ts` |
+| Industries | `/industries`, `/industries/[slug]` | `content/commercial/industries.ts` |
+| Solutions | `/solutions`, `/solutions/[slug]` | `content/commercial/solutions.ts` |
+| Use cases | `/use-cases`, `/use-cases/[slug]` | `content/commercial/use-cases.ts` |
+| Comparisons | `/compare`, `/compare/[slug]` | `content/commercial/compare.ts` |
+| Alternatives | `/alternatives`, `/alternatives/[slug]` | `content/commercial/alternatives.ts` |
+| Locations | `/locations`, `/locations/[slug]` | `content/commercial/locations.ts` (empty) |
+| Guides | `/guides`, `/guides/[slug]` | `content/library/guides.ts` |
+| Playbooks | `/playbooks`, `/playbooks/[slug]` | `content/library/playbooks.ts` |
+| Research | `/research`, `/research/[slug]` | `content/library/research.ts` (empty) |
+
+**Rules for adding a page** (schemas in `content/commercial/types.ts` and
+`content/library/types.ts`):
+
+- Each page type has its own shape, so a page has to carry its own substance
+  rather than a keyword swapped into a template.
+- One primary query per page, never shared with another page.
+- No invented numbers, clients, results, testimonials, awards, prices or
+  locations. Describe how the work is done. Don't cite studies you can't link.
+- Every page passes the publishing gate (`src/seo/quality.ts`): minimum body
+  length per type, meta title ≤ 60 characters, description 110–165, at least
+  three FAQs on commercial pages. A page that fails isn't rendered, linked or
+  listed — and the tests fail, so nothing drops out silently.
+
+**Gated collections.** Three collections ship empty on purpose and stay out of
+the sitemap until they have genuine entries:
+
+- *Locations* — only for places the studio has an office or people. Until then
+  `/locations` returns 404. A location with an office gets `ProfessionalService`
+  markup with its address.
+- *Research* — only studies with a complete methodology (sample, period,
+  sources, limitations) marked as reviewed. Until then `/research` is noindex.
+- *Case studies* — `content/work.ts` already separates blueprints from case
+  studies; a case study needs a real, approved client and results.
+
+**Programmatic pages.** Service × industry pages exist only for pairings with
+real search demand and something specific to say; each is written for its
+pairing (why the service differs there, priorities, pitfalls, measures). Add
+a pairing only when both parent pages are live. The tests fail if any two
+pages overlap by more than 8% of their five-word sequences.
+
+**What search engines receive.** Canonical URL, Open Graph and Twitter
+metadata on every page; JSON-LD for `Service`, `FAQPage`, `Article`,
+`CollectionPage` and `BreadcrumbList`; visible breadcrumbs; related-page links
+between collections; and every live page in the sitemap with its last edit
+date.
+
 ## Client portal
 
 `/portal` is the client-facing operating system: where a client sees what the
@@ -216,6 +272,12 @@ The site suite (`e2e/site.spec.ts`) checks:
 - that every sitemap route renders
 - internal links
 
+The SEO suite (`e2e/seo.spec.ts`) enforces the content rules (gate, unique
+queries and titles, resolvable related links, near-duplicate detection, no
+invented proof or guarantees) and checks the server HTML of every page for a
+canonical, one h1, valid JSON-LD and breadcrumbs, plus the sitemap, gated 404s
+and internal links.
+
 The portal suite (`e2e/portal.spec.ts`, run against the fixtures) checks that
 every surface renders and is marked as demo data and not indexed, the
 approval flow and its guards, the command palette, replies, keyboard chart
@@ -229,7 +291,7 @@ On machines without a GPU, WebGL runs on SwiftShader.
 ```
 src/
   app/
-    (site)/       marketing routes (home, work, capabilities, services, approach, insights, about, start, legal)
+    (site)/       marketing routes, commercial search pages and the library
     portal/       client portal routes, server actions, palette index
     api/          inquiry endpoint
   components/
@@ -247,7 +309,10 @@ src/
     work/         case study previews and art-directed visuals
   config/         brand + navigation
   content/        all copy and structured content
+    commercial/   service, industry, solution, use-case, comparison, alternative, location and combo pages
+    library/      guides, playbooks, research
   lib/            motion utilities
+  seo/            registry, publishing gate, metadata and JSON-LD helpers
   portal/         portal model, data sources (+ developer fixtures), access, formatting
   styles/         tokens, base, materials, motion
 ```

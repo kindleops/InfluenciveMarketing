@@ -1,0 +1,187 @@
+/**
+ * Commercial search pages.
+ *
+ * Every page type has its own shape, so each page carries its own substance
+ * rather than a template filled with a keyword. Rules for anything added
+ * here (enforced in part by e2e/seo.spec.ts):
+ *
+ *  - No invented numbers, clients, results, testimonials, awards, prices,
+ *    team sizes or office locations. Describe how the work is done, not a
+ *    track record we can't show.
+ *  - One primary query per page, never shared with another page.
+ *  - Every section is written for this page. If a page can only be produced
+ *    by swapping a keyword into another page's copy, it shouldn't exist.
+ */
+
+/** Shared by every commercial page. */
+export interface SeoMeta {
+  slug: string;
+  /** ≤ 60 characters. The brand is appended by the root template. */
+  metaTitle: string;
+  /** 120–160 characters. */
+  metaDescription: string;
+  /** The search this page exists to answer. Unique across the site. */
+  primaryQuery: string;
+  secondaryQueries: string[];
+  /** ISO date of the last substantive edit. */
+  updated: string;
+}
+
+export interface Hero {
+  eyebrow: string;
+  /** Two lines; the second is set in the quieter tone. */
+  title: [string, string];
+  lead: string;
+}
+
+export interface Item {
+  title: string;
+  detail: string;
+}
+
+export interface Faq {
+  q: string;
+  a: string;
+}
+
+/** Links to other pages by collection + slug; resolved and checked at build. */
+export interface Related {
+  services?: string[];
+  industries?: string[];
+  solutions?: string[];
+  useCases?: string[];
+  compare?: string[];
+  alternatives?: string[];
+  guides?: string[];
+  playbooks?: string[];
+  insights?: string[];
+  work?: string[];
+}
+
+export type Discipline = "brand" | "web" | "product" | "growth" | "organic" | "intelligence" | "automation" | "transformation";
+
+/* ---- /services/[slug] — high-intent service landing pages -------------- */
+export interface ServicePage extends SeoMeta {
+  name: string;
+  /** Which of the eight disciplines this sits in (drives art + cross-links). */
+  discipline: Discipline;
+  hero: Hero;
+  /** Why most attempts at this fall short; what good looks like. */
+  problem: { heading: string; body: string[] };
+  included: Item[];
+  approach: Item[];
+  /** What we measure — shown as the page's instrument panel. */
+  measures: string[];
+  fit: { for: string[]; notFor: string[] };
+  engagement: { model: string; duration: string; team: string };
+  faqs: Faq[];
+  related: Related;
+}
+
+/* ---- /industries/[slug] ------------------------------------------------ */
+export interface IndustryPage extends SeoMeta {
+  name: string;
+  hero: Hero;
+  context: { heading: string; body: string[] };
+  challenges: Item[];
+  channels: { channel: string; role: string }[];
+  metrics: Item[];
+  firstNinetyDays: Item[];
+  faqs: Faq[];
+  related: Related;
+}
+
+/* ---- /solutions/[slug] — an outcome, packaged ------------------------- */
+export interface SolutionPage extends SeoMeta {
+  name: string;
+  hero: Hero;
+  outcome: string;
+  signs: string[];
+  plan: Item[];
+  deliverables: string[];
+  measures: string[];
+  faqs: Faq[];
+  related: Related;
+}
+
+/* ---- /use-cases/[slug] — a situation a company is in ------------------ */
+export interface UseCasePage extends SeoMeta {
+  name: string;
+  hero: Hero;
+  situation: { heading: string; body: string[] };
+  risks: Item[];
+  plan: Item[];
+  checklist: string[];
+  faqs: Faq[];
+  related: Related;
+}
+
+/* ---- /compare/[slug] — two ways of doing something -------------------- */
+export interface ComparePage extends SeoMeta {
+  name: string;
+  hero: Hero;
+  options: [{ name: string; summary: string }, { name: string; summary: string }];
+  criteria: { criterion: string; a: string; b: string }[];
+  chooseA: string[];
+  chooseB: string[];
+  /** The honest answer, including when the answer is "both". */
+  verdict: string;
+  faqs: Faq[];
+  related: Related;
+}
+
+/* ---- /alternatives/[slug] --------------------------------------------- */
+export interface AlternativePage extends SeoMeta {
+  name: string;
+  hero: Hero;
+  /** What people are looking to replace, and why. */
+  replacing: { heading: string; body: string[] };
+  reasons: string[];
+  options: { name: string; bestFor: string; tradeoffs: string }[];
+  howToDecide: string[];
+  faqs: Faq[];
+  related: Related;
+}
+
+/* ---- /locations/[slug] ------------------------------------------------- */
+/**
+ * Only for places where the studio genuinely has people or an office. A
+ * location page for a city we don't operate in is a doorway page. The
+ * collection ships empty; the route 404s and is left out of the sitemap
+ * until real entries exist.
+ */
+export interface LocationPage extends SeoMeta {
+  city: string;
+  region: string;
+  country: string;
+  presence: "office" | "team";
+  /** Street address when presence is "office". */
+  address?: string;
+  hero: Hero;
+  local: { heading: string; body: string[] };
+  services: string[];
+  faqs: Faq[];
+  related: Related;
+}
+
+/* ---- /services/[service]/[industry] — programmatic, gated ------------- */
+/**
+ * A service × industry page is published only when it has content specific
+ * to that pairing — why the service works differently in this industry,
+ * what to prioritize, what goes wrong — and passes the quality gate.
+ */
+export interface ComboPage {
+  service: string;
+  industry: string;
+  metaTitle: string;
+  metaDescription: string;
+  primaryQuery: string;
+  updated: string;
+  lead: string;
+  /** Why this service is different in this industry. */
+  angle: string[];
+  priorities: Item[];
+  pitfalls: Item[];
+  measures: string[];
+  faqs: Faq[];
+}

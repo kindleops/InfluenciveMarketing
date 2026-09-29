@@ -149,12 +149,39 @@
 }
 .topline > :first-child {
   color: var(--text-primary);
+  min-width: 0;
 }
 .topline > :last-child {
   justify-self: end;
 }
 .toplineCenter {
   color: var(--text-secondary);
+}
+.crumbs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 0.6rem;
+  list-style: none;
+  padding: 0;
+}
+.crumbs li {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+.crumbs li + li::before {
+  content: "/";
+  color: var(--text-faint);
+}
+.crumbs a {
+  color: var(--text-secondary);
+  transition: color var(--dur-micro);
+}
+.crumbs a:hover {
+  color: var(--text-primary);
+}
+.crumbs [aria-current] {
+  color: var(--text-primary);
 }
 @keyframes eyebrow-in {
   from {

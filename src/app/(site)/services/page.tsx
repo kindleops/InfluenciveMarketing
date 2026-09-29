@@ -8,6 +8,8 @@ import { ProjectCTA } from "@/components/home/ProjectCTA";
 import { ServiceArt } from "@/components/home/ServiceArt";
 import { SectionHeading } from "@/components/ui/Typography";
 import { Section } from "@/components/ui/Surface";
+import { Cards } from "@/components/seo/blocks";
+import { allEntries } from "@/seo/registry";
 import styles from "./page.module.css";
 
 export const metadata: Metadata = {
@@ -123,6 +125,17 @@ export default function ServicesPage() {
             ))}
           </div>
         </div>
+      </Section>
+
+      <Section tone="dark" labelledBy="specialist-title">
+        <SectionHeading
+          id="specialist-title"
+          eyebrow="Specialist services"
+          layout="split"
+          title={["Looking for", <em key="a" className="t-accent">something specific?</em>]}
+          lead="The services people most often search for, each set out in depth — what’s included, how we run it, and who it’s for."
+        />
+        <Cards entries={allEntries().filter((e) => e.kind === "service")} label="Specialist services" />
       </Section>
 
       <Section tone="raised" labelledBy="models-title">

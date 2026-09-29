@@ -1,4 +1,5 @@
 import type { CSSProperties, ReactNode } from "react";
+import Link from "next/link";
 import Image, { type StaticImageData } from "next/image";
 import { SplitText } from "@/components/ui/Typography";
 import { brand } from "@/config/brand";
@@ -19,6 +20,7 @@ export function PageHero({
   accent = "brand",
   visual,
   plate,
+  crumbs,
   children,
 }: {
   eyebrow: string;
@@ -30,6 +32,8 @@ export function PageHero({
   visual?: ReactNode;
   /** A photograph behind the scene, graded into the page's tonal range. */
   plate?: StaticImageData;
+  /** Breadcrumb trail (excluding Home), shown in the top line. */
+  crumbs?: { name: string; path: string }[];
   children?: ReactNode;
 }) {
   return (
@@ -53,12 +57,35 @@ export function PageHero({
       </div>
 
       <div className={`container ${styles.frame}`}>
-        <div className={styles.topline} aria-hidden="true">
-          <span>{eyebrow}</span>
-          <span className={styles.toplineCenter}>Brand · Product · Growth · Intelligence</span>
-          <span>{brand.name}</span>
-        </div>
-        <p className="sr-only">{eyebrow}</p>
+        {crumbs ? (
+          <div className={styles.topline}>
+            <nav aria-label="Breadcrumb">
+              <ol className={styles.crumbs}>
+                <li>
+                  <Link href="/">Home</Link>
+                </li>
+                {crumbs.map((c, i) => (
+                  <li key={c.path}>
+                    {i === crumbs.length - 1 ? <span aria-current="page">{c.name}</span> : <Link href={c.path}>{c.name}</Link>}
+                  </li>
+                ))}
+              </ol>
+            </nav>
+            <span className={styles.toplineCenter} aria-hidden="true">
+              {eyebrow}
+            </span>
+            <span aria-hidden="true">{brand.name}</span>
+          </div>
+        ) : (
+          <>
+            <div className={styles.topline} aria-hidden="true">
+              <span>{eyebrow}</span>
+              <span className={styles.toplineCenter}>Brand · Product · Growth · Intelligence</span>
+              <span>{brand.name}</span>
+            </div>
+            <p className="sr-only">{eyebrow}</p>
+          </>
+        )}
 
         <div className={styles.copy}>
           <SplitText as="h1" id="page-title" className={`t-display-1 t-lit ${styles.title}`} lines={title} delay={80} />

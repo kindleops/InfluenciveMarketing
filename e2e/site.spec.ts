@@ -300,6 +300,8 @@ test.describe("accessibility", () => {
 
 test.describe("routes and links", () => {
   test("every sitemap route renders without errors", async ({ page }) => {
+    // The sitemap now includes the commercial and library pages (~110 routes).
+    test.setTimeout(900_000);
     await skipIntro(page);
     const paths = await routes(page);
     expect(paths.length).toBeGreaterThan(10);
