@@ -144,22 +144,47 @@ export interface AlternativePage extends SeoMeta {
   related: Related;
 }
 
-/* ---- /locations/[slug] ------------------------------------------------- */
+/* ---- /locations/[slug] — market pages --------------------------------- */
 /**
- * Only for places where the studio genuinely has people or an office. A
- * location page for a city we don't operate in is a doorway page. The
- * collection ships empty; the route 404s and is left out of the sitemap
- * until real entries exist.
+ * A page for a market the studio serves. `presence` says how, and the page
+ * says it plainly: "office" (a real address, shown and marked up), "team"
+ * (people who live and work there) or "remote" (we serve the market from a
+ * distance — no address, no LocalBusiness markup, and a section on how the
+ * work runs across the distance).
+ *
+ * A market page is not a city name swapped into a template — that is a
+ * doorway page. Every section is about this place: its economy and buyers,
+ * how search and paid media behave here, the state and local rules that
+ * change the marketing, and the surrounding area it covers. The
+ * near-duplicate test in e2e/seo.spec.ts holds every page to that.
  */
 export interface LocationPage extends SeoMeta {
   city: string;
+  /** State or province, spelled out. */
   region: string;
+  regionCode: string;
   country: string;
-  presence: "office" | "team";
-  /** Street address when presence is "office". */
+  presence: "office" | "team" | "remote";
+  /** Street address — required when presence is "office". */
   address?: string;
+  /** e.g. "Eastern Time". */
+  timeZone: string;
+  /** Northeast, South, Midwest, West — groups the hub. */
+  area: string;
   hero: Hero;
-  local: { heading: string; body: string[] };
+  /** The market: its economy and buyers, and what that means for growth here. */
+  market: { heading: string; body: string[] };
+  /** How search, paid media and buying behave in this market. */
+  landscape: Item[];
+  /** Industries (by slug) that matter most here, and why. */
+  sectors: { industry: string; note: string }[];
+  /** State and local rules that change the marketing. */
+  rules: Item[];
+  /** Nearby cities, suburbs and counties the page covers. */
+  serviceArea: string[];
+  /** Required when presence is "remote": how the work runs from a distance. */
+  remote?: { heading: string; body: string[] };
+  /** Service slugs to feature for this market. */
   services: string[];
   faqs: Faq[];
   related: Related;

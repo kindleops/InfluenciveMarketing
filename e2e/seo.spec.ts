@@ -121,7 +121,16 @@ test.describe("seo content rules", () => {
     // Locations: only places the studio genuinely operates. Research: a
     // study (original data) only with a complete, reviewed methodology; every
     // other report states what it rests on.
-    for (const l of locationPages) expect(["office", "team"]).toContain(l.presence);
+    for (const l of locationPages) {
+      expect(["office", "team", "remote"]).toContain(l.presence);
+      // A remote market says so, in the page and in its answers.
+      if (l.presence === "remote") {
+        expect(l.address, l.slug).toBeUndefined();
+        expect(`${textOf(l.remote)} ${textOf(l.faqs)}`, l.slug).toMatch(/\bremote(ly)?\b/i);
+      }
+      for (const x of l.sectors) expect(allEntries().some((e) => e.kind === "industry" && e.slug === x.industry), `${l.slug} → ${x.industry}`).toBe(true);
+      for (const x of l.services) expect(allEntries().some((e) => e.kind === "service" && e.slug === x), `${l.slug} → ${x}`).toBe(true);
+    }
     for (const r of research) {
       expect(r.basis.length, r.slug).toBeGreaterThan(40);
       if (r.format === "study") {
@@ -145,7 +154,17 @@ test.describe("seo content rules", () => {
 });
 
 const livePaths = () => allEntries().filter((e) => e.kind !== "insight" && e.kind !== "work").map((e) => e.path);
-const HUBS = ["/industries", "/solutions", "/use-cases", "/compare", "/alternatives", "/guides", "/playbooks"];
+const HUBS = [
+  "/industries",
+  "/solutions",
+  "/use-cases",
+  "/compare",
+  "/alternatives",
+  "/guides",
+  "/playbooks",
+  ...(locationPages.length ? ["/locations"] : []),
+  ...(research.length ? ["/research"] : []),
+];
 
 test.describe("seo rendering", () => {
   // Checked on the server HTML — what a crawler receives before any script runs.
@@ -173,6 +192,9 @@ test.describe("seo rendering", () => {
         problems.push(`${path}: JSON-LD does not parse`);
       }
       if (!/aria-label="Breadcrumb"/.test(html)) problems.push(`${path}: no breadcrumb nav`);
+      // No premises is claimed where there isn't one.
+      const market = locationPages.find((l) => path === `/locations/${l.slug}`);
+      if (market && market.presence !== "office" && /PostalAddress/.test(html)) problems.push(`${path}: address markup on a ${market.presence} market`);
       if (/noindex/.test(html.match(/<meta name="robots" content="([^"]*)"/)?.[1] ?? "")) problems.push(`${path}: noindex`);
     }
     expect(problems).toEqual([]);

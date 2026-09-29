@@ -24,7 +24,7 @@ export const MIN_WORDS: Record<GateKind, number> = {
   "use-case": 550,
   compare: 550,
   alternative: 550,
-  location: 500,
+  location: 650,
   combo: 400,
   guide: 1000,
   playbook: 1000,
@@ -49,6 +49,9 @@ const META_KEYS = new Set([
   "reviewed",
   "type",
   "presence",
+  "regionCode",
+  "country",
+  "area",
   "format",
   "number",
   "illustrative",
@@ -101,6 +104,8 @@ export function gate(
   }
   if (kind === "location") {
     if (page.presence === "office" && !page.address) reasons.push("office without an address");
+    if (page.presence === "remote" && !(page.remote as { body?: string[] } | undefined)?.body?.length) reasons.push("remote market without a how-we-work section");
+    if (page.presence === "remote" && page.address) reasons.push("remote market must not carry an address");
   }
   return { ok: reasons.length === 0, words, reasons };
 }

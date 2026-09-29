@@ -68,7 +68,7 @@ export const KIND_LABEL: Record<Kind, string> = {
   "use-case": "Use case",
   compare: "Comparison",
   alternative: "Alternatives",
-  location: "Location",
+  location: "Market",
   guide: "Guide",
   playbook: "Playbook",
   research: "Research",

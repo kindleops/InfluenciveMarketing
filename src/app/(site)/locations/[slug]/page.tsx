@@ -1,18 +1,18 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { brand } from "@/config/brand";
-import { PageHero } from "@/components/layout/PageHero";
 import { ProjectCTA } from "@/components/home/ProjectCTA";
-import { Faqs, JsonLd, ProseSection, Related } from "@/components/seo/blocks";
-import { breadcrumbLd } from "@/seo/jsonld";
-import { published, resolveRelated } from "@/seo/registry";
+import { JsonLd } from "@/components/seo/blocks";
+import { AreaPanel, Bento, Chapter, Convert, FaqList, LandingHero, PillLinks, RelatedRail, RoleMap, Statement } from "@/components/landing/Landing";
+import { SectionDock } from "@/components/landing/SectionDock";
+import { breadcrumbLd, serviceLd } from "@/seo/jsonld";
+import { industryBySlug, published, resolveRelated, serviceBySlug } from "@/seo/registry";
 import { abs, pageMetadata, SITE } from "@/seo/site";
 
 type Props = { params: Promise<{ slug: string }> };
 const get = (slug: string) => published.locations.find((p) => p.slug === slug);
 
-/* Renders only for places listed in content/commercial/locations.ts — which
-   must be places the studio genuinely operates. */
+/* Market pages: written for each market, honest about how we're present. */
 export function generateStaticParams() {
   return published.locations.map((p) => ({ slug: p.slug }));
 }
@@ -23,14 +23,19 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return pageMetadata({ title: p.metaTitle, description: p.metaDescription, path: `/locations/${p.slug}` });
 }
 
-export default async function LocationLanding({ params }: Props) {
+const TONE = { Northeast: "violet", South: "gold", Midwest: "teal", West: "blue" } as const;
+
+export default async function MarketLanding({ params }: Props) {
   const p = get((await params).slug);
   if (!p) notFound();
   const path = `/locations/${p.slug}`;
+  const tone = TONE[p.area as keyof typeof TONE] ?? "blue";
+  const start = { label: "Start a project", href: "/start" };
   const trail = [
-    { name: "Locations", path: "/locations" },
+    { name: "Markets", path: "/locations" },
     { name: p.city, path },
   ];
+  // A premises is marked up only where one exists.
   const business =
     p.presence === "office" && p.address
       ? {
@@ -39,27 +44,69 @@ export default async function LocationLanding({ params }: Props) {
           name: `${brand.name} — ${p.city}`,
           url: abs(path),
           parentOrganization: { "@id": `${SITE}/#organization` },
-          address: { "@type": "PostalAddress", streetAddress: p.address, addressLocality: p.city, addressRegion: p.region, addressCountry: p.country },
+          address: { "@type": "PostalAddress", streetAddress: p.address, addressLocality: p.city, addressRegion: p.regionCode, addressCountry: p.country },
         }
       : null;
+  const services = p.services.map(serviceBySlug).filter((x): x is NonNullable<typeof x> => !!x);
+
   return (
     <>
+      <JsonLd data={serviceLd({ name: `Growth marketing for ${p.city} companies`, description: p.metaDescription, path, serviceType: "Marketing services", areaServed: { city: p.city, region: p.region, country: p.country } })} />
       {business && <JsonLd data={business} />}
       <JsonLd data={breadcrumbLd([{ name: "Home", path: "/" }, ...trail])} />
-      <PageHero
-        eyebrow={p.hero.eyebrow}
+
+      <LandingHero
         crumbs={trail}
-        title={[p.hero.title[0], <em key="a" className="t-accent">{p.hero.title[1]}</em>]}
+        eyebrow={p.hero.eyebrow}
+        tone={tone}
+        title={p.hero.title}
         lead={p.hero.lead}
-        meta={[
-          { label: "Where", value: `${p.city}, ${p.region}` },
-          { label: "Presence", value: p.presence === "office" ? "Office" : "Team on the ground" },
+        primary={start}
+        secondary={{ label: `The ${p.city.split(/[–,]/)[0]} market`, href: "#market" }}
+        facts={[
+          { label: "Working hours", value: p.timeZone },
+          { label: "Presence", value: p.presence === "remote" ? "Remote team" : p.presence === "office" ? p.address : "Team on the ground" },
         ]}
+        visual={<AreaPanel city={p.city} region={p.region} timeZone={p.timeZone} area={p.serviceArea} presence={p.presence} />}
       />
-      <ProseSection kicker={p.city} heading={p.local.heading} body={p.local.body} id="local-title" />
-      <Faqs faqs={p.faqs} tone="raised" />
-      <Related entries={resolveRelated({ ...p.related, services: p.services }, path)} />
+
+      <Chapter id="market" eyebrow={`${p.city} · ${p.regionCode}`} title={[p.market.heading, ""]}>
+        <Statement body={p.market.body} />
+      </Chapter>
+
+      <Chapter id="landscape" eyebrow="The landscape" title={["How growth works", "in this market."]} light tone={tone}>
+        <Bento items={p.landscape} />
+      </Chapter>
+
+      <Chapter id="sectors" eyebrow="Where the demand is" title={["The industries", "we focus on here."]}>
+        <RoleMap items={p.sectors.map((x) => ({ name: industryBySlug(x.industry)?.name ?? x.industry, role: x.note, href: `/industries/${x.industry}` }))} />
+      </Chapter>
+
+      <Chapter id="rules" eyebrow={`${p.region} rules`} title={["What changes", "the marketing here."]} lead="Not legal advice — the rules we plan around, and check with your counsel." light tone="violet" raised>
+        <Bento items={p.rules} />
+      </Chapter>
+
+      {p.remote && (
+        <Chapter id="remote" eyebrow="How we work" title={[p.remote.heading, ""]}>
+          <Statement body={p.remote.body} />
+          <PillLinks label={`Services for ${p.city} companies`} items={services.map((x) => ({ href: `/services/${x.slug}`, label: x.name }))} />
+        </Chapter>
+      )}
+
+      <Convert tone={tone} title={["Growing in", `${p.city.split(/[–,]/)[0]}?`]} text="Tell us where things stand and what needs to change. A senior strategist reads every brief and replies with a first view — on your hours." primary={start} secondary={{ label: "Read the questions first", href: "#faq" }} />
+      <FaqList faqs={p.faqs} />
+      <RelatedRail entries={resolveRelated({ ...p.related, services: p.services }, path).slice(0, 8)} />
       <ProjectCTA />
+      <SectionDock
+        items={[
+          { id: "market", label: "Market" },
+          { id: "landscape", label: "Landscape" },
+          { id: "sectors", label: "Industries" },
+          { id: "rules", label: "Rules" },
+          { id: "faq", label: "FAQ" },
+        ]}
+        cta={start}
+      />
     </>
   );
 }

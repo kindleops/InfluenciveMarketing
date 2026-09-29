@@ -29,6 +29,7 @@ export default async function IndustryLanding({ params }: Props) {
     { name: p.name, path },
   ];
   const combos = combosFor({ industry: p.slug });
+  const markets = published.locations.filter((m) => m.sectors.some((x) => x.industry === p.slug));
   const start = { label: "Start a project", href: "/start" };
 
   return (
@@ -65,6 +66,7 @@ export default async function IndustryLanding({ params }: Props) {
       <Chapter id="plan" eyebrow="The first ninety days" title={["Where an engagement", "usually starts."]}>
         <Process items={p.firstNinetyDays} />
         <PillLinks label={`Services for ${p.name}`} items={combos.map((c) => ({ href: `/services/${c.service}/${c.industry}`, label: comboTitle(c) }))} />
+        <PillLinks label={`Key markets for ${p.name}`} items={markets.map((m) => ({ href: `/locations/${m.slug}`, label: m.city }))} />
       </Chapter>
 
       <Convert tone="gold" title={["Tell us where", "growth is stuck."]} text="A senior strategist reads every brief and replies with a first view — before anyone talks scope." primary={start} secondary={{ label: "Read the questions first", href: "#faq" }} />

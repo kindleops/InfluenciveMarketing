@@ -160,6 +160,42 @@ export function VersusVisual({ a, b }: { a: string; b: string }) {
   );
 }
 
+/** A market page's hero object: the place, its hours, the area it covers. */
+export function AreaPanel({ city, region, timeZone, area, presence }: { city: string; region: string; timeZone: string; area: string[]; presence: "office" | "team" | "remote" }) {
+  return (
+    <div className={s.panelStage}>
+      <div className={`glass ${s.panel} ${s.area}`} data-level="3" data-liquid="deep">
+        <div className={s.panelHead}>
+          <span>
+            <i className={s.live} />
+            Market
+          </span>
+          <span>{region}</span>
+        </div>
+        <p className={s.areaCity}>{city}</p>
+        <p className={s.areaTz}>{timeZone}</p>
+        <ul className={s.areaList} role="list">
+          {area.slice(0, 10).map((a, i) => (
+            <li key={a} style={{ "--i": i } as CSSProperties}>
+              {a}
+            </li>
+          ))}
+        </ul>
+        <svg className={s.rings} viewBox="0 0 200 200" aria-hidden="true">
+          <circle cx="100" cy="100" r="30" />
+          <circle cx="100" cy="100" r="58" />
+          <circle cx="100" cy="100" r="86" />
+          <circle cx="100" cy="100" r="4" className={s.pin} />
+        </svg>
+      </div>
+      <div className={`glass ${s.floatChip}`} data-level="2" data-liquid="">
+        <span>How we work</span>
+        <b>{presence === "remote" ? `Remote, on ${timeZone.split(" (")[0]} hours` : presence === "office" ? "From our office here" : "With our team here"}</b>
+      </div>
+    </div>
+  );
+}
+
 /* ---- Chapters ------------------------------------------------------------ */
 
 export function Chapter({
@@ -391,14 +427,14 @@ export function Spec({ items, cta }: { items: { label: string; value: ReactNode 
   );
 }
 
-/** Channel → role, as a map rather than a list. */
-export function RoleMap({ items }: { items: { name: string; role: string }[] }) {
+/** Channel → role, as a map rather than a list. Names can link onward. */
+export function RoleMap({ items }: { items: { name: string; role: string; href?: string }[] }) {
   return (
     <ul className={s.roles} role="list">
       {items.map((c, i) => (
         <li key={c.name} data-reveal="up" style={{ "--reveal-delay": `${(i % 4) * 60}ms` } as CSSProperties}>
           <span className={s.roleIdx}>{String(i + 1).padStart(2, "0")}</span>
-          <h3 className={s.roleName}>{c.name}</h3>
+          <h3 className={s.roleName}>{c.href ? <Link href={c.href}>{c.name} →</Link> : c.name}</h3>
           <p className={s.roleText}>{c.role}</p>
         </li>
       ))}

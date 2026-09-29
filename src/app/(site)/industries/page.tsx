@@ -5,7 +5,7 @@ import { pageMetadata } from "@/seo/site";
 
 export const metadata: Metadata = pageMetadata({
   title: "Industries",
-  description: "How we approach marketing for ecommerce, B2B SaaS, healthcare, professional services, home services and fintech — the channels, numbers and first moves that matter in each.",
+  description: "How we approach marketing for high-ticket industries — law firms, real estate, dental and medical practices, multi-location brands, B2B SaaS, fintech and more.",
   path: "/industries",
 });
 

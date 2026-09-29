@@ -28,7 +28,22 @@ export function faqLd(faqs: Faq[]) {
   };
 }
 
-export function serviceLd({ name, description, path, serviceType, audience }: { name: string; description: string; path: string; serviceType: string; audience?: string }) {
+export function serviceLd({
+  name,
+  description,
+  path,
+  serviceType,
+  audience,
+  areaServed,
+}: {
+  name: string;
+  description: string;
+  path: string;
+  serviceType: string;
+  audience?: string;
+  /** A market served (without implying a premises there). */
+  areaServed?: { city: string; region: string; country: string };
+}) {
   return {
     "@context": "https://schema.org",
     "@type": "Service",
@@ -38,6 +53,15 @@ export function serviceLd({ name, description, path, serviceType, audience }: { 
     url: abs(path),
     provider: organization,
     ...(audience ? { audience: { "@type": "BusinessAudience", audienceType: audience } } : {}),
+    ...(areaServed
+      ? {
+          areaServed: {
+            "@type": "City",
+            name: areaServed.city,
+            containedInPlace: { "@type": "AdministrativeArea", name: areaServed.region, containedInPlace: { "@type": "Country", name: areaServed.country } },
+          },
+        }
+      : {}),
   };
 }
 
