@@ -1,9 +1,31 @@
 import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
-import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
 import { brand } from "@/config/brand";
 import "./globals.css";
+
+/* Inter, variable with an optical-size axis: text sizes get the text cut,
+   display sizes the tighter Display cut, automatically. */
+const sans = localFont({
+  src: [
+    { path: "../fonts/inter-latin-var.woff2", style: "normal", weight: "100 900" },
+    { path: "../fonts/inter-latin-var-italic.woff2", style: "italic", weight: "100 900" },
+  ],
+  variable: "--font-inter",
+  display: "swap",
+  fallback: ["ui-sans-serif", "system-ui", "-apple-system", "Segoe UI", "sans-serif"],
+});
+
+/* The research publication's reading face. */
+const text = localFont({
+  src: [
+    { path: "../fonts/newsreader-latin-var.woff2", style: "normal", weight: "200 800" },
+    { path: "../fonts/newsreader-latin-var-italic.woff2", style: "italic", weight: "200 800" },
+  ],
+  variable: "--font-newsreader",
+  display: "swap",
+  fallback: ["Iowan Old Style", "Georgia", "serif"],
+});
 
 const editorial = localFont({
   src: [
@@ -42,7 +64,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html
       lang="en"
-      className={`${GeistSans.variable} ${GeistMono.variable} ${editorial.variable}`}
+      className={`${sans.variable} ${GeistMono.variable} ${editorial.variable} ${text.variable}`}
       suppressHydrationWarning
     >
       <head>

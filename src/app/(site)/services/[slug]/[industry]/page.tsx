@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { PageHero } from "@/components/layout/PageHero";
 import { ProjectCTA } from "@/components/home/ProjectCTA";
-import { Section } from "@/components/ui/Surface";
-import { Faqs, Heading, Instrument, ItemGrid, JsonLd, Pills, ProseSection, Related } from "@/components/seo/blocks";
+import { JsonLd } from "@/components/seo/blocks";
+import { Bento, Chapter, Convert, FaqList, LandingHero, PillLinks, RelatedRail, SignalPanel, Statement } from "@/components/landing/Landing";
+import { SectionDock } from "@/components/landing/SectionDock";
+import { ACCENT_TONE, DISCIPLINE_NEED } from "@/seo/accents";
 import { DISCIPLINE_ACCENT } from "@/seo/accents";
 import { breadcrumbLd, serviceLd } from "@/seo/jsonld";
 import { combosFor, comboTitle, industryBySlug, publishedCombos, resolveRelated, serviceBySlug } from "@/seo/registry";
@@ -32,6 +33,8 @@ export default async function ComboLanding({ params }: Props) {
   const ind = industryBySlug(c.industry)!;
   const path = `/services/${c.service}/${c.industry}`;
   const title = comboTitle(c);
+  const tone = ACCENT_TONE[DISCIPLINE_ACCENT[service.discipline]];
+  const start = { label: "Start a project", href: `/start?need=${DISCIPLINE_NEED[service.discipline]}` };
   const trail = [
     { name: "Services", path: "/services" },
     { name: service.name, path: `/services/${service.slug}` },
@@ -48,40 +51,50 @@ export default async function ComboLanding({ params }: Props) {
       <JsonLd data={serviceLd({ name: title, description: c.metaDescription, path, serviceType: service.name, audience: ind.name })} />
       <JsonLd data={breadcrumbLd([{ name: "Home", path: "/" }, ...trail])} />
 
-      <PageHero
-        eyebrow={title}
+      <LandingHero
         crumbs={trail}
-        accent={DISCIPLINE_ACCENT[service.discipline]}
-        title={[`${service.name} for`, <em key="a" className="t-accent">{ind.name}.</em>]}
+        eyebrow={title}
+        tone={tone}
+        title={[`${service.name} for`, `${ind.name}.`]}
         lead={c.lead}
-        visual={<Instrument label="What we measure" aside={ind.name} items={c.measures} foot={[service.name, ind.name]} />}
+        primary={start}
+        secondary={{ label: "Where we start", href: "#priorities" }}
+        visual={<SignalPanel label="What we measure" aside={ind.name} items={c.measures} chip={[service.name, ind.name]} />}
       />
 
-      <ProseSection kicker="Why it’s different here" heading={`What changes about ${service.name} in ${ind.name}.`} body={c.angle} id="angle-title" />
+      <Chapter id="angle" eyebrow="Why it’s different here" title={[`What changes about ${service.name}`, `in ${ind.name}.`]}>
+        <Statement body={c.angle} />
+      </Chapter>
 
-      <Section tone="raised" labelledBy="priorities-title">
-        <Heading id="priorities-title" eyebrow="Where we start" title={["The priorities", "that move revenue."]} />
-        <ItemGrid items={c.priorities} />
-      </Section>
+      <Chapter id="priorities" eyebrow="Where we start" title={["The priorities", "that move revenue."]} light tone={tone}>
+        <Bento items={c.priorities} />
+      </Chapter>
 
-      <Section tone="dark" labelledBy="pitfalls-title">
-        <Heading id="pitfalls-title" eyebrow="What goes wrong" title={["The mistakes", "we see most."]} />
-        <ItemGrid items={c.pitfalls} numbered={false} />
-        <div style={{ marginTop: "var(--space-8)" }}>
-          <p className="t-label">Go deeper</p>
-          <Pills
-            items={[
-              { href: `/services/${service.slug}`, label: `${service.name}: the full service` },
-              { href: `/industries/${ind.slug}`, label: `Marketing for ${ind.name}` },
-              ...siblings.map((x) => ({ href: `/services/${x.service}/${x.industry}`, label: comboTitle(x) })),
-            ]}
-          />
-        </div>
-      </Section>
+      <Chapter id="pitfalls" eyebrow="What goes wrong" title={["The mistakes", "we see most."]}>
+        <Bento items={c.pitfalls} />
+        <PillLinks
+          label="Go deeper"
+          items={[
+            { href: `/services/${service.slug}`, label: `${service.name}: the full service` },
+            { href: `/industries/${ind.slug}`, label: `Marketing for ${ind.name}` },
+            ...siblings.map((x) => ({ href: `/services/${x.service}/${x.industry}`, label: comboTitle(x) })),
+          ]}
+        />
+      </Chapter>
 
-      <Faqs faqs={c.faqs} tone="raised" />
-      <Related entries={related.slice(0, 6)} />
+      <Convert tone={tone} title={["Ready when", "you are."]} text="Tell us where things stand and what needs to change. A senior strategist reads every brief and replies with a first view." primary={start} secondary={{ label: "Read the questions first", href: "#faq" }} />
+      <FaqList faqs={c.faqs} />
+      <RelatedRail entries={related.slice(0, 8)} />
       <ProjectCTA />
+      <SectionDock
+        items={[
+          { id: "angle", label: "Why it’s different" },
+          { id: "priorities", label: "Priorities" },
+          { id: "pitfalls", label: "Pitfalls" },
+          { id: "faq", label: "FAQ" },
+        ]}
+        cta={start}
+      />
     </>
   );
 }

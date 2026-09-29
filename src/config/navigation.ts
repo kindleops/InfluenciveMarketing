@@ -6,7 +6,7 @@ export const primaryNav: NavItem[] = [
   { label: "Services", href: "/services", description: "Eight connected disciplines" },
   { label: "Industries", href: "/industries", description: "How the work changes by market" },
   { label: "Approach", href: "/approach", description: "How engagements run" },
-  { label: "Insights", href: "/insights", description: "Point of view" },
+  { label: "Research", href: "/research", description: "Reports, models and field guides" },
   { label: "About", href: "/about", description: "Who we are" },
 ];
 
@@ -41,6 +41,7 @@ export const footerNav: { title: string; items: NavItem[] }[] = [
   {
     title: "Resources",
     items: [
+      { label: "Research", href: "/research" },
       { label: "Guides", href: "/guides" },
       { label: "Playbooks", href: "/playbooks" },
       { label: "Insights", href: "/insights" },

@@ -7,7 +7,7 @@ import { pageMetadata } from "@/seo/site";
 type Props = { params: Promise<{ slug: string }> };
 const get = (slug: string) => published.research.find((r) => r.slug === slug);
 
-/* Only studies with a complete, reviewed methodology are published. */
+/* Reports that clear the gate; a study only with a complete, reviewed method. */
 export function generateStaticParams() {
   return published.research.map((r) => ({ slug: r.slug }));
 }
@@ -27,20 +27,23 @@ export default async function ResearchPage({ params }: Props) {
       entry={r}
       section={{ name: "Research", path: "/research" }}
       kind="Research"
+      report={{ number: r.number, format: r.format, keyPoints: r.keyPoints, basis: r.basis }}
       before={
-        <section className={`glass ${s.method}`} data-level="2" aria-labelledby="method-title">
-          <h2 id="method-title">Methodology</h2>
-          <dl>
-            <dt>Sample</dt>
-            <dd>{m.sample}</dd>
-            <dt>Period</dt>
-            <dd>{m.period}</dd>
-            <dt>Sources</dt>
-            <dd>{m.sources.join("; ")}</dd>
-            <dt>Limitations</dt>
-            <dd>{m.limitations.join(" ")}</dd>
-          </dl>
-        </section>
+        m && (
+          <section className={`glass ${s.method}`} data-level="2" data-liquid="" aria-labelledby="method-title">
+            <h2 id="method-title">Methodology</h2>
+            <dl>
+              <dt>Sample</dt>
+              <dd>{m.sample}</dd>
+              <dt>Period</dt>
+              <dd>{m.period}</dd>
+              <dt>Sources</dt>
+              <dd>{m.sources.join("; ")}</dd>
+              <dt>Limitations</dt>
+              <dd>{m.limitations.join(" ")}</dd>
+            </dl>
+          </section>
+        )
       }
     />
   );

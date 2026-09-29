@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { PageHero } from "@/components/layout/PageHero";
 import { ProjectCTA } from "@/components/home/ProjectCTA";
-import { Section } from "@/components/ui/Surface";
-import { Channels, Faqs, Heading, Instrument, ItemGrid, JsonLd, Pills, ProseSection, Related, Steps } from "@/components/seo/blocks";
+import { JsonLd } from "@/components/seo/blocks";
+import { Bento, Chapter, Convert, FaqList, LandingHero, PillLinks, Process, RelatedRail, RoleMap, SignalPanel, Statement } from "@/components/landing/Landing";
+import { SectionDock } from "@/components/landing/SectionDock";
 import { breadcrumbLd, serviceLd } from "@/seo/jsonld";
 import { combosFor, comboTitle, industryBySlug, published, resolveRelated } from "@/seo/registry";
 import { pageMetadata } from "@/seo/site";
@@ -29,50 +29,58 @@ export default async function IndustryLanding({ params }: Props) {
     { name: p.name, path },
   ];
   const combos = combosFor({ industry: p.slug });
+  const start = { label: "Start a project", href: "/start" };
 
   return (
     <>
       <JsonLd data={serviceLd({ name: `Marketing for ${p.name}`, description: p.metaDescription, path, serviceType: "Marketing services", audience: p.name })} />
       <JsonLd data={breadcrumbLd([{ name: "Home", path: "/" }, ...trail])} />
-      <PageHero
-        eyebrow={p.hero.eyebrow}
+      <LandingHero
         crumbs={trail}
-        accent="gold"
-        title={[p.hero.title[0], <em key="a" className="t-accent">{p.hero.title[1]}</em>]}
+        eyebrow={p.hero.eyebrow}
+        tone="gold"
+        title={p.hero.title}
         lead={p.hero.lead}
-        visual={<Instrument label="The numbers that matter" aside={p.name} items={p.metrics.map((m) => m.title)} />}
+        primary={start}
+        secondary={{ label: "The first ninety days", href: "#plan" }}
+        visual={<SignalPanel label="The numbers that matter" aside={p.name} items={p.metrics.map((m) => m.title)} chip={["Read against", "Targets set before work begins"]} />}
       />
-      <ProseSection kicker="The market" heading={p.context.heading} body={p.context.body} id="context-title" />
 
-      <Section tone="raised" labelledBy="challenges-title">
-        <Heading id="challenges-title" eyebrow="What gets in the way" title={["The problems", "worth solving first."]} />
-        <ItemGrid items={p.challenges} />
-      </Section>
+      <Chapter id="market" eyebrow="The market" title={[p.context.heading, ""]}>
+        <Statement body={p.context.body} />
+      </Chapter>
 
-      <Section tone="dark" labelledBy="channels-title">
-        <Heading id="channels-title" eyebrow="The channel mix" title={["What each channel", "is actually for."]} />
-        <Channels items={p.channels} />
-      </Section>
+      <Chapter id="challenges" eyebrow="What gets in the way" title={["The problems", "worth solving first."]} light tone="gold">
+        <Bento items={p.challenges} />
+      </Chapter>
 
-      <Section tone="raised" labelledBy="metrics-title">
-        <Heading id="metrics-title" eyebrow="Measurement" title={["What we report on —", "and why."]} />
-        <ItemGrid items={p.metrics} numbered={false} />
-      </Section>
+      <Chapter id="channels" eyebrow="The channel mix" title={["What each channel", "is actually for."]}>
+        <RoleMap items={p.channels.map((c) => ({ name: c.channel, role: c.role }))} />
+      </Chapter>
 
-      <Section tone="dark" labelledBy="plan-title">
-        <Heading id="plan-title" eyebrow="The first ninety days" title={["Where an engagement", "usually starts."]} />
-        <Steps items={p.firstNinetyDays} />
-        {combos.length > 0 && (
-          <div style={{ marginTop: "var(--space-8)" }}>
-            <p className="t-label">Services for {p.name}</p>
-            <Pills items={combos.map((c) => ({ href: `/services/${c.service}/${c.industry}`, label: comboTitle(c) }))} />
-          </div>
-        )}
-      </Section>
+      <Chapter id="measures" eyebrow="Measurement" title={["What we report on —", "and why."]} light tone="blue" raised>
+        <Bento items={p.metrics} />
+      </Chapter>
 
-      <Faqs faqs={p.faqs} tone="raised" />
-      <Related entries={resolveRelated(p.related, path)} />
+      <Chapter id="plan" eyebrow="The first ninety days" title={["Where an engagement", "usually starts."]}>
+        <Process items={p.firstNinetyDays} />
+        <PillLinks label={`Services for ${p.name}`} items={combos.map((c) => ({ href: `/services/${c.service}/${c.industry}`, label: comboTitle(c) }))} />
+      </Chapter>
+
+      <Convert tone="gold" title={["Tell us where", "growth is stuck."]} text="A senior strategist reads every brief and replies with a first view — before anyone talks scope." primary={start} secondary={{ label: "Read the questions first", href: "#faq" }} />
+      <FaqList faqs={p.faqs} />
+      <RelatedRail entries={resolveRelated(p.related, path)} />
       <ProjectCTA />
+      <SectionDock
+        items={[
+          { id: "market", label: "Market" },
+          { id: "challenges", label: "Challenges" },
+          { id: "channels", label: "Channels" },
+          { id: "plan", label: "First 90 days" },
+          { id: "faq", label: "FAQ" },
+        ]}
+        cta={start}
+      />
     </>
   );
 }

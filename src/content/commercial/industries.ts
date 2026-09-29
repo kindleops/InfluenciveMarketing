@@ -184,8 +184,7 @@ export const industryPages: IndustryPage[] = [
       useCases: ["post-funding-growth"],
       guides: ["marketing-attribution-models"],
       playbooks: ["speed-to-lead"],
-      work: ["the-product-surface"],
-    },
+      work: ["the-product-surface"], research: ["why-saas-homepages-lose-the-sale"] },
   },
   {
     slug: "healthcare",
@@ -372,8 +371,7 @@ export const industryPages: IndustryPage[] = [
       solutions: ["lead-generation", "rebrand", "website-redesign"],
       compare: ["fractional-cmo-vs-agency"],
       guides: ["how-to-choose-a-marketing-agency"],
-      playbooks: ["topic-cluster-program"],
-    },
+      playbooks: ["topic-cluster-program"], research: ["paid-search-economics-high-ticket-services"] },
   },
   {
     slug: "home-services",
@@ -467,8 +465,7 @@ export const industryPages: IndustryPage[] = [
       industries: ["healthcare"],
       solutions: ["lead-generation", "lower-acquisition-cost"],
       guides: ["landing-page-optimization"],
-      playbooks: ["speed-to-lead"],
-    },
+      playbooks: ["speed-to-lead"], research: ["paid-search-economics-high-ticket-services"] },
   },
   {
     slug: "fintech",

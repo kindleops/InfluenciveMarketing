@@ -118,13 +118,29 @@ test.describe("seo content rules", () => {
   });
 
   test("gated collections stay unpublished until they have real entries", () => {
-    // Locations: only places the studio genuinely operates. Research: only
-    // studies with a complete, reviewed methodology.
+    // Locations: only places the studio genuinely operates. Research: a
+    // study (original data) only with a complete, reviewed methodology; every
+    // other report states what it rests on.
     for (const l of locationPages) expect(["office", "team"]).toContain(l.presence);
     for (const r of research) {
-      expect(r.reviewed, r.slug).toBe(true);
-      expect(r.methodology.sources.length, r.slug).toBeGreaterThan(0);
+      expect(r.basis.length, r.slug).toBeGreaterThan(40);
+      if (r.format === "study") {
+        expect(r.reviewed, r.slug).toBe(true);
+        expect(r.methodology?.sources.length, r.slug).toBeGreaterThan(0);
+      }
     }
+    expect(new Set(research.map((r) => r.number)).size).toBe(research.length);
+  });
+
+  test("numbers in figures are labelled as illustrative", () => {
+    // The types force it for stacks and bars; this catches a figure kind
+    // added later that carries numbers without the label.
+    const unlabelled: string[] = [];
+    for (const e of [...guides, ...playbooks, ...research])
+      for (const b of e.body)
+        if (b.type === "figure" && /\d/.test(JSON.stringify(b.figure)) && !("illustrative" in b.figure) && b.figure.kind !== "calculator")
+          unlabelled.push(`${e.slug}: ${b.title}`);
+    expect(unlabelled).toEqual([]);
   });
 });
 

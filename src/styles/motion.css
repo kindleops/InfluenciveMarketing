@@ -72,8 +72,9 @@ html.js [data-reveal="line"]:not([data-inview]) {
 .split-line {
   display: block;
   overflow: clip;
-  padding-bottom: 0.08em;
-  margin-bottom: -0.08em;
+  /* Room for descenders at tight display leading. */
+  padding-bottom: 0.16em;
+  margin-bottom: -0.16em;
 }
 .split-line > span {
   display: inline-block;

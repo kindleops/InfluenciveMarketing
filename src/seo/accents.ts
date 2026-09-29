@@ -22,3 +22,19 @@ export const DISCIPLINE_NAME: Record<Discipline, string> = {
   automation: "Automation",
   transformation: "Transformation",
 };
+
+/** The intake question each discipline answers, so a page's CTA opens the
+    consultation already pointed at the right need. */
+export const DISCIPLINE_NEED: Record<Discipline, string> = {
+  brand: "brand",
+  web: "website",
+  product: "product",
+  growth: "growth",
+  organic: "seo",
+  intelligence: "ai",
+  automation: "automation",
+  transformation: "unsure",
+};
+
+/** Light-field key for each accent. */
+export const ACCENT_TONE = { brand: "blue", violet: "violet", cyan: "teal", gold: "gold" } as const;

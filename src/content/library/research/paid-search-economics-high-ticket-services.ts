@@ -1,0 +1,123 @@
+import type { Research } from "../types";
+
+export const paidSearchEconomics: Research = {
+  slug: "paid-search-economics-high-ticket-services",
+  title: "The Economics of Paid Search in High-Ticket Services",
+  dek: "Most high-ticket paid search accounts are run to a cost-per-lead number nobody can trace back to what a customer is worth. This report works the economics from the customer backwards, so the bid ceiling comes from the business, not from habit.",
+  metaTitle: "Paid Search Economics for High-Ticket Services",
+  metaDescription:
+    "Work out what you can afford per lead and per click from what a customer is worth, then feed won deals back to bidding so paid search buys customers, not forms.",
+  primaryQuery: "google ads cost per lead",
+  secondaryQueries: [
+    "target cost per lead calculator",
+    "how much should i pay per lead",
+    "max cost per click calculator",
+    "offline conversion import google ads",
+    "ppc for high ticket services",
+  ],
+  topic: "growth",
+  published: "2026-09-29",
+  updated: "2026-09-29",
+  format: "model",
+  number: 2,
+  keyPoints: [
+    "A cost-per-lead target is only meaningful when it is derived from gross profit per customer, the share you will spend to win one, and your real close rates.",
+    "In low-volume, long-cycle businesses, bidding optimized on raw form fills learns to find cheap leads, not customers. Feed qualified and won outcomes back instead.",
+    "Close rate and speed of follow-up move the affordable cost per click as much as any bid change does, so sales capacity belongs in the model.",
+    "The account should be read weekly against cost per qualified lead and pipeline by intent tier, not against cost per lead alone.",
+  ],
+  basis:
+    "A model built from the arithmetic of acquisition and from how paid search accounts for high-ticket services are actually run. Every number in it is an illustrative input you can replace; it is not a survey and contains no client data.",
+  reviewed: false,
+  body: [
+    { type: "h2", text: "Cost per lead is a number without an anchor" },
+    { type: "p", text: "Ask who set the cost-per-lead target on a law firm's or a renovation company's paid search account, and the answer is usually a person, not a calculation. Someone remembered what leads cost last year. Someone heard a figure at a conference. The platform suggested a target and nobody argued." },
+    { type: "p", text: "That number then runs the account. Set it too low and bidding retreats from the most competitive, most valuable searches, and the account starves. Set it too high, or leave it unset, and spend drifts toward whatever produces form fills, and the account bloats. Both failures look like a paid search problem. Both are really a missing piece of arithmetic." },
+    { type: "p", text: "High-ticket services make the gap expensive. When one customer is worth tens of thousands of dollars and a sales cycle runs for weeks, a few dollars of bid either way changes very little. What changes everything is whether the account is buying people who become customers." },
+
+    { type: "h2", text: "Work backwards from what a customer is worth" },
+    { type: "p", text: "The honest ceiling for a click starts with the customer and walks back through the funnel. Each step uses a number the business already has, or can get from its CRM in an afternoon." },
+    { type: "figure", title: "From customer value to allowable cost per click", caption: "Read top to bottom. Each line takes the result above it and applies one more rate from your own funnel. The last line is the most you can pay for a click and still acquire customers at the share of profit you chose.", figure: { kind: "formula", lines: [
+      { label: "Gross profit per customer", expr: "Average deal value × Gross margin", means: "What a new customer leaves behind after the cost of delivering the work." },
+      { label: "Allowable acquisition cost", expr: "Gross profit per customer × Acquisition allowance", means: "The share of that profit you are willing to spend to win the customer. This is a business decision, not a marketing one." },
+      { label: "Lead-to-customer rate", expr: "Lead-to-qualified rate × Qualified-to-won rate", means: "How many raw leads it takes to produce one customer." },
+      { label: "Allowable cost per lead", expr: "Allowable acquisition cost × Lead-to-customer rate", means: "The most a single lead is worth to you, given how many become customers." },
+      { label: "Allowable cost per click", expr: "Allowable cost per lead × Landing-page conversion rate", means: "The most a single click is worth, given how many visitors become leads." },
+    ] } },
+    { type: "p", text: "Take a firm whose average engagement is worth $30,000 at a gross margin of sixty percent. Each customer leaves $18,000 of gross profit. Assume the partners decide they will spend up to three tenths of that to win a customer. The allowable acquisition cost is $5,400." },
+    { type: "p", text: "Now the funnel. Suppose two in five leads turn out to be qualified, and one in four qualified leads signs. That is one customer for every ten leads, so each lead is worth up to $540. If one in twenty visitors to the landing page becomes a lead, each click is worth up to $27." },
+    { type: "p", text: "That $27 is not a bid. It is a ceiling on the average cost per click across the account, at which the firm spends exactly its chosen allowance per customer. Anything below it leaves margin; anything persistently above it is buying customers the business cannot afford." },
+    { type: "figure", title: "Run the model with your own numbers", caption: "Replace the example inputs with your own deal value, margin, allowance and funnel rates. The outputs update as you type and follow the chain above, ending in the allowable cost per lead and per click. The defaults reproduce the worked example in this section.", figure: { kind: "calculator", model: "paid-search-economics" } },
+    { type: "callout", title: "The allowance is a decision, not a discovery", text: "Nobody can look up the right acquisition allowance. It depends on cash position, how much repeat and referral work a customer brings, and how badly you want growth this year. Pick it deliberately, write it down, and revisit it when those things change. A first-deal allowance is the conservative choice; counting future work raises the ceiling and the risk." },
+
+    { type: "h2", text: "Close rate moves the ceiling more than bids do" },
+    { type: "p", text: "Because the chain multiplies, every rate in it is a lever on what you can afford. The one most accounts ignore is the close rate, because it lives in the sales team, not in the ad platform." },
+    { type: "figure", title: "Allowable cost per click as the close rate changes", caption: "Illustrative. Holds the example inputs fixed: $5,400 allowable acquisition cost, two in five leads qualified, one in twenty visitors converting. Only the qualified-to-won rate changes. The ceiling scales in direct proportion to it.", figure: { kind: "bars", illustrative: true, unit: "dollars per click", rows: [
+      { label: "One in ten qualified leads won", value: 10.8 },
+      { label: "One in five won", value: 21.6 },
+      { label: "One in four won", value: 27, note: "The worked example" },
+      { label: "Three in ten won", value: 32.4 },
+      { label: "Two in five won", value: 43.2 },
+    ] } },
+    { type: "p", text: "Sales capacity and speed of follow-up belong in the same model. A qualified rate is not a fixed property of the traffic; it depends on how quickly and how well someone picks up the lead. Assume slow follow-up drops the qualified rate from two in five to one in four. With nothing else changed, the allowable cost per lead falls from $540 to about $338, and the allowable cost per click from $27 to about $17." },
+    { type: "p", text: "That is why buying more leads than the team can work quickly is not growth. Past a certain volume, each extra lead waits longer, qualifies less often, and quietly lowers the ceiling for every lead before it. The right paid search budget is partly a question of how many conversations the sales team can hold well each week." },
+    { type: "pullquote", text: "A cost-per-lead target nobody derived from the value of a customer isn't a target. It's a guess with a decimal point." },
+
+    { type: "h2", text: "Don't let the platform optimize on raw leads" },
+    { type: "p", text: "Automated bidding optimizes toward whatever conversion you tell it counts. If that is a form submission, it will get very good at finding people who submit forms. In high-ticket services, many of those people are students, job seekers, vendors, people outside the service area, or buyers with a fraction of the budget." },
+    { type: "p", text: "Volume makes this worse. A business closing a handful of deals a month cannot give bidding enough won-deal signals to learn from directly. The workable answer is a ladder: optimize toward a qualified-lead event that happens often enough to learn from, and pass won deals and their value back as well, so the account can be judged, and eventually bid, on revenue." },
+    { type: "p", text: "Google's documentation describes this as offline conversion import: outcomes recorded in a CRM are uploaded and matched to the original ad click, either by the click identifier captured with the lead or, through enhanced conversions for leads, by hashed contact details. Imported conversions must fall within the conversion window set for that action, so a long sales cycle needs a window set with it in mind." },
+    { type: "steps", items: [
+      { title: "Capture the click", detail: "Store the click identifier and source with every lead in the CRM, from the first form or call onward." },
+      { title: "Define the stages", detail: "Agree in writing what makes a lead qualified and what counts as won, so sales records them consistently." },
+      { title: "Send the outcomes back", detail: "Upload qualified and won events, with deal value where you have it, on a regular schedule rather than by hand when someone remembers." },
+      { title: "Move the bidding goal", detail: "Once qualified events flow reliably, make them the primary conversion and demote raw form fills to a secondary, observation-only action." },
+    ] },
+
+    { type: "h2", text: "Cheap leads are usually expensive customers" },
+    { type: "p", text: "The most common mistake in these accounts is rewarding the campaign with the lowest cost per lead. Assume one campaign produces leads at $150 and closes one in fifty. Another produces leads at $600 and closes one in eight. The first costs $7,500 per customer; the second costs $4,800. Against the $5,400 allowance in our example, the cheap campaign is the one losing money." },
+    { type: "p", text: "The difference almost always traces back to intent. Search terms in high-ticket categories fall into rough tiers, and each tier deserves a different budget, landing page and expectation." },
+    { type: "table", caption: "Search-term intent tiers", columns: ["Tier", "Typical search shape", "What it signals", "How to treat it"], rows: [
+      ["Ready to hire", "Service plus location, \"near me\", a named specialism, a named provider type", "A problem the searcher intends to pay to solve soon", "Fund first and fully; send to a page built to start a conversation"],
+      ["Comparing", "Cost, pricing, reviews, \"best\", one option versus another", "Buying, but still deciding how and with whom", "Fund selectively; answer the cost question honestly and offer a clear next step"],
+      ["Researching", "How to, what is, do I need, templates and definitions", "Learning; may be years from buying or never", "Keep out of the lead campaigns; serve with content and remarketing if at all"],
+      ["Wrong fit", "Free, jobs, salary, courses, do it yourself, out-of-area places", "Someone who will not become a customer", "Exclude with negative keywords and review the search terms report for more"],
+    ] },
+    { type: "p", text: "Most bloated accounts are paying ready-to-hire prices for comparing and researching traffic. Most starved accounts have a cost-per-lead target set so low that bidding cannot compete for the ready-to-hire terms at all." },
+
+    { type: "h2", text: "How to read the account every week" },
+    { type: "p", text: "A weekly review should take under an hour and end with decisions, not a screenshot of a dashboard. Read it in this order." },
+    { type: "checklist", items: [
+      "Cost per qualified lead by campaign and intent tier, compared with the allowable figure the model gives at your current qualified rate.",
+      "Lead-to-qualified rate this week against the trailing month. A drop is a traffic, landing page or follow-up problem, and the fix differs for each.",
+      "Median time to first response on paid search leads, and how many were never contacted.",
+      "The search terms report: new wrong-fit terms to exclude, and ready-to-hire terms worth their own ad group.",
+      "Qualified and won events uploaded on schedule, with no gaps. A silent import breaks the bidding before anyone notices.",
+      "Pipeline value opened from paid search, since won revenue in a long cycle lags the spend by weeks or months.",
+    ] },
+    { type: "p", text: "Resist changing targets weekly. With low volumes, a single week is noise. Move the bidding target when a month of qualified-lead data says the ceiling has moved, and say why in a change log." },
+
+    { type: "h2", text: "What to do this quarter" },
+    { type: "ol", items: [
+      "Pull twelve months of CRM data and calculate your real average deal value, gross margin, lead-to-qualified rate and qualified-to-won rate for paid search leads.",
+      "Agree an acquisition allowance with whoever owns the profit and loss, and run the model to get an allowable cost per lead and per click.",
+      "Compare those numbers with what the account is paying today, by campaign and intent tier. Cut or restructure anything persistently above the ceiling.",
+      "Set up offline conversion import for qualified and won outcomes, and plan the switch of the primary bidding goal once the data flows reliably.",
+      "Measure speed to lead and weekly sales capacity, and size the budget to the number of conversations the team can handle well.",
+      "Start the weekly review above, with a written change log, and rerun the model each quarter as the rates move.",
+    ] },
+    { type: "p", text: "None of this makes paid search cheaper by itself. It makes the account spend in proportion to what customers are worth, which is the only version of efficient that matters when each sale is large." },
+  ],
+  faqs: [
+    { q: "What is a good cost per lead for Google Ads in high-ticket services?", a: "There isn't a universal good figure, because a lead's worth depends on your deal size, margin and close rates. Work it out from the customer backwards: gross profit per customer, times the share you will spend to acquire one, times your lead-to-customer rate. That gives the most you can pay per lead, which is the number to manage to." },
+    { q: "How do I calculate the maximum cost per click I can afford?", a: "Multiply your allowable cost per lead by your landing-page conversion rate. If a lead is worth up to $540 to you and one in twenty visitors becomes a lead, the ceiling is $27 per click on average. Treat it as a ceiling across the account, not a bid for every keyword." },
+    { q: "Should I optimize Google Ads for leads or for sales?", a: "Optimize for the deepest outcome you have enough volume to learn from. For most high-ticket services that is a qualified lead rather than a raw form fill, with won deals and their value imported as well. Optimizing on raw leads teaches bidding to find people who fill in forms, not people who buy." },
+  ],
+  related: {
+    services: ["paid-media"],
+    solutions: ["lower-acquisition-cost"],
+    playbooks: ["speed-to-lead"],
+    guides: ["landing-page-optimization", "marketing-attribution-models"],
+    industries: ["professional-services"],
+  },
+};

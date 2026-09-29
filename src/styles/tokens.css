@@ -56,9 +56,11 @@
   --signal-negative: #ff8a7a;
 
   /* ---- Typography ----------------------------------------------------- */
-  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, "SF Mono", Menlo, monospace;
   --font-serif: var(--font-editorial), "Iowan Old Style", "Times New Roman", serif;
+  /* Long-form reading and report titles in the research publication. */
+  --font-text: var(--font-newsreader), "Iowan Old Style", Georgia, serif;
 
   /* Fluid scale — architectural at the top, calm at the bottom */
   --fs-mega: clamp(3.6rem, 1.1rem + 8.4vw, 11rem);
@@ -79,8 +81,8 @@
   --lh-title: 1.25;
   --lh-body: 1.62;
 
-  --tracking-display: -0.055em;
-  --weight-display: 430;
+  --tracking-display: -0.046em;
+  --weight-display: 460;
   --tracking-heading: -0.032em;
   --tracking-title: -0.018em;
   --tracking-body: -0.006em;

@@ -54,6 +54,7 @@ export interface Related {
   alternatives?: string[];
   guides?: string[];
   playbooks?: string[];
+  research?: string[];
   insights?: string[];
   work?: string[];
 }

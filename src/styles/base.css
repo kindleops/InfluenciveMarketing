@@ -41,7 +41,7 @@ body {
   font-size: var(--fs-body);
   line-height: var(--lh-body);
   letter-spacing: var(--tracking-body);
-  font-feature-settings: "ss01", "cv11";
+  font-feature-settings: "calt", "cv05";
   overflow-x: clip;
 }
 
@@ -158,12 +158,12 @@ ol[role="list"]:not(:where([data-portal] *)) {
   font-weight: var(--weight-display);
   line-height: var(--lh-display);
   letter-spacing: var(--tracking-display);
-  font-feature-settings: "ss01", "ss02", "cv11", "kern";
+  font-feature-settings: "calt", "kern";
 }
 .t-mega {
   font-size: var(--fs-mega);
   line-height: 0.88;
-  letter-spacing: -0.056em;
+  letter-spacing: -0.05em;
 }
 .t-display-1 {
   font-size: var(--fs-display-1);

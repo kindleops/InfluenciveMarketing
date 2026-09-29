@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { PageHero } from "@/components/layout/PageHero";
 import { ProjectCTA } from "@/components/home/ProjectCTA";
-import { Section } from "@/components/ui/Surface";
-import { Facts, Faqs, Heading, Instrument, ItemGrid, JsonLd, ListPair, Pills, ProseSection, Related, Steps } from "@/components/seo/blocks";
-import { DISCIPLINE_ACCENT, DISCIPLINE_NAME } from "@/seo/accents";
+import { JsonLd } from "@/components/seo/blocks";
+import { Bento, Chapter, Convert, Duo, FaqList, LandingHero, PillLinks, Process, RelatedRail, SignalPanel, Spec, Statement } from "@/components/landing/Landing";
+import { SectionDock } from "@/components/landing/SectionDock";
+import { ACCENT_TONE, DISCIPLINE_ACCENT, DISCIPLINE_NAME, DISCIPLINE_NEED } from "@/seo/accents";
 import { breadcrumbLd, serviceLd } from "@/seo/jsonld";
 import { combosFor, industryBySlug, published, resolveRelated, serviceBySlug } from "@/seo/registry";
 import { pageMetadata } from "@/seo/site";
@@ -25,6 +25,8 @@ export default async function ServiceLanding({ params }: Props) {
   const p = serviceBySlug((await params).slug);
   if (!p) notFound();
   const path = `/services/${p.slug}`;
+  const tone = ACCENT_TONE[DISCIPLINE_ACCENT[p.discipline]];
+  const start = { label: "Start a project", href: `/start?need=${DISCIPLINE_NEED[p.discipline]}` };
   const combos = combosFor({ service: p.slug });
   const trail = [
     { name: "Services", path: "/services" },
@@ -36,52 +38,68 @@ export default async function ServiceLanding({ params }: Props) {
       <JsonLd data={serviceLd({ name: p.name, description: p.metaDescription, path, serviceType: p.name })} />
       <JsonLd data={breadcrumbLd([{ name: "Home", path: "/" }, ...trail])} />
 
-      <PageHero
-        eyebrow={p.hero.eyebrow}
+      <LandingHero
         crumbs={trail}
-        accent={DISCIPLINE_ACCENT[p.discipline]}
-        title={[p.hero.title[0], <em key="a" className="t-accent">{p.hero.title[1]}</em>]}
+        eyebrow={`${p.hero.eyebrow} · ${DISCIPLINE_NAME[p.discipline]}`}
+        tone={tone}
+        title={p.hero.title}
         lead={p.hero.lead}
-        meta={[
+        primary={start}
+        secondary={{ label: "What’s included", href: "#included" }}
+        facts={[
           { label: "Engagement", value: p.engagement.model },
           { label: "Timeframe", value: p.engagement.duration },
         ]}
-        visual={<Instrument label="What we measure" aside={DISCIPLINE_NAME[p.discipline]} items={p.measures} foot={["Read quarterly", p.name]} />}
+        visual={<SignalPanel label="What we measure" aside={p.name} items={p.measures} chip={["Judged on", "Targets agreed before work begins"]} />}
       />
 
-      <ProseSection kicker="The problem" heading={p.problem.heading} body={p.problem.body} id="problem-title" />
+      <Chapter id="problem" eyebrow="The problem" title={[p.problem.heading, ""]}>
+        <Statement body={p.problem.body} />
+      </Chapter>
 
-      <Section tone="dark" labelledBy="included-title">
-        <Heading id="included-title" eyebrow="What’s included" title={["Everything the work", "actually needs."]} />
-        <ItemGrid items={p.included} />
-      </Section>
+      <Chapter id="included" eyebrow="What’s included" title={["Everything the work", "actually needs."]} light tone={tone}>
+        <Bento items={p.included} />
+      </Chapter>
 
-      <Section tone="raised" labelledBy="approach-title">
-        <Heading id="approach-title" eyebrow="How we run it" title={["A sequence,", "not a checklist."]} />
-        <Steps items={p.approach} />
-      </Section>
+      <Chapter id="process" eyebrow="How we run it" title={["A sequence,", "not a checklist."]}>
+        <Process items={p.approach} />
+      </Chapter>
 
-      <Section tone="dark" labelledBy="fit-title">
-        <Heading id="fit-title" eyebrow="Fit" title={["Who this is for —", "and who it isn’t."]} />
-        <ListPair a={{ title: "A good fit", items: p.fit.for }} b={{ title: "Not the right fit", items: p.fit.notFor, quiet: true }} />
-        <Facts
+      <Chapter id="fit" eyebrow="Fit" title={["Who this is for —", "and who it isn’t."]} light tone="violet">
+        <Duo a={{ title: "A good fit", items: p.fit.for }} b={{ title: "Not the right fit", items: p.fit.notFor, negative: true }} />
+        <Spec
           items={[
             { label: "Engagement", value: p.engagement.model },
             { label: "Timeframe", value: p.engagement.duration },
             { label: "Team", value: p.engagement.team },
           ]}
+          cta={{ label: "Get a scoped proposal", href: start.href }}
         />
-        {combos.length > 0 && (
-          <div style={{ marginTop: "var(--space-8)" }}>
-            <p className="t-label">{p.name} by industry</p>
-            <Pills items={combos.map((c) => ({ href: `/services/${c.service}/${c.industry}`, label: `${p.name} for ${industryBySlug(c.industry)!.name}` }))} />
-          </div>
-        )}
-      </Section>
+        <PillLinks label={`${p.name} by industry`} items={combos.map((c) => ({ href: `/services/${c.service}/${c.industry}`, label: `${p.name} for ${industryBySlug(c.industry)!.name}` }))} />
+      </Chapter>
 
-      <Faqs faqs={p.faqs} />
-      <Related entries={resolveRelated(p.related, path)} />
+      <Convert
+        tone={tone}
+        title={["Ready when", "you are."]}
+        text="Tell us where things stand and what needs to change. You’ll hear back from someone senior — not a sales sequence."
+        primary={start}
+        secondary={{ label: "Read the questions first", href: "#faq" }}
+      />
+
+      <FaqList faqs={p.faqs} />
+      <RelatedRail entries={resolveRelated(p.related, path)} />
       <ProjectCTA />
+
+      <SectionDock
+        items={[
+          { id: "problem", label: "Problem" },
+          { id: "included", label: "Included" },
+          { id: "process", label: "Process" },
+          { id: "fit", label: "Fit" },
+          { id: "faq", label: "FAQ" },
+        ]}
+        cta={start}
+      />
     </>
   );
 }

@@ -10,10 +10,9 @@ import { Horizon } from "@/components/home/Horizon";
 import { PointOfView } from "@/components/home/PointOfView";
 import { ProjectCTA } from "@/components/home/ProjectCTA";
 import { ProofSection } from "@/components/proof/Proof";
-import { InsightCards } from "@/components/insights/InsightCards";
+import { ResearchShelf } from "@/components/editorial/ResearchShelf";
 import { SectionHeading, TextLink } from "@/components/ui/Typography";
 import { Section } from "@/components/ui/Surface";
-import { insights } from "@/content/insights";
 
 /**
  * Narrative order — fewer, larger moments; each scene answers one question.
@@ -27,7 +26,7 @@ import { insights } from "@/content/insights";
  *   Process       How do you operate?
  *   Horizon       (interlude — a single photographed frame)
  *   Point of view What do you stand for?
- *   Insights      How do you think?
+ *   Research      How do you think?
  *   CTA           What should I do next?
  */
 export default function Home() {
@@ -49,20 +48,20 @@ export default function Home() {
       <PointOfView />
       <ProofSection />
 
-      <Section tone="dark" labelledBy="insights-title" chapter="09|Insights">
+      <Section tone="dark" labelledBy="research-title" chapter="09|Research">
         <SectionHeading
-          id="insights-title"
-          eyebrow="Insights"
+          id="research-title"
+          eyebrow="Research"
           index="09"
           layout="split"
           title={["Thinking,", <em key="a" className="t-accent">in public.</em>]}
-          lead="Notes on systems, intelligence and the craft of building companies people choose."
+          lead="Reports on how growth actually works — the economics, the systems and the decisions behind them. Every piece states what it rests on."
         />
         <div style={{ marginTop: "var(--space-9)" }}>
-          <InsightCards items={insights.slice(0, 3)} />
+          <ResearchShelf />
         </div>
         <div style={{ display: "flex", justifyContent: "flex-end", marginTop: "var(--space-7)" }} data-reveal="up">
-          <TextLink href="/insights">All insights</TextLink>
+          <TextLink href="/research">All research</TextLink>
         </div>
       </Section>
 

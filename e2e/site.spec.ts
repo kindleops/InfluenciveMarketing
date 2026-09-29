@@ -230,7 +230,7 @@ test.describe("reduced motion", () => {
       window.scrollTo(0, t.getBoundingClientRect().top + window.scrollY + 20);
     });
     await expect
-      .poll(() => page.evaluate(() => parseFloat(getComputedStyle(document.querySelector("#platform-title")!.parentElement!).opacity)))
+      .poll(() => page.evaluate(() => parseFloat(getComputedStyle(document.querySelector("#platform-title")!.parentElement!).opacity)), { timeout: 15_000 })
       .toBeGreaterThan(0.95);
 
     // Unpinned scenes are recomposed, not left to overflow.

@@ -74,8 +74,7 @@ export const comparePages: ComparePage[] = [
     related: {
       services: ["seo", "paid-media"],
       solutions: ["lead-generation", "lower-acquisition-cost"],
-      guides: ["technical-seo-audit"],
-    },
+      guides: ["technical-seo-audit"], research: ["organic-search-after-ai-overviews", "paid-search-economics-high-ticket-services"] },
   },
   {
     slug: "agency-vs-in-house",

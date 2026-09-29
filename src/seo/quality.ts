@@ -49,6 +49,11 @@ const META_KEYS = new Set([
   "reviewed",
   "type",
   "presence",
+  "format",
+  "number",
+  "illustrative",
+  "model",
+  "kind",
 ]);
 
 /** Every word a reader sees in the body of the page. */
@@ -84,9 +89,15 @@ export function gate(
   const commercial = !["guide", "playbook", "research"].includes(kind);
   if (commercial && (!page.faqs || page.faqs.length < 3)) reasons.push("needs at least 3 FAQs");
   if (kind === "research") {
-    const m = page.methodology as { sample?: string; period?: string; sources?: string[]; limitations?: string[] } | undefined;
-    if (!m?.sample || !m.period || !m.sources?.length || !m.limitations?.length) reasons.push("methodology incomplete");
-    if (page.reviewed !== true) reasons.push("not reviewed");
+    if (!page.basis) reasons.push("no stated basis");
+    const points = page.keyPoints as string[] | undefined;
+    if (!points || points.length < 3) reasons.push("needs at least 3 key points");
+    // Original data is held to the full standard: method in the open, and reviewed.
+    if (page.format === "study") {
+      const m = page.methodology as { sample?: string; period?: string; sources?: string[]; limitations?: string[] } | undefined;
+      if (!m?.sample || !m.period || !m.sources?.length || !m.limitations?.length) reasons.push("methodology incomplete");
+      if (page.reviewed !== true) reasons.push("not reviewed");
+    }
   }
   if (kind === "location") {
     if (page.presence === "office" && !page.address) reasons.push("office without an address");

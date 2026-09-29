@@ -1,11 +1,11 @@
 import type { ReactNode } from "react";
-import { PageHero } from "@/components/layout/PageHero";
 import { ProjectCTA } from "@/components/home/ProjectCTA";
-import { Section } from "@/components/ui/Surface";
+import { Chapter, LandingHero, SignalPanel } from "@/components/landing/Landing";
 import { breadcrumbLd, collectionLd } from "@/seo/jsonld";
 import type { Entry } from "@/seo/registry";
-import { Cards, Instrument, JsonLd } from "./blocks";
-import s from "./seo.module.css";
+import { Cards, JsonLd } from "./blocks";
+
+const TONE = { brand: "blue", violet: "violet", cyan: "teal", gold: "gold" } as const;
 
 /** A collection index: one hero, then the pages grouped with a line of context each. */
 export function Hub({
@@ -14,7 +14,7 @@ export function Hub({
   eyebrow,
   title,
   lead,
-  accent,
+  accent = "brand",
   groups,
   empty,
   instrument,
@@ -30,38 +30,32 @@ export function Hub({
   instrument?: { label: string; items: string[] };
 }) {
   const all = groups.flatMap((g) => g.entries);
+  const live = groups.filter((g) => g.entries.length);
   return (
     <>
       <JsonLd data={collectionLd({ name, description: lead, path, items: all.map((e) => ({ name: e.title, path: e.path })) })} />
       <JsonLd data={breadcrumbLd([{ name: "Home", path: "/" }, { name, path }])} />
-      <PageHero
-        eyebrow={eyebrow}
+      <LandingHero
         crumbs={[{ name, path }]}
-        accent={accent}
-        title={[title[0], <em key="a" className="t-accent">{title[1]}</em>]}
+        eyebrow={eyebrow}
+        tone={TONE[accent]}
+        title={title}
         lead={lead}
-        visual={instrument ? <Instrument label={instrument.label} aside={`${all.length} pages`} items={instrument.items} /> : undefined}
+        primary={{ label: "Start a project", href: "/start" }}
+        secondary={all.length ? { label: `Browse ${all.length} pages`, href: "#index" } : undefined}
+        visual={instrument ? <SignalPanel label={instrument.label} aside={`${all.length} pages`} items={instrument.items} /> : undefined}
       />
-      <Section tone="dark" labelledBy="hub-title">
-        <h2 id="hub-title" className="sr-only">
-          {name}
-        </h2>
-        {all.length === 0
-          ? empty
-          : groups
-              .filter((g) => g.entries.length)
-              .map((g) => (
-                <div key={g.title} className={s.hubGroup}>
-                  {groups.length > 1 && (
-                    <div className={s.hubGroupHead}>
-                      <h3 className={s.hubGroupTitle}>{g.title}</h3>
-                      {g.note && <p className={s.hubGroupNote}>{g.note}</p>}
-                    </div>
-                  )}
-                  <Cards entries={g.entries} label={g.title} />
-                </div>
-              ))}
-      </Section>
+      {all.length === 0 ? (
+        <Chapter id="index" eyebrow={name} title={["Nothing here", "yet."]}>
+          {empty}
+        </Chapter>
+      ) : (
+        live.map((g, i) => (
+          <Chapter key={g.title} id={i === 0 ? "index" : `group-${i}`} eyebrow={live.length > 1 ? name : "Index"} title={live.length > 1 ? [g.title, ""] : ["Every page,", "one line each."]} lead={g.note} light={i % 2 === 0} tone={TONE[accent]}>
+            <Cards entries={g.entries} label={g.title} />
+          </Chapter>
+        ))
+      )}
       <ProjectCTA />
     </>
   );

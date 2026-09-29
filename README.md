@@ -64,6 +64,12 @@ Glass is built as a material rather than a blur utility. Each surface layers a t
 
 Use `<GlassSurface level={3} interactive />`, or `className="glass" data-level="3"`. `.plate` is the non-glass hairline surface, for places where glass would be noise.
 
+**Liquid glass.** Add `data-liquid` to any `.glass` element for the clear variant: a nearly clear fill, light blur, lifted saturation and a specular rim (bright top edge, counter-light along the bottom, light trapped in the rim). `data-liquid="deep"` keeps more fill for panels that carry a lot of type. Clear glass needs something to show, so pair it with `<LightField tone="blue|gold|violet|teal" />` (`src/components/ui/LightField.tsx`): four soft pools in the light roles drifting on long loops, transform-only, held while off-screen, still under reduced motion.
+
+### Type
+
+Inter (variable, with an optical-size axis, so display sizes get the Display cut) for the interface, Geist Mono for labels, Newsreader (optical sizes) for the research publication's titles and reading column, and Instrument Serif for rare italic accents. All are self-hosted from `src/fonts`.
+
 ### Scenes
 
 `<Section tone="void | dark | raised | lit | warm">` sets the lighting of each scene so the page has rhythm: some scenes are restrained, others open up. `<AmbientGlow>` adds local light sources.
@@ -145,7 +151,7 @@ drives routes, hubs, internal links, JSON-LD and the sitemap.
 | Locations | `/locations`, `/locations/[slug]` | `content/commercial/locations.ts` (empty) |
 | Guides | `/guides`, `/guides/[slug]` | `content/library/guides.ts` |
 | Playbooks | `/playbooks`, `/playbooks/[slug]` | `content/library/playbooks.ts` |
-| Research | `/research`, `/research/[slug]` | `content/library/research.ts` (empty) |
+| Research | `/research`, `/research/[slug]` | `content/library/research.ts`, `content/library/research/*.ts` |
 
 **Rules for adding a page** (schemas in `content/commercial/types.ts` and
 `content/library/types.ts`):
@@ -166,8 +172,14 @@ the sitemap until they have genuine entries:
 - *Locations* — only for places the studio has an office or people. Until then
   `/locations` returns 404. A location with an office gets `ProfessionalService`
   markup with its address.
-- *Research* — only studies with a complete methodology (sample, period,
-  sources, limitations) marked as reviewed. Until then `/research` is noindex.
+- *Research* — every report states its `format` (analysis, model, blueprint
+  or study), its `basis` (what it rests on, and what it isn't) and at least
+  three key points. A *study* — original data — additionally needs a complete
+  methodology (sample, period, sources, limitations) marked as reviewed.
+  Studies announced before they have data live in `inDesign` and show on the
+  hub with their question and protocol only. Numbers in figures must be
+  `illustrative` (labelled wherever they render) or come from the reader's own
+  inputs; prose avoids percentages and multipliers entirely.
 - *Case studies* — `content/work.ts` already separates blueprints from case
   studies; a case study needs a real, approved client and results.
 
@@ -182,6 +194,23 @@ metadata on every page; JSON-LD for `Service`, `FAQPage`, `Article`,
 `CollectionPage` and `BreadcrumbList`; visible breadcrumbs; related-page links
 between collections; and every live page in the sitemap with its last edit
 date.
+
+### Landing kit and the publication
+
+Commercial pages are built from `src/components/landing/Landing.tsx`: a hero
+with an instrument panel and two ways forward, chapters with one idea each
+(statement, bento, process, fit, comparison, options, checks, verdict), a
+mid-page conversion band, FAQs with FAQPage markup, a related rail, and a
+floating section dock (`SectionDock.tsx`) that appears after the hero and
+steps aside for the closing call to action. The prose is intact for crawlers
+but chunked for people.
+
+Guides, playbooks and research share `src/components/editorial/Article.tsx`:
+a journal masthead, "the short version" and "what this rests on" up front,
+numbered sections, a live table of contents, and figures from
+`Figure.tsx` (flow, stack, bars, formula, 2×2 matrix, and the interactive
+paid search model in `PaidSearchModel.tsx`). The hub at `/research` leads with
+the report readers can run on their own numbers.
 
 ## Client portal
 

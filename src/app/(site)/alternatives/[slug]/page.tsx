@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { PageHero } from "@/components/layout/PageHero";
 import { ProjectCTA } from "@/components/home/ProjectCTA";
-import { Section } from "@/components/ui/Surface";
-import { Checklist, Faqs, Heading, Instrument, JsonLd, ProseSection, Related, Table } from "@/components/seo/blocks";
+import { JsonLd } from "@/components/seo/blocks";
+import { Checks, Chapter, Convert, FaqList, LandingHero, Options, RelatedRail, SignalPanel, Statement } from "@/components/landing/Landing";
+import { SectionDock } from "@/components/landing/SectionDock";
 import { articleLd, breadcrumbLd } from "@/seo/jsonld";
 import { published, resolveRelated } from "@/seo/registry";
 import { pageMetadata } from "@/seo/site";
@@ -29,34 +29,47 @@ export default async function AlternativesPage({ params }: Props) {
     { name: "Alternatives", path: "/alternatives" },
     { name: p.name, path },
   ];
+  const start = { label: "Get a straight answer", href: "/start?need=unsure" };
   return (
     <>
       <JsonLd data={articleLd({ title: p.metaTitle, description: p.metaDescription, path, published: p.updated, updated: p.updated })} />
       <JsonLd data={breadcrumbLd([{ name: "Home", path: "/" }, ...trail])} />
-      <PageHero
-        eyebrow={p.hero.eyebrow}
+      <LandingHero
         crumbs={trail}
-        accent="violet"
-        title={[p.hero.title[0], <em key="a" className="t-accent">{p.hero.title[1]}</em>]}
+        eyebrow={p.hero.eyebrow}
+        tone="violet"
+        title={p.hero.title}
         lead={p.hero.lead}
-        visual={<Instrument label="The options" aside={`${p.options.length} routes`} items={p.options.map((o) => o.name)} />}
+        primary={{ label: "Compare the options", href: "#options" }}
+        secondary={{ label: "How to decide", href: "#decide" }}
+        visual={<SignalPanel label="The options" aside={`${p.options.length} routes`} items={p.options.map((o) => o.name)} chip={["Compared on", "Fit, cost and trade-offs"]} />}
       />
-      <ProseSection kicker="What you’re replacing" heading={p.replacing.heading} body={p.replacing.body} id="replacing-title" />
-      <Section tone="raised" labelledBy="reasons-title">
-        <Heading id="reasons-title" eyebrow="Why people look elsewhere" title={["The usual reasons", "to change."]} />
-        <Checklist items={p.reasons} />
-      </Section>
-      <Section tone="dark" labelledBy="options-title">
-        <Heading id="options-title" eyebrow="The options" title={["Every realistic route,", "with its trade-offs."]} />
-        <Table caption="Options compared" columns={["Option", "Best for", "Trade-offs"]} rows={p.options.map((o) => [o.name, o.bestFor, o.tradeoffs])} />
-      </Section>
-      <Section tone="raised" labelledBy="decide-title">
-        <Heading id="decide-title" eyebrow="Deciding" title={["How to choose", "between them."]} />
-        <Checklist items={p.howToDecide} />
-      </Section>
-      <Faqs faqs={p.faqs} />
-      <Related entries={resolveRelated(p.related, path)} />
+      <Chapter id="replacing" eyebrow="What you’re replacing" title={[p.replacing.heading, ""]}>
+        <Statement body={p.replacing.body} />
+      </Chapter>
+      <Chapter id="reasons" eyebrow="Why people look elsewhere" title={["The usual reasons", "to change."]} light tone="violet">
+        <Checks items={p.reasons} />
+      </Chapter>
+      <Chapter id="options" eyebrow="The options" title={["Every realistic route,", "with its trade-offs."]}>
+        <Options items={p.options} />
+      </Chapter>
+      <Chapter id="decide" eyebrow="Deciding" title={["How to choose", "between them."]} light tone="blue" raised>
+        <Checks items={p.howToDecide} />
+      </Chapter>
+      <Convert tone="violet" title={["Not sure which", "route fits?"]} text="Tell us what you have today and what isn’t working. We’ll tell you which route we’d take in your position — even when it isn’t us." primary={start} secondary={{ label: "Read the questions first", href: "#faq" }} />
+      <FaqList faqs={p.faqs} />
+      <RelatedRail entries={resolveRelated(p.related, path)} />
       <ProjectCTA />
+      <SectionDock
+        items={[
+          { id: "replacing", label: "Replacing" },
+          { id: "reasons", label: "Reasons" },
+          { id: "options", label: "Options" },
+          { id: "decide", label: "Deciding" },
+          { id: "faq", label: "FAQ" },
+        ]}
+        cta={start}
+      />
     </>
   );
 }

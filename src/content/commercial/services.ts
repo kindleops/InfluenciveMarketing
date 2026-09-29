@@ -137,8 +137,7 @@ export const servicePages: ServicePage[] = [
       useCases: ["website-migration", "organic-traffic-drop"],
       compare: ["seo-vs-ppc"],
       guides: ["technical-seo-audit", "website-migration-seo-checklist"],
-      playbooks: ["topic-cluster-program"],
-    },
+      playbooks: ["topic-cluster-program"], research: ["organic-search-after-ai-overviews"] },
   },
   {
     slug: "paid-media",
@@ -274,8 +273,7 @@ export const servicePages: ServicePage[] = [
       useCases: ["scaling-paid-media"],
       compare: ["seo-vs-ppc"],
       guides: ["marketing-attribution-models"],
-      playbooks: ["creative-testing-system"],
-    },
+      playbooks: ["creative-testing-system"], research: ["paid-search-economics-high-ticket-services", "anatomy-of-a-50k-month-acquisition-system"] },
   },
   {
     slug: "web-design",
@@ -413,8 +411,7 @@ export const servicePages: ServicePage[] = [
       solutions: ["website-redesign"],
       useCases: ["website-migration"],
       guides: ["website-migration-seo-checklist", "landing-page-optimization"],
-      insights: ["website-as-operating-system"],
-    },
+      insights: ["website-as-operating-system"], research: ["why-saas-homepages-lose-the-sale"] },
   },
   {
     slug: "social-media",
@@ -680,8 +677,7 @@ export const servicePages: ServicePage[] = [
       services: ["web-design", "paid-media", "marketing-analytics"],
       industries: ["ecommerce"],
       solutions: ["lower-acquisition-cost", "lead-generation"],
-      guides: ["landing-page-optimization"],
-    },
+      guides: ["landing-page-optimization"], research: ["why-saas-homepages-lose-the-sale"] },
   },
   {
     slug: "branding",
@@ -946,8 +942,7 @@ export const servicePages: ServicePage[] = [
       services: ["seo", "email-marketing", "social-media"],
       industries: ["b2b-saas", "professional-services"],
       solutions: ["lead-generation"],
-      playbooks: ["topic-cluster-program"],
-    },
+      playbooks: ["topic-cluster-program"], research: ["organic-search-after-ai-overviews"] },
   },
   {
     slug: "email-marketing",
@@ -1214,8 +1209,7 @@ export const servicePages: ServicePage[] = [
       industries: ["healthcare"],
       solutions: ["marketing-attribution"],
       guides: ["marketing-attribution-models"],
-      insights: ["connected-systems"],
-    },
+      insights: ["connected-systems"], research: ["anatomy-of-a-50k-month-acquisition-system"] },
   },
   {
     slug: "marketing-automation",

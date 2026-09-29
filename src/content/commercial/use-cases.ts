@@ -368,8 +368,7 @@ export const useCasePages: UseCasePage[] = [
       solutions: ["lower-acquisition-cost"],
       guides: ["landing-page-optimization"],
       playbooks: ["creative-testing-system"],
-      work: ["the-growth-engine"],
-    },
+      work: ["the-growth-engine"], research: ["anatomy-of-a-50k-month-acquisition-system"] },
   },
   {
     slug: "organic-traffic-drop",
@@ -488,8 +487,7 @@ export const useCasePages: UseCasePage[] = [
       services: ["seo", "marketing-analytics", "content-marketing"],
       useCases: ["website-migration"],
       guides: ["technical-seo-audit", "website-migration-seo-checklist"],
-      playbooks: ["topic-cluster-program"],
-    },
+      playbooks: ["topic-cluster-program"], research: ["organic-search-after-ai-overviews"] },
   },
   {
     slug: "post-funding-growth",

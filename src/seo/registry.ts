@@ -135,6 +135,7 @@ const RELATED_KIND: Record<keyof Related, Kind> = {
   alternatives: "alternative",
   guides: "guide",
   playbooks: "playbook",
+  research: "research",
   insights: "insight",
   work: "work",
 };
@@ -164,6 +165,7 @@ export function brokenRelated(): string[] {
     ...alternativePages.map((p) => ({ from: `/alternatives/${p.slug}`, related: p.related })),
     ...guides.map((p) => ({ from: `/guides/${p.slug}`, related: p.related })),
     ...playbooks.map((p) => ({ from: `/playbooks/${p.slug}`, related: p.related })),
+    ...research.map((p) => ({ from: `/research/${p.slug}`, related: p.related })),
   ];
   const broken: string[] = [];
   for (const s of sources)

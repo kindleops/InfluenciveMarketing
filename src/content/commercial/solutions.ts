@@ -99,8 +99,7 @@ export const solutionPages: SolutionPage[] = [
       useCases: ["website-migration"],
       guides: ["website-migration-seo-checklist", "landing-page-optimization"],
       insights: ["website-as-operating-system"],
-      work: ["the-relaunch"],
-    },
+      work: ["the-relaunch"], research: ["why-saas-homepages-lose-the-sale"] },
   },
   {
     slug: "rebrand",
@@ -303,8 +302,7 @@ export const solutionPages: SolutionPage[] = [
       industries: ["b2b-saas", "professional-services"],
       solutions: ["marketing-attribution"],
       guides: ["landing-page-optimization"],
-      playbooks: ["speed-to-lead"],
-    },
+      playbooks: ["speed-to-lead"], research: ["paid-search-economics-high-ticket-services"] },
   },
   {
     slug: "lower-acquisition-cost",
@@ -404,8 +402,7 @@ export const solutionPages: SolutionPage[] = [
       solutions: ["marketing-attribution"],
       useCases: ["scaling-paid-media"],
       compare: ["seo-vs-ppc"],
-      playbooks: ["creative-testing-system"],
-    },
+      playbooks: ["creative-testing-system"], research: ["anatomy-of-a-50k-month-acquisition-system", "paid-search-economics-high-ticket-services"] },
   },
   {
     slug: "marketing-attribution",

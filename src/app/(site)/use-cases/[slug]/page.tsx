@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { PageHero } from "@/components/layout/PageHero";
 import { ProjectCTA } from "@/components/home/ProjectCTA";
-import { Section } from "@/components/ui/Surface";
-import { Checklist, Faqs, Heading, Instrument, ItemGrid, JsonLd, ProseSection, Related, Steps } from "@/components/seo/blocks";
+import { JsonLd } from "@/components/seo/blocks";
+import { Bento, Checks, Chapter, Convert, FaqList, LandingHero, Process, RelatedRail, SignalPanel, Statement } from "@/components/landing/Landing";
+import { SectionDock } from "@/components/landing/SectionDock";
 import { breadcrumbLd, serviceLd } from "@/seo/jsonld";
 import { published, resolveRelated } from "@/seo/registry";
 import { pageMetadata } from "@/seo/site";
@@ -29,34 +29,47 @@ export default async function UseCaseLanding({ params }: Props) {
     { name: "Use cases", path: "/use-cases" },
     { name: p.name, path },
   ];
+  const start = { label: "Start a project", href: "/start" };
   return (
     <>
       <JsonLd data={serviceLd({ name: p.name, description: p.metaDescription, path, serviceType: p.name })} />
       <JsonLd data={breadcrumbLd([{ name: "Home", path: "/" }, ...trail])} />
-      <PageHero
-        eyebrow={p.hero.eyebrow}
+      <LandingHero
         crumbs={trail}
-        accent="cyan"
-        title={[p.hero.title[0], <em key="a" className="t-accent">{p.hero.title[1]}</em>]}
+        eyebrow={p.hero.eyebrow}
+        tone="teal"
+        title={p.hero.title}
         lead={p.hero.lead}
-        visual={<Instrument label="Before you start" aside={p.name} items={p.checklist} />}
+        primary={start}
+        secondary={{ label: "The checklist", href: "#checklist" }}
+        visual={<SignalPanel label="Before you start" aside={p.name} items={p.checklist} chip={["Run as", "A plan with owners and dates"]} />}
       />
-      <ProseSection kicker="The situation" heading={p.situation.heading} body={p.situation.body} id="situation-title" />
-      <Section tone="raised" labelledBy="risks-title">
-        <Heading id="risks-title" eyebrow="The risks" title={["What usually", "goes wrong."]} />
-        <ItemGrid items={p.risks} />
-      </Section>
-      <Section tone="dark" labelledBy="plan-title">
-        <Heading id="plan-title" eyebrow="The plan" title={["How we’d", "run it."]} />
-        <Steps items={p.plan} />
-      </Section>
-      <Section tone="raised" labelledBy="checklist-title">
-        <Heading id="checklist-title" eyebrow="Checklist" title={["Before, during", "and after."]} />
-        <Checklist items={p.checklist} />
-      </Section>
-      <Faqs faqs={p.faqs} />
-      <Related entries={resolveRelated(p.related, path)} />
+      <Chapter id="situation" eyebrow="The situation" title={[p.situation.heading, ""]}>
+        <Statement body={p.situation.body} />
+      </Chapter>
+      <Chapter id="risks" eyebrow="The risks" title={["What usually", "goes wrong."]} light tone="teal">
+        <Bento items={p.risks} />
+      </Chapter>
+      <Chapter id="plan" eyebrow="The plan" title={["How we’d", "run it."]}>
+        <Process items={p.plan} />
+      </Chapter>
+      <Chapter id="checklist" eyebrow="Checklist" title={["Before, during", "and after."]} light tone="blue" raised>
+        <Checks items={p.checklist} />
+      </Chapter>
+      <Convert tone="teal" title={["In the middle", "of this now?"]} text="Tell us where things stand. Someone senior will read it and reply with what they’d do first." primary={start} secondary={{ label: "Read the questions first", href: "#faq" }} />
+      <FaqList faqs={p.faqs} />
+      <RelatedRail entries={resolveRelated(p.related, path)} />
       <ProjectCTA />
+      <SectionDock
+        items={[
+          { id: "situation", label: "Situation" },
+          { id: "risks", label: "Risks" },
+          { id: "plan", label: "Plan" },
+          { id: "checklist", label: "Checklist" },
+          { id: "faq", label: "FAQ" },
+        ]}
+        cta={start}
+      />
     </>
   );
 }
