@@ -1,9 +1,11 @@
 import { Button } from "@/components/ui/Button";
 import { AmbientGlow } from "@/components/ui/Surface";
+import { SiteChrome } from "@/components/layout/SiteChrome";
 import styles from "./not-found.module.css";
 
 export default function NotFound() {
   return (
+    <SiteChrome>
     <section className={styles.page} aria-labelledby="nf-title">
       <AmbientGlow color="brand" size={1100} x="50%" y="30%" intensity={0.18} drift />
       <div className={`container ${styles.inner}`}>
@@ -22,5 +24,6 @@ export default function NotFound() {
         </div>
       </div>
     </section>
+    </SiteChrome>
   );
 }

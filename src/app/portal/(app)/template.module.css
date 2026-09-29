@@ -1,0 +1,15 @@
+.page {
+  animation: enter 520ms var(--p-ease) backwards;
+}
+@keyframes enter {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 10px, 0);
+    filter: blur(4px);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .page {
+    animation: none;
+  }
+}

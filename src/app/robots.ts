@@ -3,7 +3,7 @@ import { brand } from "@/config/brand";
 
 export default function robots(): MetadataRoute.Robots {
   return {
-    rules: { userAgent: "*", allow: "/", disallow: "/api/" },
+    rules: { userAgent: "*", allow: "/", disallow: ["/api/", "/portal"] },
     sitemap: `${brand.url.replace(/\/$/, "")}/sitemap.xml`,
   };
 }

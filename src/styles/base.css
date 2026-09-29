@@ -97,8 +97,8 @@ p {
   text-wrap: pretty;
 }
 
-ul[role="list"],
-ol[role="list"] {
+ul[role="list"]:not(:where([data-portal] *)),
+ol[role="list"]:not(:where([data-portal] *)) {
   list-style: none;
   padding: 0;
 }

@@ -33,6 +33,16 @@ async function traverse(page: Page, step = 600) {
   await page.waitForTimeout(600);
 }
 
+/** Wait until every finite animation (entrances, fades) has finished, so an
+ *  audit never samples text halfway through fading in. */
+async function settle(page: Page) {
+  await page.waitForFunction(
+    () => document.getAnimations().every((a) => a.playState !== "running" || a.effect?.getTiming().iterations === Infinity),
+    undefined,
+    { timeout: 10_000 },
+  );
+}
+
 async function routes(page: Page) {
   const res = await page.request.get("/sitemap.xml");
   expect(res.ok()).toBeTruthy();
@@ -274,6 +284,7 @@ test.describe("accessibility", () => {
       await page.goto(path, { waitUntil: "networkidle" });
       await traverse(page, 900);
       await page.waitForTimeout(1200);
+      await settle(page);
       await page.addScriptTag({ path: AXE_PATH });
       const violations = await page.evaluate(async () => {
         // @ts-expect-error injected

@@ -25,7 +25,9 @@ export default defineConfig({
     },
   },
   webServer: {
-    command: `npx next start -p ${PORT}`,
+    // The portal suite runs on the developer fixtures (never enabled in a
+    // production deployment; see src/portal/source/index.ts).
+    command: `PORTAL_DATA=fixtures npx next start -p ${PORT}`,
     url: `http://localhost:${PORT}`,
     reuseExistingServer: true,
     timeout: 120_000,

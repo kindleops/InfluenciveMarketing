@@ -1,0 +1,215 @@
+/* Shared layout for object viewers: content items, creative, deliverables. */
+.viewer {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(320px, 400px);
+  height: 100%;
+  min-height: 0;
+}
+.stage {
+  position: relative;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  min-height: 0;
+  background:
+    radial-gradient(60% 60% at 50% 45%, rgb(var(--p-accent) / 0.1), transparent 70%),
+    rgb(0 0 0 / 0.35);
+  border-right: 1px solid var(--p-line);
+}
+.stage:fullscreen {
+  background: #050506;
+}
+.tools {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.9rem 1rem;
+  border-bottom: 1px solid var(--p-line);
+}
+.tools > :last-child {
+  margin-left: auto;
+}
+.canvas {
+  display: grid;
+  place-items: center;
+  min-height: 0;
+  padding: clamp(1rem, 3vw, 2.5rem);
+  overflow: auto;
+}
+.canvasInner {
+  width: min(100%, var(--pw, 520px));
+}
+.compare {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  width: 100%;
+  align-items: center;
+}
+.compareSide {
+  display: grid;
+  gap: 0.6rem;
+  justify-items: center;
+}
+.compareLabel {
+  font-size: var(--p-fs-label);
+  color: var(--text-muted);
+}
+.compareLabel b {
+  color: var(--text-primary);
+  font-weight: 540;
+}
+.rail {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+.railHead {
+  display: grid;
+  gap: 0.6rem;
+  padding: 1.5rem 3.5rem 1.25rem 1.5rem;
+  border-bottom: 1px solid var(--p-line);
+}
+.railKicker {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 0.9rem;
+  font-size: var(--p-fs-label);
+  color: var(--text-muted);
+}
+.railTitle {
+  font-size: 1.35rem;
+  font-weight: 480;
+  letter-spacing: -0.025em;
+  line-height: 1.2;
+}
+.facts {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.5rem 1rem;
+  font-size: var(--p-fs-meta);
+}
+.facts dt {
+  color: var(--text-muted);
+}
+.facts dd {
+  margin: 0;
+  color: var(--text-secondary);
+  min-width: 0;
+}
+.section {
+  display: grid;
+  gap: 0.75rem;
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid var(--p-line);
+}
+.section:last-child {
+  border-bottom: 0;
+}
+.sectionTitle {
+  font-size: var(--p-fs-label);
+  font-weight: 500;
+  color: var(--text-muted);
+}
+.copy {
+  display: grid;
+  gap: 0.4rem;
+  padding: 1rem;
+  border-radius: var(--p-r-md);
+  background: var(--p-well);
+  box-shadow: inset 0 0 0 1px var(--p-line);
+}
+.copyHead {
+  font-size: var(--p-fs-body);
+  font-weight: 540;
+}
+.copyBody {
+  font-size: var(--p-fs-ui);
+  color: var(--text-secondary);
+  white-space: pre-line;
+}
+.copyCta {
+  justify-self: start;
+  margin-top: 0.35rem;
+  font-size: var(--p-fs-label);
+  color: var(--text-muted);
+}
+.context {
+  display: grid;
+  gap: 0.75rem;
+  padding: 1rem;
+  border-radius: var(--p-r-md);
+  background: linear-gradient(180deg, rgb(var(--tone-attention) / 0.08), rgb(var(--tone-attention) / 0.02));
+  box-shadow: inset 0 0 0 1px rgb(var(--tone-attention) / 0.22);
+}
+.contextHead {
+  display: grid;
+  gap: 0.15rem;
+  font-size: var(--p-fs-meta);
+  color: var(--text-secondary);
+}
+.contextHead strong {
+  font-size: var(--p-fs-ui);
+  font-weight: 540;
+  color: var(--text-primary);
+}
+.revisions {
+  display: grid;
+  gap: 0.1rem;
+  list-style: none;
+  padding: 0;
+}
+.rev {
+  display: grid;
+  grid-template-columns: 2.6rem 1fr auto;
+  gap: 0.75rem;
+  align-items: baseline;
+  padding: 0.5rem 0.6rem;
+  margin: 0 -0.6rem;
+  border-radius: var(--p-r-xs);
+  font-size: var(--p-fs-meta);
+  color: var(--text-secondary);
+}
+a.rev:hover {
+  background: rgb(255 255 255 / 0.04);
+}
+.rev[aria-current] {
+  background: rgb(255 255 255 / 0.06);
+}
+.rev b {
+  font-family: var(--font-mono);
+  font-size: var(--p-fs-label);
+  font-weight: 500;
+  color: var(--text-primary);
+}
+.rev time {
+  font-size: var(--p-fs-label);
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+@media (max-width: 899px) {
+  .viewer {
+    grid-template-columns: minmax(0, 1fr);
+    height: auto;
+    overflow-y: auto;
+  }
+  .tools {
+    padding-right: 3.75rem;
+  }
+  .stage {
+    border-right: 0;
+    border-bottom: 1px solid var(--p-line);
+  }
+  .canvas {
+    max-height: 60vh;
+  }
+  .rail {
+    overflow: visible;
+  }
+  .compare {
+    grid-template-columns: 1fr;
+  }
+}

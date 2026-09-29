@@ -127,6 +127,66 @@ With nothing configured, development logs the inquiry and succeeds. **Production
 
 ---
 
+## Client portal
+
+`/portal` is the client-facing operating system: where a client sees what the
+studio is doing, what changed, what's performing, what needs their decision
+and what happens next. It lives in the same app as the site but has its own
+shell: `app/(site)/` holds the marketing routes and their chrome (header,
+footer, smooth scroll, intro), while `app/portal/` holds the portal.
+
+**Routes**
+
+| Route | Purpose |
+| --- | --- |
+| `/portal` | Command — current state, what needs you, active work, next 14 days, performance, observations, what changed |
+| `/portal/approvals` | Approval inbox; each decision shows what/why/what changed/what happens next, audit trail, confirm step for high-impact items |
+| `/portal/campaigns`, `/portal/campaigns/[id]` | Campaign list and campaign room (overview, performance, creative, audience, timeline, experiments, recommendations, approvals) |
+| `/portal/content` | Calendar, pipeline and library; any item opens in place with its approval |
+| `/portal/creative` | Studio gallery; viewer with versions, side-by-side compare, full screen, comments, approval |
+| `/portal/analytics` | Outcome → channel → campaign → creative → attribution, with 7D/30D/90D/YTD/custom ranges |
+| `/portal/growth` | Roadmap (now/next/later), opportunities with evidence, experiments |
+| `/portal/messages` | Threads attached to the work they're about |
+| `/portal/deliverables` | Versioned archive |
+| `/portal/billing` | Engagement, invoices, approved additional work |
+| `/portal/integrations`, `team`, `account`, `settings`, `help` | Secondary |
+| `/portal/welcome` | First-login setup |
+| `/portal/access` | Shown when no portal session exists |
+| `/portal/search` | JSON index for the command palette (⌘K), loaded on first open |
+
+**Data.** Every screen reads through the `PortalSource` interface
+(`src/portal/source/types.ts`); entities are in `src/portal/model.ts`. The UI
+never invents a number, person or piece of work — an empty slice renders an
+honest empty state. Mutations are server actions (`app/portal/actions.ts`)
+that re-check the signed-in role's capability (`src/portal/access.ts`).
+
+**Where data comes from** (`src/portal/source/index.ts`):
+
+- *No backend is connected yet.* In production the portal renders only the
+  access screen.
+- *Developer fixtures* (`src/portal/source/fixture/`) — a fictional client,
+  "Halden Light Co.", plus a brand-new account for empty states and
+  onboarding. On automatically in `next dev`; elsewhere only with
+  `PORTAL_DATA=fixtures`; always refused when `VERCEL_ENV=production`. While
+  on, every screen carries a "Demo data" marker. The fixture world is
+  in-memory per server process, so approvals, comments and replies work
+  end-to-end and reset on restart. The account menu can preview the portal as
+  each client role (owner, admin, member, viewer).
+
+To connect a real backend, implement `PortalSource` and return it from
+`getPortal()` together with the authenticated session.
+
+**Design.** Portal tokens live in `styles/portal.css` (scoped to
+`[data-portal]`). Glass is reserved for the surfaces that carry a decision or
+the state of the system; lists and tables use hairline plates. Motion: a
+spring "lens" marks the active item in navigation and segmented controls,
+dialogs rise out of a blur and become bottom sheets on phones, the page
+settles in on navigation. Ambient light drifts slowly behind everything and
+follows a fine pointer. Everything stops under reduced motion. Charts are
+custom SVG (`components/portal/charts/`) with a crosshair, keyboard reading
+and a data table for assistive tech; the chart palette is validated for
+colour-vision separation.
+
 ## Performance and accessibility
 
 - The hero object (`components/hero/GlassObject.tsx`) is the brand mark rendered as glass: a single ray-marched fragment shader with refraction, 6-sample spectral dispersion and Fresnel reflections of a procedural studio. It uses a bounding-sphere early-out and capped resolution with adaptive downscaling, runs at up to ~40 fps, and pauses offscreen or when the tab is hidden. Reduced motion renders one still frame; without WebGL, a CSS horizon stands in.
@@ -142,7 +202,7 @@ npm run build && npm run test:e2e   # Playwright + axe against the production bu
 npm run verify                      # typecheck + build + e2e
 ```
 
-The suite (`e2e/site.spec.ts`) checks:
+The site suite (`e2e/site.spec.ts`) checks:
 
 - console, hydration and page errors
 - horizontal overflow at four viewports
@@ -156,13 +216,22 @@ The suite (`e2e/site.spec.ts`) checks:
 - that every sitemap route renders
 - internal links
 
+The portal suite (`e2e/portal.spec.ts`, run against the fixtures) checks that
+every surface renders and is marked as demo data and not indexed, the
+approval flow and its guards, the command palette, replies, keyboard chart
+reading, role enforcement, honest empty states for a new account, axe on
+desktop and phone, sideways overflow, and reduced motion.
+
 On machines without a GPU, WebGL runs on SwiftShader.
 
 ## Structure
 
 ```
 src/
-  app/            routes (home, work, capabilities, services, approach, insights, about, start, legal, api)
+  app/
+    (site)/       marketing routes (home, work, capabilities, services, approach, insights, about, start, legal)
+    portal/       client portal routes, server actions, palette index
+    api/          inquiry endpoint
   components/
     brand/        identity glyph + wordmark
     hero/         liquid-light shader, system console, hero composition
@@ -173,10 +242,12 @@ src/
     proof/        testimonials / logos (render only with real data)
     services/     sticky discipline index
     system/       reveal observer, interaction layer, smooth scroll
+    portal/       portal shell, primitives, charts and surfaces
     ui/           primitives
     work/         case study previews and art-directed visuals
   config/         brand + navigation
   content/        all copy and structured content
   lib/            motion utilities
+  portal/         portal model, data sources (+ developer fixtures), access, formatting
   styles/         tokens, base, materials, motion
 ```

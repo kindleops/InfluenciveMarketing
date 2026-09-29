@@ -1,0 +1,335 @@
+/* Compositions for creative previews. Plates are the studio's photography;
+   everything else is type and layout, so previews stay crisp at any size. */
+.frame {
+  --t: var(--light-gold);
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  aspect-ratio: var(--ar);
+  overflow: hidden;
+  border-radius: var(--p-r-md);
+  background: #0b0b0d;
+  box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.06), 0 20px 40px -24px rgb(0 0 0 / 0.9);
+  container-type: inline-size;
+}
+.frame[data-tone="blue"] { --t: var(--light-blue); }
+.frame[data-tone="violet"] { --t: var(--light-violet); }
+.frame[data-tone="teal"] { --t: var(--light-teal); }
+.frame[data-fit="contain"] {
+  width: auto;
+  height: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+}
+.img {
+  object-fit: cover;
+  z-index: 0;
+}
+.grade {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    linear-gradient(180deg, rgb(0 0 0 / 0.1) 30%, rgb(0 0 0 / 0.7) 100%),
+    radial-gradient(90% 60% at 70% 20%, rgb(var(--t) / 0.18), transparent 70%);
+}
+
+/* Ad */
+.ad {
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 6cqi;
+}
+.brand {
+  align-self: flex-end;
+  font-size: max(7px, 3.2cqi);
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgb(255 255 255 / 0.9);
+}
+.headline {
+  font-size: max(11px, 8.5cqi);
+  font-weight: 450;
+  letter-spacing: -0.035em;
+  line-height: 1;
+  color: #fff;
+  text-wrap: balance;
+}
+.sub {
+  margin-top: 2.5cqi;
+  font-size: max(7px, 3.4cqi);
+  color: rgb(255 255 255 / 0.78);
+}
+.cta {
+  display: inline-block;
+  margin-top: 4cqi;
+  padding: 1.6cqi 3.2cqi;
+  border-radius: 99px;
+  font-size: max(7px, 3cqi);
+  font-weight: 560;
+  color: #111;
+  background: #f4f1ea;
+}
+
+/* Frame (social / photography) */
+.caption {
+  position: absolute;
+  z-index: 2;
+  left: 5cqi;
+  bottom: 4cqi;
+  font-size: max(8px, 3.4cqi);
+  color: rgb(255 255 255 / 0.85);
+}
+
+/* Web page */
+.browser {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  background: #0d0d10;
+}
+.chrome {
+  display: flex;
+  align-items: center;
+  gap: 1cqi;
+  height: max(10px, 4.2cqi);
+  padding: 0 2cqi;
+  background: #19191d;
+  box-shadow: inset 0 -1px 0 rgb(255 255 255 / 0.05);
+}
+.chrome i {
+  width: max(4px, 1.1cqi);
+  height: max(4px, 1.1cqi);
+  border-radius: 50%;
+  background: rgb(255 255 255 / 0.2);
+}
+.chrome span {
+  margin-left: 2cqi;
+  height: 50%;
+  flex: 0 1 36%;
+  border-radius: 99px;
+  background: rgb(255 255 255 / 0.07);
+}
+.site {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  overflow: hidden;
+}
+.siteNav {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2.4cqi 4cqi;
+  font-size: max(6px, 1.9cqi);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgb(255 255 255 / 0.85);
+  z-index: 2;
+}
+.siteNav span:last-child {
+  letter-spacing: 0.04em;
+  text-transform: none;
+  opacity: 0.7;
+}
+.siteCopy {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 5cqi 4cqi;
+  z-index: 1;
+}
+.siteCopy .headline {
+  font-size: max(10px, 5.4cqi);
+}
+.siteCopy .sub {
+  font-size: max(6px, 2cqi);
+}
+.siteImg {
+  position: relative;
+}
+
+/* Document */
+.doc {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 8cqi 7cqi;
+  background:
+    radial-gradient(120% 70% at 100% 0%, rgb(var(--t) / 0.14), transparent 60%),
+    linear-gradient(170deg, #17171a, #0d0d0f);
+}
+.docStrip {
+  position: absolute;
+  z-index: 0;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 38%;
+  opacity: 0.55;
+  -webkit-mask-image: linear-gradient(180deg, #000, transparent);
+  mask-image: linear-gradient(180deg, #000, transparent);
+}
+.docMeta {
+  position: relative;
+  font-size: max(6px, 2.6cqi);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgb(255 255 255 / 0.6);
+}
+.docTitle {
+  position: relative;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: max(12px, 11cqi);
+  line-height: 0.98;
+  letter-spacing: -0.02em;
+  color: #f4f1ea;
+}
+.docSub {
+  position: relative;
+  margin-top: 3cqi;
+  font-size: max(6px, 3cqi);
+  color: rgb(255 255 255 / 0.62);
+}
+.docRule {
+  position: relative;
+  height: 1px;
+  background: linear-gradient(90deg, rgb(var(--t) / 0.8), transparent);
+}
+
+/* Typographic brand frame */
+.type {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: 1cqi;
+  background: radial-gradient(70% 60% at 50% 45%, rgb(var(--t) / 0.16), transparent 70%), #0c0c0e;
+}
+.typeWord {
+  font-size: max(16px, 14cqi);
+  font-weight: 460;
+  letter-spacing: -0.05em;
+  color: #f4f1ea;
+}
+.typeSub {
+  font-size: max(7px, 3cqi);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: rgb(255 255 255 / 0.55);
+}
+
+/* Film */
+.film {
+  position: absolute;
+  inset: 0;
+}
+.film::before,
+.film::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 7%;
+  background: #000;
+  z-index: 3;
+}
+.film::before {
+  top: 0;
+}
+.film::after {
+  bottom: 0;
+}
+.play {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: max(26px, 11cqi);
+  height: max(26px, 11cqi);
+  margin: calc(max(26px, 11cqi) / -2) 0 0 calc(max(26px, 11cqi) / -2);
+  border-radius: 50%;
+  color: #fff;
+  background: rgb(255 255 255 / 0.14);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.3);
+}
+.play svg {
+  width: 42%;
+  height: 42%;
+  fill: currentColor;
+  stroke: none;
+}
+.filmTitle {
+  position: absolute;
+  left: 6cqi;
+  bottom: 11%;
+  z-index: 2;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: max(10px, 6cqi);
+  color: #fff;
+}
+.timecode {
+  position: absolute;
+  right: 5cqi;
+  bottom: 11%;
+  z-index: 2;
+  font-family: var(--font-mono);
+  font-size: max(6px, 2.4cqi);
+  color: rgb(255 255 255 / 0.75);
+}
+
+/* Email */
+.email {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-rows: auto 46% auto;
+  background: #f1eee8;
+  color: #151515;
+}
+.emailHead {
+  display: flex;
+  justify-content: center;
+  padding: 4cqi;
+  font-size: max(6px, 3cqi);
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+}
+.emailImg {
+  position: relative;
+}
+.emailBody {
+  padding: 5cqi 7cqi;
+  text-align: center;
+}
+.emailBody .headline {
+  color: #151515;
+  font-size: max(10px, 7cqi);
+}
+.emailBody .sub {
+  color: rgb(0 0 0 / 0.6);
+}
+.emailBody .cta {
+  color: #f4f1ea;
+  background: #151515;
+}

@@ -1,0 +1,118 @@
+/* ==========================================================================
+   Client portal tokens. Scoped to [data-portal] so they never reach the
+   marketing site. Built on the same foundations (tokens.css): the portal is
+   the operating side of the same world, set at application scale.
+   ========================================================================== */
+
+[data-portal] {
+  /* Surfaces */
+  --p-bg: #050506;
+  --p-panel: rgb(255 255 255 / 0.026);
+  --p-panel-hover: rgb(255 255 255 / 0.042);
+  --p-panel-strong: rgb(255 255 255 / 0.05);
+  --p-well: rgb(0 0 0 / 0.22);
+  --p-line: rgb(241 239 234 / 0.075);
+  --p-line-strong: rgb(241 239 234 / 0.13);
+  --p-line-focus: rgb(241 239 234 / 0.5);
+
+  /* Radii — one family, nested surfaces step down */
+  --p-r-xl: 22px;
+  --p-r-lg: 16px;
+  --p-r-md: 12px;
+  --p-r-sm: 9px;
+  --p-r-xs: 6px;
+
+  /* Type at application scale */
+  --p-fs-display: clamp(2rem, 1.35rem + 1.7vw, 3.1rem);
+  --p-fs-title: clamp(1.55rem, 1.3rem + 0.7vw, 2.05rem);
+  --p-fs-h2: 1.0625rem;
+  --p-fs-body: 0.9375rem;
+  --p-fs-ui: 0.875rem;
+  --p-fs-meta: 0.8125rem;
+  --p-fs-label: 0.75rem;
+
+  /* Tones — "r g b" so surfaces can tint at any alpha */
+  --tone-live: 127 227 176;
+  --tone-positive: 127 227 176;
+  --tone-progress: 157 176 255;
+  --tone-attention: 226 200 150;
+  --tone-blocked: 255 138 122;
+  --tone-done: 241 239 234;
+  --tone-quiet: 241 239 234;
+
+  /* Client accent (set per account on the shell) */
+  --p-accent: var(--light-gold);
+
+  /* Motion */
+  --p-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --p-dur: 240ms;
+  --p-dur-slow: 480ms;
+
+  /* Chrome */
+  --p-sidebar: 256px;
+  --p-rail: 76px;
+  --p-header: 64px;
+  --p-inset: 12px;
+  --p-content: 1360px;
+  --p-pad: clamp(1rem, 0.5rem + 2vw, 2.75rem);
+  --p-bottom-nav: 0px;
+
+  color: var(--text-primary);
+  font-size: var(--p-fs-body);
+  line-height: 1.5;
+  letter-spacing: -0.006em;
+}
+
+[data-portal] :focus-visible {
+  outline: 1.5px solid var(--p-line-focus);
+  outline-offset: 2px;
+  border-radius: var(--p-r-xs);
+}
+
+[data-portal] ::selection {
+  background: rgb(var(--light-blue) / 0.45);
+  color: var(--text-primary);
+}
+
+/* List reset at zero specificity, so every component's own padding wins. */
+[data-portal] :where(ul[role="list"], ol[role="list"]) {
+  list-style: none;
+  padding: 0;
+}
+
+/* Numbers that line up in columns */
+[data-portal] .tnum {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Scrollbars stay out of the way */
+[data-portal] * {
+  scrollbar-width: thin;
+  scrollbar-color: rgb(255 255 255 / 0.14) transparent;
+}
+
+@media (max-width: 719px) {
+  [data-portal] {
+    --p-bottom-nav: calc(64px + env(safe-area-inset-bottom));
+  }
+}
+
+@media (pointer: coarse) {
+  [data-portal] {
+    --p-touch: 44px;
+  }
+}
+
+html:has([data-portal] dialog[open]) {
+  overflow: hidden;
+}
+
+/* Chart roles (validated for CVD separation on the panel surface):
+   primary series · second series · comparison period · target */
+[data-portal] {
+  --chart-1: #7289ff;
+  --chart-2: #b88a3e;
+  --chart-cmp: rgb(241 239 234 / 0.3);
+  --chart-grid: rgb(255 255 255 / 0.06);
+  --chart-axis: rgb(255 255 255 / 0.12);
+}

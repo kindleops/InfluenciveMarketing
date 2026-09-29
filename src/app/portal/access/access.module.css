@@ -1,0 +1,58 @@
+.page {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: 100svh;
+  padding: 2rem 1.25rem;
+  overflow: hidden;
+  background: var(--p-bg);
+}
+.glow {
+  position: absolute;
+  inset: auto -20% -40% -20%;
+  height: 70%;
+  background: radial-gradient(50% 50% at 50% 50%, rgb(var(--light-blue) / 0.16), transparent 70%);
+  pointer-events: none;
+}
+.horizon {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 62%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgb(210 222 255 / 0.4) 30%, #f1f3ff 55%, rgb(210 222 255 / 0.4) 80%, transparent);
+  box-shadow: 0 0 20px 1px rgb(150 172 255 / 0.35);
+  pointer-events: none;
+}
+.card {
+  position: relative;
+  z-index: 1;
+  width: min(440px, 100%);
+  padding: 2.25rem 2rem 2rem;
+  display: grid;
+  gap: 1rem;
+}
+.mark {
+  margin-bottom: 0.75rem;
+}
+.title {
+  font-size: 1.75rem;
+  font-weight: 470;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+}
+.body {
+  color: var(--text-secondary);
+  font-size: var(--p-fs-body);
+}
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+}
+.fine {
+  margin-top: 0.5rem;
+  font-size: var(--p-fs-label);
+  color: var(--text-muted);
+}

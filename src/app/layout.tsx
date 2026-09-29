@@ -3,13 +3,6 @@ import localFont from "next/font/local";
 import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
 import { brand } from "@/config/brand";
-import { SiteHeader } from "@/components/layout/SiteHeader";
-import { SiteFooter } from "@/components/layout/SiteFooter";
-import { RevealObserver } from "@/components/system/RevealObserver";
-import { InteractionLayer } from "@/components/system/InteractionLayer";
-import { SmoothScroll } from "@/components/system/SmoothScroll";
-import { Intro } from "@/components/system/Intro";
-import { ChapterIndicator } from "@/components/system/ChapterIndicator";
 import "./globals.css";
 
 const editorial = localFont({
@@ -60,22 +53,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           }}
         />
       </head>
-      <body>
-        <Intro />
-        <a href="#main" className="skip-link">
-          Skip to content
-        </a>
-        <SiteHeader />
-        <main id="main" tabIndex={-1}>
-          {children}
-        </main>
-        <SiteFooter />
-        <div className="grain" aria-hidden="true" />
-        <ChapterIndicator />
-        <RevealObserver />
-        <InteractionLayer />
-        <SmoothScroll />
-      </body>
+      <body>{children}</body>
     </html>
   );
 }
