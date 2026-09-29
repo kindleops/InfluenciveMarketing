@@ -128,8 +128,8 @@ export const localSeo: ServicePage = {
       a: "Each location gets its own verified profile, its own page on your site and its own tracking, all held to one central standard for names, categories and hours. Reporting puts locations side by side so the weak ones are visible.",
     },
     {
-      q: "You're remote. Can you do local SEO well from a distance?",
-      a: "Yes. The work happens in Google's tools, your website and the listings ecosystem. What we need from you is what only people on site can supply, such as photos and staff details, and we tell you exactly what to capture.",
+      q: "What do you need from us to get started?",
+      a: "Owner or manager access to each Business Profile, access to the website and analytics, and a short list of the services and areas that matter most. After that, the things only your people can supply — real photos, staff details, answers to common questions — and we tell you exactly what to capture.",
     },
   ],
   related: {

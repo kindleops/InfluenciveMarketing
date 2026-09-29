@@ -4,7 +4,7 @@ export const sanDiego: LocationPage = {
   slug: "san-diego",
   metaTitle: "San Diego Marketing Agency for Life Sciences & Health",
   metaDescription:
-    "Remote marketing for San Diego biotech, healthcare, defense-adjacent and hospitality companies — search, content and paid media built around review and privacy.",
+    "Marketing for San Diego biotech, healthcare, defense-adjacent and hospitality companies — search, content and paid media built around review and privacy.",
   primaryQuery: "san diego marketing agency",
   secondaryQueries: [
     "marketing agency in san diego",
@@ -21,10 +21,10 @@ export const sanDiego: LocationPage = {
   timeZone: "Pacific Time",
   area: "West",
   hero: {
-    eyebrow: "San Diego · Remote",
+    eyebrow: "San Diego · California",
     title: ["Science, service and shoreline.", "Each with its own buyer."],
     lead:
-      "San Diego's largest industries don't share a playbook. A biotech selling to lab directors, a defense supplier bidding on programs and a dental group filling chairs need very different marketing. We work with companies here remotely, on whichever of those problems is yours.",
+      "San Diego's largest industries don't share a playbook. A biotech selling to lab directors, a defense supplier bidding on programs and a dental group filling chairs need very different marketing. We work with companies here on whichever of those problems is yours, with the review steps each one demands built in from the start.",
   },
   market: {
     heading: "A research town with a coastline.",
@@ -108,18 +108,18 @@ export const sanDiego: LocationPage = {
     "Coronado",
     "Temecula",
   ],
-  remote: {
-    heading: "No local office, a documented review path.",
+  howWeWork: {
+    heading: "Paced by review cycles, not just campaign calendars.",
     body: [
-      "We have no San Diego office and no local team. Engagements are built for that: shared hours inside your Pacific day, one recurring working session a week, and every review — clinical, legal, export — routed through a written approval path so nothing waits on someone being in the room.",
-      "For life sciences companies the rhythm follows the review cycle: drafts go to medical-legal early, comments land in one place, and approved language is tracked so it can be reused without starting over. For clinics and hospitality it runs faster — weekly reporting, monthly planning and a direct line for anything time-sensitive.",
+      "Work runs inside the Pacific workday, with one recurring working session a week and a written update every Monday: what shipped, what's waiting in review and what the numbers say. Every review — clinical, legal, regulatory, export — follows a documented approval path, so drafts reach the right reviewer early, comments collect in one place, and nobody has to chase a signature through a long email thread.",
+      "For life sciences companies the rhythm follows the medical-legal-regulatory cycle and the conference calendar: approved claims are stored with their references so later campaigns can reuse them, and launches line up with product news and major scientific meetings. For clinics and hospitality it runs faster — weekly booking and occupancy reporting, a monthly plan that anticipates summer and convention peaks, and a quarterly review of which services and neighborhoods earn more budget. We work next to your scientists, business development leads or front-desk managers, depending on who actually talks to the buyer.",
     ],
   },
   services: ["content-marketing", "seo", "paid-media", "web-design"],
   faqs: [
     {
-      q: "Is there a local office we can visit?",
-      a: "No. We work with San Diego companies remotely, over video calls, shared documents and dashboards. Hours, review steps and reporting are all arranged so the engagement runs well without anyone sharing a building.",
+      q: "Should we run Spanish-language search in San Diego?",
+      a: "For consumer health, dental and home services in the South Bay and east county, often yes. Many patients search in Spanish or move between languages, and competition for Spanish terms is usually lighter. It only works if the landing page, booking form and whoever answers the phone can carry the conversation in Spanish too; otherwise the ads just move the drop-off further down the funnel.",
     },
     {
       q: "Can you work within our medical-legal-regulatory review?",

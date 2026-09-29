@@ -4,7 +4,7 @@ export const phoenix: LocationPage = {
   slug: "phoenix",
   metaTitle: "Phoenix Marketing Agency for Home Services & Real Estate",
   metaDescription:
-    "Remote marketing for Phoenix-area home service, real estate, legal and health businesses: paid search, local SEO and sites built for a fast-growing Valley.",
+    "Marketing for Phoenix-area home service, real estate, legal and health businesses: paid search, local SEO and sites built for a fast-growing Valley.",
   primaryQuery: "phoenix marketing agency",
   secondaryQueries: [
     "marketing agency in phoenix",
@@ -21,10 +21,10 @@ export const phoenix: LocationPage = {
   timeZone: "Mountain Time (no daylight saving)",
   area: "West",
   hero: {
-    eyebrow: "Phoenix · Remote",
+    eyebrow: "Phoenix · Arizona",
     title: ["A metro still being built,", "one subdivision at a time."],
     lead:
-      "Greater Phoenix keeps growing outward, and the businesses that serve it — builders, brokers, contractors, clinics, law firms — compete for buyers who are often new to the Valley. We work with them remotely on the search, paid media and websites that turn that growth into booked work.",
+      "Greater Phoenix keeps growing outward, and the businesses that serve it — builders, brokers, contractors, clinics, law firms — compete for buyers who are often new to the Valley. We work with them on the search, paid media and websites that turn that growth into booked work.",
   },
   market: {
     heading: "Growth, heat and newcomers.",
@@ -103,18 +103,18 @@ export const phoenix: LocationPage = {
     "Goodyear",
     "Maricopa County",
   ],
-  remote: {
+  howWeWork: {
     heading: "Arizona time, without the confusion.",
     body: [
-      "We aren't based in Phoenix and have no local staff. Because Arizona doesn't observe daylight saving time, your clock matches Pacific time in summer and Mountain time in winter. We set shared hours against Arizona time directly, so standing meetings don't drift twice a year.",
-      "Service businesses need speed more than meetings. We keep a short weekly check-in, watch call tracking and lead flow daily during peak season, and flag problems — a campaign spending into a slow day, a spike in missed calls — in writing the same day. Each month we plan the next season's budget with whoever owns the numbers.",
+      "Because Arizona doesn't observe daylight saving time, your clock matches Pacific time in summer and Mountain time in winter. We set working hours and the weekly working session against Arizona time directly, so nothing drifts twice a year, and the written weekly update arrives early Monday — calls, booked jobs and cost per job by part of the Valley — in time to plan the week's crews.",
+      "Service businesses need speed more than meetings. Through the summer cooling peak and snowbird season we watch call tracking and lead flow daily and flag problems — a campaign spending into a slow day, a spike in missed calls — in writing the same day. Owners and operations managers approve new offers and pricing; bids, budgets and ad copy within agreed limits we adjust ourselves. We work with whoever answers the phone and books the jobs, because intake decides much of the result. Monthly reviews plan the next season's budget, and quarterly reviews look at which services and suburbs deserve more.",
     ],
   },
   services: ["paid-media", "local-seo", "web-design", "cro"],
   faqs: [
     {
-      q: "Will someone from your team visit our office?",
-      a: "No. We're remote, with no Phoenix location, and we won't suggest otherwise. Onboarding, reviews and planning happen over video and shared documents, kept light enough that an owner running crews can keep up.",
+      q: "How much should a Phoenix home service company budget for paid search?",
+      a: "Enough to cover the peak, not an average month. Cooling repair in July and roofing after monsoon storms cost far more per call than a mild spring week. We build the budget backward from booked-job value and close rate, fund the peak first, and pull back in shoulder months rather than spreading the same amount evenly across the year.",
     },
     {
       q: "How do you prepare for the summer HVAC rush?",

@@ -4,7 +4,7 @@ export const sanFrancisco: LocationPage = {
   slug: "san-francisco",
   metaTitle: "San Francisco Marketing Agency for B2B SaaS & Fintech",
   metaDescription:
-    "Remote marketing for Bay Area SaaS, fintech and AI companies: positioning, search and paid programs measured on pipeline, built for California privacy law.",
+    "Marketing for Bay Area SaaS, fintech and AI companies: positioning, search and paid programs measured on pipeline, built for California privacy law.",
   primaryQuery: "san francisco marketing agency",
   secondaryQueries: [
     "bay area marketing agency",
@@ -21,10 +21,10 @@ export const sanFrancisco: LocationPage = {
   timeZone: "Pacific Time",
   area: "West",
   hero: {
-    eyebrow: "San Francisco Bay Area · Remote",
+    eyebrow: "San Francisco Bay Area · California",
     title: ["Marketing for buyers", "who read the docs first."],
     lead:
-      "Bay Area companies sell to some of the most skeptical evaluators there are — engineers, finance leads, security reviewers. We work remotely with software, fintech and AI teams here on positioning, search and paid programs judged by pipeline rather than impressions.",
+      "Bay Area companies sell to some of the most skeptical evaluators there are — engineers, finance leads, security reviewers. We work with software, fintech and AI teams here on positioning, search and paid programs judged by pipeline rather than impressions.",
   },
   market: {
     heading: "Where software sells to software.",
@@ -104,18 +104,18 @@ export const sanFrancisco: LocationPage = {
     "Santa Clara",
     "San Mateo County",
   ],
-  remote: {
-    heading: "Pacific hours, remote by design.",
+  howWeWork: {
+    heading: "Built around sprints, pipeline and the board plan.",
     body: [
-      "We aren't based in the Bay Area, and engagements are set up so that doesn't matter. Working hours are agreed around yours, the weekly session sits wherever it suits your team, and anything needing a decision is timed for when your people are online. Pacific teams working with partners on an Eastern-leaning schedule often lose their afternoons waiting for answers; we plan against that from week one.",
-      "Software teams are usually comfortable working asynchronously, and we lean into it: a shared Slack channel, written briefs and decision logs, dashboards wired to your CRM, and short recorded reviews of landing pages and ads. Once a quarter we step back with leadership to reset priorities against pipeline and the board plan.",
+      "Engagements keep Pacific working hours and borrow the rhythm software teams already use. A weekly working session with product marketing or growth sits next to your sprint planning, so a launch, a pricing change or a new integration shows up in search and paid programs the week it ships. A short written update each week covers pipeline sourced and influenced, experiments running and anything blocked, posted in a shared Slack channel or wiki where the rest of the company can read it.",
+      "Decisions are logged in writing: what changed, why, and what would make us reverse it — a record a technical founder or a CFO can check on their own time. Messaging that touches security, compliance or model capabilities goes through your product and legal reviewers before it runs. We work alongside your sales and SDR teams on account lists, handoff rules and which opportunities count, and the monthly review reconciles marketing numbers with the CRM. Each quarter we step back with leadership to reset priorities against pipeline targets and the board plan.",
     ],
   },
   services: ["seo", "content-marketing", "paid-media", "marketing-analytics"],
   faqs: [
     {
-      q: "Is it a problem that you're not in the Bay Area?",
-      a: "Rarely. Most of your buyers aren't local either, and the work — positioning, content, paid programs, attribution — happens in documents, dashboards and calls. We have no Bay Area office; we make up for the distance with clear writing and hours set around yours.",
+      q: "How long does SEO take in a crowded software category?",
+      a: "Longer than paid, and longer here than in most markets, because well-funded rivals have years of content and links. Bottom-of-funnel pages — comparisons, integrations, pricing and alternatives — can start earning qualified visits within a few months. Broad category terms usually take the better part of a year, which is why we pair search with paid programs that produce pipeline while organic compounds.",
     },
     {
       q: "Do you work with companies selling to enterprise?",

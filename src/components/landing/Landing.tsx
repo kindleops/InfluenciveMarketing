@@ -197,8 +197,8 @@ export function AreaPanel({ city, region, timeZone, area, presence }: { city: st
         </svg>
       </div>
       <div className={`glass ${s.floatChip}`} data-level="2" data-liquid="">
-        <span>How we work</span>
-        <b>{presence === "remote" ? `Remote, on ${timeZone.split(" (")[0]} hours` : presence === "office" ? "From our office here" : "With our team here"}</b>
+        <span>Working hours</span>
+        <b>{presence === "office" ? "From our office here" : presence === "team" ? "With our team here" : `Aligned to ${timeZone.split(" (")[0]}`}</b>
       </div>
     </div>
   );

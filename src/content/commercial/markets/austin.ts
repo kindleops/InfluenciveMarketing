@@ -4,7 +4,7 @@ export const austin: LocationPage = {
   slug: "austin",
   metaTitle: "Austin Marketing Agency for SaaS & Growth Teams",
   metaDescription:
-    "Remote growth studio for Austin software companies and high-ticket local businesses: positioning, search, paid media and measurement that tie to pipeline.",
+    "Growth studio for Austin software companies and high-ticket local businesses: positioning, search, paid media and measurement that tie to pipeline.",
   primaryQuery: "austin marketing agency",
   secondaryQueries: [
     "austin digital marketing agency",
@@ -24,7 +24,7 @@ export const austin: LocationPage = {
     eyebrow: "Austin · Texas",
     title: ["Your buyers aren't in Austin.", "Your competitors for attention are."],
     lead:
-      "Most Austin software companies sell nationally, while local service businesses compete in a region that grew faster than its roads. We work with both, remotely and without pretending otherwise, on the positioning, search, paid media and measurement that decide who gets the pipeline.",
+      "Most Austin software companies sell nationally, while local service businesses compete in a region that grew faster than its roads. We work with both on the positioning, search, paid media and measurement that decide who gets the pipeline.",
   },
   market: {
     heading: "A startup city with a state capital attached.",
@@ -103,18 +103,18 @@ export const austin: LocationPage = {
     "San Marcos",
     "Williamson County",
   ],
-  remote: {
-    heading: "Distributed work suits Austin teams.",
+  howWeWork: {
+    heading: "Sprint-paced, on Central Time, inside your stack.",
     body: [
-      "We are not in Austin and do not keep an office there. Many local software teams are partly distributed already, so our way of working tends to feel familiar: a weekly call during Central Time business hours, shared Slack or Teams channels, and direct access to the same tools your team uses.",
-      "Most decisions happen asynchronously. Experiments are proposed in a short written brief, results come back with what we learned and what we would do next, and dashboards stay current between meetings. Before a launch or a board cycle we add more live time; during steady periods we keep meetings lean.",
+      "Austin software teams tend to run in sprints, so engagements follow the same rhythm. We keep Central Time hours, join a weekly working session with your head of growth or product marketing, and send a written update each Friday: experiments shipped, what the numbers said, and the next bets ranked by expected pipeline. Monthly reviews look at pipeline by source and stage; quarterly reviews line up with your board or planning cycle, so the marketing story and the numbers in the deck match.",
+      "Decisions move through the channels your team already uses. Each experiment starts as a short written brief with a hypothesis and a stop rule, gets a yes or no from one named owner, and lands in your analytics, CRM and ad accounts rather than in a separate agency tool. For local service businesses in the northern and Hill Country suburbs the cadence is simpler — a weekly call with the owner or operations manager, lead quality checked against booked jobs — but the written record and the single approver stay the same. Where you have in-house marketers, we take a defined slice of the work and document it so they can own it later.",
     ],
   },
   services: ["seo", "paid-media", "marketing-analytics", "cro", "branding"],
   faqs: [
     {
-      q: "Is your team located in Austin?",
-      a: "No. We are a remote studio with no Austin office or local staff. For software companies selling nationally, where the agency sits rarely matters; what matters is overlap with your hours and access to your data, and we have both.",
+      q: "How long does it take for SEO to produce pipeline in a crowded software category?",
+      a: "Expect bottom-of-funnel pages — comparisons, alternatives, integrations and use-case pages — to start earning qualified visits within a few months if the site is technically sound. Broad category terms, where well-funded Austin and Bay Area competitors have years of content, take much longer. We sequence the work so the pages closest to a buying decision ship first and measure them by demo requests and opportunities, not traffic.",
     },
     {
       q: "We just raised a round. Where should marketing money go first?",

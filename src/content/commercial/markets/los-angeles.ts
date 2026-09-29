@@ -4,7 +4,7 @@ export const losAngeles: LocationPage = {
   slug: "los-angeles",
   metaTitle: "Los Angeles Marketing Agency for High-Ticket Brands",
   metaDescription:
-    "Remote growth partner for Los Angeles companies: paid media, search and web built for a crowded creative market and California's pricing and renewal rules.",
+    "Growth partner for Los Angeles companies: paid media, search and web built for a crowded creative market and California's pricing and renewal rules.",
   primaryQuery: "los angeles marketing agency",
   secondaryQueries: [
     "marketing agency in los angeles",
@@ -21,10 +21,10 @@ export const losAngeles: LocationPage = {
   timeZone: "Pacific Time",
   area: "West",
   hero: {
-    eyebrow: "Los Angeles · Remote",
+    eyebrow: "Los Angeles · California",
     title: ["A city fluent in advertising.", "Buyers who see straight through it."],
     lead:
-      "Angelenos grew up next to the entertainment business, and they notice when marketing is performing instead of informing. We work with Los Angeles companies remotely — no office here, no pretense of one — on the search, paid media and site work that turns a crowded market into qualified demand.",
+      "Angelenos grew up next to the entertainment business, and they notice when marketing is performing instead of informing. We work with Los Angeles companies on the search, paid media and site work that turns a crowded, creative market into qualified demand — creative that holds its own in the feed, and numbers that hold up afterward.",
   },
   market: {
     heading: "Several economies sharing one sprawling map.",
@@ -108,18 +108,18 @@ export const losAngeles: LocationPage = {
     "San Fernando Valley",
     "Orange County",
   ],
-  remote: {
-    heading: "Working with an LA team from somewhere else.",
+  howWeWork: {
+    heading: "An engagement paced like a production calendar.",
     body: [
-      "We don't have a Los Angeles office, and we won't dress that up. What we do have is a rhythm that starts from your calendar: core hours agreed inside the Pacific workday, a standing weekly call at whatever time suits your team, and launches scheduled for when your people are around to watch them.",
-      "Between those calls, work moves asynchronously. Creative reviews happen on shared boards with comments, performance sits in a dashboard you can open any time, and short recorded walkthroughs explain the reasoning behind a change so a founder or producer can catch up between shoots. When something breaks, you reach a senior person directly.",
+      "Los Angeles businesses tend to run on launches, drops and shoot days, so the engagement is planned the same way. Working hours sit inside the Pacific workday. A weekly working session walks through what's live, what's being tested and what the next creative batch needs, and a written update lands every Friday with spend, results and the one or two calls we need you to make. Launch dates are set against your content calendar, product drops and production schedule rather than the other way round.",
+      "Approvals flow through one named owner on your side — often a founder, brand lead or marketing director — with a clear line between what we adjust on our own, such as bids, budget shifts between ad sets and retiring tired creative, and what needs your sign-off, such as new claims, pricing or anything a medical or real estate board would read. We slot in beside your in-house designers, creators and editors, write the briefs they shoot from and send performance back to them. Monthly reviews look at contribution by channel and neighborhood; quarterly reviews reset budget, offers and the creative themes worth another season.",
     ],
   },
   services: ["paid-media", "social-media", "seo", "cro"],
   faqs: [
     {
-      q: "Do you have an office in Los Angeles?",
-      a: "No. We're a remote studio, and every Los Angeles engagement runs on video calls, shared workspaces and written updates. If a shoot or production day is part of the plan, we coordinate it with your team and your production partners rather than implying we have people on the ground.",
+      q: "What does it cost to compete for attention in Los Angeles?",
+      a: "More per click than most US metros in law, aesthetics and luxury real estate, and more in creative than people expect, because feeds here chew through concepts quickly. Plan for two budgets: media, set by the neighborhoods and hours where your margins hold, and a steady production line of new video and imagery. Starving the second usually wastes the first.",
     },
     {
       q: "Can you work alongside our creators and production partners?",

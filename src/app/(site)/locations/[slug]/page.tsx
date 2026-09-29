@@ -67,7 +67,7 @@ export default async function MarketLanding({ params }: Props) {
         secondary={{ label: `The ${p.city.split(/[–,]/)[0]} market`, href: "#market" }}
         facts={[
           { label: "Working hours", value: p.timeZone },
-          { label: "Presence", value: p.presence === "remote" ? "Remote team" : p.presence === "office" ? p.address : "Team on the ground" },
+          { label: "Serving", value: `${p.city.split(/[–,]/)[0]} and ${p.serviceArea.length} surrounding areas` },
         ]}
         backdrop={<MarketBackdrop slug={p.slug} neighbors={published.locations.filter((m) => m.slug !== p.slug).map((m) => ({ slug: m.slug, city: m.city.split(/[–,]/)[0] }))} />}
         visual={<MarketReadout slug={p.slug} city={p.city} timeZone={p.timeZone} area={p.serviceArea} presence={p.presence} />}
@@ -89,9 +89,9 @@ export default async function MarketLanding({ params }: Props) {
         <Ledger region={p.region} code={p.regionCode} items={p.rules} />
       </Chapter>
 
-      {p.remote && (
-        <Chapter id="remote" eyebrow="How we work" title={[p.remote.heading, ""]}>
-          <Statement body={p.remote.body} />
+      {p.howWeWork && (
+        <Chapter id="how-we-work" eyebrow="How we work" title={[p.howWeWork.heading, ""]}>
+          <Statement body={p.howWeWork.body} />
           <PillLinks label={`Services for ${p.city} companies`} items={services.map((x) => ({ href: `/services/${x.slug}`, label: x.name }))} />
         </Chapter>
       )}

@@ -4,7 +4,7 @@ export const philadelphia: LocationPage = {
   slug: "philadelphia",
   metaTitle: "Philadelphia Marketing Agency for Health & Legal",
   metaDescription:
-    "Remote marketing for Philadelphia health systems, pharma, universities and law firms: search, paid media and web built for regulated claims and a two-state region.",
+    "Marketing for Philadelphia health systems, pharma, universities and law firms: search, paid media and web built for regulated claims and a two-state region.",
   primaryQuery: "philadelphia marketing agency",
   secondaryQueries: [
     "philadelphia digital marketing agency",
@@ -21,10 +21,10 @@ export const philadelphia: LocationPage = {
   timeZone: "Eastern Time",
   area: "Northeast",
   hero: {
-    eyebrow: "Philadelphia",
+    eyebrow: "Philadelphia · Pennsylvania",
     title: ["Eds, meds and litigators.", "A region that rewards precision."],
     lead:
-      "Philadelphia's biggest buyers are hospitals, universities, drug makers and law firms, each with its own reviewers and rules. We support companies across the region remotely, with work designed to clear legal review the first time.",
+      "Philadelphia's biggest buyers are hospitals, universities, drug makers and law firms, each with its own reviewers and rules. We build search, paid media and websites for companies on both sides of the Delaware, with work designed to clear legal review the first time.",
   },
   market: {
     heading: "Anchored by institutions, widened by the suburbs.",
@@ -108,21 +108,21 @@ export const philadelphia: LocationPage = {
     "Camden County",
     "Wilmington",
   ],
-  remote: {
-    heading: "Remote work, built around review cycles.",
+  howWeWork: {
+    heading: "Engagements organized around review cycles.",
     body: [
-      "We don't have a Philadelphia office or people on the ground in the region. Work with teams there runs over video and shared workspaces during Eastern business hours, with one standing call a week and a written summary after each.",
-      "Hospitals, pharma companies and law firms rarely publish without legal, medical or ethics review. We ask who signs off before anything is drafted, put their calendars into the plan, and give reviewers annotated copies with sources attached, so approvals return in fewer rounds.",
+      "Philadelphia-area work keeps Eastern business hours and a steady cadence. One working session each week sets priorities and clears blockers, and a written recap goes out the same week with what launched, what is waiting on a reviewer and what the numbers moved. A monthly review ties spend to booked appointments or signed cases, and a quarterly session with leadership decides where the next quarter's budget goes, often location by location and state by state.",
+      "Hospitals, drug makers and law firms rarely publish without medical, legal or ethics review. We ask who signs off before anything is drafted, put those reviewers' calendars into the plan, and hand them annotated copies with sources attached, so approvals come back in fewer rounds. For practices and firms, we work closely with front-desk and intake staff, because a campaign is only as good as how quickly the phone gets answered and the case or appointment gets logged.",
     ],
   },
   services: ["local-seo", "paid-media", "seo", "marketing-analytics"],
   faqs: [
     {
-      q: "Is there a local Philadelphia team we can meet?",
-      a: "No. We're a remote studio with no staff in the region. You'll meet the people who do the work on video from the first conversation, and they stay on the account.",
+      q: "Can an independent practice compete with the big Philadelphia health systems in search?",
+      a: "Not for broad condition terms, and it usually shouldn't try. Independent practices win on specific procedures, named suburbs, fast appointment availability and strong review profiles. We pick the handful of services and towns where the practice can realistically hold a top position and build from there.",
     },
     {
-      q: "Can you market a practice with offices in both Pennsylvania and New Jersey?",
+      q: "Can you market a practice with locations in both Pennsylvania and New Jersey?",
       a: "Yes. Listings, location pages and campaigns are set up per state, so insurance, licensing and service details stay accurate on each side.",
     },
     {

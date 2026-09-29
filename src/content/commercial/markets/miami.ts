@@ -4,7 +4,7 @@ export const miami: LocationPage = {
   slug: "miami",
   metaTitle: "Miami Marketing Agency for Bilingual, High-Value Buyers",
   metaDescription:
-    "Remote growth studio for Miami and South Florida: English and Spanish search, paid media and websites for luxury real estate, finance, legal and medical buyers.",
+    "Growth studio for Miami and South Florida companies: English and Spanish search, paid media and websites for luxury real estate, finance, legal and medical buyers.",
   primaryQuery: "miami marketing agency",
   secondaryQueries: [
     "miami digital marketing agency",
@@ -24,12 +24,12 @@ export const miami: LocationPage = {
     eyebrow: "Miami · Florida",
     title: ["An international market", "that happens to have a U.S. zip code."],
     lead:
-      "Miami buyers arrive from Bogotá, New York and Broward County in the same week, in more than one language. We are a remote studio — not a Miami firm — and we build search, paid media and websites for that mix, with measurement that shows which audience is actually paying.",
+      "Miami buyers arrive from Bogotá, New York and Broward County in the same week, in more than one language. We build search, paid media and websites for that mix, with measurement that shows which audience is actually paying.",
   },
   market: {
     heading: "Wealth, trade and a bilingual default.",
     body: [
-      "Miami is a gateway between the U.S. and Latin America. Trade, banking and logistics link it to the region, and in recent years a wave of financial firms, family offices and technology companies has moved into Brickell and nearby neighborhoods. Tourism, cruises and hospitality remain huge, and luxury residential real estate draws buyers from across the Americas and Europe.",
+      "Miami is a gateway between the U.S. and Latin America. Trade, banking and logistics link it to the region, and in recent years a wave of financial firms, private investment firms and technology companies has moved into Brickell and nearby neighborhoods. Tourism, cruises and hospitality remain huge, and luxury residential real estate draws buyers from across the Americas and Europe.",
       "Spanish is a working language of business here, not a niche audience, and Portuguese and Haitian Creole are common too. The metro stretches along the coast through Miami-Dade, Broward and Palm Beach counties, so a client in Boca Raton and one in Coral Gables share a region but not a daily routine.",
       "For growth, this means an unusually wide range of buyers inside one metro: international purchasers researching from abroad, seasonal residents, recent arrivals from other states and long-established local families. Campaigns that treat them as one audience tend to speak clearly to none of them.",
     ],
@@ -108,18 +108,18 @@ export const miami: LocationPage = {
     "West Palm Beach",
     "Miami-Dade County",
   ],
-  remote: {
-    heading: "Same clock, no storefront.",
+  howWeWork: {
+    heading: "Eastern Time, two languages, one approval path.",
     body: [
-      "We work with Miami companies from outside Florida and have no local office. Because the city runs on Eastern Time, our live hours line up with yours; we typically set one planning call each week and use shared chat for anything that cannot wait.",
-      "Outside those calls the work continues in writing. Spanish and English copy is drafted, reviewed and approved in shared documents, ad changes are logged with a note on why they were made, and your dashboards update daily. For clients whose own buyers sit in Latin America or Europe, that async rhythm often matches how they already run the business.",
+      "Miami engagements keep Eastern Time hours, and the week is organized around a working session with your marketing lead or managing broker, plus a written update in whichever language your leadership prefers to read. That update splits results by language and by where the buyer was searching from, so you can see whether Spanish campaigns, domestic buyers or international prospects are producing the signed contracts. Monthly reviews go deeper into lead quality with your sales or intake staff; quarterly reviews move budget ahead of the season, since winter demand and summer quiet call for different plans.",
+      "Because copy runs in two or three languages, approvals are the part we design most carefully. Every Spanish or Portuguese asset has a native-speaker writer, a second reviewer and a final sign-off from someone on your team, and Florida Bar filings or brokerage-name checks are scheduled into the launch date instead of discovered the week before. For developers and brokerages working with sales galleries and in-house agents, we agree up front who owns each lead and how quickly it is answered, then report on that response time every week.",
     ],
   },
   services: ["paid-media", "seo", "web-design", "social-media", "branding"],
   faqs: [
     {
-      q: "Is there a Miami office?",
-      a: "There is not. We are a remote studio, with no staff or address in South Florida, and we would rather say so plainly. Most of our work happens in your ad accounts, your website and your analytics, none of which depend on where we sit.",
+      q: "Is Spanish-language advertising in Miami cheaper than English?",
+      a: "Sometimes, but not reliably. In some categories fewer advertisers bid on Spanish terms, so clicks cost less; in legal, immigration and real estate, the Spanish auction is just as contested. The bigger gain is usually conversion — a prospect who searched in Spanish and lands on a page written in Spanish, with someone who answers in Spanish, is far more likely to become a client. We run the two languages as separate campaigns so their costs and results can be compared directly.",
     },
     {
       q: "Can you market to buyers in Latin America?",

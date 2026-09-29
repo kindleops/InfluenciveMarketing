@@ -4,7 +4,7 @@ export const charlotte: LocationPage = {
   slug: "charlotte",
   metaTitle: "Charlotte Marketing Agency for Finance & Services",
   metaDescription:
-    "Remote growth studio for Charlotte companies: search, paid media and websites for banking, fintech, healthcare and premium services across both Carolinas.",
+    "Growth studio for Charlotte companies: search, paid media and websites for banking, fintech, healthcare and premium services across both Carolinas.",
   primaryQuery: "charlotte marketing agency",
   secondaryQueries: [
     "charlotte digital marketing agency",
@@ -24,7 +24,7 @@ export const charlotte: LocationPage = {
     eyebrow: "Charlotte · North Carolina",
     title: ["A banking city", "that spans two states."],
     lead:
-      "Charlotte's buyers include some of the most compliance-minded marketers anywhere, and its suburbs cross into South Carolina. We serve the region as a remote studio, without a local office, and plan search, paid media and web around both of those facts.",
+      "Charlotte's buyers include some of the most compliance-minded marketers anywhere, and its suburbs cross into South Carolina. We plan search, paid media and web around both of those facts, so review cycles and the state line shape the work from the start instead of stalling it later.",
   },
   market: {
     heading: "Finance at the center, growth at the edges.",
@@ -103,18 +103,18 @@ export const charlotte: LocationPage = {
     "Mecklenburg County",
     "Union County",
   ],
-  remote: {
-    heading: "What working remotely looks like from Charlotte's side.",
+  howWeWork: {
+    heading: "Eastern Time, built around the review queue.",
     body: [
-      "We are not in North Carolina and have no Charlotte office. Since we keep Eastern Time hours, live collaboration is easy: a set weekly session, a monthly review with leadership, and same-day responses in a shared channel.",
-      "For regulated clients, our async process is built around approvals. Drafts go into your review system rather than around it, each version records who approved what, and nothing publishes without sign-off. That paper trail tends to satisfy compliance teams better than hallway conversations would.",
+      "Charlotte engagements run on Eastern Time and are paced by compliance calendars as much as by marketing ones. A weekly working session with your marketing or growth lead covers what is live, what is in review and what is next; a written update follows with results, a status line for every asset waiting on approval, and the date each one is due back. Monthly reviews with leadership look at cost per qualified lead and pipeline by state, and quarterly planning sets the next batch of campaigns early enough for legal and risk teams to clear them before they are needed.",
+      "Approvals follow your existing workflow instead of running beside it. Drafts go into your review tool or ticket queue, pre-cleared claims and disclosures are reused rather than rewritten, and every published version records who approved it. For banks, advisors and fintech companies selling into institutions, we work with product marketing and the sales team on content that answers security and risk questions before procurement asks them; for home-services and healthcare businesses on both sides of the state line, the rhythm is lighter, but North and South Carolina licensing details are checked on every page.",
     ],
   },
   services: ["paid-media", "seo", "local-seo", "content-marketing"],
   faqs: [
     {
-      q: "Does your team work out of Charlotte?",
-      a: "No. We are fully remote, with no Charlotte office and no local staff. We make up for the distance with shared hours, documented decisions and open access to every account and report.",
+      q: "How long does it take to rank in Charlotte for financial-advisor or wealth-management searches?",
+      a: "Longer than in most categories, because banks and large advisory firms already hold strong positions and every page takes time to clear review. Narrower searches — a specific planning need, a suburb such as Ballantyne or Lake Norman, a question prospects ask before they book — usually move first, often within a few months. We plan a steady pipeline of pre-approved content so review time does not stall the program, and use paid search to test which topics bring in qualified conversations before investing in pages for them.",
     },
     {
       q: "Can you work with our compliance team?",

@@ -4,7 +4,7 @@ export const houston: LocationPage = {
   slug: "houston",
   metaTitle: "Houston Marketing Agency for Energy, Health & Law",
   metaDescription:
-    "Remote growth studio for Houston companies: bilingual search, paid media and websites for energy, medical, legal and home-services buyers across a sprawling metro.",
+    "Growth studio for Houston companies: bilingual search, paid media and websites for energy, medical, legal and home-services buyers across a sprawling metro.",
   primaryQuery: "houston marketing agency",
   secondaryQueries: [
     "houston digital marketing agency",
@@ -24,13 +24,13 @@ export const houston: LocationPage = {
     eyebrow: "Houston · Texas",
     title: ["Built for a city", "that speaks more than one language."],
     lead:
-      "We serve Houston remotely — no local office, no one on the ground. What we offer is marketing designed around how this metro actually buys: in English and Spanish, across enormous distances, in industries where one customer can be worth a great deal.",
+      "Houston buys in two languages, across a map with no natural edges, in industries where one customer can be worth a great deal. We design search, paid media and websites around that: who you are really selling to, how far your offer travels, and which language each buyer should meet you in.",
   },
   market: {
     heading: "Energy money, medical depth and a very wide map.",
     body: [
       "Houston's economy still turns on energy — upstream and midstream oil and gas, refining and petrochemicals along the Ship Channel, and a growing set of companies working on carbon capture, hydrogen and power. The Port of Houston makes it a trade and logistics hub, and the Texas Medical Center gives it an unusually deep concentration of hospitals, specialists and research.",
-      "The metro is famously spread out and has no conventional zoning, so homes, clinics, offices and industry sit close together in patterns that do not follow neat district lines. Communities like Katy, Sugar Land, The Woodlands and Pearland function as cities in their own right. Its population is remarkably diverse, with a very large Spanish-speaking community and many other languages spoken at home.",
+      "The metro is famously spread out and has no conventional zoning, so homes, clinics, businesses and industry sit close together in patterns that do not follow neat district lines. Communities like Katy, Sugar Land, The Woodlands and Pearland function as cities in their own right. Its population is remarkably diverse, with a very large Spanish-speaking community and many other languages spoken at home.",
       "For a growth plan, that means three decisions come first: which language each audience should meet you in, how far across the map your offer really travels, and whether you are selling to an engineer with a procurement process or to a family choosing a surgeon, lawyer or contractor.",
     ],
   },
@@ -108,18 +108,18 @@ export const houston: LocationPage = {
     "Conroe",
     "Fort Bend County",
   ],
-  remote: {
-    heading: "How a remote team keeps pace with Houston.",
+  howWeWork: {
+    heading: "Central Time hours, bilingual sign-off, storm-ready.",
     body: [
-      "Houston runs on Central Time, and we schedule a standing working session each week inside your normal hours, plus short check-ins around launches, storm-season changes or intake problems. You will not see us in person; everything happens over video, shared documents and the ad and analytics accounts themselves.",
-      "The async part is where most of the work gets done. Proposed changes arrive written up with the reasoning and expected effect, approvals happen in a thread, and reporting is live rather than a monthly PDF. For bilingual work, Spanish copy goes through a native speaker and your own team signs off before anything ships.",
+      "Houston engagements run on Central Time, with a standing weekly working session alongside the person who owns growth on your side — often a practice administrator, an intake manager at a firm, or a business-development lead at an engineering or energy-services company. A written update follows every week: spend, calls and forms by language and by ring of the map, and what changed. Monthly reviews tie leads to signed cases, booked procedures or awarded bids; quarterly reviews reset the plan, and one of them always lands before June so hurricane-season budgets and pause rules are agreed early.",
+      "Approvals follow the industry. Law-firm ads go through the attorney responsible for State Bar filing before they run; medical copy goes to whoever signs off on clinical claims; Spanish copy is written or reviewed by a native speaker and then approved by your own bilingual staff. For technical buyers in energy and industrial services, we work from your engineers' notes and send drafts back to them for accuracy, so the content reads like it came from people who know the equipment, and your sales team gets pages they can actually send to a procurement contact.",
     ],
   },
   services: ["paid-media", "local-seo", "seo", "cro", "marketing-analytics"],
   faqs: [
     {
-      q: "Do you have a Houston office we can visit?",
-      a: "We do not. We are fully remote and have no Houston location or local staff. Clients here work with us the same way they work with most software vendors and consultants — on video and in shared tools — and we say so up front so there is no surprise later.",
+      q: "How long does SEO take in a crowded Houston category like personal injury or roofing?",
+      a: "Longer than in most markets, because the leading firms have years of links, reviews and content behind them. Local map results for specific suburbs and Spanish-language queries often move within a few months; broad city-wide terms usually take much longer and may never be the best use of budget. We plan for paid search to carry lead flow early while organic pages for narrower services, neighborhoods and questions build up underneath it.",
     },
     {
       q: "Can you run campaigns in Spanish?",

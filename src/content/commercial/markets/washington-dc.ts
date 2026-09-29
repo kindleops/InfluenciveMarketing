@@ -4,7 +4,7 @@ export const washingtonDc: LocationPage = {
   slug: "washington-dc",
   metaTitle: "Washington DC Marketing Agency for GovCon & Associations",
   metaDescription:
-    "Remote marketing for D.C.-area government contractors, associations, nonprofits and professional firms: positioning, web, search and campaigns for policy buyers.",
+    "Marketing for D.C.-area government contractors, associations, nonprofits and professional firms: positioning, web, search and campaigns for policy buyers.",
   primaryQuery: "washington dc marketing agency",
   secondaryQueries: [
     "dc marketing agency",
@@ -21,10 +21,10 @@ export const washingtonDc: LocationPage = {
   timeZone: "Eastern Time",
   area: "Northeast",
   hero: {
-    eyebrow: "Washington, D.C.",
+    eyebrow: "Washington · District of Columbia",
     title: ["Selling to government", "and to everyone who surrounds it."],
     lead:
-      "In the capital region the buyer is often an agency, a member organization or a firm that advises both. We're a remote studio helping contractors, associations and professional firms here get found, understood and shortlisted.",
+      "In the capital region the buyer is often an agency, a member organization or a firm that advises both. We help contractors, associations and professional firms across the District, Northern Virginia and suburban Maryland get found, understood and shortlisted.",
   },
   market: {
     heading: "Where the largest customer is the federal government.",
@@ -43,7 +43,7 @@ export const washingtonDc: LocationPage = {
     {
       title: "Capability pages are due diligence",
       detail:
-        "Contracting officers and prospective primes check websites for NAICS codes, contract vehicles, certifications and past performance. Making those facts easy to find supports business development directly.",
+        "Contracting specialists and prospective primes check websites for NAICS codes, contract vehicles, certifications and past performance. Making those facts easy to find supports business development directly.",
     },
     {
       title: "Budget and policy moments move attention",
@@ -108,18 +108,18 @@ export const washingtonDc: LocationPage = {
     "Silver Spring",
     "Prince George's County",
   ],
-  remote: {
-    heading: "A remote studio in a security-conscious market.",
+  howWeWork: {
+    heading: "Working to the procurement calendar and the board cycle.",
     body: [
-      "We serve the capital region without an office inside the Beltway or staff in the area. Engagements run on scheduled video calls in Eastern Time, a shared plan and your approval workflow. Many organizations here keep tight access policies, so we work inside the accounts and tools you provision, with only the permissions each task needs.",
-      "We keep to public-facing marketing: websites, content, search, paid campaigns and member journeys. Anything touching controlled or classified information belongs with a partner cleared for it, and we'll tell you that plainly rather than stretch.",
+      "Capital-region engagements keep Eastern Time and a cadence shaped by fiscal years and board meetings. A standing weekly session with your marketing or growth lead handles the week's priorities, and a written weekly note records decisions, open approvals and anything waiting on a contracting or legal check. Monthly reviews cover pipeline, membership and event registrations; quarterly reviews line up the plan with the federal fiscal year, the fourth-quarter spending surge, renewal seasons and the annual meeting.",
+      "Many organizations here keep tight access policies, so we work inside the accounts and tools you provision, with only the permissions each task needs. Approvals usually pass through contracts or counsel before anything names an agency, and through the executive director or board for associations. We plan alongside capture and proposal teams so capability pages match what goes into bids, and we keep to public-facing marketing; anything touching controlled or classified information belongs with a partner cleared for it.",
     ],
   },
   services: ["branding", "web-design", "content-marketing", "marketing-automation"],
   faqs: [
     {
-      q: "Where are you based relative to the Beltway?",
-      a: "Outside it. We're a remote studio with no D.C. office, working with teams in the District, Virginia and Maryland over video and shared tools.",
+      q: "When in the year should a government contractor spend the most on marketing?",
+      a: "Ahead of the moments agencies decide, not during them. Recognition built in spring and early summer pays off when fourth-quarter obligations and new-year forecasts appear, and capability pages need to be current before teaming conversations start. We set the calendar from your pipeline of expected solicitations rather than from an even monthly budget.",
     },
     {
       q: "Can marketing help us win federal contracts?",

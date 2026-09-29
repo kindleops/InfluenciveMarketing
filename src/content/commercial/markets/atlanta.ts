@@ -4,7 +4,7 @@ export const atlanta: LocationPage = {
   slug: "atlanta",
   metaTitle: "Atlanta Marketing Agency for B2B, Fintech & Services",
   metaDescription:
-    "Remote growth studio for Atlanta companies: search, paid media, web and analytics for payments firms, corporate buyers and premium services across the metro.",
+    "Growth studio for Atlanta companies: search, paid media, web and analytics for payments firms, corporate buyers and premium services across the metro.",
   primaryQuery: "atlanta marketing agency",
   secondaryQueries: [
     "atlanta digital marketing agency",
@@ -24,12 +24,12 @@ export const atlanta: LocationPage = {
     eyebrow: "Atlanta · Georgia",
     title: ["Inside the Perimeter or out,", "buyers here do their homework."],
     lead:
-      "We work with Atlanta companies from a distance: no office in Georgia, no local sales team. The job we do is concrete — deciding which part of this wide metro and which buyers deserve the budget, then building the search, paid and web work to reach them.",
+      "Atlanta is too wide and too varied to market as one place. The job we do is concrete — deciding which part of this wide metro and which buyers deserve the budget, then building the search, paid and web work to reach them.",
   },
   market: {
     heading: "Corporate headquarters, payments and a region on wheels.",
     body: [
-      "Atlanta is a major corporate center for the Southeast, home to the headquarters of large national brands in logistics, retail, beverages and air travel. Its airport ties the city to much of the country within a short flight, which makes it a natural base for regional operations and sales teams.",
+      "Atlanta is a major corporate center for the Southeast, home to the headquarters of large national brands in logistics, retail, beverages and air travel. Its airport is one of the busiest anywhere and ties the city to much of the country, which makes it a natural base for regional operations and sales teams.",
       "The city is also a longtime center of payment processing and financial technology, a cluster sometimes called Transaction Alley. Add Georgia Tech, Emory, a large public-health presence and a film and television production industry, and the buyer base ranges from enterprise procurement teams to creative studios to specialist physicians.",
       "Geographically, the metro spreads across Fulton, DeKalb, Cobb and Gwinnett counties and beyond, and locals divide it by the I-285 Perimeter. Commutes are long and neighborhoods feel distinct, so for growth the useful unit is rarely \"Atlanta\" as a whole — it is a corridor like GA-400 up to Alpharetta, or a cluster of intown neighborhoods.",
     ],
@@ -51,7 +51,7 @@ export const atlanta: LocationPage = {
         "North Fulton, East Cobb and Gwinnett hold many of the households shopping for premium home services, private schools and specialist care. Targeting by ZIP code or corridor often beats a metro-wide radius.",
     },
     {
-      title: "Regional offices want a regional story",
+      title: "Southeast hubs want a regional story",
       detail:
         "Companies using Atlanta as a Southeast base often need marketing that covers several states from one hub. Campaign structure should allow for that without losing local relevance in each market.",
     },
@@ -103,21 +103,21 @@ export const atlanta: LocationPage = {
     "Cobb County",
     "Gwinnett County",
   ],
-  remote: {
-    heading: "Working with Atlanta on Eastern Time.",
+  howWeWork: {
+    heading: "Eastern Time, with room for long evaluations.",
     body: [
-      "No one on our team is based in Atlanta, and we do not rent space there. We share your time zone, which keeps scheduling simple: a regular weekly meeting, extra sessions around launches, and quick answers in a shared channel during the working day.",
-      "The rest runs asynchronously and in the open. Every recommendation arrives in writing with the evidence behind it, account changes are recorded so anyone on your team can follow them, and reporting is available whenever you want it. Corporate teams used to managing vendors across several cities usually find this easy to plug into.",
+      "Atlanta engagements keep Eastern Time hours and settle into a weekly working session with the person who owns demand on your side — a VP of marketing at a payments company in Midtown, a regional director responsible for several Southeast states, or the owner of a home-services business in Gwinnett. A short written update closes each week with spend, qualified leads by corridor or state, and open questions. Monthly reviews trace opportunities through a sales cycle that can run for quarters; quarterly reviews re-plan the mix of search, paid media and account-based work against the accounts your sales team is actually pursuing.",
+      "In payments, fintech and healthcare, approvals usually run through compliance and legal as well as marketing, so every claim, rate and licensing statement is flagged in the draft and routed to the right reviewer with enough lead time that launches do not slip. We join your sales team's pipeline meetings once a month so that account lists, messaging and landing pages follow what the sellers hear from prospects. For businesses covering several states from Atlanta, each state gets its own budget line and its own section in the report, which keeps regional leaders arguing about results rather than about whose numbers are whose.",
     ],
   },
   services: ["seo", "paid-media", "web-design", "marketing-analytics", "marketing-automation"],
   faqs: [
     {
-      q: "Do you meet clients in person in Atlanta?",
-      a: "We don't — we are remote and have no Atlanta office or local staff. Meetings run on video, and the substance of the work sits in shared plans, ad accounts and dashboards you can see at any time.",
+      q: "Does Georgia have its own rules for marketing by phone and text?",
+      a: "Yes. Georgia has a state do-not-call law and its own restrictions on telephone solicitation that sit alongside the federal rules, and they can matter for home-services, solar, insurance and lending funnels that end in a sales call or text. We build written consent, opt-out handling and calling-hour limits into every lead form and follow-up sequence, and we recommend counsel review any outbound program before it starts.",
     },
     {
-      q: "Can you market a Southeast region from Atlanta?",
+      q: "Can an Atlanta company market to the whole Southeast at once?",
       a: "Yes. We often structure campaigns so one hub covers several states, with separate targeting, budgets and local pages for each market so results stay readable.",
     },
     {

@@ -4,7 +4,7 @@ export const minneapolis: LocationPage = {
   slug: "minneapolis",
   metaTitle: "Minneapolis Marketing Agency for Medtech & Enterprise",
   metaDescription:
-    "A remote growth studio for Twin Cities medtech, retail, food and enterprise suppliers: brand, web, search and paid media built for demanding corporate buyers.",
+    "A growth studio for Twin Cities medtech, retail, food and enterprise suppliers: brand, web, search and paid media built for demanding corporate buyers.",
   primaryQuery: "minneapolis marketing agency",
   secondaryQueries: [
     "twin cities marketing agency",
@@ -21,10 +21,10 @@ export const minneapolis: LocationPage = {
   timeZone: "Central Time",
   area: "Midwest",
   hero: {
-    eyebrow: "Minneapolis–St. Paul",
+    eyebrow: "Minneapolis–St. Paul · Minnesota",
     title: ["Headquarters country.", "Marketing for the firms that sell into it."],
     lead:
-      "The Twin Cities hold an unusual number of large corporate headquarters, a deep medical device cluster and a food and agriculture base with global reach. We work remotely with mid-sized companies here that sell to exacting buyers and need marketing that holds up under review.",
+      "The Twin Cities hold an unusual number of large corporate headquarters, a deep medical device cluster and a food and agriculture base with global reach. We work with the mid-sized companies that sell to those exacting buyers and need marketing that holds up under a formal vendor review.",
   },
   market: {
     heading: "Big headquarters, and the ecosystem that grew up around them.",
@@ -103,18 +103,18 @@ export const minneapolis: LocationPage = {
     "Hennepin County",
     "Ramsey County",
   ],
-  remote: {
-    heading: "How a remote engagement works from the Twin Cities.",
+  howWeWork: {
+    heading: "How engagements run for Twin Cities suppliers and device makers.",
     body: [
-      "We serve Minneapolis–St. Paul without an office or employees in Minnesota. Work with teams there runs on Central Time: a video kickoff, a working session every other week, and asynchronous updates in your tools in between. Decisions and deliverables live in one shared space, so nothing hinges on a hallway conversation.",
-      "Firms that sell to big enterprises usually face vendor onboarding, security questionnaires and brand approvals of their own. We complete our side of that paperwork quickly and sequence launches so an approval step never becomes the reason a campaign sits unfinished.",
+      "Work with Minneapolis–St. Paul companies follows Central Time and a deliberate, documented rhythm. A kickoff sets goals and owners, then a weekly working session keeps the current deliverables moving and a written weekly summary lands in your own tools. Monthly reviews trace opportunities through the stages your sales team already uses, and quarterly reviews line the plan up with enterprise budget cycles, trade show commitments and the heating and summer seasons that swing consumer demand here.",
+      "Firms that sell to big enterprises usually face vendor onboarding, security questionnaires and brand approvals of their own. We complete our side of that paperwork quickly and sequence launches so an approval step never becomes the reason a campaign sits unfinished. For device companies, regulatory and quality teams review claims before creative is finalized, and we build sales enablement with your account executives so the proof they forward to a procurement committee matches what the website says.",
     ],
   },
   services: ["web-design", "content-marketing", "seo", "paid-media"],
   faqs: [
     {
-      q: "Are you based in the Twin Cities?",
-      a: "No. We're a remote team with no office or employees in Minnesota. Companies here work with us over video and shared tools on Central Time.",
+      q: "How should a home services company budget for a Minnesota winter?",
+      a: "Unevenly. Furnace, roofing and insulation searches jump with the first hard cold snap and after big storms, so we keep a reserve that can be released within a day rather than spreading spend flat across the year. Summer is the time to build reviews, service pages and maintenance plans that make the winter surge cheaper to capture.",
     },
     {
       q: "Can you market a medical device?",

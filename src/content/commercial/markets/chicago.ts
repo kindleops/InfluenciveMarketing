@@ -4,7 +4,7 @@ export const chicago: LocationPage = {
   slug: "chicago",
   metaTitle: "Chicago Marketing Agency for B2B, Legal & CPG Brands",
   metaDescription:
-    "Remote growth marketing for Chicago trading firms, consumer brands, logistics companies and law firms: brand, search, paid media and analytics on Central Time.",
+    "Growth marketing for Chicago trading firms, consumer brands, logistics companies and law firms: brand, search, paid media and analytics on Central Time.",
   primaryQuery: "chicago marketing agency",
   secondaryQueries: [
     "chicago digital marketing agency",
@@ -21,10 +21,10 @@ export const chicago: LocationPage = {
   timeZone: "Central Time",
   area: "Midwest",
   hero: {
-    eyebrow: "Chicago",
+    eyebrow: "Chicago · Illinois",
     title: ["Trading floors to freight yards.", "Marketing that fits how you sell."],
     lead:
-      "Chicago's economy is unusually broad: derivatives, packaged foods, logistics, legal work, manufacturing. We work remotely with companies across the region, on Central Time, building the systems that turn attention into qualified revenue.",
+      "Chicago's economy is unusually broad: derivatives, packaged foods, logistics, legal work, manufacturing. We work with companies across the city, the collar counties and Northwest Indiana, building the systems that turn attention into qualified revenue.",
   },
   market: {
     heading: "A diversified economy with a practical buyer.",
@@ -103,18 +103,18 @@ export const chicago: LocationPage = {
     "Lake County",
     "Northwest Indiana",
   ],
-  remote: {
-    heading: "Central Time, remote by design.",
+  howWeWork: {
+    heading: "Central Time hours and reporting in operating terms.",
     body: [
-      "We aren't in Chicago and don't keep staff there. Teams in the region work with us over video and shared tools, and Central Time sits in the middle of the national business day, which keeps scheduling simple. Expect a fixed working session every week, a monthly review of spend and pipeline, and a running log of what changed and why.",
-      "Many Chicago companies run lean marketing teams inside operations-heavy businesses. We fit around that: we take on the execution your people don't have hours for, leave documentation so nothing depends on us alone, and report in the terms your finance and operations leaders already use.",
+      "Chicago engagements run on Central Time, which sits in the middle of the national business day and makes it easy to include colleagues on either coast. Expect a fixed working session every week, a written weekly update with a running log of what changed and why, a monthly review of spend against pipeline and cost per acquisition, and a quarterly planning session that checks the program against seasonality, retail resets and the budget your finance team has actually approved.",
+      "Many companies here run lean marketing teams inside operations-heavy businesses. We fit around that: we take on the execution your people don't have hours for, leave documentation so nothing depends on us alone, and report in the language your plant managers, controllers and operating partners already use. Decisions sit with one accountable owner, and we keep account managers and inside sales in the loop so campaigns follow the freight lanes, product lines and accounts they are actually working.",
     ],
   },
   services: ["paid-media", "marketing-analytics", "seo", "email-marketing"],
   faqs: [
     {
-      q: "Can we visit you in Chicago?",
-      a: "There's nowhere to visit. We have no Chicago office and work fully remotely, and most teams find a weekly video session plus a shared workspace covers what a visit would.",
+      q: "Should we advertise to the whole Chicago metro or by suburb?",
+      a: "Usually by corridor. Demand, competition and drive times differ sharply between the North Shore, the western suburbs, the southwest side and Northwest Indiana, and a single metro-wide campaign tends to overspend where you can't serve well. We start with the areas that already produce your best customers and widen from there.",
     },
     {
       q: "Do you work with manufacturers and logistics companies?",

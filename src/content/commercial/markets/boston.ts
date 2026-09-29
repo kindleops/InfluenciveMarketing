@@ -4,7 +4,7 @@ export const boston: LocationPage = {
   slug: "boston",
   metaTitle: "Boston Marketing Agency for Life Sciences & B2B",
   metaDescription:
-    "A remote studio for Boston life sciences, healthcare, higher-ed and robotics companies: brand, web, search and paid media built for long, technical sales.",
+    "A growth studio for Boston life sciences, healthcare, higher-ed and robotics companies: brand, web, search and paid media built for long, technical sales.",
   primaryQuery: "boston marketing agency",
   secondaryQueries: [
     "boston digital marketing agency",
@@ -21,10 +21,10 @@ export const boston: LocationPage = {
   timeZone: "Eastern Time",
   area: "Northeast",
   hero: {
-    eyebrow: "Boston",
+    eyebrow: "Boston · Massachusetts",
     title: ["Technical buyers, long decisions,", "and claims that must hold up."],
     lead:
-      "Greater Boston sells science, care and engineering to people who read closely. We help companies here explain complex work plainly and reach the committees that decide, working remotely rather than from a Cambridge office.",
+      "Greater Boston sells science, care and engineering to people who read closely. We help companies here explain complex work plainly and reach the committees that decide, with every technical claim checked by the experts who stand behind it.",
   },
   market: {
     heading: "An economy that grew out of its labs and teaching hospitals.",
@@ -53,7 +53,7 @@ export const boston: LocationPage = {
     {
       title: "Conference weeks concentrate attention",
       detail:
-        "Major scientific and medical meetings, several held in the city, create short bursts of active evaluation. Pages and follow-up sequences prepared in advance catch interest that otherwise fades by the flight home.",
+        "Major scientific and medical meetings, several held in the city, create short bursts of active evaluation. Pages and follow-up sequences prepared in advance catch interest that otherwise fades within a week of the closing session.",
     },
   ],
   sectors: [
@@ -108,18 +108,18 @@ export const boston: LocationPage = {
     "Worcester",
     "Lowell",
   ],
-  remote: {
-    heading: "Serving Greater Boston from a distance, on a fixed rhythm.",
+  howWeWork: {
+    heading: "A rhythm built for long evaluations and expert review.",
     body: [
-      "We have no Boston office and no staff in Massachusetts. Engagements run remotely on a set cadence: a planning call at the start of each month, short weekly check-ins held during Eastern hours, and a shared tracker your team can open whenever it wants to see what's moving.",
-      "Scientific and medical material needs expert review, so we book time with your researchers, clinicians or engineers well in advance and send them pointed questions rather than full drafts to rewrite. Their hours stay short and the content stays accurate.",
+      "Greater Boston engagements keep Eastern hours and a cadence that suits sales cycles measured in quarters. A weekly working session with your marketing lead moves the current sprint forward, a written update follows every week so program owners and department heads can see progress without joining a call, and a monthly review looks at pipeline stages rather than raw lead counts. Each quarter we step back with leadership to check the plan against grant cycles, fiscal years and the conference calendar.",
+      "Scientific and clinical material needs expert eyes, so we book time with your researchers, clinicians or engineers weeks ahead and send them pointed questions instead of full drafts to rewrite. Approvals follow a fixed order: technical accuracy first, then regulatory or legal review, then final sign-off from the budget owner. Business development and field sales get content mapped to each member of the buying committee, and we hear from them regularly about which objections are actually stalling deals.",
     ],
   },
   services: ["content-marketing", "seo", "marketing-automation", "web-design"],
   faqs: [
     {
-      q: "Will anyone from your team be on site in Boston?",
-      a: "Not as a routine part of the work. We're remote, and engagements run through calls, documents and shared tools. If your project truly needs someone in the room, raise it early so we can decide together whether we're the right fit.",
+      q: "Is LinkedIn advertising worth its cost for a Boston biotech or robotics firm?",
+      a: "It can be when the audience is a defined set of roles at named institutions and the offer behind the ad is substantial, such as a technical brief, an application note or a pilot conversation. It rarely pays for broad awareness. We size the reachable audience first and cap spend until the first campaigns show qualified conversations.",
     },
     {
       q: "Can you write accurately about science and medicine?",

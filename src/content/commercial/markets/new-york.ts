@@ -4,7 +4,7 @@ export const newYork: LocationPage = {
   slug: "new-york",
   metaTitle: "New York Marketing Agency for High-Value Growth",
   metaDescription:
-    "A remote growth studio for New York firms in finance, real estate, law and fashion: brand, web, paid media and SEO built for crowded, expensive auctions.",
+    "A growth studio for New York firms in finance, real estate, law and fashion: brand, web, paid media and SEO built for crowded, expensive auctions.",
   primaryQuery: "new york marketing agency",
   secondaryQueries: [
     "nyc marketing agency",
@@ -21,10 +21,10 @@ export const newYork: LocationPage = {
   timeZone: "Eastern Time",
   area: "Northeast",
   hero: {
-    eyebrow: "New York City",
+    eyebrow: "New York City · New York",
     title: ["Five boroughs, one crowded auction.", "Marketing that earns its cost here."],
     lead:
-      "New York buyers see more advertising than almost anyone and discount most of it. We're a remote studio, not a Manhattan office, and we build brand, site, search and paid media for companies whose deals are large enough to justify doing it carefully.",
+      "New York buyers see more advertising than almost anyone and discount most of it. We build brand, site, search and paid media for companies whose deals are large enough to justify doing it carefully, and we measure every dollar against what a closed deal is actually worth.",
   },
   market: {
     heading: "A market where every category already has ten credible sellers.",
@@ -108,18 +108,18 @@ export const newYork: LocationPage = {
     "Hoboken",
     "Stamford",
   ],
-  remote: {
-    heading: "No Manhattan office. Here is how we run instead.",
+  howWeWork: {
+    heading: "An engagement paced for New York deal flow.",
     body: [
-      "We serve New York teams entirely remotely and say so before the first call. The pace here is quick, so we hold one working session a week inside Eastern business hours, keep a written log of every decision, and commit to turnaround windows on drafts instead of waiting for the next meeting that fits everyone's calendar.",
-      "When a project needs something physical, such as a showroom shoot, a property walkthrough or footage from a trading desk, we write the brief and shot list and direct the day with production people you hire locally. We won't pretend a remote studio can stop by.",
+      "Work runs on Eastern business hours and at the speed New York teams expect. A standing weekly working session covers what shipped and what comes next. Every Friday a short written update arrives that a partner or managing director can skim between meetings. Once a month we walk through spend, pipeline and search visibility, and each quarter we revisit positioning and budget against the deals that actually closed. Drafts carry committed turnaround windows, so nothing waits for a calendar slot that suits everyone.",
+      "Each workstream has one named decision-maker on your side, and anything touching performance figures, fund language, listings or attorney claims routes to compliance or counsel before its deadline, not after. We sit beside your in-house marketers and your deal teams: brokers get listing pages they can send the same afternoon, bankers and lawyers approve their bios and points of view line by line, and whoever runs sales sees which campaigns produced conversations worth having.",
     ],
   },
   services: ["paid-media", "seo", "web-design", "branding", "cro"],
   faqs: [
     {
-      q: "Do you have a New York office?",
-      a: "No. We're a remote studio and serve New York from a distance, through scheduled video calls, shared documents and your own tools. If walk-in access is a hard requirement, a firm with a local office will suit you better.",
+      q: "How long does it take to rank in a category this crowded?",
+      a: "Longer than in smaller metros for broad terms, because incumbents have years of links and content behind them. Borough and neighborhood pages and narrow professional queries often move within a few months; a citywide head term can take a year or more, and some aren't worth chasing at all. We say which is which before the work starts.",
     },
     {
       q: "Is paid search worth it at New York prices?",

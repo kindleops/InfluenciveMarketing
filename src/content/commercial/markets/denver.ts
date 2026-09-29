@@ -4,7 +4,7 @@ export const denver: LocationPage = {
   slug: "denver",
   metaTitle: "Denver Marketing Agency for B2B, Health & Home Services",
   metaDescription:
-    "Remote marketing for Denver and Front Range companies: positioning, search and paid media for high-ticket offers, measured within the Colorado Privacy Act.",
+    "Marketing for Denver and Front Range companies: positioning, search and paid media for high-ticket offers, measured within the Colorado Privacy Act.",
   primaryQuery: "denver marketing agency",
   secondaryQueries: [
     "marketing agency in denver",
@@ -21,10 +21,10 @@ export const denver: LocationPage = {
   timeZone: "Mountain Time",
   area: "West",
   hero: {
-    eyebrow: "Denver · Remote",
+    eyebrow: "Denver · Colorado",
     title: ["A Front Range market,", "not a mountain postcard."],
     lead:
-      "Denver companies sell to a well-educated, fast-growing region and, more and more, to the rest of the country. We work with them remotely on the positioning, search and paid media that make a high-ticket offer easy to choose — and on the Colorado privacy rules that shape how it's measured.",
+      "Denver companies sell to a well-educated, fast-growing region and, more and more, to the rest of the country. We work with them on the positioning, search and paid media that make a high-ticket offer easy to choose — and on the Colorado privacy rules that shape how it's measured.",
   },
   market: {
     heading: "A diversified economy along the Front Range.",
@@ -108,18 +108,18 @@ export const denver: LocationPage = {
     "Golden",
     "Castle Rock",
   ],
-  remote: {
-    heading: "Mountain Time, worked from a distance.",
+  howWeWork: {
+    heading: "Mountain Time, with room to move after a storm.",
     body: [
-      "We aren't located in Denver and don't have staff in Colorado. The week is built around Mountain Time: shared hours placed in the middle of your day, a regular planning call, and campaign changes timed for when your team is at work, so nobody is reacting to surprises over dinner.",
-      "Between calls the work moves in writing. You get a short weekly note on what changed and why, a live dashboard tied to your CRM or booking system, and a named owner for every open question. For seasonal businesses — roofing after a storm, ski-season retail — we agree in advance what we can change without waiting for sign-off, so response time never depends on a meeting.",
+      "The week is built around Mountain Time: working hours placed in the middle of your day, a weekly working session on what's live and what's next, and campaign changes timed for when your team is at work, so nobody is reacting to surprises over dinner. A written update lands each week with what changed and why, next to a live dashboard tied to your CRM or booking system.",
+      "For seasonal businesses — roofing after hail, ski-season and summer outdoor retail — we agree in advance what we can change without sign-off, such as raising budgets in hit neighborhoods or pausing a promotion that has sold through, so response time never waits on a meeting. New positioning, pricing and anything touching sensitive data go to a named approver on your side. We work alongside lean in-house marketing teams and founder-led sales at B2B companies selling nationally; a monthly review keeps spend efficient, and a quarterly review resets targets against pipeline or booked revenue.",
     ],
   },
   services: ["branding", "seo", "paid-media", "marketing-automation"],
   faqs: [
     {
-      q: "Do you have people in Colorado?",
-      a: "No, and we're upfront about it. Denver engagements run remotely, with hours overlapping your Mountain Time workday and a rhythm built on written updates and a live dashboard rather than office visits.",
+      q: "Can a Denver B2B company compete nationally on a leaner budget?",
+      a: "Yes, if it picks its ground. Rather than bidding against coastal rivals on broad category terms, we focus on the problems and buyer roles where your product is clearly stronger, build comparison and use-case pages that earn search over time, and put paid spend behind named accounts and high-intent queries. Efficiency comes from declining the terms you can't win.",
     },
     {
       q: "How does the Colorado Privacy Act change our advertising?",

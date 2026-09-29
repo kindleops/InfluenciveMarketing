@@ -123,10 +123,10 @@ test.describe("seo content rules", () => {
     // other report states what it rests on.
     for (const l of locationPages) {
       expect(["office", "team", "remote"]).toContain(l.presence);
-      // A remote market says so, in the page and in its answers.
+      // Without a premises there, a page never implies one.
       if (l.presence === "remote") {
         expect(l.address, l.slug).toBeUndefined();
-        expect(`${textOf(l.remote)} ${textOf(l.faqs)}`, l.slug).toMatch(/\bremote(ly)?\b/i);
+        expect(textOf(l), l.slug).not.toMatch(/\bour (\w+ )?(office|offices|headquarters)\b|\bour (local )?team (here|in)\b|\bon the ground\b/i);
       }
       for (const x of l.sectors) expect(allEntries().some((e) => e.kind === "industry" && e.slug === x.industry), `${l.slug} → ${x.industry}`).toBe(true);
       for (const x of l.services) expect(allEntries().some((e) => e.kind === "service" && e.slug === x), `${l.slug} → ${x}`).toBe(true);

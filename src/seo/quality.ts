@@ -104,7 +104,7 @@ export function gate(
   }
   if (kind === "location") {
     if (page.presence === "office" && !page.address) reasons.push("office without an address");
-    if (page.presence === "remote" && !(page.remote as { body?: string[] } | undefined)?.body?.length) reasons.push("remote market without a how-we-work section");
+    if (!(page.howWeWork as { body?: string[] } | undefined)?.body?.length) reasons.push("no how-we-work section");
     if (page.presence === "remote" && page.address) reasons.push("remote market must not carry an address");
   }
   return { ok: reasons.length === 0, words, reasons };

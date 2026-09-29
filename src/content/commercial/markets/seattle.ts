@@ -4,7 +4,7 @@ export const seattle: LocationPage = {
   slug: "seattle",
   metaTitle: "Seattle Marketing Agency for Tech, Health & Ecommerce",
   metaDescription:
-    "Remote marketing for Seattle-area software, ecommerce and health businesses, with measurement built for Washington's My Health My Data Act and email law.",
+    "Marketing for Seattle-area software, ecommerce and health businesses, with measurement built for Washington's My Health My Data Act and email law.",
   primaryQuery: "seattle marketing agency",
   secondaryQueries: [
     "marketing agency in seattle",
@@ -21,10 +21,10 @@ export const seattle: LocationPage = {
   timeZone: "Pacific Time",
   area: "West",
   hero: {
-    eyebrow: "Seattle · Remote",
+    eyebrow: "Seattle · Washington",
     title: ["Engineering culture.", "Unusually strict health-data rules."],
     lead:
-      "Seattle teams are data-literate and allergic to fluff, and Washington regulates consumer health data more broadly than most states. We help companies here with search, paid media and measurement that respect both — working remotely, on Pacific hours.",
+      "Seattle teams are data-literate and allergic to fluff, and Washington regulates consumer health data more broadly than most states. We help companies here with search, paid media and measurement that respect both, with experiments designed and reported the way an analytical team expects.",
   },
   market: {
     heading: "Cloud, commerce and aircraft.",
@@ -108,18 +108,18 @@ export const seattle: LocationPage = {
     "King County",
     "Snohomish County",
   ],
-  remote: {
-    heading: "How a Seattle engagement runs from a distance.",
+  howWeWork: {
+    heading: "Experiment-led, and written down.",
     body: [
-      "We don't have an office or staff in Seattle. The engagement runs on your clock: working hours agreed around the Pacific day, a standing weekly review, and launch windows set for when your team can watch the first hours of data. If your organization lives in documents, we write there; if it lives in dashboards, we build there.",
-      "Asynchronous work carries most of the load. Experiment plans are written before tests start, results arrive with the method attached, and decisions are logged so a product manager or finance lead can check the reasoning later without a meeting. That habit fits how many teams here already operate.",
+      "Engagements run on Pacific hours and on habits many Puget Sound teams already have. A weekly working session reviews live tests and the backlog, and a written weekly update reports results with the method attached — sample, duration, what changed — rather than a slide of charts. Experiment plans are written before anything launches, and launch windows are chosen so your team can see the first hours of data.",
+      "Decisions sit in a shared log that a product manager, analyst or finance lead can audit later. Anything touching health-related pages, SMS or email subject lines goes past your privacy counsel before it ships, given how Washington law treats those. We work alongside in-house engineering and data teams on tagging and server-side measurement, and alongside marketplace or sales teams on where demand should land. Monthly reviews reconcile spend with margin or pipeline; quarterly reviews decide which channels and seasons get more budget, including the rainy-season push for home services.",
     ],
   },
   services: ["paid-media", "seo", "marketing-analytics", "email-marketing"],
   faqs: [
     {
-      q: "Where is your team located?",
-      a: "Not in Seattle. We're a remote studio and say so plainly. You get senior people keeping hours that overlap with yours, clear written communication, and reporting you can open whenever you like instead of waiting for a meeting.",
+      q: "How long does paid search take to pay off in Seattle's B2B categories?",
+      a: "The first read on search terms, costs and lead quality comes in the opening weeks, but judging whether it pays needs pipeline data, and enterprise cycles here often run several months. We agree up front which early signals count — qualified meetings, opportunities created, cost per opportunity — so budget decisions don't wait on closed revenue and don't get made on clicks either.",
     },
     {
       q: "We're a dental group. Can we still advertise under My Health My Data?",

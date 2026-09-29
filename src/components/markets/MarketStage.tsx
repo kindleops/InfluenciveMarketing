@@ -59,8 +59,8 @@ export function MarketReadout({ slug, city, timeZone, area, presence }: { slug: 
   return (
     <div className={s.readoutStack}>
       <div className={`glass ${s.stageChip}`} data-level="2" data-liquid="">
-        <span>How we work</span>
-        <b>{presence === "remote" ? `Remote, on ${timeZone.split(" (")[0]} hours` : presence === "office" ? "From our office here" : "With our team here"}</b>
+        <span>Working hours</span>
+        <b>{presence === "office" ? "From our office here" : presence === "team" ? "With our team here" : `Aligned to ${timeZone.split(" (")[0]}`}</b>
       </div>
       <div className={`glass ${s.readout}`} data-level="3" data-liquid="deep">
         <span className={s.readoutLabel}>

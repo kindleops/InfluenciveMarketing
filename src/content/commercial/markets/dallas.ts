@@ -4,7 +4,7 @@ export const dallas: LocationPage = {
   slug: "dallas",
   metaTitle: "Dallas Marketing Agency for High-Value Growth",
   metaDescription:
-    "Remote growth studio for Dallas–Fort Worth companies: search, paid media and web built for a metro of corporate buyers, long commutes and many local markets.",
+    "Growth studio for Dallas–Fort Worth companies: search, paid media and web built for a metro of corporate buyers, long commutes and many local markets.",
   primaryQuery: "dallas marketing agency",
   secondaryQueries: [
     "dfw marketing agency",
@@ -24,12 +24,12 @@ export const dallas: LocationPage = {
     eyebrow: "Dallas–Fort Worth · Texas",
     title: ["One metro, a dozen markets.", "Planned as if it were one system."],
     lead:
-      "We work with Dallas–Fort Worth companies remotely, from outside Texas. What we bring is the planning a spread-out, corporate-heavy region demands: which parts of the Metroplex to target, which buyers to reach, and how to tell what actually produced revenue.",
+      "Dallas–Fort Worth rewards companies that choose their ground. We bring the planning a spread-out, corporate-heavy region demands: which parts of the Metroplex to target, which buyers to reach, and how to tell what actually produced revenue.",
   },
   market: {
     heading: "A headquarters town that behaves like a region.",
     body: [
-      "Dallas–Fort Worth is less a city than a cluster of them. Dallas, Fort Worth, Arlington, Plano, Frisco and Irving each carry their own business districts, and growth keeps pushing north along the tollways into Collin and Denton counties. Corporate relocations over the past decades have filled the region with headquarters and large regional offices, alongside deep benches in banking, insurance, commercial real estate, logistics around DFW Airport and aviation and defense work on the Fort Worth side.",
+      "Dallas–Fort Worth is less a city than a cluster of them. Dallas, Fort Worth, Arlington, Plano, Frisco and Irving each carry their own business districts, and growth keeps pushing north along the tollways into Collin and Denton counties. Corporate relocations over the past decades have filled the region with headquarters and large regional operations, alongside deep benches in banking, insurance, commercial real estate, logistics around DFW Airport and aviation and defense work on the Fort Worth side.",
       "That mix produces two very different kinds of buyer. One is the corporate buyer — procurement, committees, a vendor shortlist and a long evaluation. The other is the household or small business living in a fast-growing suburb, choosing a lawyer, a builder, a dentist or a financial advisor, often with money that came from the same corporate payroll.",
       "For growth, the implication is that a single metro-wide campaign usually wastes money. The companies that do well here decide early which corridors and which buyers they are built for, then plan search, paid media and the website around that choice rather than around the words \"Dallas–Fort Worth\".",
     ],
@@ -103,25 +103,25 @@ export const dallas: LocationPage = {
     "Southlake",
     "Collin County",
   ],
-  remote: {
-    heading: "Remote by design, on Central Time.",
+  howWeWork: {
+    heading: "Run on Central Time, at a corporate pace.",
     body: [
-      "We have no office in Texas and no one on the ground in the Metroplex. Our working day overlaps comfortably with Central Time, so weekly calls, launch reviews and quarterly planning all happen live during your business hours, on video.",
-      "Between calls, the work runs in writing: a shared plan, a change log for every campaign and page we touch, and dashboards you can open without asking us. Corporate teams in the region already work this way with vendors in other cities, and for most of what matters in marketing — the data, the site, the ad accounts — distance changes nothing.",
+      "Engagements with Metroplex companies keep Central Time business hours. Each week starts with a working session with whoever owns the channel on your side — a regional marketing director, a practice manager at a firm in Uptown, the growth lead at a Frisco builder — and ends with a written update covering spend, leads by corridor, pages shipped and anything waiting on a decision. Once a month we review pipeline against the targeting choices we made for each part of the region; once a quarter we reset the plan, often timed to your budget cycle.",
+      "Many North Texas companies answer to a corporate brand team or a legal reviewer, so approvals are built into the schedule rather than squeezed in at the end. Ad copy, landing pages and anything touching TREC or bar rules go to a named approver with a clear deadline, and nothing launches without a recorded sign-off. When your sales team or intake staff take the leads, we go through their pipeline with them each month so that campaign changes follow what closes, not just what fills a form.",
     ],
   },
   services: ["paid-media", "seo", "local-seo", "web-design", "marketing-analytics"],
   faqs: [
     {
-      q: "Are you based in Dallas?",
-      a: "No. We are a remote studio and have no office or staff in North Texas. We work with Metroplex companies over video and shared tools, and we are upfront about that because the value is in the planning and execution, not in being nearby.",
+      q: "How much does it cost to compete for legal or financial searches in Dallas?",
+      a: "It depends on the practice area and how wide you target, and clicks in personal injury, family law and wealth management run expensive here. We start with a narrow keyword list and a defined set of suburbs, measure cost per qualified lead rather than cost per click, and widen only once intake can handle the volume. That usually costs less than a metro-wide launch and tells you much sooner whether the market pays.",
     },
     {
       q: "Can you target Fort Worth and Dallas separately?",
       a: "Yes, and we usually recommend it. Separate campaigns and local pages for each side of the Metroplex make budget, messaging and reporting far easier to read.",
     },
     {
-      q: "Do you work with regional offices of national companies?",
+      q: "Do you work with regional divisions of national companies?",
       a: "Yes. We often work alongside a corporate marketing team, handling a region, a product line or a specific channel while following the brand and approval process already in place.",
     },
   ],

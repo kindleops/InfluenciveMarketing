@@ -17,7 +17,7 @@ import s from "./markets.module.css";
 import m from "@/components/markets/markets.module.css";
 
 const description =
-  "The US markets we work in as a remote team — each page covers that market's economy, search landscape, key industries and the state rules that shape the marketing.";
+  "The US markets we work in — each page covers that market's economy, search landscape, key industries and the state rules that shape the marketing.";
 
 export const metadata: Metadata = pageMetadata({ title: "Markets", description, path: "/locations" });
 
@@ -51,10 +51,10 @@ export default function MarketsHub() {
           </nav>
           <div className={s.head}>
             <h1 id="page-title" className={`t-display-2 t-lit ${s.title}`} data-reveal="up">
-              One remote team. <em className="t-accent">Every major market.</em>
+              One team. <em className="t-accent">Every major market.</em>
             </h1>
             <div className={s.side} data-reveal="up" style={{ "--reveal-delay": "120ms" } as CSSProperties}>
-              <p className={s.lead}>We don’t keep offices; we keep your hours. Each market page covers how growth works there — the economy, the search landscape, the industries and the state rules that shape the marketing.</p>
+              <p className={s.lead}>Working hours set to yours, wherever you are. Each market page covers how growth works there — the economy, the search landscape, the industries and the state rules that shape the marketing.</p>
               <dl className={s.stats}>
                 <div>
                   <dt>Markets</dt>
@@ -65,8 +65,8 @@ export default function MarketsHub() {
                   <dd>{zones.size}</dd>
                 </div>
                 <div>
-                  <dt>Offices</dt>
-                  <dd>0</dd>
+                  <dt>Industries</dt>
+                  <dd>{new Set(markets.flatMap((x) => x.sectors.map((y) => y.industry))).size}</dd>
                 </div>
               </dl>
               <Button href="/start" arrow magnetic>
