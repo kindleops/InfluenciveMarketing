@@ -36,6 +36,8 @@ export const footerNav: { title: string; items: NavItem[] }[] = [
       { label: "Professional services", href: "/industries/professional-services" },
       { label: "Home services", href: "/industries/home-services" },
       { label: "Fintech", href: "/industries/fintech" },
+      { label: "Law firms", href: "/industries/law-firms" },
+      { label: "Real estate", href: "/industries/real-estate" },
     ],
   },
   {

@@ -1,4 +1,6 @@
 import type { IndustryPage } from "./types";
+import { lawFirms } from "./sectors/law-firms";
+import { realEstate } from "./sectors/real-estate";
 
 export const industryPages: IndustryPage[] = [
   {
@@ -287,7 +289,7 @@ export const industryPages: IndustryPage[] = [
     metaDescription:
       "Marketing for law, accounting, consulting and advisory firms — expertise-led content, partner visibility and referral pipelines that bring in the right work.",
     primaryQuery: "professional services marketing agency",
-    secondaryQueries: ["law firm marketing agency", "accounting firm marketing", "consulting firm marketing agency", "b2b professional services marketing"],
+    secondaryQueries: ["accounting firm marketing", "consulting firm marketing agency", "b2b professional services marketing"],
     updated: "2026-09-29",
     hero: {
       eyebrow: "Professional Services",
@@ -561,4 +563,6 @@ export const industryPages: IndustryPage[] = [
       guides: ["landing-page-optimization"],
     },
   },
+  lawFirms,
+  realEstate,
 ];
