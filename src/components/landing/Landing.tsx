@@ -175,7 +175,7 @@ export function AreaPanel({ city, region, timeZone, area, presence }: { city: st
         <p className={s.areaCity}>{city}</p>
         <p className={s.areaTz}>{timeZone}</p>
         <ul className={s.areaList} role="list">
-          {area.slice(0, 10).map((a, i) => (
+          {area.slice(0, 8).map((a, i) => (
             <li key={a} style={{ "--i": i } as CSSProperties}>
               {a}
             </li>
