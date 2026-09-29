@@ -17,6 +17,7 @@ export const footerNav: { title: string; items: NavItem[] }[] = [
     title: "Services",
     items: [
       { label: "SEO", href: "/services/seo" },
+      { label: "Local SEO", href: "/services/local-seo" },
       { label: "Paid media", href: "/services/paid-media" },
       { label: "Web design", href: "/services/web-design" },
       { label: "Conversion optimization", href: "/services/cro" },
@@ -38,6 +39,8 @@ export const footerNav: { title: string; items: NavItem[] }[] = [
       { label: "Fintech", href: "/industries/fintech" },
       { label: "Law firms", href: "/industries/law-firms" },
       { label: "Real estate", href: "/industries/real-estate" },
+      { label: "Dental & medical", href: "/industries/dental-medical-practices" },
+      { label: "Multi-location", href: "/industries/multi-location" },
     ],
   },
   {

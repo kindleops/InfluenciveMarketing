@@ -1,4 +1,5 @@
 import type { ServicePage } from "./types";
+import { localSeo } from "./local/local-seo";
 
 /**
  * High-intent service pages. Each maps to one of the eight disciplines on
@@ -1346,4 +1347,5 @@ export const servicePages: ServicePage[] = [
       insights: ["ai-is-infrastructure", "connected-systems"],
     },
   },
+  localSeo,
 ];

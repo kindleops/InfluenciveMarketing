@@ -1,4 +1,6 @@
 import type { IndustryPage } from "./types";
+import { multiLocation } from "./sectors/multi-location";
+import { dentalMedical } from "./sectors/dental-medical-practices";
 import { lawFirms } from "./sectors/law-firms";
 import { realEstate } from "./sectors/real-estate";
 
@@ -565,4 +567,6 @@ export const industryPages: IndustryPage[] = [
   },
   lawFirms,
   realEstate,
+  multiLocation,
+  dentalMedical,
 ];

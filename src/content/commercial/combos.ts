@@ -1,4 +1,5 @@
 import type { ComboPage } from "./types";
+import { localSeoCombos } from "./local/local-seo-combos";
 
 /**
  * Service × industry pages. Only pairings with real search demand and
@@ -469,4 +470,5 @@ export const comboPages: ComboPage[] = [
       { q: "Do you design the emails too?", a: "Yes. We build modular templates that match the brand, render properly in dark mode and on mobile, and let your team assemble campaigns without starting from scratch each time." },
     ],
   },
+  ...localSeoCombos,
 ];
