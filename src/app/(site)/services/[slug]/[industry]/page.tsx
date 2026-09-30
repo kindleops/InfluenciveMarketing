@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { ProjectCTA } from "@/components/home/ProjectCTA";
 import { JsonLd } from "@/components/seo/blocks";
-import { Bento, Chapter, Convert, FaqList, LandingHero, PillLinks, RelatedRail, SignalPanel, Statement } from "@/components/landing/Landing";
+import { Bento, Chapter, Convert, FaqList, LandingHero, Marquee, PillLinks, RelatedRail, SignalPanel, Statement } from "@/components/landing/Landing";
 import { SectionDock } from "@/components/landing/SectionDock";
 import { ACCENT_TONE, DISCIPLINE_NEED } from "@/seo/accents";
 import { DISCIPLINE_ACCENT } from "@/seo/accents";
@@ -61,6 +61,7 @@ export default async function ComboLanding({ params }: Props) {
         secondary={{ label: "Where we start", href: "#priorities" }}
         visual={<SignalPanel label="What we measure" aside={ind.name} items={c.measures} chip={[service.name, ind.name]} />}
       />
+      <Marquee items={c.priorities.map((x) => x.title)} tone={tone} />
 
       <Chapter id="angle" eyebrow="Why it’s different here" title={[`What changes about ${service.name}`, `in ${ind.name}.`]}>
         <Statement body={c.angle} />

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { ProjectCTA } from "@/components/home/ProjectCTA";
 import { JsonLd } from "@/components/seo/blocks";
-import { Bento, Chapter, Convert, Duo, FaqList, LandingHero, PillLinks, Process, RelatedRail, SignalPanel, Spec, Statement } from "@/components/landing/Landing";
+import { Bento, Chapter, Convert, Duo, FaqList, LandingHero, Marquee, PillLinks, Process, RelatedRail, SignalPanel, Spec, Statement } from "@/components/landing/Landing";
 import { SectionDock } from "@/components/landing/SectionDock";
 import { ACCENT_TONE, DISCIPLINE_ACCENT, DISCIPLINE_NAME, DISCIPLINE_NEED } from "@/seo/accents";
 import { breadcrumbLd, serviceLd } from "@/seo/jsonld";
@@ -52,6 +52,7 @@ export default async function ServiceLanding({ params }: Props) {
         ]}
         visual={<SignalPanel label="What we measure" aside={p.name} items={p.measures} chip={["Judged on", "Targets agreed before work begins"]} />}
       />
+      <Marquee items={p.included.map((x) => x.title)} tone={tone} />
 
       <Chapter id="problem" eyebrow="The problem" title={[p.problem.heading, ""]}>
         <Statement body={p.problem.body} />

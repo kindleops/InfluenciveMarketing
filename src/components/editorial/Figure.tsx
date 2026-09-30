@@ -21,7 +21,7 @@ export function Figure({ n, title, caption, figure }: { n: number; title: string
   const illustrative = "illustrative" in figure && figure.illustrative;
   const id = `figure-${n}`;
   return (
-    <figure className={`glass ${s.figure}`} data-level="2" data-liquid="deep" data-kind={figure.kind} aria-labelledby={`${id}-title`} id={id}>
+    <figure className={`glass ${s.figure}`} data-level="2" data-liquid="deep" data-kind={figure.kind} data-reveal="up" aria-labelledby={`${id}-title`} id={id}>
       <header className={s.head}>
         <span className={s.figNum}>Figure {n}</span>
         {illustrative && <span className={s.badge}>Illustrative</span>}

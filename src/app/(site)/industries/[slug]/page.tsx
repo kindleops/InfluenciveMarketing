@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { ProjectCTA } from "@/components/home/ProjectCTA";
 import { JsonLd } from "@/components/seo/blocks";
-import { Bento, Chapter, Convert, FaqList, LandingHero, PillLinks, Process, RelatedRail, RoleMap, SignalPanel, Statement } from "@/components/landing/Landing";
+import { Bento, Chapter, Convert, FaqList, LandingHero, Marquee, PillLinks, Process, RelatedRail, RoleMap, SignalPanel, Statement } from "@/components/landing/Landing";
 import { SectionDock } from "@/components/landing/SectionDock";
 import { breadcrumbLd, serviceLd } from "@/seo/jsonld";
 import { combosFor, comboTitle, industryBySlug, published, resolveRelated } from "@/seo/registry";
@@ -46,6 +46,7 @@ export default async function IndustryLanding({ params }: Props) {
         secondary={{ label: "The first ninety days", href: "#plan" }}
         visual={<SignalPanel label="The numbers that matter" aside={p.name} items={p.metrics.map((m) => m.title)} chip={["Read against", "Targets set before work begins"]} />}
       />
+      <Marquee items={p.channels.map((x) => x.channel)} tone={"gold"} />
 
       <Chapter id="market" eyebrow="The market" title={[p.context.heading, ""]}>
         <Statement body={p.context.body} />

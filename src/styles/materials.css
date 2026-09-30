@@ -312,3 +312,127 @@
 @media (prefers-reduced-motion: reduce) {
   .light-field > i { animation: none; }
 }
+
+/* ==========================================================================
+   Liquid glass in motion.
+
+   Shine: a diagonal highlight band lives off-canvas in the glass's own
+   background; it sweeps across once when the surface arrives, and again
+   whenever the pointer lands on an interactive pane — light passing over
+   polished glass.
+   Rim light: on hover, a comet of light travels the edge (conic gradient on
+   the registered --edge-angle), so the pane feels charged, not just lifted.
+   Tilt: panes marked [data-tilt] lean toward the pointer (InteractionLayer
+   writes --rx / --ry) and lift off the page.
+   ========================================================================== */
+.glass[data-liquid] {
+  background:
+    linear-gradient(112deg, transparent 36%, rgb(255 255 255 / 0.11) 46%, rgb(255 255 255 / 0.035) 52%, transparent 60%) 135% 0 / 280% 100% no-repeat,
+    linear-gradient(180deg, rgb(255 255 255 / 0.07) 0%, rgb(255 255 255 / 0.015) 30%, rgb(255 255 255 / 0) 60%, rgb(255 255 255 / 0.025) 100%),
+    var(--g-fill);
+}
+html.js .glass[data-liquid][data-inview],
+html.js [data-inview] > .glass[data-liquid],
+html.js [data-inview] > a.glass[data-liquid] {
+  animation: glass-shine 1.9s var(--ease-out) 0.25s;
+}
+@keyframes glass-shine {
+  from {
+    background-position: 135% 0, 0 0;
+  }
+  to {
+    background-position: -45% 0, 0 0;
+  }
+}
+.glass[data-liquid][data-interactive="true"] {
+  transition:
+    box-shadow var(--m-interaction-dur) var(--m-interaction-ease),
+    transform 700ms var(--ease-out),
+    background-position 0s linear;
+}
+.glass[data-liquid][data-interactive="true"]:hover {
+  background-position: -45% 0, 0 0;
+  transition:
+    box-shadow var(--m-interaction-dur) var(--m-interaction-ease),
+    transform 700ms var(--ease-out),
+    background-position 1.25s var(--ease-out);
+}
+.glass[data-liquid][data-interactive="true"]:hover::before {
+  background:
+    conic-gradient(
+      from var(--edge-angle),
+      transparent 0deg,
+      transparent 250deg,
+      rgb(var(--light-blue) / 0.9) 300deg,
+      rgb(255 255 255 / 0.95) 322deg,
+      rgb(var(--light-violet) / 0.75) 340deg,
+      transparent 360deg
+    ),
+    linear-gradient(155deg, rgb(255 255 255 / 0.4) 0%, rgb(255 255 255 / 0.07) 36%, rgb(255 255 255 / 0.03) 60%, rgb(255 255 255 / 0.12) 100%);
+  animation: edge-spin 3.4s linear infinite;
+}
+.glass[data-liquid][data-tilt] {
+  --rx: 0deg;
+  --ry: 0deg;
+  --lift: 0px;
+  transform: perspective(1100px) rotateX(var(--rx)) rotateY(var(--ry)) translate3d(0, var(--lift), 0);
+  transform-style: preserve-3d;
+}
+.glass[data-liquid][data-tilt]:hover {
+  --lift: -6px;
+  transform: perspective(1100px) rotateX(var(--rx)) rotateY(var(--ry)) translate3d(0, var(--lift), 0);
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.38),
+    inset 0 -1px 0 rgb(255 255 255 / 0.08),
+    inset 0 0 0 1px rgb(255 255 255 / 0.07),
+    inset 0 0 34px rgb(255 255 255 / 0.05),
+    inset 0 -22px 40px -26px rgb(var(--light-blue) / 0.4),
+    0 2px 2px rgb(0 0 0 / 0.3),
+    0 50px 90px -40px rgb(0 0 0 / 0.95),
+    0 30px 80px -50px rgb(var(--light-blue) / 0.45);
+}
+.glass[data-liquid][data-tilt]:active {
+  --lift: -2px;
+  transform: perspective(1100px) rotateX(var(--rx)) rotateY(var(--ry)) translate3d(0, var(--lift), 0) scale(0.985);
+}
+@media (prefers-reduced-motion: reduce) {
+  html.js .glass[data-liquid][data-inview],
+  html.js [data-inview] > .glass[data-liquid],
+  html.js [data-inview] > a.glass[data-liquid] {
+    animation: none;
+  }
+  .glass[data-liquid][data-interactive="true"]:hover::before {
+    animation: none;
+  }
+}
+
+/* ---- Scroll progress: a hairline of light under the header ------------- */
+.scroll-progress {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  z-index: calc(var(--z-header) + 1);
+  height: 2px;
+  pointer-events: none;
+  background: linear-gradient(90deg, rgb(var(--light-blue) / 0), rgb(var(--light-blue)) 40%, rgb(var(--light-violet)) 75%, rgb(var(--light-gold)));
+  box-shadow: 0 0 12px rgb(var(--light-blue) / 0.8);
+  transform-origin: 0 50%;
+  transform: scaleX(0);
+}
+@supports (animation-timeline: scroll()) {
+  .scroll-progress {
+    animation: scroll-progress linear both;
+    animation-timeline: scroll(root block);
+  }
+}
+@supports not (animation-timeline: scroll()) {
+  .scroll-progress {
+    display: none;
+  }
+}
+@keyframes scroll-progress {
+  to {
+    transform: scaleX(1);
+  }
+}

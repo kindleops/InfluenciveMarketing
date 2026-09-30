@@ -52,6 +52,7 @@ export function LandingHero({
 }) {
   return (
     <section className={s.hero} data-tone={tone} data-backdrop={backdrop ? "" : undefined} aria-labelledby="page-title">
+      <span className="scroll-progress" aria-hidden="true" />
       <LightField tone={tone} />
       {backdrop && (
         <div className={s.heroBackdrop} aria-hidden="true">
@@ -117,7 +118,9 @@ export function LandingHero({
 export function SignalPanel({ label, aside, items, chip }: { label: string; aside?: string; items: string[]; chip?: [string, string] }) {
   return (
     <div className={s.panelStage}>
-      <div className={`glass ${s.panel}`} data-level="3" data-liquid="deep">
+      <span className={s.halo} aria-hidden="true" />
+      <div className={`glass ${s.panel}`} data-level="3" data-liquid="deep" data-pointer-light="" data-tilt="4">
+        <span className={s.scan} aria-hidden="true" />
         <div className={s.panelHead}>
           <span>
             <i className={s.live} />
@@ -204,6 +207,32 @@ export function AreaPanel({ city, region, timeZone, area, presence }: { city: st
   );
 }
 
+/**
+ * A kinetic band of the page's own vocabulary — the work, the places, the
+ * channels — in large outlined type, drifting. Decorative: everything in it
+ * is on the page in readable form.
+ */
+export function Marquee({ items, tone = "blue" }: { items: string[]; tone?: Tone }) {
+  if (items.length < 3) return null;
+  const row = [...items, ...items];
+  return (
+    <div className={s.marquee} data-tone={tone} data-pause-offscreen="" aria-hidden="true">
+      <div className={s.marqueeTrack} style={{ "--n": items.length } as CSSProperties}>
+        {[0, 1].map((k) => (
+          <span key={k} className={s.marqueeRow}>
+            {row.map((t, i) => (
+              <span key={`${k}-${i}`} className={s.marqueeItem} data-alt={i % 2 ? "" : undefined}>
+                {t}
+                <i />
+              </span>
+            ))}
+          </span>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 /* ---- Chapters ------------------------------------------------------------ */
 
 export function Chapter({
@@ -234,15 +263,13 @@ export function Chapter({
           <p className={s.eyebrow} data-reveal="fade">
             {eyebrow}
           </p>
-          <h2 id={`${id}-title`} className={`t-display-3 t-lit ${s.h2}`} data-reveal="up">
-            {title[0]}
-            {title[1] ? (
-              <>
-                {" "}
-                <em className="t-accent">{title[1]}</em>
-              </>
-            ) : null}
-          </h2>
+          <SplitText
+            as="h2"
+            id={`${id}-title`}
+            mode="lines"
+            className={`t-display-3 t-lit ${s.h2}`}
+            lines={title[1] ? [title[0], <em key="a" className="t-accent">{title[1]}</em>] : [title[0]]}
+          />
           {lead && (
             <p className={s.chapterLead} data-reveal="up" style={{ "--reveal-delay": "80ms" } as CSSProperties}>
               {lead}
@@ -277,41 +304,41 @@ export function Statement({ body }: { body: string[] }) {
 const GLYPHS = [
   // rings
   <g key="0">
-    <circle cx="20" cy="20" r="15" />
-    <circle cx="20" cy="20" r="9" />
-    <circle cx="20" cy="20" r="3" />
+    <circle pathLength={1} cx="20" cy="20" r="15" />
+    <circle pathLength={1} cx="20" cy="20" r="9" />
+    <circle pathLength={1} cx="20" cy="20" r="3" />
   </g>,
   // stack
   <g key="1">
-    <path d="M6 27h28M6 20h22M6 13h14" />
+    <path pathLength={1} d="M6 27h28M6 20h22M6 13h14" />
   </g>,
   // nodes
   <g key="2">
-    <circle cx="9" cy="10" r="3" />
-    <circle cx="31" cy="14" r="3" />
-    <circle cx="18" cy="31" r="3" />
-    <path d="M12 11l16 3M29 17l-9 12M10 13l7 15" />
+    <circle pathLength={1} cx="9" cy="10" r="3" />
+    <circle pathLength={1} cx="31" cy="14" r="3" />
+    <circle pathLength={1} cx="18" cy="31" r="3" />
+    <path pathLength={1} d="M12 11l16 3M29 17l-9 12M10 13l7 15" />
   </g>,
   // grid
   <g key="3">
-    <rect x="6" y="6" width="11" height="11" rx="2" />
-    <rect x="23" y="6" width="11" height="11" rx="2" />
-    <rect x="6" y="23" width="11" height="11" rx="2" />
-    <rect x="23" y="23" width="11" height="11" rx="2" />
+    <rect pathLength={1} x="6" y="6" width="11" height="11" rx="2" />
+    <rect pathLength={1} x="23" y="6" width="11" height="11" rx="2" />
+    <rect pathLength={1} x="6" y="23" width="11" height="11" rx="2" />
+    <rect pathLength={1} x="23" y="23" width="11" height="11" rx="2" />
   </g>,
   // wave
   <g key="4">
-    <path d="M4 26c5 0 5-12 10-12s5 12 10 12 5-12 10-12" />
-    <path d="M4 32h32" />
+    <path pathLength={1} d="M4 26c5 0 5-12 10-12s5 12 10 12 5-12 10-12" />
+    <path pathLength={1} d="M4 32h32" />
   </g>,
   // target
   <g key="5">
-    <path d="M20 4v8M20 28v8M4 20h8M28 20h8" />
-    <circle cx="20" cy="20" r="8" />
+    <path pathLength={1} d="M20 4v8M20 28v8M4 20h8M28 20h8" />
+    <circle pathLength={1} cx="20" cy="20" r="8" />
   </g>,
   // bars
   <g key="6">
-    <path d="M9 32V22M16 32V14M23 32V18M30 32V8" />
+    <path pathLength={1} d="M9 32V22M16 32V14M23 32V18M30 32V8" />
   </g>,
 ];
 
@@ -321,23 +348,15 @@ export function Bento({ items }: { items: Item[] }) {
   return (
     <ul className={s.bento} role="list">
       {items.map((it, i) => (
-        <li
-          key={it.title}
-          className={`glass ${s.cell}`}
-          data-level="2"
-          data-liquid=""
-          data-interactive="true"
-          data-pointer-light=""
-          data-wide={i < span || undefined}
-          data-reveal="up"
-          style={{ "--reveal-delay": `${(i % 3) * 70}ms` } as CSSProperties}
-        >
-          <svg className={s.glyph} viewBox="0 0 40 40" aria-hidden="true">
-            {GLYPHS[i % GLYPHS.length]}
-          </svg>
-          <span className={s.cellIdx}>{String(i + 1).padStart(2, "0")}</span>
-          <h3 className={s.cellTitle}>{it.title}</h3>
-          <p className={s.cellText}>{it.detail}</p>
+        <li key={it.title} className={s.slot} data-wide={i < span || undefined} data-reveal="up" style={{ "--reveal-delay": `${(i % 3) * 90}ms` } as CSSProperties}>
+          <div className={`glass ${s.cell}`} data-level="2" data-liquid="" data-interactive="true" data-pointer-light="" data-tilt="5">
+            <svg className={s.glyph} viewBox="0 0 40 40" aria-hidden="true">
+              {GLYPHS[i % GLYPHS.length]}
+            </svg>
+            <span className={s.cellIdx}>{String(i + 1).padStart(2, "0")}</span>
+            <h3 className={s.cellTitle}>{it.title}</h3>
+            <p className={s.cellText}>{it.detail}</p>
+          </div>
         </li>
       ))}
     </ul>
@@ -600,7 +619,7 @@ export function RelatedRail({ entries, title = ["Explore", "the system."] }: { e
       <ul className={s.rail2} role="list" aria-label="Related pages">
         {entries.map((e, i) => (
           <li key={e.path} data-reveal="up" style={{ "--reveal-delay": `${(i % 4) * 60}ms` } as CSSProperties}>
-            <Link href={e.path} className={`glass ${s.relCard}`} data-level="2" data-liquid="" data-interactive="true" data-pointer-light="">
+            <Link href={e.path} className={`glass ${s.relCard}`} data-level="2" data-liquid="" data-interactive="true" data-pointer-light="" data-tilt="6">
               <span className={s.relKind}>{KIND_LABEL[e.kind]}</span>
               <span className={s.relTitle}>{e.title}</span>
               <span className={s.relText}>{e.summary}</span>

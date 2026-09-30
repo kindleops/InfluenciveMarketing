@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { ProjectCTA } from "@/components/home/ProjectCTA";
 import { JsonLd } from "@/components/seo/blocks";
-import { Chapter, Convert, Duo, FaqList, LandingHero, RelatedRail, Verdict, Versus, VersusVisual } from "@/components/landing/Landing";
+import { Chapter, Convert, Duo, FaqList, LandingHero, Marquee, RelatedRail, Verdict, Versus, VersusVisual } from "@/components/landing/Landing";
 import { SectionDock } from "@/components/landing/SectionDock";
 import { articleLd, breadcrumbLd } from "@/seo/jsonld";
 import { published, resolveRelated } from "@/seo/registry";
@@ -36,6 +36,7 @@ export default async function ComparePage({ params }: Props) {
       <JsonLd data={articleLd({ title: p.metaTitle, description: p.metaDescription, path, published: p.updated, updated: p.updated })} />
       <JsonLd data={breadcrumbLd([{ name: "Home", path: "/" }, ...trail])} />
       <LandingHero crumbs={trail} eyebrow={p.hero.eyebrow} tone="violet" title={p.hero.title} lead={p.hero.lead} primary={{ label: "See the comparison", href: "#compare" }} secondary={{ label: "Skip to our view", href: "#verdict" }} visual={<VersusVisual a={a.name} b={b.name} />} />
+      <Marquee items={p.criteria.map((x) => x.criterion)} tone={"violet"} />
       <Chapter id="compare" eyebrow="Side by side" title={[`${a.name} and ${b.name},`, "criterion by criterion."]} light tone="violet">
         <Versus a={a} b={b} criteria={p.criteria} />
       </Chapter>

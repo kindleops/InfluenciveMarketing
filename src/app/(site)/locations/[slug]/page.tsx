@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { brand } from "@/config/brand";
 import { ProjectCTA } from "@/components/home/ProjectCTA";
 import { JsonLd } from "@/components/seo/blocks";
-import { Bento, Chapter, Convert, FaqList, LandingHero, PillLinks, RelatedRail, Statement } from "@/components/landing/Landing";
+import { Bento, Chapter, Convert, FaqList, LandingHero, Marquee, PillLinks, RelatedRail, Statement } from "@/components/landing/Landing";
 import { MarketBackdrop, MarketReadout } from "@/components/markets/MarketStage";
 import { Ledger, SectorCards } from "@/components/markets/MarketModules";
 import { SectionDock } from "@/components/landing/SectionDock";
@@ -72,6 +72,7 @@ export default async function MarketLanding({ params }: Props) {
         backdrop={<MarketBackdrop slug={p.slug} neighbors={published.locations.filter((m) => m.slug !== p.slug).map((m) => ({ slug: m.slug, city: m.city.split(/[–,]/)[0] }))} />}
         visual={<MarketReadout slug={p.slug} city={p.city} timeZone={p.timeZone} area={p.serviceArea} presence={p.presence} />}
       />
+      <Marquee items={[p.city.split(/[–,]/)[0], ...p.serviceArea]} tone={tone} />
 
       <Chapter id="market" eyebrow={`${p.city} · ${p.regionCode}`} title={[p.market.heading, ""]}>
         <Statement body={p.market.body} />

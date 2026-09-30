@@ -45,6 +45,7 @@ export default function ResearchHub() {
       <JsonLd data={breadcrumbLd([{ name: "Home", path: "/" }, { name: "Research", path: "/research" }])} />
 
       <section className={s.masthead} aria-labelledby="page-title">
+        <span className="scroll-progress" aria-hidden="true" />
         <LightField tone="blue" />
         <div className="container">
           <nav aria-label="Breadcrumb">
@@ -113,7 +114,7 @@ export default function ResearchHub() {
             <ul className={s.grid} role="list">
               {rest.map((r, i) => (
                 <li key={r.slug} data-reveal="up" style={{ "--reveal-delay": `${i * 80}ms` } as CSSProperties}>
-                  <Link href={`/research/${r.slug}`} className={`glass ${s.card}`} data-level="2" data-liquid="" data-interactive="true" data-pointer-light="">
+                  <Link href={`/research/${r.slug}`} className={`glass ${s.card}`} data-level="2" data-liquid="" data-interactive="true" data-pointer-light="" data-tilt="6">
                     <span className={s.cardFlag}>
                       <b>{no(r.number)}</b>
                       <span>{FORMAT_LABEL[r.format]}</span>

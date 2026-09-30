@@ -245,7 +245,7 @@ export function Cards({ entries, label }: { entries: Entry[]; label: string }) {
     <ul className={s.related} role="list" aria-label={label}>
       {entries.map((e) => (
         <li key={e.path}>
-          <Link href={e.path} className={`glass ${s.card}`} data-level="2" data-liquid="" data-interactive="true" data-pointer-light="">
+          <Link href={e.path} className={`glass ${s.card}`} data-level="2" data-liquid="" data-interactive="true" data-pointer-light="" data-tilt="6">
             <span className={s.cardKind}>{KIND_LABEL[e.kind]}</span>
             <span className={s.cardTitle}>{e.title}</span>
             <span className={s.cardText}>{e.summary}</span>

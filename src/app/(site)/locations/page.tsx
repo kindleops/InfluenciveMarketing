@@ -37,6 +37,7 @@ export default function MarketsHub() {
       <JsonLd data={breadcrumbLd([{ name: "Home", path: "/" }, { name: "Markets", path: "/locations" }])} />
 
       <section className={s.hero} aria-labelledby="page-title">
+        <span className="scroll-progress" aria-hidden="true" />
         <LightField tone="blue" />
         <div className="container">
           <nav aria-label="Breadcrumb">
@@ -96,7 +97,7 @@ export default function MarketsHub() {
                     const g = MARKET_GEO[x.slug];
                     return (
                       <li key={x.slug} data-reveal="up" style={{ "--reveal-delay": `${(i % 3) * 70}ms` } as CSSProperties}>
-                        <Link href={`/locations/${x.slug}`} className={`glass ${m.mcard}`} data-level="2" data-liquid="" data-interactive="true" data-pointer-light="">
+                        <Link href={`/locations/${x.slug}`} className={`glass ${m.mcard}`} data-level="2" data-liquid="" data-interactive="true" data-pointer-light="" data-tilt="6">
                           <span className={m.mcardTop}>
                             <span>
                               {x.regionCode} · {x.timeZone.split(" (")[0]}

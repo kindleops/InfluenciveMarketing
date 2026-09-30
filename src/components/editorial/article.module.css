@@ -413,10 +413,22 @@
   line-height: 1.18;
   letter-spacing: -0.015em;
   text-wrap: balance;
-  background: linear-gradient(100deg, var(--light) 0%, var(--spectral-silver) 55%, rgb(var(--light-gold)) 100%);
+  background: linear-gradient(100deg, var(--light) 0%, var(--spectral-silver) 30%, rgb(var(--light-gold)) 50%, var(--spectral-silver) 70%, var(--light) 100%);
+  background-size: 220% 100%;
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+  animation: pull-shimmer 9s var(--ease-in-out) infinite alternate;
+}
+@keyframes pull-shimmer {
+  to {
+    background-position: 100% 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pull blockquote {
+    animation: none;
+  }
 }
 .callout {
   --g-radius: 20px;

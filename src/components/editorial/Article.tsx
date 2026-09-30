@@ -186,6 +186,7 @@ export function Article({
 
       <article aria-labelledby="page-title" className={s.article}>
         <header className={s.masthead}>
+          <span className="scroll-progress" aria-hidden="true" />
           <LightField tone={report ? "blue" : "violet"} />
           <div className="container">
             <nav aria-label="Breadcrumb">

@@ -10,7 +10,7 @@ export function SectorCards({ items }: { items: { name: string; note: string; hr
     <ul className={s.sectors} role="list">
       {items.map((x, i) => (
         <li key={x.href} data-reveal="up" style={{ "--reveal-delay": `${i * 80}ms` } as CSSProperties}>
-          <Link href={x.href} className={`glass ${s.sector}`} data-level="2" data-liquid="" data-interactive="true" data-pointer-light="">
+          <Link href={x.href} className={`glass ${s.sector}`} data-level="2" data-liquid="" data-interactive="true" data-pointer-light="" data-tilt="5">
             <span className={s.sectorIdx}>{String(i + 1).padStart(2, "0")}</span>
             <span className={s.sectorName}>{x.name}</span>
             <span className={s.sectorNote}>{x.note}</span>

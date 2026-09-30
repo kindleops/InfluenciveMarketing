@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { ProjectCTA } from "@/components/home/ProjectCTA";
 import { JsonLd } from "@/components/seo/blocks";
-import { Bento, Checks, Chapter, Convert, FaqList, LandingHero, Process, RelatedRail, SignalPanel, Statement } from "@/components/landing/Landing";
+import { Bento, Chapter, Checks, Convert, FaqList, LandingHero, Marquee, Process, RelatedRail, SignalPanel, Statement } from "@/components/landing/Landing";
 import { SectionDock } from "@/components/landing/SectionDock";
 import { breadcrumbLd, serviceLd } from "@/seo/jsonld";
 import { published, resolveRelated } from "@/seo/registry";
@@ -44,6 +44,7 @@ export default async function UseCaseLanding({ params }: Props) {
         secondary={{ label: "The checklist", href: "#checklist" }}
         visual={<SignalPanel label="Before you start" aside={p.name} items={p.checklist} chip={["Run as", "A plan with owners and dates"]} />}
       />
+      <Marquee items={p.risks.map((x) => x.title)} tone={"teal"} />
       <Chapter id="situation" eyebrow="The situation" title={[p.situation.heading, ""]}>
         <Statement body={p.situation.body} />
       </Chapter>

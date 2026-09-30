@@ -17,6 +17,13 @@
 }
 .hero :global(.light-field) {
   z-index: -1;
+  animation: field-in 2.4s var(--ease-out) both;
+}
+@keyframes field-in {
+  from {
+    opacity: 0;
+    transform: scale(1.08);
+  }
 }
 /* Pools sit behind the instrument on the right, and fall away at the foot. */
 .hero :global(.light-field) {
@@ -595,12 +602,17 @@
     grid-template-columns: repeat(3, minmax(0, 1fr));
     grid-auto-flow: dense;
   }
-  .cell[data-wide] {
+  .slot[data-wide] {
     grid-column: span 2;
   }
 }
+.slot {
+  display: grid;
+  perspective: 1200px;
+}
 .cell {
   --g-radius: 24px;
+  height: 100%;
   display: grid;
   align-content: start;
   grid-template-columns: auto 1fr;
@@ -608,7 +620,33 @@
   min-height: 15rem;
   padding: 1.6rem 1.6rem 1.7rem;
 }
+/* Glyphs draw themselves when the card arrives, and breathe on hover. */
+.glyph :global(*) {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  transition: stroke-dashoffset 1.6s var(--ease-out);
+}
+html:not(.js) .glyph :global(*),
+[data-inview] .glyph :global(*) {
+  stroke-dashoffset: 0;
+}
+[data-inview] .glyph :global(*:nth-child(2)) {
+  transition-delay: 0.25s;
+}
+[data-inview] .glyph :global(*:nth-child(3)) {
+  transition-delay: 0.45s;
+}
+[data-inview] .glyph :global(*:nth-child(4)) {
+  transition-delay: 0.6s;
+}
+.cell:hover .glyph {
+  transform: scale(1.08) rotate(-4deg);
+  filter: drop-shadow(0 0 14px rgb(var(--light-blue) / 0.9));
+}
 .glyph {
+  transition:
+    transform 700ms var(--ease-out),
+    filter 700ms var(--ease-out);
   grid-row: span 1;
   width: 40px;
   height: 40px;
@@ -1456,5 +1494,175 @@
 @media (prefers-reduced-motion: reduce) {
   .floatChip {
     animation: none;
+  }
+}
+
+/* ---- Charged instrument ------------------------------------------------------ */
+/* A slow ring of light turning behind the panel, like a lens catching it. */
+.halo {
+  position: absolute;
+  inset: -8% -6% -2%;
+  z-index: -1;
+  border-radius: 40px;
+  background: conic-gradient(from var(--edge-angle), rgb(var(--light-blue) / 0) 0deg, rgb(var(--light-blue) / 0.5) 70deg, rgb(var(--light-violet) / 0.45) 140deg, rgb(var(--light-gold) / 0.25) 200deg, rgb(var(--light-blue) / 0) 260deg);
+  filter: blur(46px);
+  opacity: 0.75;
+  animation: edge-spin 14s linear infinite;
+}
+/* A scan line that passes down the glass every few seconds. */
+.scan {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 38%;
+  z-index: 0;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgb(var(--light-blue) / 0) 0%, rgb(var(--light-blue) / 0.09) 70%, rgb(200 214 255 / 0.28) 99%, rgb(var(--light-blue) / 0) 100%);
+  mix-blend-mode: screen;
+  transform: translateY(-110%);
+  animation: scan 6.5s var(--ease-in-out) 1.8s infinite;
+}
+@keyframes scan {
+  0% {
+    transform: translateY(-110%);
+  }
+  55%,
+  100% {
+    transform: translateY(290%);
+  }
+}
+.panel > :not(.scan) {
+  position: relative;
+  z-index: 1;
+}
+/* Trace fills keep breathing after they draw. */
+.trace::after {
+  animation:
+    trace 1800ms var(--ease-out) both,
+    breathe 5s var(--ease-in-out) infinite alternate;
+  animation-delay: calc(var(--i) * 110ms + 700ms), calc(var(--i) * -0.8s + 2.6s);
+}
+@keyframes breathe {
+  from {
+    width: var(--w, 60%);
+  }
+  to {
+    width: calc(var(--w, 60%) - 14%);
+  }
+}
+
+/* ---- Marquee --------------------------------------------------------------- */
+.marquee {
+  position: relative;
+  overflow: hidden;
+  padding-block: clamp(1.5rem, 1rem + 2vw, 3rem);
+  border-block: 1px solid var(--border-hairline);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+}
+.marqueeTrack {
+  display: flex;
+  width: max-content;
+  animation: marquee calc(var(--n) * 6s) linear infinite;
+}
+.marquee:hover .marqueeTrack {
+  animation-play-state: paused;
+}
+.marqueeRow {
+  display: flex;
+  flex: none;
+}
+.marqueeItem {
+  display: inline-flex;
+  align-items: center;
+  gap: clamp(1.5rem, 1rem + 2vw, 3rem);
+  padding-right: clamp(1.5rem, 1rem + 2vw, 3rem);
+  font-size: clamp(2.6rem, 1.4rem + 4.4vw, 6.4rem);
+  line-height: 1;
+  letter-spacing: -0.045em;
+  font-weight: 460;
+  white-space: nowrap;
+  color: transparent;
+  -webkit-text-stroke: 1px rgb(241 239 234 / 0.22);
+}
+.marqueeItem[data-alt] {
+  -webkit-text-stroke: 0;
+  background: linear-gradient(100deg, var(--light) 0%, var(--spectral-silver) 45%, rgb(var(--light-blue)) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+.marquee[data-tone="gold"] .marqueeItem[data-alt] {
+  background-image: linear-gradient(100deg, var(--light) 0%, rgb(var(--light-gold)) 100%);
+}
+.marquee[data-tone="violet"] .marqueeItem[data-alt] {
+  background-image: linear-gradient(100deg, var(--light) 0%, rgb(var(--light-violet)) 100%);
+}
+.marquee[data-tone="teal"] .marqueeItem[data-alt] {
+  background-image: linear-gradient(100deg, var(--light) 0%, rgb(var(--light-teal)) 100%);
+}
+.marqueeItem i {
+  width: 0.28em;
+  height: 0.28em;
+  border-radius: 50%;
+  background: rgb(var(--light-blue));
+  box-shadow: 0 0 18px rgb(var(--light-blue));
+}
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* ---- Process: each step lights as it comes through the middle ------------- */
+.node {
+  transition:
+    box-shadow 900ms var(--ease-out),
+    color 900ms var(--ease-out),
+    transform 900ms var(--ease-out);
+}
+.phase[data-inview] .node {
+  color: var(--text-primary);
+  transform: scale(1.06);
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.4),
+    inset 0 0 18px rgb(var(--light-blue) / 0.35),
+    0 0 0 6px rgb(var(--light-blue) / 0.08),
+    0 0 30px rgb(var(--light-blue) / 0.55);
+  transition-delay: calc(var(--reveal-delay, 0ms) + 250ms);
+}
+@supports (animation-timeline: view()) {
+  .phase .node {
+    animation: node-focus linear both;
+    animation-timeline: view();
+    animation-range: cover 25% cover 75%;
+  }
+}
+@keyframes node-focus {
+  0%,
+  100% {
+    filter: brightness(0.85);
+  }
+  50% {
+    filter: brightness(1.35);
+  }
+}
+
+/* ---- Split chapter headings sit on the lit baseline ---------------------- */
+.h2 :global(.split-line) {
+  padding-bottom: 0.12em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .halo,
+  .scan,
+  .marqueeTrack,
+  .trace::after,
+  .phase .node {
+    animation: none;
+  }
+  .glyph :global(*) {
+    stroke-dashoffset: 0;
+    transition: none;
   }
 }

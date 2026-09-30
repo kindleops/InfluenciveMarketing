@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { ProjectCTA } from "@/components/home/ProjectCTA";
 import { JsonLd } from "@/components/seo/blocks";
-import { Checks, Chapter, Convert, Duo, FaqList, LandingHero, Process, RelatedRail, SignalPanel, Verdict } from "@/components/landing/Landing";
+import { Chapter, Checks, Convert, Duo, FaqList, LandingHero, Marquee, Process, RelatedRail, SignalPanel, Verdict } from "@/components/landing/Landing";
 import { SectionDock } from "@/components/landing/SectionDock";
 import { breadcrumbLd, serviceLd } from "@/seo/jsonld";
 import { published, resolveRelated } from "@/seo/registry";
@@ -44,6 +44,7 @@ export default async function SolutionLanding({ params }: Props) {
         secondary={{ label: "See the plan", href: "#plan" }}
         visual={<SignalPanel label="How we’ll know it worked" aside={p.name} items={p.measures} chip={["The outcome", "Agreed in writing up front"]} />}
       />
+      <Marquee items={p.plan.map((x) => x.title)} tone={"blue"} />
       <Chapter id="outcome" eyebrow="The outcome" title={["What changes", "when it’s done."]}>
         <Verdict label="In one sentence" text={p.outcome} />
       </Chapter>

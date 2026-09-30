@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { ProjectCTA } from "@/components/home/ProjectCTA";
 import { JsonLd } from "@/components/seo/blocks";
-import { Checks, Chapter, Convert, FaqList, LandingHero, Options, RelatedRail, SignalPanel, Statement } from "@/components/landing/Landing";
+import { Chapter, Checks, Convert, FaqList, LandingHero, Marquee, Options, RelatedRail, SignalPanel, Statement } from "@/components/landing/Landing";
 import { SectionDock } from "@/components/landing/SectionDock";
 import { articleLd, breadcrumbLd } from "@/seo/jsonld";
 import { published, resolveRelated } from "@/seo/registry";
@@ -44,6 +44,7 @@ export default async function AlternativesPage({ params }: Props) {
         secondary={{ label: "How to decide", href: "#decide" }}
         visual={<SignalPanel label="The options" aside={`${p.options.length} routes`} items={p.options.map((o) => o.name)} chip={["Compared on", "Fit, cost and trade-offs"]} />}
       />
+      <Marquee items={p.options.map((x) => x.name)} tone={"violet"} />
       <Chapter id="replacing" eyebrow="What you’re replacing" title={[p.replacing.heading, ""]}>
         <Statement body={p.replacing.body} />
       </Chapter>

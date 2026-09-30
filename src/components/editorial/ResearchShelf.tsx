@@ -16,7 +16,7 @@ export function ResearchShelf({ limit = 4 }: { limit?: number }) {
       <ul className={s.list} role="list">
         {reports.map((r, i) => (
           <li key={r.slug} data-reveal="up" style={{ "--reveal-delay": `${i * 80}ms` } as CSSProperties}>
-            <Link href={`/research/${r.slug}`} className={`glass ${s.cover}`} data-level="2" data-liquid="" data-interactive="true" data-pointer-light="">
+            <Link href={`/research/${r.slug}`} className={`glass ${s.cover}`} data-level="2" data-liquid="" data-interactive="true" data-pointer-light="" data-tilt="6">
               <span className={s.flag}>
                 <b>No. {String(r.number).padStart(2, "0")}</b>
                 <span>{FORMAT_LABEL[r.format]}</span>
