@@ -61,7 +61,11 @@ export function CommandPalette() {
         else show();
       }
     };
-    const onOpen = () => show();
+    const onOpen = (e: Event) => {
+      const q = (e as CustomEvent<{ q?: string }>).detail?.q;
+      if (q) setQ(q);
+      show();
+    };
     window.addEventListener("keydown", onKey);
     window.addEventListener(OPEN_SEARCH, onOpen);
     return () => {
@@ -209,7 +213,7 @@ export function CommandPalette() {
   );
 }
 
-/** A button anywhere on the site that opens the palette. */
-export function openSearch() {
-  window.dispatchEvent(new Event(OPEN_SEARCH));
+/** Open the palette from anywhere — optionally with a query already typed. */
+export function openSearch(q?: unknown) {
+  window.dispatchEvent(new CustomEvent(OPEN_SEARCH, { detail: { q: typeof q === "string" ? q : undefined } }));
 }

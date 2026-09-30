@@ -37,6 +37,7 @@ export function LandingHero({
   secondary,
   facts,
   visual,
+  visualInteractive,
   backdrop,
 }: {
   crumbs: { name: string; path: string }[];
@@ -48,6 +49,8 @@ export function LandingHero({
   secondary?: Link2;
   facts?: { label: string; value: ReactNode }[];
   visual?: ReactNode;
+  /** The visual holds real controls, so it stays in the accessibility tree. */
+  visualInteractive?: boolean;
   /** A scene behind the whole hero (e.g. a market's map), under the copy. */
   backdrop?: ReactNode;
 }) {
@@ -105,7 +108,7 @@ export function LandingHero({
             )}
           </div>
           {visual && (
-            <div className={s.heroVisual} aria-hidden="true" data-reveal="scale" style={{ "--reveal-delay": "200ms" } as CSSProperties}>
+            <div className={s.heroVisual} aria-hidden={visualInteractive ? undefined : "true"} data-reveal="scale" style={{ "--reveal-delay": "200ms" } as CSSProperties}>
               {visual}
             </div>
           )}

@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import type { CSSProperties } from "react";
 import { ProjectCTA } from "@/components/home/ProjectCTA";
 import { JsonLd } from "@/components/seo/blocks";
-import { Convert, FaqList, RelatedRail } from "@/components/landing/Landing";
+import { Chapter, Convert, RelatedRail } from "@/components/landing/Landing";
+import { AnswerChat, StreamFaqs } from "@/components/answers/Chat";
 import { LightField } from "@/components/ui/LightField";
 import { Arrow } from "@/components/ui/Button";
 import { fmtDate } from "@/components/editorial/Article";
@@ -78,38 +78,14 @@ export default async function AnswerPage({ params }: Props) {
                 </li>
               </ol>
             </nav>
-            <h1 id="page-title" className={s.question} data-reveal="up">
-              {p.question}
-            </h1>
-            <p className={s.meta} data-reveal="fade">
+            <p className={s.meta}>
               <span>{p.topic}</span>
               <span>{minutes} min read</span>
               <span>
                 Updated <time dateTime={p.updated}>{fmtDate(p.updated)}</time>
               </span>
             </p>
-
-            <div className={s.answerGrid}>
-              <section className={`glass ${s.short}`} data-level="3" data-liquid="deep" aria-labelledby="short-title" data-reveal="up" style={{ "--reveal-delay": "80ms" } as CSSProperties}>
-                <h2 id="short-title" className={s.label}>
-                  <i aria-hidden="true" /> The short answer
-                </h2>
-                <p className={s.shortText}>{p.shortAnswer}</p>
-              </section>
-              <section className={s.points} aria-labelledby="points-title" data-reveal="up" style={{ "--reveal-delay": "160ms" } as CSSProperties}>
-                <h2 id="points-title" className={s.label}>
-                  Key points
-                </h2>
-                <ol role="list">
-                  {p.keyPoints.map((k, i) => (
-                    <li key={k}>
-                      <span aria-hidden="true">{String(i + 1).padStart(2, "0")}</span>
-                      {k}
-                    </li>
-                  ))}
-                </ol>
-              </section>
-            </div>
+            <AnswerChat question={p.question} answer={p.shortAnswer} points={p.keyPoints} topic={p.topic} suggestions={siblings.slice(0, 3).map((a) => ({ q: a.question, href: `/answers/${a.slug}` }))} />
           </div>
         </header>
 
@@ -180,7 +156,9 @@ export default async function AnswerPage({ params }: Props) {
         </div>
       </article>
 
-      <FaqList faqs={p.faqs} title={["Related", "questions."]} schema={false} />
+      <Chapter id="faq" eyebrow="Questions" title={["Related", "questions."]}>
+        <StreamFaqs faqs={p.faqs} />
+      </Chapter>
 
       {(siblings.length > 0 || others.length > 0) && (
         <section className={s.more} aria-labelledby="more-title">
