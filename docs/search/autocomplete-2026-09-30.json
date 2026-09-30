@@ -1,0 +1,3214 @@
+{
+ "questions": {
+  "can i apply for nhs dentist": [
+   "dental"
+  ],
+  "can i do search engine optimization myself": [
+   "seo"
+  ],
+  "can i do seo myself": [
+   "seo"
+  ],
+  "can i do seo on my own": [
+   "seo"
+  ],
+  "do dentists charge different prices": [
+   "dental"
+  ],
+  "do real estate agents buy leads": [
+   "realestate"
+  ],
+  "does ai replace seo": [
+   "ai"
+  ],
+  "does black hat seo still work": [
+   "seo"
+  ],
+  "does changing website design affect seo": [
+   "web"
+  ],
+  "does changing your website affect seo": [
+   "web"
+  ],
+  "does content marketing still work": [
+   "content"
+  ],
+  "does content marketing work": [
+   "content"
+  ],
+  "does google seo still work": [
+   "seo"
+  ],
+  "does local seo still work": [
+   "seo"
+  ],
+  "does parasite seo still work": [
+   "seo"
+  ],
+  "does programmatic seo still work": [
+   "seo"
+  ],
+  "does seo still work": [
+   "seo"
+  ],
+  "does seo still work in 2026": [
+   "seo"
+  ],
+  "does seo work anymore": [
+   "seo"
+  ],
+  "does website design affect seo": [
+   "web"
+  ],
+  "does website redesign affect seo": [
+   "web"
+  ],
+  "how can i make my website seo friendly": [
+   "web"
+  ],
+  "how do advocates get clients": [
+   "law"
+  ],
+  "how do construction companies get leads": [
+   "home"
+  ],
+  "how do contractors get leads": [
+   "home"
+  ],
+  "how do corporate lawyers get clients": [
+   "law"
+  ],
+  "how do criminal lawyers get clients": [
+   "law"
+  ],
+  "how do dentists get patients": [
+   "dental"
+  ],
+  "how do financial advisors charge clients": [
+   "fin"
+  ],
+  "how do financial advisors find clients": [
+   "fin"
+  ],
+  "how do financial advisors get clients": [
+   "fin"
+  ],
+  "how do financial planners get clients": [
+   "fin"
+  ],
+  "how do general contractors get leads": [
+   "home"
+  ],
+  "how do i find an nhs dentist taking on new patients": [
+   "dental"
+  ],
+  "how do law firms get clients": [
+   "law"
+  ],
+  "how do lawyers find clients": [
+   "law"
+  ],
+  "how do lawyers get clients": [
+   "law"
+  ],
+  "how do most contractors get leads": [
+   "home"
+  ],
+  "how do new financial advisors get clients": [
+   "fin"
+  ],
+  "how do new lawyers get clients": [
+   "law"
+  ],
+  "how do new real estate agents get.leads": [
+   "realestate"
+  ],
+  "how do real estate agents find leads": [
+   "realestate"
+  ],
+  "how do real estate agents get leads": [
+   "realestate"
+  ],
+  "how do real estate agents get their leads": [
+   "realestate"
+  ],
+  "how do real estate brokers get leads": [
+   "realestate"
+  ],
+  "how do you get leads for real estate": [
+   "realestate"
+  ],
+  "how do young financial advisors get clients": [
+   "fin"
+  ],
+  "how does ai overview affect seo": [
+   "ai"
+  ],
+  "how does google ads auction work": [
+   "ppc"
+  ],
+  "how does google ads bidding work": [
+   "ppc"
+  ],
+  "how does google ads smart bidding work": [
+   "ppc"
+  ],
+  "how does google ai overview affect seo": [
+   "ai"
+  ],
+  "how does local seo work": [
+   "local"
+  ],
+  "how does marketing mix modeling work": [
+   "analytics"
+  ],
+  "how does real estate agents get leads": [
+   "realestate"
+  ],
+  "how does seo work": [
+   "seo"
+  ],
+  "how does seo work in 2026": [
+   "seo"
+  ],
+  "how does seo work now": [
+   "seo"
+  ],
+  "how does seo work on a website": [
+   "seo"
+  ],
+  "how does seo work on google": [
+   "seo"
+  ],
+  "how does seo work on instagram": [
+   "seo"
+  ],
+  "how does seo work on substack": [
+   "seo"
+  ],
+  "how does seo work on tiktok": [
+   "seo"
+  ],
+  "how does seo work with ai": [
+   "seo"
+  ],
+  "how does value based bidding work google ads": [
+   "ppc"
+  ],
+  "how does value based bidding work google ads search assessment": [
+   "ppc"
+  ],
+  "how is ai overview affecting seo for blogging": [
+   "ai"
+  ],
+  "how long does a company rebrand take": [
+   "brand"
+  ],
+  "how long does a rebrand take": [
+   "brand"
+  ],
+  "how long does a return label last": [
+   "brand"
+  ],
+  "how long does a website design take": [
+   "web"
+  ],
+  "how long does a website redesign take": [
+   "web"
+  ],
+  "how long does it take to rebrand a website": [
+   "brand"
+  ],
+  "how long does it take to redesign a website": [
+   "web"
+  ],
+  "how long does it take to see results from local seo": [
+   "local"
+  ],
+  "how long does it take to transfer ownership of a business": [
+   "brand"
+  ],
+  "how long does it take to update a website": [
+   "web"
+  ],
+  "how long does local seo take": [
+   "local"
+  ],
+  "how long does seo take": [
+   "seo"
+  ],
+  "how long does seo take to kick in": [
+   "seo"
+  ],
+  "how long does seo take to rank": [
+   "seo"
+  ],
+  "how long does seo take to see results": [
+   "local",
+   "seo"
+  ],
+  "how long does seo take to show results": [
+   "seo"
+  ],
+  "how long does seo take to start working": [
+   "seo"
+  ],
+  "how long does seo take to update": [
+   "seo"
+  ],
+  "how long does seo take to update on google": [
+   "seo"
+  ],
+  "how long does seo take to work": [
+   "local",
+   "seo"
+  ],
+  "how long does seo take to work for a new website": [
+   "seo"
+  ],
+  "how long should a rebrand take": [
+   "brand"
+  ],
+  "how long should a website redesign take": [
+   "web"
+  ],
+  "how much do ad agencies cost": [
+   "agency"
+  ],
+  "how much do agencies charge": [
+   "ppc"
+  ],
+  "how much do companies spend on google ads": [
+   "ppc"
+  ],
+  "how much do email campaigns cost": [
+   "email"
+  ],
+  "how much do email campaigns cost on squarespace": [
+   "email"
+  ],
+  "how much do i need to spend on google ads": [
+   "ppc"
+  ],
+  "how much do lawyers spend on advertising": [
+   "law"
+  ],
+  "how much do lawyers spend on marketing": [
+   "law"
+  ],
+  "how much do local seo services cost": [
+   "local"
+  ],
+  "how much do marketing agencies charge": [
+   "agency"
+  ],
+  "how much do marketing agencies charge for facebook ads": [
+   "agency"
+  ],
+  "how much do marketing agencies charge for google ads": [
+   "agency"
+  ],
+  "how much do marketing agencies charge for seo": [
+   "agency"
+  ],
+  "how much do marketing agencies charge for social media management": [
+   "agency"
+  ],
+  "how much do marketing agencies charge per hour": [
+   "agency"
+  ],
+  "how much do marketing agencies charge per month": [
+   "agency"
+  ],
+  "how much do marketing companies charge": [
+   "agency"
+  ],
+  "how much do movies spend on marketing": [
+   "content"
+  ],
+  "how much do personal injury lawyers spend on advertising": [
+   "law"
+  ],
+  "how much do ppc agencies charge": [
+   "ppc"
+  ],
+  "how much do seo companies charge": [
+   "law"
+  ],
+  "how much do you spend on google ads": [
+   "ppc"
+  ],
+  "how much does a company rebrand cost": [
+   "brand"
+  ],
+  "how much does a corporate rebrand cost": [
+   "brand"
+  ],
+  "how much does a digital marketing agency cost": [
+   "agency"
+  ],
+  "how much does a full rebrand cost": [
+   "brand"
+  ],
+  "how much does a full website redesign cost": [
+   "web"
+  ],
+  "how much does a landing page cost": [
+   "web"
+  ],
+  "how much does a landing page cost in south africa": [
+   "web"
+  ],
+  "how much does a landing page cost monthly": [
+   "web"
+  ],
+  "how much does a landing page design cost": [
+   "web"
+  ],
+  "how much does a logo rebrand cost": [
+   "brand"
+  ],
+  "how much does a marketing agency cost": [
+   "agency"
+  ],
+  "how much does a marketing agency cost per month": [
+   "agency"
+  ],
+  "how much does a marketing company cost": [
+   "agency"
+  ],
+  "how much does a marketing firm cost": [
+   "agency"
+  ],
+  "how much does a rebrand cost": [
+   "brand"
+  ],
+  "how much does a shopify website designer.cost": [
+   "web"
+  ],
+  "how much does a simple landing page cost": [
+   "web"
+  ],
+  "how much does a social media marketing agency cost": [
+   "agency"
+  ],
+  "how much does a squarespace website designer cost": [
+   "web"
+  ],
+  "how much does a website cost": [
+   "web"
+  ],
+  "how much does a website cost for a small business": [
+   "web"
+  ],
+  "how much does a website cost on squarespace": [
+   "web"
+  ],
+  "how much does a website cost per month": [
+   "web"
+  ],
+  "how much does a website cost per year": [
+   "web"
+  ],
+  "how much does a website cost to build": [
+   "web"
+  ],
+  "how much does a website cost to buy": [
+   "web"
+  ],
+  "how much does a website cost to host": [
+   "web"
+  ],
+  "how much does a website cost to make": [
+   "web"
+  ],
+  "how much does a website cost to run": [
+   "web"
+  ],
+  "how much does a website designer cost per hour": [
+   "web"
+  ],
+  "how much does a website landing page cost": [
+   "web"
+  ],
+  "how much does a website rebrand cost": [
+   "brand"
+  ],
+  "how much does a wix website designer cost": [
+   "web"
+  ],
+  "how much does agency ad account cost": [
+   "agency"
+  ],
+  "how much does amazon spend on google ads": [
+   "ppc"
+  ],
+  "how much does branding cost": [
+   "brand"
+  ],
+  "how much does branding cost for small business": [
+   "brand"
+  ],
+  "how much does branding cost in south africa": [
+   "brand"
+  ],
+  "how much does content marketing cost": [
+   "content"
+  ],
+  "how much does dental marketing cost": [
+   "dental"
+  ],
+  "how much does design cost": [
+   "brand"
+  ],
+  "how much does email advertising cost": [
+   "email"
+  ],
+  "how much does email marketing cost": [
+   "email"
+  ],
+  "how much does email marketing cost in south africa": [
+   "email"
+  ],
+  "how much does email marketing cost per month": [
+   "email"
+  ],
+  "how much does facebook ads cost in naira": [
+   "ppc"
+  ],
+  "how much does facebook ads cost in south africa": [
+   "ppc"
+  ],
+  "how much does facebook ads cost per day": [
+   "ppc"
+  ],
+  "how much does facebook advertising cost": [
+   "ppc"
+  ],
+  "how much does facebook advertising cost per month": [
+   "ppc"
+  ],
+  "how much does google ads cost": [
+   "ppc"
+  ],
+  "how much does google ads cost for small business": [
+   "ppc"
+  ],
+  "how much does google ads cost in south africa": [
+   "ppc"
+  ],
+  "how much does google ads cost per click": [
+   "ppc"
+  ],
+  "how much does google ads cost per day": [
+   "ppc"
+  ],
+  "how much does google ads cost per month": [
+   "ppc"
+  ],
+  "how much does google marketing cost": [
+   "content"
+  ],
+  "how much does hiring a marketing agency cost": [
+   "agency"
+  ],
+  "how much does it cost to buy a law firm": [
+   "law"
+  ],
+  "how much does it cost to hire a marketing consultant": [
+   "agency"
+  ],
+  "how much does it cost to rebrand a small business": [
+   "brand"
+  ],
+  "how much does law firm seo cost": [
+   "law"
+  ],
+  "how much does local seo cost": [
+   "local"
+  ],
+  "how much does logo cost": [
+   "brand"
+  ],
+  "how much does major dental work cost": [
+   "dental"
+  ],
+  "how much does marketing cost": [
+   "brand"
+  ],
+  "how much does marketing cost for small business": [
+   "brand"
+  ],
+  "how much does marketing cost per month": [
+   "brand"
+  ],
+  "how much does rebranding cost": [
+   "brand"
+  ],
+  "how much does seo cost": [
+   "law",
+   "local",
+   "seo"
+  ],
+  "how much does seo cost for a small business": [
+   "law",
+   "seo"
+  ],
+  "how much does seo cost for a small business per month": [
+   "seo"
+  ],
+  "how much does seo cost per month": [
+   "seo"
+  ],
+  "how much does square email marketing cost": [
+   "email"
+  ],
+  "how much does the average local seo cost": [
+   "local"
+  ],
+  "how much does website designing cost": [
+   "web"
+  ],
+  "how much does website redesign cost": [
+   "web"
+  ],
+  "how much does wix email marketing cost": [
+   "email"
+  ],
+  "how much is a website designer cost": [
+   "web"
+  ],
+  "how much should a business spend on google ads": [
+   "ppc"
+  ],
+  "how much should a landing page cost": [
+   "web"
+  ],
+  "how much should a rebrand cost": [
+   "brand"
+  ],
+  "how much should a website redesign cost": [
+   "web"
+  ],
+  "how much should i pay for google ads": [
+   "ppc"
+  ],
+  "how much should i spend on google ads": [
+   "ppc"
+  ],
+  "how much should i spend on google ads per day": [
+   "ppc"
+  ],
+  "how much should i spend on google ads per month": [
+   "ppc"
+  ],
+  "how much should you spend on google ads": [
+   "ppc"
+  ],
+  "how much should you spend on marketing": [
+   "law"
+  ],
+  "how much will the dod rebrand cost": [
+   "brand"
+  ],
+  "how often should a website be redesigned": [
+   "web"
+  ],
+  "how to be on the first page of google": [
+   "seo"
+  ],
+  "how to be on the first page of google search": [
+   "seo"
+  ],
+  "how to calculate marketing return on investment": [
+   "analytics"
+  ],
+  "how to calculate marketing roi": [
+   "analytics"
+  ],
+  "how to calculate marketing roi in excel": [
+   "analytics"
+  ],
+  "how to calculate roi marketing campaign": [
+   "analytics"
+  ],
+  "how to check level in google maps": [
+   "local"
+  ],
+  "how to choose a b2b digital marketing agency": [
+   "agency"
+  ],
+  "how to choose a digital marketing agency": [
+   "agency"
+  ],
+  "how to choose a digital marketing agency for your business": [
+   "agency"
+  ],
+  "how to choose a digital marketing agency in 2026": [
+   "agency"
+  ],
+  "how to choose a marketing agency": [
+   "agency"
+  ],
+  "how to choose a marketing company": [
+   "agency"
+  ],
+  "how to choose a performance marketing agency": [
+   "agency"
+  ],
+  "how to choose advertising agency": [
+   "agency"
+  ],
+  "how to choose an seo agency": [
+   "seo"
+  ],
+  "how to choose an seo company": [
+   "seo"
+  ],
+  "how to choose best seo company": [
+   "seo"
+  ],
+  "how to choose digital marketing agency": [
+   "seo"
+  ],
+  "how to choose the right seo agency": [
+   "seo"
+  ],
+  "how to choose the right seo agency for your business": [
+   "seo"
+  ],
+  "how to choose the right seo agency in chicago in 2026": [
+   "seo"
+  ],
+  "how to choose the right technical seo agency": [
+   "seo"
+  ],
+  "how to determine marketing roi": [
+   "analytics"
+  ],
+  "how to do seo yourself": [
+   "seo"
+  ],
+  "how to evaluate marketing performance": [
+   "analytics"
+  ],
+  "how to find cited sources": [
+   "ai"
+  ],
+  "how to get a website on the first page of google": [
+   "seo"
+  ],
+  "how to get better google reviews": [
+   "local"
+  ],
+  "how to get citation from chatgpt": [
+   "ai"
+  ],
+  "how to get cited in chatgpt": [
+   "ai"
+  ],
+  "how to get construction leads": [
+   "home"
+  ],
+  "how to get construction leads in bangalore": [
+   "home"
+  ],
+  "how to get contractor leads": [
+   "home"
+  ],
+  "how to get listed in chatgpt": [
+   "ai"
+  ],
+  "how to get listed in chatgpt search": [
+   "ai"
+  ],
+  "how to get mentioned in chatgpt": [
+   "ai"
+  ],
+  "how to get more google reviews": [
+   "local"
+  ],
+  "how to get more google reviews fast": [
+   "local"
+  ],
+  "how to get more google reviews for my business": [
+   "local"
+  ],
+  "how to get more google reviews for your business": [
+   "local"
+  ],
+  "how to get more google reviews from customers": [
+   "local"
+  ],
+  "how to get more google reviews restaurant": [
+   "local"
+  ],
+  "how to get my business listed in chatgpt": [
+   "ai"
+  ],
+  "how to get my website on the first page of google": [
+   "seo"
+  ],
+  "how to get on the first page of google": [
+   "seo"
+  ],
+  "how to get on the first page of google in 24 hours": [
+   "seo"
+  ],
+  "how to get on the first page of google searches": [
+   "seo"
+  ],
+  "how to get on the front page of google": [
+   "seo"
+  ],
+  "how to get rank in ai overview": [
+   "ai"
+  ],
+  "how to get referenced by chatgpt": [
+   "ai"
+  ],
+  "how to get your brand mentioned in chatgpt": [
+   "ai"
+  ],
+  "how to get your business listed in chatgpt": [
+   "ai"
+  ],
+  "how to get your business on the first page of google": [
+   "seo"
+  ],
+  "how to get your website on. the front page of google": [
+   "seo"
+  ],
+  "how to improve your seo ranking": [
+   "seo"
+  ],
+  "how to increase conversion rate": [
+   "web"
+  ],
+  "how to increase conversion rate crimson desert": [
+   "web"
+  ],
+  "how to increase conversion rate in fc26": [
+   "web"
+  ],
+  "how to increase conversion rate in retail": [
+   "web"
+  ],
+  "how to increase conversion rate in retail store": [
+   "web"
+  ],
+  "how to increase conversion rate in sales": [
+   "web"
+  ],
+  "how to increase conversion rate on etsy": [
+   "web"
+  ],
+  "how to increase conversion rate shopify": [
+   "web"
+  ],
+  "how to lawyers get clients": [
+   "law"
+  ],
+  "how to level up in google maps": [
+   "local"
+  ],
+  "how to lower customer acquisition cost": [
+   "fin"
+  ],
+  "how to make more google reviews": [
+   "local"
+  ],
+  "how to manage google my business account": [
+   "multi"
+  ],
+  "how to manage multiple google accounts": [
+   "multi"
+  ],
+  "how to manage multiple google business profiles": [
+   "multi"
+  ],
+  "how to measure content marketing roi": [
+   "analytics"
+  ],
+  "how to measure digital marketing roi": [
+   "analytics"
+  ],
+  "how to measure marketing performance": [
+   "analytics"
+  ],
+  "how to measure marketing roi": [
+   "analytics"
+  ],
+  "how to optimize content for ai search": [
+   "ai"
+  ],
+  "how to optimize content for ai search and discovery": [
+   "ai"
+  ],
+  "how to optimize content for ai search engines": [
+   "ai"
+  ],
+  "how to optimize for ai search": [
+   "ai"
+  ],
+  "how to optimize for ai search engines": [
+   "ai"
+  ],
+  "how to optimize for ai search results": [
+   "ai"
+  ],
+  "how to optimize seo for ai search": [
+   "ai"
+  ],
+  "how to optimize website for ai search": [
+   "ai"
+  ],
+  "how to optimize wordpress for ai search": [
+   "ai"
+  ],
+  "how to optimize your website for ai search": [
+   "ai"
+  ],
+  "how to rank better in google maps": [
+   "local"
+  ],
+  "how to rank content in ai overview": [
+   "ai"
+  ],
+  "how to rank high in google maps": [
+   "local"
+  ],
+  "how to rank higher in chatgpt": [
+   "ai"
+  ],
+  "how to rank higher in chatgpt search results": [
+   "ai"
+  ],
+  "how to rank higher in google maps": [
+   "local"
+  ],
+  "how to rank higher on google": [
+   "seo"
+  ],
+  "how to rank higher on google business": [
+   "seo"
+  ],
+  "how to rank higher on google business profile": [
+   "seo"
+  ],
+  "how to rank higher on google local services": [
+   "seo"
+  ],
+  "how to rank higher on google maps": [
+   "seo"
+  ],
+  "how to rank higher on google my business": [
+   "seo"
+  ],
+  "how to rank higher on google places": [
+   "seo"
+  ],
+  "how to rank higher on google search": [
+   "seo"
+  ],
+  "how to rank higher on google search results": [
+   "seo"
+  ],
+  "how to rank higher on google seo": [
+   "seo"
+  ],
+  "how to rank in ai overviews": [
+   "ai"
+  ],
+  "how to rank in chatgpt": [
+   "ai"
+  ],
+  "how to rank in chatgpt 2026": [
+   "ai"
+  ],
+  "how to rank in chatgpt answers": [
+   "ai"
+  ],
+  "how to rank in chatgpt results": [
+   "ai"
+  ],
+  "how to rank in chatgpt search": [
+   "ai"
+  ],
+  "how to rank in chatgpt search results": [
+   "ai"
+  ],
+  "how to rank in google ai overviews": [
+   "ai"
+  ],
+  "how to rank in google map pack": [
+   "local"
+  ],
+  "how to rank in google maps": [
+   "local"
+  ],
+  "how to rank in local pack": [
+   "local"
+  ],
+  "how to rank top in google maps": [
+   "local"
+  ],
+  "how to rank website in ai overview": [
+   "ai"
+  ],
+  "how to rank website in chatgpt": [
+   "ai"
+  ],
+  "how to rate in google maps": [
+   "local"
+  ],
+  "how to rate places in google maps": [
+   "local"
+  ],
+  "how to real estate agents get leads": [
+   "realestate"
+  ],
+  "how to reduce customer acquisition cost": [
+   "fin"
+  ],
+  "how to set up a marketing agency": [
+   "agency"
+  ],
+  "how will ai change seo": [
+   "ai"
+  ],
+  "is a marketing agency worth it": [
+   "agency"
+  ],
+  "is a personal injury lawyer worth it": [
+   "law"
+  ],
+  "is blogger still worth it": [
+   "content"
+  ],
+  "is blogging still worth it": [
+   "content"
+  ],
+  "is blogging still worth it in 2026": [
+   "content"
+  ],
+  "is blogging worth it": [
+   "content"
+  ],
+  "is boosting facebook ads worth it": [
+   "ppc"
+  ],
+  "is buying facebook ads worth it": [
+   "ppc"
+  ],
+  "is digital marketing agency worth it": [
+   "agency"
+  ],
+  "is doing local seo worth it for personal injury attorneys": [
+   "local"
+  ],
+  "is email marketing a good career": [
+   "email"
+  ],
+  "is email marketing effective": [
+   "email"
+  ],
+  "is email marketing still effective": [
+   "email"
+  ],
+  "is email marketing still worth it": [
+   "email"
+  ],
+  "is email marketing worth it": [
+   "email"
+  ],
+  "is facebook ads still worth it": [
+   "ppc"
+  ],
+  "is facebook ads worth it": [
+   "ppc"
+  ],
+  "is facebook marketplace ads worth it": [
+   "ppc"
+  ],
+  "is facebook promotion worth it": [
+   "ppc"
+  ],
+  "is fb ads worth it": [
+   "ppc"
+  ],
+  "is google ads worth it": [
+   "ppc"
+  ],
+  "is google ads worth it for small business": [
+   "ppc"
+  ],
+  "is google ads worth it in 2026": [
+   "ppc"
+  ],
+  "is google ads worth the money": [
+   "ppc"
+  ],
+  "is google adsense worth it": [
+   "ppc"
+  ],
+  "is google adwords worth it": [
+   "ppc"
+  ],
+  "is hiring a marketing agency worth it": [
+   "agency"
+  ],
+  "is hiring a marketing company worth it": [
+   "agency"
+  ],
+  "is influencer marketing agency worth it": [
+   "agency"
+  ],
+  "is learning email marketing worth it": [
+   "email"
+  ],
+  "is learning facebook ads worth it": [
+   "ppc"
+  ],
+  "is local seo worth it": [
+   "local"
+  ],
+  "is multi touch attribution dead": [
+   "analytics"
+  ],
+  "is running a marketing agency worth it": [
+   "agency"
+  ],
+  "is search engine optimization worth it": [
+   "seo"
+  ],
+  "is seo really worth it": [
+   "local"
+  ],
+  "is seo worth it": [
+   "local",
+   "seo"
+  ],
+  "is seo worth it anymore": [
+   "seo"
+  ],
+  "is seo worth it for ecommerce": [
+   "seo"
+  ],
+  "is seo worth it for small business": [
+   "seo"
+  ],
+  "is seo worth it in 2026": [
+   "seo"
+  ],
+  "is seo worth the money": [
+   "seo"
+  ],
+  "is starting a digital marketing agency worth it": [
+   "agency"
+  ],
+  "is starting a marketing agency worth it": [
+   "agency"
+  ],
+  "is working for a marketing agency worth it": [
+   "agency"
+  ],
+  "what are marketing attribution tools": [
+   "analytics"
+  ],
+  "what can a marketing agency do for me": [
+   "agency"
+  ],
+  "what can a personal injury lawyer do for you": [
+   "law"
+  ],
+  "what dentists are taking on new patients": [
+   "dental"
+  ],
+  "what do marketing mix models show advertisers": [
+   "analytics"
+  ],
+  "what does a advertising agency do": [
+   "agency"
+  ],
+  "what does a advertising agent do": [
+   "agency"
+  ],
+  "what does a creative marketing agency do": [
+   "agency"
+  ],
+  "what does a digital marketing agency do": [
+   "agency"
+  ],
+  "what does a marketing agency do": [
+   "agency"
+  ],
+  "what does a marketing agent do": [
+   "agency"
+  ],
+  "what does a marketing company do": [
+   "agency"
+  ],
+  "what does a marketing firm do": [
+   "agency"
+  ],
+  "what does a personal injury lawyer do": [
+   "law"
+  ],
+  "what does a sports marketing agency do": [
+   "agency"
+  ],
+  "what does an seo agency do": [
+   "seo"
+  ],
+  "what does an seo company do": [
+   "seo"
+  ],
+  "what does an seo specialist do": [
+   "seo"
+  ],
+  "what does applied digital company do": [
+   "seo"
+  ],
+  "what does digital agency do": [
+   "seo"
+  ],
+  "what does digital marketing agency do": [
+   "seo"
+  ],
+  "what does digital marketing do": [
+   "seo"
+  ],
+  "what does generative engine optimization mean": [
+   "ai"
+  ],
+  "what does llms txt do": [
+   "ai"
+  ],
+  "what does marketing mix modeling do": [
+   "analytics"
+  ],
+  "what does telus digital company do": [
+   "seo"
+  ],
+  "what does western digital company do": [
+   "seo"
+  ],
+  "what is a content strategy": [
+   "content"
+  ],
+  "what is a content strategy document": [
+   "content"
+  ],
+  "what is a content strategy for instagram": [
+   "content"
+  ],
+  "what is a content strategy for social media": [
+   "content"
+  ],
+  "what is a content strategy framework": [
+   "content"
+  ],
+  "what is a content strategy in marketing": [
+   "content"
+  ],
+  "what is a content strategy lead": [
+   "content"
+  ],
+  "what is a content strategy manager": [
+   "content"
+  ],
+  "what is a content strategy plan": [
+   "content"
+  ],
+  "what is a cost per lead": [
+   "ppc"
+  ],
+  "what is a good conversion rate": [
+   "web"
+  ],
+  "what is a good conversion rate for amazon influencer": [
+   "web"
+  ],
+  "what is a good conversion rate for ecommerce": [
+   "web"
+  ],
+  "what is a good conversion rate for google ads": [
+   "web"
+  ],
+  "what is a good conversion rate in sales": [
+   "web"
+  ],
+  "what is a good conversion rate in soccer": [
+   "web"
+  ],
+  "what is a good conversion rate on amazon": [
+   "web"
+  ],
+  "what is a good conversion rate on amazon associates": [
+   "web"
+  ],
+  "what is a good conversion rate on etsy": [
+   "web"
+  ],
+  "what is a good conversion rate on shopify": [
+   "web"
+  ],
+  "what is a good cost per lead": [
+   "ppc"
+  ],
+  "what is a good cost per lead on facebook": [
+   "ppc"
+  ],
+  "what is a good cost per lead on meta ads": [
+   "ppc"
+  ],
+  "what is a good customer acquisition cost": [
+   "fin"
+  ],
+  "what is a good email open rate": [
+   "email"
+  ],
+  "what is a good email open rate 2026": [
+   "email"
+  ],
+  "what is a good email open rate for b2b": [
+   "email"
+  ],
+  "what is a good email open rate for ecommerce": [
+   "email"
+  ],
+  "what is a good email open rate for linkedin newsletter": [
+   "email"
+  ],
+  "what is a good email open rate for marketing": [
+   "email"
+  ],
+  "what is a good email open rate for nonprofits": [
+   "email"
+  ],
+  "what is a good email open rate substack": [
+   "email"
+  ],
+  "what is a good ltv to cac": [
+   "analytics"
+  ],
+  "what is a good ltv to cac ratio": [
+   "analytics"
+  ],
+  "what is a good ltv to cac ratio for saas": [
+   "analytics"
+  ],
+  "what is a good roas": [
+   "ppc"
+  ],
+  "what is a good roas for etsy ads": [
+   "ppc"
+  ],
+  "what is a good roas for meta ads": [
+   "ppc"
+  ],
+  "what is a good roas on amazon": [
+   "ppc"
+  ],
+  "what is a good roas on ebay": [
+   "ppc"
+  ],
+  "what is a good roas on etsy": [
+   "ppc"
+  ],
+  "what is a good roast": [
+   "ppc"
+  ],
+  "what is a good roast line": [
+   "ppc"
+  ],
+  "what is a good roast to say to a boy": [
+   "ppc"
+  ],
+  "what is a good roast to say to a girl": [
+   "ppc"
+  ],
+  "what is a healthy ltv to cac ratio": [
+   "analytics"
+  ],
+  "what is a ltv to cac ratio": [
+   "analytics"
+  ],
+  "what is a marketing retainer": [
+   "agency"
+  ],
+  "what is a successful email open rate": [
+   "email"
+  ],
+  "what is a topic cluster hubspot": [
+   "content"
+  ],
+  "what is a topic cluster strategy in seo": [
+   "content"
+  ],
+  "what is an seo specialist": [
+   "seo"
+  ],
+  "what is answer engine optimization": [
+   "ai"
+  ],
+  "what is answer engine optimization (aeo)": [
+   "ai"
+  ],
+  "what is attribution analysis in marketing": [
+   "analytics"
+  ],
+  "what is attribution in marketing analytics": [
+   "analytics"
+  ],
+  "what is average cost per lead": [
+   "ppc"
+  ],
+  "what is average cost per lead on facebook": [
+   "ppc"
+  ],
+  "what is b2b lifecycle marketing": [
+   "email"
+  ],
+  "what is brand strategy": [
+   "brand"
+  ],
+  "what is brand strategy design": [
+   "brand"
+  ],
+  "what is brand strategy in graphic design": [
+   "brand"
+  ],
+  "what is brand strategy in marketing": [
+   "brand"
+  ],
+  "what is business strategy": [
+   "brand"
+  ],
+  "what is business strategy development": [
+   "brand"
+  ],
+  "what is business strategy examples": [
+   "brand"
+  ],
+  "what is business strategy game": [
+   "brand"
+  ],
+  "what is business strategy level": [
+   "brand"
+  ],
+  "what is cluster issue": [
+   "content"
+  ],
+  "what is cluster theme": [
+   "content"
+  ],
+  "what is company strategy": [
+   "brand"
+  ],
+  "what is conversion in google ads": [
+   "ppc"
+  ],
+  "what is cost per lead in digital marketing": [
+   "ppc"
+  ],
+  "what is cost per lead in marketing": [
+   "ppc"
+  ],
+  "what is crm lifecycle marketing": [
+   "email"
+  ],
+  "what is cro": [
+   "web"
+  ],
+  "what is crohn's disease": [
+   "web"
+  ],
+  "what is crop dusting": [
+   "web"
+  ],
+  "what is cross country": [
+   "web"
+  ],
+  "what is crossfit": [
+   "web"
+  ],
+  "what is croup": [
+   "web"
+  ],
+  "what is crowdfunding": [
+   "web"
+  ],
+  "what is crowdstrike": [
+   "web"
+  ],
+  "what is crown molding": [
+   "web"
+  ],
+  "what is crown royal": [
+   "web"
+  ],
+  "what is customer acquisition cost": [
+   "analytics"
+  ],
+  "what is customer acquisition cost (cac)": [
+   "analytics"
+  ],
+  "what is customer acquisition cost and lifetime value": [
+   "analytics"
+  ],
+  "what is customer acquisition cost example": [
+   "analytics"
+  ],
+  "what is customer acquisition cost formula": [
+   "analytics"
+  ],
+  "what is customer acquisition cost in business": [
+   "analytics"
+  ],
+  "what is customer acquisition cost in digital marketing": [
+   "analytics"
+  ],
+  "what is customer acquisition cost in marketing": [
+   "analytics"
+  ],
+  "what is customer acquisition cost used for": [
+   "analytics"
+  ],
+  "what is customer acquisition cost vs lifetime value": [
+   "analytics"
+  ],
+  "what is customer lifecycle marketing": [
+   "email"
+  ],
+  "what is digital marketing attribution": [
+   "analytics"
+  ],
+  "what is engineering optimization": [
+   "ai"
+  ],
+  "what is fractional cmo": [
+   "agency"
+  ],
+  "what is generative engine marketing": [
+   "ai"
+  ],
+  "what is generative engine optimisation geo": [
+   "ai"
+  ],
+  "what is generative engine optimization": [
+   "ai"
+  ],
+  "what is generative engine optimization (geo)": [
+   "ai"
+  ],
+  "what is generative engine optimization and how does it work": [
+   "ai"
+  ],
+  "what is generative engine optimization geo and how does it work": [
+   "ai"
+  ],
+  "what is generative engine optimization geo and why it matters": [
+   "ai"
+  ],
+  "what is generative engine optimization in marketing": [
+   "ai"
+  ],
+  "what is generative search engine optimization": [
+   "ai"
+  ],
+  "what is google ads bidding": [
+   "ppc"
+  ],
+  "what is incremental integration testing": [
+   "analytics"
+  ],
+  "what is incremental load testing": [
+   "analytics"
+  ],
+  "what is incremental testing explain with an example": [
+   "analytics"
+  ],
+  "what is incremental testing in software engineering": [
+   "analytics"
+  ],
+  "what is incrementality testing": [
+   "analytics"
+  ],
+  "what is incrementality testing in advertising": [
+   "analytics"
+  ],
+  "what is incrementality testing in marketing": [
+   "analytics"
+  ],
+  "what is lifecycle email marketing": [
+   "email"
+  ],
+  "what is lifecycle marketing": [
+   "email"
+  ],
+  "what is lifecycle marketing campaign": [
+   "email"
+  ],
+  "what is lifecycle marketing examples": [
+   "email"
+  ],
+  "what is lifecycle marketing manager": [
+   "email"
+  ],
+  "what is lifecycle marketing specialist": [
+   "email"
+  ],
+  "what is lifecycle marketing strategy": [
+   "email"
+  ],
+  "what is llms full txt": [
+   "ai"
+  ],
+  "what is llms txt generator": [
+   "ai"
+  ],
+  "what is llms txt in seo": [
+   "ai"
+  ],
+  "what is llms txt in website": [
+   "ai"
+  ],
+  "what is llms.txt": [
+   "ai"
+  ],
+  "what is llms.txt file": [
+   "ai"
+  ],
+  "what is llms.txt used for": [
+   "ai"
+  ],
+  "what is marketing attribution": [
+   "analytics"
+  ],
+  "what is marketing attribution data": [
+   "analytics"
+  ],
+  "what is marketing attribution model": [
+   "analytics"
+  ],
+  "what is marketing attribution software": [
+   "analytics"
+  ],
+  "what is marketing mix modeling": [
+   "analytics"
+  ],
+  "what is marketing mix modeling (mmm)": [
+   "analytics"
+  ],
+  "what is meant by optimization": [
+   "ai"
+  ],
+  "what is mmm in marketing attribution": [
+   "analytics"
+  ],
+  "what is multi touch attribution": [
+   "analytics"
+  ],
+  "what is multi touch attribution in marketing": [
+   "analytics"
+  ],
+  "what is multi touch attribution model": [
+   "analytics"
+  ],
+  "what is multi touch attribution mta": [
+   "analytics"
+  ],
+  "what is non incremental testing": [
+   "analytics"
+  ],
+  "what is offline conversion import": [
+   "ppc"
+  ],
+  "what is offline conversion tracking": [
+   "ppc"
+  ],
+  "what is programmatic": [
+   "seo"
+  ],
+  "what is programmatic in digital marketing": [
+   "seo"
+  ],
+  "what is programmatic seo": [
+   "seo"
+  ],
+  "what is programmatic seo pages": [
+   "seo"
+  ],
+  "what is seo": [
+   "seo"
+  ],
+  "what is seo and how it works": [
+   "seo"
+  ],
+  "what is seo for a website": [
+   "seo"
+  ],
+  "what is seo for ai called": [
+   "seo"
+  ],
+  "what is seo marketing": [
+   "seo"
+  ],
+  "what is seo mean": [
+   "seo"
+  ],
+  "what is seo optimization": [
+   "seo"
+  ],
+  "what is seog": [
+   "seo"
+  ],
+  "what is seog grant": [
+   "seo"
+  ],
+  "what is seoul": [
+   "seo"
+  ],
+  "what is subject cluster": [
+   "content"
+  ],
+  "what is subject cluster day": [
+   "content"
+  ],
+  "what is technical seo": [
+   "seo"
+  ],
+  "what is technical seo audit": [
+   "seo"
+  ],
+  "what is technical seo checklist": [
+   "seo"
+  ],
+  "what is technical seo in digital marketing": [
+   "seo"
+  ],
+  "what is technical seo in simple words": [
+   "seo"
+  ],
+  "what is technical seo specialist": [
+   "seo"
+  ],
+  "what is the average cost per lead on facebook ads": [
+   "ppc"
+  ],
+  "what is the optimization": [
+   "ai"
+  ],
+  "what is the primary purpose of marketing mix modeling": [
+   "analytics"
+  ],
+  "what is the purpose of attribution marketing": [
+   "analytics"
+  ],
+  "what is the purpose of marketing mix modeling": [
+   "analytics"
+  ],
+  "what is theme clustering in research": [
+   "content"
+  ],
+  "what is topic cluster": [
+   "content"
+  ],
+  "what is topic cluster in seo": [
+   "content"
+  ],
+  "what is topic cluster model": [
+   "content"
+  ],
+  "what makes a good campaign landing page": [
+   "web"
+  ],
+  "what makes a good landing page": [
+   "web"
+  ],
+  "what makes a good landing page design": [
+   "web"
+  ],
+  "what makes a good product landing page": [
+   "web"
+  ],
+  "what makes a good saas landing page": [
+   "web"
+  ],
+  "what makes a good website home page": [
+   "web"
+  ],
+  "what makes a good website landing page": [
+   "web"
+  ],
+  "what makes an effective landing page": [
+   "web"
+  ],
+  "what will ai replace in the future": [
+   "ai"
+  ],
+  "when facebook rebrand to meta": [
+   "brand"
+  ],
+  "when to brand a horse": [
+   "brand"
+  ],
+  "when to brand a steak": [
+   "brand"
+  ],
+  "when to brand calves": [
+   "brand"
+  ],
+  "when to brand cattle": [
+   "brand"
+  ],
+  "when to hire a digital marketing agency": [
+   "agency"
+  ],
+  "when to hire a marketing agency": [
+   "agency"
+  ],
+  "when to rebrand": [
+   "brand"
+  ],
+  "when to rebrand your business": [
+   "brand"
+  ],
+  "when to redesign a website": [
+   "web"
+  ],
+  "where does ai rank all time": [
+   "ai"
+  ],
+  "who invented marketing mix modeling": [
+   "analytics"
+  ],
+  "why are my google ad services not working": [
+   "ppc"
+  ],
+  "why are my google ads not converting": [
+   "ppc"
+  ],
+  "why are my google ads not getting impressions": [
+   "ppc"
+  ],
+  "why are my google ads not working": [
+   "ppc"
+  ],
+  "why do implants take so long": [
+   "brand"
+  ],
+  "why is my business icon not showing on google maps": [
+   "local"
+  ],
+  "why is my business name not showing on google maps": [
+   "local"
+  ],
+  "why is my business not pinned on google maps": [
+   "local"
+  ],
+  "why is my business not showing on google maps": [
+   "local"
+  ],
+  "why is my business not showing up on google map searches": [
+   "local"
+  ],
+  "why is my business not showing up on google maps after verification": [
+   "local"
+  ],
+  "why is my business not showing up on google maps anymore": [
+   "local"
+  ],
+  "why is my business not.listed on google maps": [
+   "local"
+  ],
+  "why is my business profile not showing up on google maps": [
+   "local"
+  ],
+  "why is my domain not working": [
+   "web"
+  ],
+  "why is my domain not working godaddy": [
+   "web"
+  ],
+  "why is my domain not working on shopify": [
+   "web"
+  ],
+  "why is my domain not working squarespace": [
+   "web"
+  ],
+  "why is my website not converting": [
+   "web"
+  ],
+  "why is my website not ranking": [
+   "seo"
+  ],
+  "why is my website not ranking on google": [
+   "seo"
+  ],
+  "why is my website not working": [
+   "web"
+  ],
+  "why is my website not working squarespace": [
+   "web"
+  ],
+  "why is my wix website not working": [
+   "web"
+  ],
+  "why is seo important": [
+   "seo"
+  ],
+  "why is seo important for a website": [
+   "seo"
+  ],
+  "why is seo important for business": [
+   "seo"
+  ],
+  "why is seo important for business exposure": [
+   "seo"
+  ],
+  "why is seo important for ecommerce": [
+   "seo"
+  ],
+  "why is seo important for marketing": [
+   "seo"
+  ],
+  "why is seo important for small businesses": [
+   "seo"
+  ],
+  "why is seo important for your business": [
+   "seo"
+  ],
+  "why is seo important in content writing": [
+   "seo"
+  ],
+  "why is seo important in digital marketing": [
+   "seo"
+  ],
+  "why is the website not working": [
+   "web"
+  ],
+  "why is the website not working today": [
+   "web"
+  ],
+  "why my business is not showing on google map without searching": [
+   "local"
+  ],
+  "will ai replace it": [
+   "ai"
+  ],
+  "will ai replace seo": [
+   "ai"
+  ],
+  "will ai replace seo experts": [
+   "ai"
+  ],
+  "will ai replace seo professionals": [
+   "ai"
+  ],
+  "will ai replace seo writers": [
+   "ai"
+  ]
+ },
+ "terms": {
+  "ad agency retainer": [
+   "agency"
+  ],
+  "ad agency vs in house": [
+   "agency"
+  ],
+  "advertising agency retainer fee structure": [
+   "agency"
+  ],
+  "ai benchmark ranking": [
+   "ai"
+  ],
+  "ai overviews": [
+   "ai"
+  ],
+  "ai overviews ads": [
+   "ai"
+  ],
+  "ai overviews and more": [
+   "ai"
+  ],
+  "ai overviews and more in search labs": [
+   "ai"
+  ],
+  "ai overviews google": [
+   "ai"
+  ],
+  "ai overviews in france": [
+   "ai"
+  ],
+  "ai overviews in google search": [
+   "ai"
+  ],
+  "ai overviews logo": [
+   "ai"
+  ],
+  "ai overviews turn off": [
+   "ai"
+  ],
+  "ai ranking": [
+   "ai"
+  ],
+  "ai seo for contractors": [
+   "home"
+  ],
+  "ai seo for dentists": [
+   "dental"
+  ],
+  "average marketing agency retainer": [
+   "agency"
+  ],
+  "b2b lead generation": [
+   "saas"
+  ],
+  "b2b lead generation agency": [
+   "saas"
+  ],
+  "b2b lead generation apollo": [
+   "saas"
+  ],
+  "b2b lead generation companies": [
+   "saas"
+  ],
+  "b2b lead generation companies in pune": [
+   "saas"
+  ],
+  "b2b lead generation meaning": [
+   "saas"
+  ],
+  "b2b lead generation software": [
+   "saas"
+  ],
+  "b2b lead generation tools": [
+   "saas"
+  ],
+  "b2b saas marketing": [
+   "saas"
+  ],
+  "b2b saas marketing agency": [
+   "saas"
+  ],
+  "b2b saas marketing examples": [
+   "saas"
+  ],
+  "b2b saas marketing funnel": [
+   "saas"
+  ],
+  "b2b saas marketing kurt uhlir": [
+   "saas"
+  ],
+  "b2b saas marketing meaning": [
+   "saas"
+  ],
+  "b2b saas marketing strategy": [
+   "saas"
+  ],
+  "best marketing attribution models": [
+   "analytics"
+  ],
+  "best seo for dentists": [
+   "dental"
+  ],
+  "best seo for lawyers": [
+   "law"
+  ],
+  "conversion rate optimization": [
+   "web"
+  ],
+  "conversion rate optimization (cro)": [
+   "web"
+  ],
+  "conversion rate optimization (cro) specialist": [
+   "web"
+  ],
+  "conversion rate optimization examples": [
+   "web"
+  ],
+  "conversion rate optimization meaning": [
+   "web"
+  ],
+  "conversion rate optimization specialist": [
+   "web"
+  ],
+  "conversion rate optimization tools": [
+   "web"
+  ],
+  "cost to hire a marketing agency": [
+   "agency"
+  ],
+  "creative agency retainer": [
+   "agency"
+  ],
+  "creative agency retainer agreement template": [
+   "agency"
+  ],
+  "creative agency vs production house": [
+   "agency"
+  ],
+  "dental implant market growth": [
+   "dental"
+  ],
+  "dental implant market share": [
+   "dental"
+  ],
+  "dental implant market share by company": [
+   "dental"
+  ],
+  "dental implant market size": [
+   "dental"
+  ],
+  "dental implant marketing": [
+   "dental"
+  ],
+  "dental implant marketing agency": [
+   "dental"
+  ],
+  "dental implant marketing company": [
+   "dental"
+  ],
+  "dental implant marketing ideas": [
+   "dental"
+  ],
+  "dental implant marketing poster": [
+   "dental"
+  ],
+  "dental marketing": [
+   "dental"
+  ],
+  "dental marketing agency": [
+   "dental"
+  ],
+  "dental marketing companies": [
+   "dental"
+  ],
+  "dental marketing guy": [
+   "dental"
+  ],
+  "dental marketing ideas": [
+   "dental"
+  ],
+  "different marketing attribution models": [
+   "analytics"
+  ],
+  "digital marketing agency for dentists": [
+   "agency"
+  ],
+  "digital marketing agency for doctors": [
+   "agency"
+  ],
+  "digital marketing agency for education industry": [
+   "agency"
+  ],
+  "digital marketing agency for healthcare": [
+   "agency"
+  ],
+  "digital marketing agency for real estate": [
+   "agency"
+  ],
+  "digital marketing agency for restaurants": [
+   "agency"
+  ],
+  "digital marketing agency for sale": [
+   "agency"
+  ],
+  "digital marketing agency for small business": [
+   "agency"
+  ],
+  "digital marketing agency for startups": [
+   "agency"
+  ],
+  "digital marketing agency for startups in bangalore": [
+   "agency"
+  ],
+  "digital marketing agency vs in house": [
+   "agency"
+  ],
+  "digital marketing attribution models": [
+   "analytics"
+  ],
+  "ecommerce marketing": [
+   "fin"
+  ],
+  "ecommerce marketing agency": [
+   "fin"
+  ],
+  "ecommerce marketing examples": [
+   "fin"
+  ],
+  "ecommerce marketing manager": [
+   "fin"
+  ],
+  "ecommerce marketing specialist": [
+   "fin"
+  ],
+  "ecommerce seo": [
+   "fin"
+  ],
+  "ecommerce seo agency": [
+   "fin"
+  ],
+  "ecommerce seo audit": [
+   "fin"
+  ],
+  "ecommerce seo checklist": [
+   "fin"
+  ],
+  "ecommerce seo coalition technologies": [
+   "fin"
+  ],
+  "ecommerce seo consultant": [
+   "fin"
+  ],
+  "ecommerce seo meaning": [
+   "fin"
+  ],
+  "ecommerce seo services": [
+   "fin"
+  ],
+  "email marketing vs cold calling": [
+   "email"
+  ],
+  "email marketing vs copywriting": [
+   "email"
+  ],
+  "email marketing vs crm": [
+   "email"
+  ],
+  "email marketing vs direct mail": [
+   "email"
+  ],
+  "email marketing vs newsletter": [
+   "email"
+  ],
+  "email marketing vs paid ads": [
+   "email"
+  ],
+  "email marketing vs seo": [
+   "email"
+  ],
+  "email marketing vs sms": [
+   "email"
+  ],
+  "email marketing vs social media marketing": [
+   "email"
+  ],
+  "email marketing vs social media statistics": [
+   "email"
+  ],
+  "engine optimization meaning": [
+   "ai"
+  ],
+  "facebook ads for real estate": [
+   "realestate"
+  ],
+  "facebook ads for real estate agents": [
+   "realestate"
+  ],
+  "facebook ads for real estate investors": [
+   "realestate"
+  ],
+  "facebook ads for real estate leads": [
+   "realestate"
+  ],
+  "facebook ads for real estate listings": [
+   "realestate"
+  ],
+  "facebook ads for real estate wholesalers": [
+   "realestate"
+  ],
+  "facebook ads not converting": [
+   "ppc"
+  ],
+  "fb ads for real estate": [
+   "realestate"
+  ],
+  "financial advisor marketing": [
+   "fin"
+  ],
+  "financial advisor marketing agency": [
+   "fin"
+  ],
+  "financial advisor marketing company": [
+   "fin"
+  ],
+  "financial advisor marketing firms": [
+   "fin"
+  ],
+  "financial advisor marketing ideas": [
+   "fin"
+  ],
+  "financial advisor marketing plan": [
+   "fin"
+  ],
+  "financial advisor marketing podcast": [
+   "fin"
+  ],
+  "financial advisor marketing strategies": [
+   "fin"
+  ],
+  "find contractor leads": [
+   "home"
+  ],
+  "fintech marketing": [
+   "fin"
+  ],
+  "fintech marketing agency": [
+   "fin"
+  ],
+  "fintech marketing careers": [
+   "fin"
+  ],
+  "fintech marketing community": [
+   "fin"
+  ],
+  "fintech marketing conference 2026": [
+   "fin"
+  ],
+  "fintech marketing management llc": [
+   "fin"
+  ],
+  "fintech marketing roles": [
+   "fin"
+  ],
+  "fractional cmo definition": [
+   "agency"
+  ],
+  "fractional cmo vs agency": [
+   "agency"
+  ],
+  "fractional cmo vs agency vs full time cmo": [
+   "agency"
+  ],
+  "fractional cmo vs marketing agency": [
+   "agency"
+  ],
+  "franchise marketing": [
+   "multi"
+  ],
+  "franchise marketing agency": [
+   "multi"
+  ],
+  "franchise marketing live": [
+   "multi"
+  ],
+  "franchise marketing là gì": [
+   "multi"
+  ],
+  "franchise marketing network": [
+   "multi"
+  ],
+  "franchise marketing news": [
+   "multi"
+  ],
+  "franchise marketing systems": [
+   "multi"
+  ],
+  "franchise marketing systems reviews": [
+   "multi"
+  ],
+  "google ads agency for dentists": [
+   "dental"
+  ],
+  "google ads agency for real estate": [
+   "realestate"
+  ],
+  "google ads dental": [
+   "dental"
+  ],
+  "google ads dentists vancouver": [
+   "dental"
+  ],
+  "google ads for beginners": [
+   "ppc"
+  ],
+  "google ads for business": [
+   "ppc"
+  ],
+  "google ads for dental clinic": [
+   "dental"
+  ],
+  "google ads for dental office": [
+   "dental"
+  ],
+  "google ads for dentists": [
+   "dental"
+  ],
+  "google ads for dummies": [
+   "ppc"
+  ],
+  "google ads for lawyers": [
+   "law"
+  ],
+  "google ads for my business": [
+   "ppc"
+  ],
+  "google ads for nonprofits": [
+   "ppc"
+  ],
+  "google ads for personal injury lawyers": [
+   "law"
+  ],
+  "google ads for real estate": [
+   "ppc",
+   "realestate"
+  ],
+  "google ads for real estate agents": [
+   "realestate"
+  ],
+  "google ads for real estate business": [
+   "realestate"
+  ],
+  "google ads for real estate leads": [
+   "realestate"
+  ],
+  "google ads for real estate listings": [
+   "realestate"
+  ],
+  "google ads for real estate marketing": [
+   "realestate"
+  ],
+  "google ads for realtors": [
+   "ppc"
+  ],
+  "google ads for small business": [
+   "ppc"
+  ],
+  "google ads for solicitors": [
+   "law"
+  ],
+  "google ads vs dv360": [
+   "ppc"
+  ],
+  "google ads vs facebook ads which is better": [
+   "ppc"
+  ],
+  "google ads vs google ad manager": [
+   "ppc"
+  ],
+  "google ads vs google adsense": [
+   "ppc"
+  ],
+  "google ads vs google analytics": [
+   "ppc"
+  ],
+  "google ads vs local service ads": [
+   "ppc"
+  ],
+  "google ads vs lsa": [
+   "ppc"
+  ],
+  "google ads vs meta ads": [
+   "ppc"
+  ],
+  "google ads vs seo": [
+   "ppc"
+  ],
+  "google ads vs yelp ads": [
+   "ppc"
+  ],
+  "google business profile": [
+   "local"
+  ],
+  "google business profile create": [
+   "local"
+  ],
+  "google business profile customer service": [
+   "local"
+  ],
+  "google business profile dashboard": [
+   "local"
+  ],
+  "google business profile help": [
+   "local"
+  ],
+  "google business profile manager": [
+   "local"
+  ],
+  "google business profile setup": [
+   "local"
+  ],
+  "google business profile support": [
+   "local"
+  ],
+  "google local service ads for lawyers": [
+   "law"
+  ],
+  "google.ads agency for.lawyers": [
+   "law"
+  ],
+  "healthcare marketing": [
+   "fin"
+  ],
+  "healthcare marketing agency": [
+   "fin"
+  ],
+  "healthcare marketing conferences": [
+   "fin"
+  ],
+  "healthcare marketing conferences 2026": [
+   "fin"
+  ],
+  "healthcare marketing group llc": [
+   "fin"
+  ],
+  "healthcare marketing internship": [
+   "fin"
+  ],
+  "hipaa compliance marketing": [
+   "fin"
+  ],
+  "hipaa compliant email marketing": [
+   "fin"
+  ],
+  "hipaa compliant email marketing platforms": [
+   "fin"
+  ],
+  "hipaa compliant marketing": [
+   "fin"
+  ],
+  "hipaa compliant marketing automation": [
+   "fin"
+  ],
+  "hipaa compliant marketing automation platform": [
+   "fin"
+  ],
+  "hipaa compliant marketing companies": [
+   "fin"
+  ],
+  "hipaa compliant marketing platforms": [
+   "fin"
+  ],
+  "hipaa compliant marketing practices": [
+   "fin"
+  ],
+  "hipaa compliant marketing tools": [
+   "fin"
+  ],
+  "hiring a marketing agency vs in house": [
+   "agency"
+  ],
+  "home services marketing": [
+   "home"
+  ],
+  "home services marketing agencies in california": [
+   "home"
+  ],
+  "home services marketing agency": [
+   "home"
+  ],
+  "home services marketing agency usa": [
+   "home"
+  ],
+  "home services marketing company": [
+   "home"
+  ],
+  "home services marketing conferences": [
+   "home"
+  ],
+  "home services marketing hub": [
+   "home"
+  ],
+  "home services marketing manager": [
+   "home"
+  ],
+  "home services marketing trends": [
+   "home"
+  ],
+  "hubspot marketing attribution models": [
+   "analytics"
+  ],
+  "hvac marketing": [
+   "home"
+  ],
+  "hvac marketing agency": [
+   "home"
+  ],
+  "hvac marketing ideas": [
+   "home"
+  ],
+  "hvac marketing manager": [
+   "home"
+  ],
+  "hvac marketing strategies": [
+   "home"
+  ],
+  "hvac marketing success": [
+   "home"
+  ],
+  "hvac marketing success wichita ks": [
+   "home"
+  ],
+  "hvac marketing xperts": [
+   "home"
+  ],
+  "law firm marketing": [
+   "law"
+  ],
+  "law firm marketing agency": [
+   "law"
+  ],
+  "law firm marketing budget": [
+   "law"
+  ],
+  "law firm marketing companies": [
+   "law"
+  ],
+  "law firm marketing director": [
+   "law"
+  ],
+  "law firm marketing pros": [
+   "law"
+  ],
+  "llm full.txt": [
+   "ai"
+  ],
+  "llms txt file": [
+   "ai"
+  ],
+  "local seo": [
+   "local"
+  ],
+  "local seo agency": [
+   "local"
+  ],
+  "local seo bot": [
+   "local"
+  ],
+  "local seo companies": [
+   "local"
+  ],
+  "local seo cost": [
+   "local"
+  ],
+  "local seo for contractors": [
+   "home"
+  ],
+  "local seo for dentists": [
+   "dental"
+  ],
+  "local seo for lawyers": [
+   "law"
+  ],
+  "local seo guide": [
+   "local"
+  ],
+  "local seo meaning": [
+   "local"
+  ],
+  "local seo services": [
+   "local"
+  ],
+  "local seo services for small business": [
+   "local"
+  ],
+  "local seo tools": [
+   "local"
+  ],
+  "local services ads": [
+   "local"
+  ],
+  "local services ads (lsa)": [
+   "local"
+  ],
+  "local services ads dashboard": [
+   "local"
+  ],
+  "local services ads for home listings": [
+   "local"
+  ],
+  "local services ads google": [
+   "local"
+  ],
+  "local services ads support": [
+   "local"
+  ],
+  "location landing pages seo": [
+   "multi"
+  ],
+  "location page examples": [
+   "multi"
+  ],
+  "location pages seo": [
+   "multi"
+  ],
+  "lower customer acquisition cost meaning": [
+   "fin"
+  ],
+  "ltv to cac ratio meaning": [
+   "analytics"
+  ],
+  "marketing agency monthly retainer": [
+   "agency"
+  ],
+  "marketing agency or in house": [
+   "agency"
+  ],
+  "marketing agency retainer": [
+   "agency"
+  ],
+  "marketing agency retainer fee": [
+   "agency"
+  ],
+  "marketing agency retainer roi issues": [
+   "agency"
+  ],
+  "marketing agency vs in house": [
+   "agency"
+  ],
+  "marketing attribution model example": [
+   "analytics"
+  ],
+  "marketing attribution model meaning": [
+   "analytics"
+  ],
+  "marketing attribution modeling techniques": [
+   "analytics"
+  ],
+  "marketing attribution models": [
+   "analytics"
+  ],
+  "marketing attribution models explained": [
+   "analytics"
+  ],
+  "marketing attribution models python": [
+   "analytics"
+  ],
+  "marketing mix modeling explained": [
+   "analytics"
+  ],
+  "med spa marketing": [
+   "dental"
+  ],
+  "med spa marketing agency": [
+   "dental"
+  ],
+  "med spa marketing agency usa": [
+   "dental"
+  ],
+  "med spa marketing company": [
+   "dental"
+  ],
+  "med spa marketing guys": [
+   "dental"
+  ],
+  "med spa marketing ideas": [
+   "dental"
+  ],
+  "med spa marketing los angeles": [
+   "dental"
+  ],
+  "med spa marketing strategies": [
+   "dental"
+  ],
+  "meta ads and google ads": [
+   "ppc"
+  ],
+  "meta ads vs google ads": [
+   "ppc"
+  ],
+  "meta ads vs google ads 2026": [
+   "ppc"
+  ],
+  "meta ads vs google ads cost": [
+   "ppc"
+  ],
+  "meta ads vs google ads for ecommerce": [
+   "ppc"
+  ],
+  "meta ads vs google ads for music": [
+   "ppc"
+  ],
+  "meta ads vs google ads revenue": [
+   "ppc"
+  ],
+  "meta ads vs google ads which is better": [
+   "ppc"
+  ],
+  "multi location local seo": [
+   "multi"
+  ],
+  "multi location seo": [
+   "multi"
+  ],
+  "multi location seo agency": [
+   "multi"
+  ],
+  "multi location seo content strategy": [
+   "multi"
+  ],
+  "multi location seo optimization strategy": [
+   "multi"
+  ],
+  "multi location seo ottawa": [
+   "multi"
+  ],
+  "multi location seo services": [
+   "multi"
+  ],
+  "multi location seo strategy": [
+   "multi"
+  ],
+  "my website ranking": [
+   "seo"
+  ],
+  "performance max": [
+   "ppc"
+  ],
+  "performance max ads": [
+   "ppc"
+  ],
+  "performance max campaigns": [
+   "ppc"
+  ],
+  "performance max campaigns google ads": [
+   "ppc"
+  ],
+  "performance max google": [
+   "ppc"
+  ],
+  "performance max google ads": [
+   "ppc"
+  ],
+  "performance max google ads example": [
+   "ppc"
+  ],
+  "performance max specs": [
+   "ppc"
+  ],
+  "performance max vs demand gen": [
+   "ppc"
+  ],
+  "performance maxxing": [
+   "ppc"
+  ],
+  "personal injury lawyer marketing": [
+   "law"
+  ],
+  "personal injury lawyer marketing agency": [
+   "law"
+  ],
+  "personal injury lawyer marketing miami": [
+   "law"
+  ],
+  "personal injury lawyers marketing and management association": [
+   "law"
+  ],
+  "plumber marketing": [
+   "home"
+  ],
+  "plumber marketing agency": [
+   "home"
+  ],
+  "plumber marketing agency in dallas": [
+   "home"
+  ],
+  "plumber marketing company": [
+   "home"
+  ],
+  "plumber marketing firm": [
+   "home"
+  ],
+  "plumber marketing firm reviews": [
+   "home"
+  ],
+  "plumber marketing usa": [
+   "home"
+  ],
+  "plumber marketing usa glassdoor": [
+   "home"
+  ],
+  "plumber marketing usa reviews": [
+   "home"
+  ],
+  "ppc agency": [
+   "ppc"
+  ],
+  "ppc agency birmingham": [
+   "ppc"
+  ],
+  "ppc agency coalition": [
+   "ppc"
+  ],
+  "ppc agency london": [
+   "ppc"
+  ],
+  "ppc agency meaning": [
+   "ppc"
+  ],
+  "ppc agency melbourne": [
+   "ppc"
+  ],
+  "ppc examples": [
+   "ppc"
+  ],
+  "programmatic seo what is it and why your business needs it": [
+   "seo"
+  ],
+  "real estate lead generation": [
+   "realestate"
+  ],
+  "real estate lead generation agency": [
+   "realestate"
+  ],
+  "real estate lead generation companies": [
+   "realestate"
+  ],
+  "real estate lead generation ideas": [
+   "realestate"
+  ],
+  "real estate lead generation pay at closing": [
+   "realestate"
+  ],
+  "real estate lead generation platforms": [
+   "realestate"
+  ],
+  "real estate lead generation services": [
+   "realestate"
+  ],
+  "real estate lead generation tools": [
+   "realestate"
+  ],
+  "real estate marketing": [
+   "realestate"
+  ],
+  "real estate marketing agency": [
+   "realestate"
+  ],
+  "real estate marketing companies": [
+   "realestate"
+  ],
+  "real estate marketing group": [
+   "realestate"
+  ],
+  "real estate marketing group inc": [
+   "realestate"
+  ],
+  "real estate marketing ideas": [
+   "realestate"
+  ],
+  "real estate marketing materials": [
+   "realestate"
+  ],
+  "rebrand and refresh": [
+   "brand"
+  ],
+  "rebrand or refresh": [
+   "brand"
+  ],
+  "rebrand vs brand refresh": [
+   "brand"
+  ],
+  "redesign website without losing seo": [
+   "web"
+  ],
+  "revamp vs rebrand": [
+   "brand"
+  ],
+  "roofing marketing": [
+   "home"
+  ],
+  "roofing marketing agency": [
+   "home"
+  ],
+  "roofing marketing agency in usa": [
+   "home"
+  ],
+  "roofing marketing companies": [
+   "home"
+  ],
+  "roofing marketing ideas": [
+   "home"
+  ],
+  "roofing marketing materials": [
+   "home"
+  ],
+  "roofing marketing pros": [
+   "home"
+  ],
+  "roofing marketing pros reviews": [
+   "home"
+  ],
+  "roofing marketing services": [
+   "home"
+  ],
+  "saas best examples": [
+   "saas"
+  ],
+  "saas marketing agency": [
+   "saas"
+  ],
+  "saas marketing agency for abm": [
+   "saas"
+  ],
+  "saas marketing agency for google ads": [
+   "saas"
+  ],
+  "saas marketing agency for linkedin ads": [
+   "saas"
+  ],
+  "saas marketing agency in bangalore": [
+   "saas"
+  ],
+  "saas marketing agency london": [
+   "saas"
+  ],
+  "saas marketing agency pricing": [
+   "saas"
+  ],
+  "saas marketing agency usa": [
+   "saas"
+  ],
+  "saas seo": [
+   "saas"
+  ],
+  "saas seo agency": [
+   "saas"
+  ],
+  "saas seo agency usa": [
+   "saas"
+  ],
+  "saas seo alliance": [
+   "saas"
+  ],
+  "saas seo alliance 2026": [
+   "saas"
+  ],
+  "saas seo conference": [
+   "saas"
+  ],
+  "saas seo meaning": [
+   "saas"
+  ],
+  "saas seo services": [
+   "saas"
+  ],
+  "saas seo strategy": [
+   "saas"
+  ],
+  "saas website design agency": [
+   "saas"
+  ],
+  "saas website design examples": [
+   "saas"
+  ],
+  "saas website design figma": [
+   "saas"
+  ],
+  "saas website design firm": [
+   "saas"
+  ],
+  "saas website design ideas": [
+   "saas"
+  ],
+  "saas website design inspiration": [
+   "saas"
+  ],
+  "saas website design pinterest": [
+   "saas"
+  ],
+  "saas website design services": [
+   "saas"
+  ],
+  "saas website design templates": [
+   "saas"
+  ],
+  "saas website designs": [
+   "saas"
+  ],
+  "search engine optimization for real estate": [
+   "realestate"
+  ],
+  "seo agency for contractors": [
+   "home"
+  ],
+  "seo audit": [
+   "seo"
+  ],
+  "seo audit checker": [
+   "seo"
+  ],
+  "seo audit claude skill": [
+   "seo"
+  ],
+  "seo audit meaning": [
+   "seo"
+  ],
+  "seo audit report": [
+   "seo"
+  ],
+  "seo audit services": [
+   "seo"
+  ],
+  "seo audit skill": [
+   "seo"
+  ],
+  "seo audit template": [
+   "seo"
+  ],
+  "seo audit tools": [
+   "seo"
+  ],
+  "seo company for contractors": [
+   "home"
+  ],
+  "seo for ai": [
+   "seo"
+  ],
+  "seo for ai is called": [
+   "seo"
+  ],
+  "seo for beginners": [
+   "seo"
+  ],
+  "seo for concrete contractors": [
+   "home"
+  ],
+  "seo for contractors": [
+   "home"
+  ],
+  "seo for contractors utah": [
+   "home"
+  ],
+  "seo for dentists": [
+   "dental"
+  ],
+  "seo for dentists los angeles": [
+   "dental"
+  ],
+  "seo for dentists sydney": [
+   "dental"
+  ],
+  "seo for dentists utah": [
+   "dental"
+  ],
+  "seo for dummies": [
+   "seo"
+  ],
+  "seo for etsy": [
+   "seo"
+  ],
+  "seo for flooring contractors": [
+   "home"
+  ],
+  "seo for general contractors": [
+   "home"
+  ],
+  "seo for instagram": [
+   "seo"
+  ],
+  "seo for lawyers": [
+   "law"
+  ],
+  "seo for lawyers calgary": [
+   "law"
+  ],
+  "seo for lawyers colorado springs": [
+   "law"
+  ],
+  "seo for lawyers llc": [
+   "law"
+  ],
+  "seo for lawyers nyc": [
+   "law"
+  ],
+  "seo for lawyers sydney": [
+   "law"
+  ],
+  "seo for llms": [
+   "seo"
+  ],
+  "seo for real estate companies in kolkata": [
+   "realestate"
+  ],
+  "seo for real estate developers": [
+   "realestate"
+  ],
+  "seo for real estate investors": [
+   "realestate"
+  ],
+  "seo for real estate investors llc": [
+   "realestate"
+  ],
+  "seo for real estate investors reviews": [
+   "realestate"
+  ],
+  "seo for real estate lawyers": [
+   "realestate"
+  ],
+  "seo for real estate websites": [
+   "realestate"
+  ],
+  "seo for roofing contractors": [
+   "home"
+  ],
+  "seo for small business": [
+   "seo"
+  ],
+  "seo for therapists": [
+   "seo"
+  ],
+  "seo for website": [
+   "seo"
+  ],
+  "seo services for dentists": [
+   "dental"
+  ],
+  "seo services for real estate": [
+   "realestate"
+  ],
+  "seo strategy for dentists": [
+   "dental"
+  ],
+  "seo vs aeo": [
+   "seo"
+  ],
+  "seo vs aio": [
+   "seo"
+  ],
+  "seo vs ceo": [
+   "seo"
+  ],
+  "seo vs geo": [
+   "seo"
+  ],
+  "seo vs geo meaning": [
+   "seo"
+  ],
+  "seo vs geo vs aeo": [
+   "seo"
+  ],
+  "seo vs google ads": [
+   "seo"
+  ],
+  "seo vs paid search": [
+   "seo"
+  ],
+  "seo vs ppc": [
+   "seo"
+  ],
+  "seo vs sem": [
+   "seo"
+  ],
+  "technical seo malayalam": [
+   "seo"
+  ],
+  "top leaders in ai": [
+   "ai"
+  ],
+  "top masters in ai": [
+   "ai"
+  ],
+  "website redesign seo": [
+   "web"
+  ],
+  "website redesign seo checklist": [
+   "web"
+  ]
+ }
+}
