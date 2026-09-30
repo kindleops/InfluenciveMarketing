@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/Button";
 import { primaryCta, primaryNav } from "@/config/navigation";
 import { brand } from "@/config/brand";
 import { getLenis } from "@/components/system/SmoothScroll";
+import { openSearch } from "@/components/search/CommandPalette";
 import styles from "./SiteHeader.module.css";
 
 export function SiteHeader() {
@@ -143,6 +144,18 @@ export function SiteHeader() {
           </nav>
 
           <div className={styles.actions}>
+            <button type="button" className={styles.search} onClick={openSearch} aria-label="Search the site" aria-keyshortcuts="Meta+K Control+K">
+              <svg width="15" height="15" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+                <circle cx="8" cy="8" r="5.5" stroke="currentColor" strokeWidth="1.6" />
+                <path d="m12.2 12.2 3.6 3.6" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+              </svg>
+              <span className={styles.searchLabel} aria-hidden="true">
+                Search
+              </span>
+              <kbd className={styles.searchKey} aria-hidden="true">
+                ⌘K
+              </kbd>
+            </button>
             <Button href={primaryCta.href} size="md" arrow magnetic className={styles.cta}>
               {primaryCta.label}
             </Button>

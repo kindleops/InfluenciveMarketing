@@ -6,6 +6,7 @@ import { InteractionLayer } from "@/components/system/InteractionLayer";
 import { SmoothScroll } from "@/components/system/SmoothScroll";
 import { Intro } from "@/components/system/Intro";
 import { ChapterIndicator } from "@/components/system/ChapterIndicator";
+import { CommandPalette } from "@/components/search/CommandPalette";
 
 /**
  * The marketing site's frame: header, footer, film grain and the scroll /
@@ -28,6 +29,7 @@ export function SiteChrome({ children }: { children: ReactNode }) {
       <RevealObserver />
       <InteractionLayer />
       <SmoothScroll />
+      <CommandPalette />
     </>
   );
 }

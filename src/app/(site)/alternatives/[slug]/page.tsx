@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { ProjectCTA } from "@/components/home/ProjectCTA";
+import { TickList } from "@/components/landing/Interactive";
 import { JsonLd } from "@/components/seo/blocks";
 import { Chapter, Checks, Convert, FaqList, LandingHero, Marquee, Options, RelatedRail, SignalPanel, Statement } from "@/components/landing/Landing";
 import { SectionDock } from "@/components/landing/SectionDock";
@@ -55,7 +56,7 @@ export default async function AlternativesPage({ params }: Props) {
         <Options items={p.options} />
       </Chapter>
       <Chapter id="decide" eyebrow="Deciding" title={["How to choose", "between them."]} light tone="blue" raised>
-        <Checks items={p.howToDecide} />
+        <TickList items={p.howToDecide} storageKey={`alternatives:${p.slug}`} label="answered" />
       </Chapter>
       <Convert tone="violet" title={["Not sure which", "route fits?"]} text="Tell us what you have today and what isn’t working. We’ll tell you which route we’d take in your position — even when it isn’t us." primary={start} secondary={{ label: "Read the questions first", href: "#faq" }} />
       <FaqList faqs={p.faqs} />

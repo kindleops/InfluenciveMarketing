@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { ProjectCTA } from "@/components/home/ProjectCTA";
+import { TickList } from "@/components/landing/Interactive";
 import { JsonLd } from "@/components/seo/blocks";
-import { Bento, Chapter, Checks, Convert, FaqList, LandingHero, Marquee, Process, RelatedRail, SignalPanel, Statement } from "@/components/landing/Landing";
+import { Bento, Chapter, Convert, FaqList, LandingHero, Marquee, Process, RelatedRail, SignalPanel, Statement } from "@/components/landing/Landing";
 import { SectionDock } from "@/components/landing/SectionDock";
 import { breadcrumbLd, serviceLd } from "@/seo/jsonld";
 import { published, resolveRelated } from "@/seo/registry";
@@ -55,7 +56,7 @@ export default async function UseCaseLanding({ params }: Props) {
         <Process items={p.plan} />
       </Chapter>
       <Chapter id="checklist" eyebrow="Checklist" title={["Before, during", "and after."]} light tone="blue" raised>
-        <Checks items={p.checklist} />
+        <TickList items={p.checklist} storageKey={`use-case:${p.slug}`} label="done" />
       </Chapter>
       <Convert tone="teal" title={["In the middle", "of this now?"]} text="Tell us where things stand. Someone senior will read it and reply with what they’d do first." primary={start} secondary={{ label: "Read the questions first", href: "#faq" }} />
       <FaqList faqs={p.faqs} />

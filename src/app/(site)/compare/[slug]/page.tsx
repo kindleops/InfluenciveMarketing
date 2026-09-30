@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { ProjectCTA } from "@/components/home/ProjectCTA";
 import { JsonLd } from "@/components/seo/blocks";
-import { Chapter, Convert, Duo, FaqList, LandingHero, Marquee, RelatedRail, Verdict, Versus, VersusVisual } from "@/components/landing/Landing";
+import { Chapter, Convert, Duo, FaqList, LandingHero, Marquee, ModelChapter, RelatedRail, Verdict, Versus, VersusVisual } from "@/components/landing/Landing";
 import { SectionDock } from "@/components/landing/SectionDock";
 import { articleLd, breadcrumbLd } from "@/seo/jsonld";
 import { published, resolveRelated } from "@/seo/registry";
@@ -44,6 +44,7 @@ export default async function ComparePage({ params }: Props) {
         <Duo a={{ title: `Choose ${a.name} when`, items: p.chooseA }} b={{ title: `Choose ${b.name} when`, items: p.chooseB }} />
         <Verdict label="Our view" text={p.verdict} />
       </Chapter>
+      {p.slug === "seo-vs-ppc" && <ModelChapter tone="violet" />}
       <Convert tone="violet" title={["Still weighing", "it up?"]} text="Tell us about the business and what you’re deciding between. We’ll give you our honest read — including when the answer isn’t us." primary={start} secondary={{ label: "Read the questions first", href: "#faq" }} />
       <FaqList faqs={p.faqs} />
       <RelatedRail entries={resolveRelated(p.related, path)} />

@@ -7,6 +7,7 @@ import { SplitText } from "@/components/ui/Typography";
 import { Button, Arrow } from "@/components/ui/Button";
 import { LightField } from "@/components/ui/LightField";
 import { JsonLd } from "@/components/seo/blocks";
+import { Figure } from "@/components/editorial/Figure";
 import s from "./landing.module.css";
 
 /*
@@ -230,6 +231,27 @@ export function Marquee({ items, tone = "blue" }: { items: string[]; tone?: Tone
         ))}
       </div>
     </div>
+  );
+}
+
+/** The paid search model, for pages where buyers are weighing ad spend. */
+export function ModelChapter({ tone = "blue" }: { tone?: Tone }) {
+  return (
+    <Chapter
+      id="model"
+      eyebrow="Run the numbers"
+      title={["What can you afford", "to pay for a click?"]}
+      lead="Work backwards from what a customer is worth. Your numbers stay in your browser."
+      light
+      tone={tone}
+    >
+      <div className={s.model}>
+        <Figure n={1} label="Interactive model" title="Allowable cost per lead and per click" caption="Change any input; every output follows. The defaults are an example, not a benchmark — the full reasoning is in our report on the economics of paid search." figure={{ kind: "calculator", model: "paid-search-economics" }} />
+        <Link href="/research/paid-search-economics-high-ticket-services" className={s.modelLink}>
+          Read the report behind the model →
+        </Link>
+      </div>
+    </Chapter>
   );
 }
 
@@ -500,6 +522,19 @@ export function Versus({
 }) {
   return (
     <div className={s.versus}>
+      <fieldset className={`glass ${s.vsFocus}`} data-level="2" data-liquid="deep">
+        <legend className="sr-only">Focus the comparison</legend>
+        {[
+          ["both", "Both"],
+          ["a", a.name],
+          ["b", b.name],
+        ].map(([v, l]) => (
+          <label key={v}>
+            <input type="radio" name="vs-focus" value={v} defaultChecked={v === "both"} />
+            <span>{l}</span>
+          </label>
+        ))}
+      </fieldset>
       <div className={s.vsHead}>
         {[a, b].map((o, i) => (
           <div key={o.name} className={`glass ${s.vsOption}`} data-level="3" data-liquid="" data-side={i ? "b" : "a"} data-reveal="up" style={{ "--reveal-delay": `${i * 90}ms` } as CSSProperties}>

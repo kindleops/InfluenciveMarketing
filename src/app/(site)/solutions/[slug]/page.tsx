@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { ProjectCTA } from "@/components/home/ProjectCTA";
+import { TickList } from "@/components/landing/Interactive";
 import { JsonLd } from "@/components/seo/blocks";
-import { Chapter, Checks, Convert, Duo, FaqList, LandingHero, Marquee, Process, RelatedRail, SignalPanel, Verdict } from "@/components/landing/Landing";
+import { Chapter, Convert, Duo, FaqList, LandingHero, Marquee, Process, RelatedRail, SignalPanel, Verdict } from "@/components/landing/Landing";
 import { SectionDock } from "@/components/landing/SectionDock";
 import { breadcrumbLd, serviceLd } from "@/seo/jsonld";
 import { published, resolveRelated } from "@/seo/registry";
@@ -49,7 +50,7 @@ export default async function SolutionLanding({ params }: Props) {
         <Verdict label="In one sentence" text={p.outcome} />
       </Chapter>
       <Chapter id="signs" eyebrow="Signs you need this" title={["If this sounds familiar,", "read on."]} light tone="violet">
-        <Checks items={p.signs} />
+        <TickList items={p.signs} storageKey={`solution-signs:${p.slug}`} label="apply to you" />
       </Chapter>
       <Chapter id="plan" eyebrow="The plan" title={["How we get", "from here to there."]}>
         <Process items={p.plan} />

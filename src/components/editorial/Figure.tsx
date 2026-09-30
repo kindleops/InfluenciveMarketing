@@ -17,13 +17,13 @@ const parseTotal = (t: string) => {
   return m ? Number(m[1]) * (m[2] ? 1000 : 1) : null;
 };
 
-export function Figure({ n, title, caption, figure }: { n: number; title: string; caption: string; figure: FigureSpec }) {
+export function Figure({ n, title, caption, figure, label }: { n: number; title: string; caption: string; figure: FigureSpec; label?: string }) {
   const illustrative = "illustrative" in figure && figure.illustrative;
   const id = `figure-${n}`;
   return (
     <figure className={`glass ${s.figure}`} data-level="2" data-liquid="deep" data-kind={figure.kind} data-reveal="up" aria-labelledby={`${id}-title`} id={id}>
       <header className={s.head}>
-        <span className={s.figNum}>Figure {n}</span>
+        <span className={s.figNum}>{label ?? `Figure ${n}`}</span>
         {illustrative && <span className={s.badge}>Illustrative</span>}
         {figure.kind === "calculator" && <span className={s.badge} data-live="">Interactive</span>}
       </header>

@@ -2,13 +2,16 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { ProjectCTA } from "@/components/home/ProjectCTA";
 import { JsonLd } from "@/components/seo/blocks";
-import { Bento, Chapter, Convert, FaqList, LandingHero, Marquee, PillLinks, Process, RelatedRail, RoleMap, SignalPanel, Statement } from "@/components/landing/Landing";
+import { Bento, Chapter, Convert, FaqList, LandingHero, Marquee, ModelChapter, PillLinks, Process, RelatedRail, RoleMap, SignalPanel, Statement } from "@/components/landing/Landing";
 import { SectionDock } from "@/components/landing/SectionDock";
 import { breadcrumbLd, serviceLd } from "@/seo/jsonld";
 import { combosFor, comboTitle, industryBySlug, published, resolveRelated } from "@/seo/registry";
 import { pageMetadata } from "@/seo/site";
 
 type Props = { params: Promise<{ slug: string }> };
+
+/* Lead-driven, high-ticket industries: the paid search model earns its place. */
+const MODEL_INDUSTRIES = new Set(["law-firms", "dental-medical-practices", "professional-services", "home-services", "real-estate"]);
 
 export function generateStaticParams() {
   return published.industries.map((p) => ({ slug: p.slug }));
@@ -70,6 +73,7 @@ export default async function IndustryLanding({ params }: Props) {
         <PillLinks label={`Key markets for ${p.name}`} items={markets.map((m) => ({ href: `/locations/${m.slug}`, label: m.city }))} />
       </Chapter>
 
+      {MODEL_INDUSTRIES.has(p.slug) && <ModelChapter tone="gold" />}
       <Convert tone="gold" title={["Tell us where", "growth is stuck."]} text="A senior strategist reads every brief and replies with a first view — before anyone talks scope." primary={start} secondary={{ label: "Read the questions first", href: "#faq" }} />
       <FaqList faqs={p.faqs} />
       <RelatedRail entries={resolveRelated(p.related, path)} />

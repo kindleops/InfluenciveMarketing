@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { ProjectCTA } from "@/components/home/ProjectCTA";
+import { FitCheck } from "@/components/landing/Interactive";
 import { JsonLd } from "@/components/seo/blocks";
-import { Bento, Chapter, Convert, Duo, FaqList, LandingHero, Marquee, PillLinks, Process, RelatedRail, SignalPanel, Spec, Statement } from "@/components/landing/Landing";
+import { Bento, Chapter, Convert, FaqList, LandingHero, Marquee, ModelChapter, PillLinks, Process, RelatedRail, SignalPanel, Spec, Statement } from "@/components/landing/Landing";
 import { SectionDock } from "@/components/landing/SectionDock";
 import { ACCENT_TONE, DISCIPLINE_ACCENT, DISCIPLINE_NAME, DISCIPLINE_NEED } from "@/seo/accents";
 import { breadcrumbLd, serviceLd } from "@/seo/jsonld";
@@ -10,6 +11,9 @@ import { combosFor, industryBySlug, published, resolveRelated, serviceBySlug } f
 import { pageMetadata } from "@/seo/site";
 
 type Props = { params: Promise<{ slug: string }> };
+
+/* Services where the buyer is weighing what a click or a lead is worth. */
+const MODEL_SERVICES = new Set(["paid-media"]);
 
 export function generateStaticParams() {
   return published.services.map((p) => ({ slug: p.slug }));
@@ -67,7 +71,7 @@ export default async function ServiceLanding({ params }: Props) {
       </Chapter>
 
       <Chapter id="fit" eyebrow="Fit" title={["Who this is for —", "and who it isn’t."]} light tone="violet">
-        <Duo a={{ title: "A good fit", items: p.fit.for }} b={{ title: "Not the right fit", items: p.fit.notFor, negative: true }} />
+        <FitCheck items={p.fit.for} notFor={p.fit.notFor} href={start.href} alt={{ label: "How to choose the right partner", href: "/guides/how-to-choose-a-marketing-agency" }} />
         <Spec
           items={[
             { label: "Engagement", value: p.engagement.model },
@@ -78,6 +82,8 @@ export default async function ServiceLanding({ params }: Props) {
         />
         <PillLinks label={`${p.name} by industry`} items={combos.map((c) => ({ href: `/services/${c.service}/${c.industry}`, label: `${p.name} for ${industryBySlug(c.industry)!.name}` }))} />
       </Chapter>
+
+      {MODEL_SERVICES.has(p.slug) && <ModelChapter tone={tone} />}
 
       <Convert
         tone={tone}
