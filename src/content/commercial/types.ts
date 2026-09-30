@@ -55,6 +55,7 @@ export interface Related {
   guides?: string[];
   playbooks?: string[];
   research?: string[];
+  answers?: string[];
   insights?: string[];
   work?: string[];
 }
@@ -211,4 +212,33 @@ export interface ComboPage {
   pitfalls: Item[];
   measures: string[];
   faqs: Faq[];
+}
+
+/* ---- /answers/[slug] — one question, answered ---------------------------- */
+/**
+ * A page for a question people actually ask (from search suggestions), built
+ * to be the best answer on the web and the one AI answers quote: the answer
+ * first, in plain words; the reasoning after; related questions below.
+ * Same honesty rules as everything else — where the true answer is "it
+ * depends", the page says what it depends on and how to work it out.
+ */
+export type AnswerTopic = "SEO" | "Local SEO" | "AI search" | "Paid media" | "Agencies" | "Websites & CRO" | "Brand" | "Measurement" | "Content & email" | "Industries";
+
+export interface AnswerPage extends SeoMeta {
+  /** The question as people type it, cleaned up. The page's h1. */
+  question: string;
+  topic: AnswerTopic;
+  /** 35–80 words. Direct, complete, quotable on its own. */
+  shortAnswer: string;
+  /** Three to five takeaways. */
+  keyPoints: string[];
+  /** Two to four sections that earn the answer. */
+  sections: {
+    heading: string;
+    body: string[];
+    list?: string[];
+    table?: { caption: string; columns: string[]; rows: string[][] };
+  }[];
+  faqs: Faq[];
+  related: Related;
 }

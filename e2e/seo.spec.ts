@@ -7,6 +7,7 @@ import { comparePages } from "@/content/commercial/compare";
 import { alternativePages } from "@/content/commercial/alternatives";
 import { locationPages } from "@/content/commercial/locations";
 import { comboPages } from "@/content/commercial/combos";
+import { answerPages } from "@/content/commercial/answers";
 import { guides } from "@/content/library/guides";
 import { playbooks } from "@/content/library/playbooks";
 import { research } from "@/content/library/research";
@@ -31,6 +32,7 @@ const authored: Authored[] = [
   ...guides.map((p) => ({ kind: "guide" as const, id: `/guides/${p.slug}`, page: p as never })),
   ...playbooks.map((p) => ({ kind: "playbook" as const, id: `/playbooks/${p.slug}`, page: p as never })),
   ...research.map((p) => ({ kind: "research" as const, id: `/research/${p.slug}`, page: p as never })),
+  ...answerPages.map((p) => ({ kind: "answer" as const, id: `/answers/${p.slug}`, page: p as never })),
 ];
 
 function shingles(text: string, n = 5) {
@@ -164,6 +166,7 @@ const HUBS = [
   "/playbooks",
   ...(locationPages.length ? ["/locations"] : []),
   ...(research.length ? ["/research"] : []),
+  ...(answerPages.length ? ["/answers"] : []),
 ];
 
 test.describe("seo rendering", () => {
@@ -234,5 +237,32 @@ test.describe("seo rendering", () => {
       if (r.status() !== 200) broken.push(`${h} → ${r.status()}`);
     }
     expect(broken).toEqual([]);
+  });
+});
+
+test.describe("answers for search and AI", () => {
+  test("each answer page leads with its answer, in the page and in the markup", async ({ request }) => {
+    test.setTimeout(300_000);
+    const problems: string[] = [];
+    for (const a of answerPages.slice(0, 60)) {
+      const html = await (await request.get(`/answers/${a.slug}`)).text();
+      const h1 = html.match(/<h1[^>]*>([\s\S]*?)<\/h1>/)?.[1]?.replace(/<[^>]+>/g, "");
+      if (h1?.trim() !== a.question) problems.push(`${a.slug}: h1 is not the question`);
+      const faq = [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].map((m) => JSON.parse(m[1])).find((d) => d["@type"] === "FAQPage");
+      if (faq?.mainEntity?.[0]?.name !== a.question) problems.push(`${a.slug}: FAQPage does not lead with the page's question`);
+      // The short answer is the first thing a reader (or a crawler) meets after the h1.
+      const after = html.slice(html.indexOf("</h1>"));
+      const firstP = after.match(/<p[^>]*>([\s\S]*?)<\/p>/g)?.map((p) => p.replace(/<[^>]+>/g, "")).find((t) => t.split(" ").length > 12);
+      if (!firstP || !a.shortAnswer.startsWith(firstP.slice(0, 40).replace(/&#x27;|&apos;/g, "'").replace(/&amp;/g, "&").replace(/&quot;/g, '"'))) problems.push(`${a.slug}: short answer is not the first paragraph`);
+    }
+    expect(problems).toEqual([]);
+  });
+
+  test("llms.txt maps the site for language models", async ({ request }) => {
+    const res = await request.get("/llms.txt");
+    expect(res.status()).toBe(200);
+    const text = await res.text();
+    expect(text.startsWith("# ")).toBe(true);
+    for (const a of answerPages.slice(0, 5)) expect(text).toContain(`/answers/${a.slug}`);
   });
 });

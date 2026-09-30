@@ -6,6 +6,7 @@ import { comparePages } from "@/content/commercial/compare";
 import { alternativePages } from "@/content/commercial/alternatives";
 import { locationPages } from "@/content/commercial/locations";
 import { comboPages } from "@/content/commercial/combos";
+import { answerPages } from "@/content/commercial/answers";
 import type { ComboPage, Related } from "@/content/commercial/types";
 import { guides } from "@/content/library/guides";
 import { playbooks } from "@/content/library/playbooks";
@@ -34,6 +35,7 @@ export const published = {
   guides: pass("guide", guides),
   playbooks: pass("playbook", playbooks),
   research: pass("research", research),
+  answers: pass("answer", answerPages),
 };
 
 export const serviceBySlug = (s: string) => published.services.find((p) => p.slug === s);
@@ -57,6 +59,7 @@ export type Kind =
   | "guide"
   | "playbook"
   | "research"
+  | "answer"
   | "insight"
   | "work";
 
@@ -72,6 +75,7 @@ export const KIND_LABEL: Record<Kind, string> = {
   guide: "Guide",
   playbook: "Playbook",
   research: "Research",
+  answer: "Answer",
   insight: "Insight",
   work: "Work",
 };
@@ -121,6 +125,7 @@ export function allEntries(): Entry[] {
     ...published.guides.map(lib("/guides", "guide")),
     ...published.playbooks.map(lib("/playbooks", "playbook")),
     ...published.research.map(lib("/research", "research")),
+    ...published.answers.map((p) => ({ kind: "answer" as const, slug: p.slug, path: `/answers/${p.slug}`, title: p.question, summary: p.shortAnswer, primaryQuery: p.primaryQuery, updated: p.updated, text: textOf(p) })),
     ...insights.map((i) => ({ kind: "insight" as const, slug: i.slug, path: `/insights/${i.slug}`, title: i.title, summary: i.dek, updated: i.date, text: textOf(i.body) })),
     ...work.map((w) => ({ kind: "work" as const, slug: w.slug, path: `/work/${w.slug}`, title: w.title, summary: w.summary, text: textOf(w.summary) })),
   ];
@@ -136,6 +141,7 @@ const RELATED_KIND: Record<keyof Related, Kind> = {
   guides: "guide",
   playbooks: "playbook",
   research: "research",
+  answers: "answer",
   insights: "insight",
   work: "work",
 };
@@ -166,6 +172,7 @@ export function brokenRelated(): string[] {
     ...guides.map((p) => ({ from: `/guides/${p.slug}`, related: p.related })),
     ...playbooks.map((p) => ({ from: `/playbooks/${p.slug}`, related: p.related })),
     ...research.map((p) => ({ from: `/research/${p.slug}`, related: p.related })),
+    ...answerPages.map((p) => ({ from: `/answers/${p.slug}`, related: p.related })),
   ];
   const broken: string[] = [];
   for (const s of sources)

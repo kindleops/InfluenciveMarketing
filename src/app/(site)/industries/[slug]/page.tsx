@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { ProjectCTA } from "@/components/home/ProjectCTA";
 import { JsonLd } from "@/components/seo/blocks";
-import { Bento, Chapter, Convert, FaqList, LandingHero, Marquee, ModelChapter, PillLinks, Process, RelatedRail, RoleMap, SignalPanel, Statement } from "@/components/landing/Landing";
+import { Bento, Chapter, Convert, FaqList, LandingHero, Marquee, ModelChapter, PillLinks, Process, QuestionsChapter, RelatedRail, RoleMap, SignalPanel, Statement } from "@/components/landing/Landing";
 import { SectionDock } from "@/components/landing/SectionDock";
 import { breadcrumbLd, serviceLd } from "@/seo/jsonld";
 import { combosFor, comboTitle, industryBySlug, published, resolveRelated } from "@/seo/registry";
@@ -75,6 +75,7 @@ export default async function IndustryLanding({ params }: Props) {
 
       {MODEL_INDUSTRIES.has(p.slug) && <ModelChapter tone="gold" />}
       <Convert tone="gold" title={["Tell us where", "growth is stuck."]} text="A senior strategist reads every brief and replies with a first view — before anyone talks scope." primary={start} secondary={{ label: "Read the questions first", href: "#faq" }} />
+      <QuestionsChapter items={published.answers.filter((a) => a.related.industries?.includes(p.slug))} />
       <FaqList faqs={p.faqs} />
       <RelatedRail entries={resolveRelated(p.related, path)} />
       <ProjectCTA />

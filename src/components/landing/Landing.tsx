@@ -255,6 +255,31 @@ export function ModelChapter({ tone = "blue" }: { tone?: Tone }) {
   );
 }
 
+/** Questions people ask about this page's subject, each answered on its own page. */
+export function QuestionsChapter({ items, title = ["Questions buyers", "ask first."] }: { items: { question: string; slug: string; shortAnswer: string }[]; title?: [string, string] }) {
+  if (!items.length) return null;
+  return (
+    <Chapter id="questions" eyebrow="Answers" title={title} light tone="teal">
+      <ul className={s.qGrid} role="list">
+        {items.slice(0, 6).map((q, i) => (
+          <li key={q.slug} data-reveal="up" style={{ "--reveal-delay": `${(i % 3) * 70}ms` } as CSSProperties}>
+            <Link href={`/answers/${q.slug}`} className={`glass ${s.qCard}`} data-level="2" data-liquid="" data-interactive="true" data-pointer-light="" data-tilt="5">
+              <span className={s.qMark} aria-hidden="true">
+                Q
+              </span>
+              <span className={s.qTitle}>{q.question}</span>
+              <span className={s.qText}>{q.shortAnswer.split(/(?<=[.!?])\s/)[0]}</span>
+              <span className={s.relGo}>
+                Read the answer <Arrow />
+              </span>
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </Chapter>
+  );
+}
+
 /* ---- Chapters ------------------------------------------------------------ */
 
 export function Chapter({
@@ -625,10 +650,10 @@ export function Convert({ title, text, primary, secondary, tone = "blue" }: { ti
 }
 
 /** Questions buyers ask, answered in place — and marked up as an FAQ. */
-export function FaqList({ faqs, title = ["What people ask", "before they start."] }: { faqs: Faq[]; title?: [string, string] }) {
+export function FaqList({ faqs, title = ["What people ask", "before they start."], schema = true }: { faqs: Faq[]; title?: [string, string]; schema?: boolean }) {
   return (
     <Chapter id="faq" eyebrow="Questions" title={title}>
-      <JsonLd data={faqLd(faqs)} />
+      {schema && <JsonLd data={faqLd(faqs)} />}
       <ul className={s.faqs} role="list">
         {faqs.map((f, i) => (
           <li key={f.q} data-reveal="up" style={{ "--reveal-delay": `${i * 50}ms` } as CSSProperties}>

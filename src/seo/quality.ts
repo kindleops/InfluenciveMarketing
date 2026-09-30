@@ -15,7 +15,8 @@ export type GateKind =
   | "location"
   | "guide"
   | "playbook"
-  | "research";
+  | "research"
+  | "answer";
 
 export const MIN_WORDS: Record<GateKind, number> = {
   service: 650,
@@ -29,6 +30,7 @@ export const MIN_WORDS: Record<GateKind, number> = {
   guide: 1000,
   playbook: 1000,
   research: 800,
+  answer: 450,
 };
 
 /** Fields that describe a page rather than being part of what it says. */
@@ -101,6 +103,11 @@ export function gate(
       if (!m?.sample || !m.period || !m.sources?.length || !m.limitations?.length) reasons.push("methodology incomplete");
       if (page.reviewed !== true) reasons.push("not reviewed");
     }
+  }
+  if (kind === "answer") {
+    const a = wordCount(String(page.shortAnswer ?? ""));
+    if (a < 30 || a > 85) reasons.push(`short answer ${a} words, needs 30–85`);
+    if (((page.keyPoints as string[] | undefined)?.length ?? 0) < 3) reasons.push("needs at least 3 key points");
   }
   if (kind === "location") {
     if (page.presence === "office" && !page.address) reasons.push("office without an address");

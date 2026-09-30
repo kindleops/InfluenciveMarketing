@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { ProjectCTA } from "@/components/home/ProjectCTA";
 import { FitCheck } from "@/components/landing/Interactive";
 import { JsonLd } from "@/components/seo/blocks";
-import { Bento, Chapter, Convert, FaqList, LandingHero, Marquee, ModelChapter, PillLinks, Process, RelatedRail, SignalPanel, Spec, Statement } from "@/components/landing/Landing";
+import { Bento, Chapter, Convert, FaqList, LandingHero, Marquee, ModelChapter, PillLinks, Process, QuestionsChapter, RelatedRail, SignalPanel, Spec, Statement } from "@/components/landing/Landing";
 import { SectionDock } from "@/components/landing/SectionDock";
 import { ACCENT_TONE, DISCIPLINE_ACCENT, DISCIPLINE_NAME, DISCIPLINE_NEED } from "@/seo/accents";
 import { breadcrumbLd, serviceLd } from "@/seo/jsonld";
@@ -93,6 +93,7 @@ export default async function ServiceLanding({ params }: Props) {
         secondary={{ label: "Read the questions first", href: "#faq" }}
       />
 
+      <QuestionsChapter items={published.answers.filter((a) => a.related.services?.includes(p.slug))} />
       <FaqList faqs={p.faqs} />
       <RelatedRail entries={resolveRelated(p.related, path)} />
       <ProjectCTA />
