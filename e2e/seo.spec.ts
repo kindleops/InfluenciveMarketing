@@ -246,14 +246,15 @@ test.describe("answers for search and AI", () => {
     const problems: string[] = [];
     for (const a of answerPages.slice(0, 60)) {
       const html = await (await request.get(`/answers/${a.slug}`)).text();
-      const h1 = html.match(/<h1[^>]*>([\s\S]*?)<\/h1>/)?.[1]?.replace(/<[^>]+>/g, "");
-      if (h1?.trim() !== a.question) problems.push(`${a.slug}: h1 is not the question`);
+      const decode = (t: string) => t.replace(/&#x27;|&apos;|&#39;/g, "'").replace(/&quot;/g, '"').replace(/&amp;/g, "&");
+      const h1 = decode(html.match(/<h1[^>]*>([\s\S]*?)<\/h1>/)?.[1]?.replace(/<[^>]+>/g, "") ?? "");
+      if (h1.trim() !== a.question) problems.push(`${a.slug}: h1 is not the question`);
       const faq = [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].map((m) => JSON.parse(m[1])).find((d) => d["@type"] === "FAQPage");
       if (faq?.mainEntity?.[0]?.name !== a.question) problems.push(`${a.slug}: FAQPage does not lead with the page's question`);
       // The short answer is the first thing a reader (or a crawler) meets after the h1.
       const after = html.slice(html.indexOf("</h1>"));
       const firstP = after.match(/<p[^>]*>([\s\S]*?)<\/p>/g)?.map((p) => p.replace(/<[^>]+>/g, "")).find((t) => t.split(" ").length > 12);
-      if (!firstP || !a.shortAnswer.startsWith(firstP.slice(0, 40).replace(/&#x27;|&apos;/g, "'").replace(/&amp;/g, "&").replace(/&quot;/g, '"'))) problems.push(`${a.slug}: short answer is not the first paragraph`);
+      if (!firstP || !a.shortAnswer.startsWith(decode(firstP).slice(0, 40))) problems.push(`${a.slug}: short answer is not the first paragraph`);
     }
     expect(problems).toEqual([]);
   });
