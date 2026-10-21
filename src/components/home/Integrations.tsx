@@ -1,25 +1,28 @@
 import type { CSSProperties } from "react";
 import s from "./integrations.module.css";
+import { BrandLogo } from "@/components/ui/BrandLogo";
+import type { LogoSlug } from "@/content/logos";
 
 /*
  * The systems an agent or app usually has to talk to, around the thing we
- * build. Names only, set as type: these are common integration targets,
- * not partnerships or endorsements.
+ * build, with the owner's mark where it may be redistributed. These are
+ * common integration targets, not partnerships or endorsements.
  */
 
-const SYSTEMS: [string, string, string][] = [
-  ["Salesforce", "Sf", "CRM"],
-  ["HubSpot", "Hs", "CRM"],
-  ["Slack", "Sl", "Chat"],
-  ["Microsoft 365", "Ms", "Email · Docs"],
-  ["Google Workspace", "Gw", "Email · Docs"],
-  ["Zendesk", "Zd", "Support"],
-  ["Stripe", "St", "Billing"],
-  ["QuickBooks", "Qb", "Accounting"],
-  ["Shopify", "Sh", "Commerce"],
-  ["PostgreSQL", "Pg", "Data"],
-  ["Snowflake", "Sn", "Warehouse"],
-  ["Twilio", "Tw", "Voice · SMS"],
+/** [name, logo or monogram, kind]. Brands that don't permit redistribution of their mark keep a monogram. */
+const SYSTEMS: [string, LogoSlug | { mono: string }, string][] = [
+  ["Salesforce", { mono: "Sf" }, "CRM"],
+  ["HubSpot", "hubspot", "CRM"],
+  ["Slack", { mono: "Sl" }, "Chat"],
+  ["Gmail", "gmail", "Email"],
+  ["Notion", "notion", "Docs"],
+  ["Zendesk", "zendesk", "Support"],
+  ["Stripe", "stripe", "Billing"],
+  ["QuickBooks", "quickbooks", "Accounting"],
+  ["Shopify", "shopify", "Commerce"],
+  ["PostgreSQL", "postgresql", "Data"],
+  ["Snowflake", "snowflake", "Warehouse"],
+  ["Airtable", "airtable", "Tables"],
 ];
 
 export function Integrations() {
@@ -52,7 +55,7 @@ export function Integrations() {
           return (
             <li key={name} style={{ "--x": `${50 + Math.cos(a) * 41}%`, "--y": `${50 + Math.sin(a) * 41}%`, "--i": i } as CSSProperties}>
               <span className={s.mono} aria-hidden="true">
-                {mark}
+                {typeof mark === "string" ? <BrandLogo slug={mark} size={16} /> : mark.mono}
               </span>
               <span className={s.name}>
                 {name}

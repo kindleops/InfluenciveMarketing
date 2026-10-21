@@ -270,11 +270,26 @@
   animation: marquee 48s linear infinite;
 }
 .marquee li {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
   font-size: 1.05rem;
   font-weight: 560;
   letter-spacing: -0.02em;
-  color: rgb(244 245 247 / 0.5);
+  color: rgb(244 245 247 / 0.55);
   white-space: nowrap;
+  transition: color 250ms;
+}
+.marquee li:hover {
+  color: #f4f5f7;
+}
+.logo {
+  flex: none;
+  color: rgb(244 245 247 / 0.7);
+  transition: color 250ms;
+}
+.marquee li:hover .logo {
+  color: var(--brand);
 }
 @keyframes marquee {
   to {
@@ -948,4 +963,7 @@
 .cell:hover::after,
 .engCard:hover::after {
   opacity: 1;
+}
+.marquee:hover ul {
+  animation-play-state: paused;
 }

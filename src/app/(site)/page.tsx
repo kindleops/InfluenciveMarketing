@@ -12,6 +12,8 @@ import { faqLd } from "@/seo/jsonld";
 import { ProjectCTA } from "@/components/home/ProjectCTA";
 import { Button, Arrow } from "@/components/ui/Button";
 import { published } from "@/seo/registry";
+import { BrandLogo } from "@/components/ui/BrandLogo";
+import type { LogoSlug } from "@/content/logos";
 import s from "@/components/home/home.module.css";
 
 /**
@@ -29,7 +31,23 @@ import s from "@/components/home/home.module.css";
  *   FAQ          The last objections        answered, streamed, in schema
  */
 
-const STACK = ["TypeScript", "React", "Next.js", "Node.js", "Python", "PostgreSQL", "Redis", "OpenAI", "Anthropic", "LangGraph", "n8n", "Supabase", "AWS", "Vercel"];
+/** What we build with. A mark where the owner permits redistribution; the name alone otherwise. */
+const STACK: [string, LogoSlug | null][] = [
+  ["TypeScript", "typescript"],
+  ["React", "react"],
+  ["Next.js", "nextdotjs"],
+  ["Node.js", "nodedotjs"],
+  ["Python", "python"],
+  ["PostgreSQL", "postgresql"],
+  ["Redis", "redis"],
+  ["OpenAI", null],
+  ["Anthropic", "anthropic"],
+  ["LangGraph", "langgraph"],
+  ["n8n", "n8n"],
+  ["Supabase", "supabase"],
+  ["AWS", null],
+  ["Vercel", "vercel"],
+];
 
 const PILLARS = [
   {
@@ -186,16 +204,16 @@ export default function Home() {
         <div className={s.stack}>
           <p className={s.stackLabel}>Built with</p>
           <div className={s.marquee}>
-            <ul role="list" aria-label="Technologies we build with">
-              {STACK.map((t) => (
-                <li key={t}>{t}</li>
-              ))}
-            </ul>
-            <ul role="list" aria-hidden="true">
-              {STACK.map((t) => (
-                <li key={t}>{t}</li>
-              ))}
-            </ul>
+            {[0, 1].map((k) => (
+              <ul key={k} role="list" aria-label={k ? undefined : "Technologies we build with"} aria-hidden={k ? true : undefined}>
+                {STACK.map(([name, slug]) => (
+                  <li key={name}>
+                    {slug && <BrandLogo slug={slug} size={22} className={s.logo} />}
+                    {name}
+                  </li>
+                ))}
+              </ul>
+            ))}
           </div>
         </div>
       </section>
@@ -255,7 +273,7 @@ export default function Home() {
           <div data-reveal="up">
             <Integrations />
           </div>
-          <p className={s.caption}>And anything else with an API or webhooks. Names shown are common integration targets, not partnerships.</p>
+          <p className={s.caption}>And anything else with an API or webhooks. Logos and names belong to their owners and show common integration targets, not partnerships or endorsements.</p>
         </div>
       </section>
 
