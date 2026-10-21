@@ -10,11 +10,23 @@ import { SectionHeading } from "@/components/ui/Typography";
 import { Section } from "@/components/ui/Surface";
 import { Cards } from "@/components/seo/blocks";
 import { allEntries } from "@/seo/registry";
+import { servicesMenu } from "@/config/navigation";
+
+const GROUP_TITLES: Record<string, [string, React.ReactNode]> = {
+  "AI & Automation": ["Agents and automation", <em key="a" className="t-accent">that hold up in production.</em>],
+  Engineering: ["Software,", <em key="a" className="t-accent">front end to back end.</em>],
+  Growth: ["The growth layer,", <em key="a" className="t-accent">wired into the system.</em>],
+};
+const GROUP_LEADS: Record<string, string> = {
+  "AI & Automation": "Agents that use your tools, workflows that never drop a step, and AI features built on your own data, each shipped with evaluation, guardrails and a person where it matters.",
+  Engineering: "Web apps, portals and internal tools in TypeScript, React and Next.js, on APIs and data models your team can own and extend.",
+  Growth: "Search, paid media, conversion and analytics, run against the same data your agents and apps produce.",
+};
 import styles from "./page.module.css";
 
 export const metadata: Metadata = {
   title: "Services",
-  description: "Brand, web, product, growth, organic, intelligence, automation and transformation — eight disciplines, one standard.",
+  description: "AI agents, workflow automation and software engineering, front end to back end, plus the brand and growth work around them. One senior team, one standard.",
 };
 
 const models = [
@@ -51,14 +63,35 @@ export default function ServicesPage() {
         eyebrow="Services"
         accent="violet"
         visual={<DisciplineWall />}
-        title={["Eight disciplines.", <em key="a" className="t-accent">One standard.</em>]}
-        lead="Engage a single discipline or the whole system. Either way, every piece is designed to connect to — and strengthen — the rest."
+        title={["Build it. Automate it.", <em key="a" className="t-accent">Grow it.</em>]}
+        lead="AI agents and automation that take work off your team, the software they run inside, and the growth work that brings demand to it. Engage one piece or the whole system."
       />
 
+      {servicesMenu.map((g, i) => {
+        const hrefs = g.items.map((x) => x.href);
+        const entries = allEntries().filter((e) => e.kind === "service" && hrefs.includes(e.path));
+        if (!entries.length) return null;
+        const id = `group-${i}`;
+        return (
+          <Section key={g.title} tone="dark" spacing="tight" labelledBy={id}>
+            <SectionHeading id={id} eyebrow={g.title} layout="split" title={GROUP_TITLES[g.title] ?? [g.title, ""]} lead={GROUP_LEADS[g.title]} />
+            <Cards entries={entries} label={g.title} />
+          </Section>
+        );
+      })}
+      {(() => {
+        const listed = new Set(servicesMenu.flatMap((g) => g.items.map((x) => x.href)));
+        const rest = allEntries().filter((e) => e.kind === "service" && !listed.has(e.path));
+        return rest.length ? (
+          <Section tone="dark" spacing="tight" labelledBy="group-more">
+            <SectionHeading id="group-more" eyebrow="Brand & content" layout="split" title={["Brand, content", <em key="a" className="t-accent">and lifecycle.</em>]} lead="The identity, content and channels that give the system something worth saying." />
+            <Cards entries={rest} label="Brand and content services" />
+          </Section>
+        ) : null;
+      })()}
+
       <Section tone="dark" spacing="tight" labelledBy="disciplines-title">
-        <h2 id="disciplines-title" className="sr-only">
-          Disciplines
-        </h2>
+        <SectionHeading id="disciplines-title" eyebrow="Disciplines" layout="split" title={["How the pieces", <em key="a" className="t-accent">connect.</em>]} lead="Behind the services sit eight disciplines. Each is designed to feed the next, so an agent, the app it lives in and the growth around it improve together." />
         <div className={styles.layout}>
           <aside className={styles.aside}>
             <ServiceNav />
@@ -125,17 +158,6 @@ export default function ServicesPage() {
             ))}
           </div>
         </div>
-      </Section>
-
-      <Section tone="dark" labelledBy="specialist-title">
-        <SectionHeading
-          id="specialist-title"
-          eyebrow="Specialist services"
-          layout="split"
-          title={["Looking for", <em key="a" className="t-accent">something specific?</em>]}
-          lead="The services people most often search for, each set out in depth — what’s included, how we run it, and who it’s for."
-        />
-        <Cards entries={allEntries().filter((e) => e.kind === "service")} label="Specialist services" />
       </Section>
 
       <Section tone="raised" labelledBy="models-title">

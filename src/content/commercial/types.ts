@@ -222,7 +222,7 @@ export interface ComboPage {
  * Same honesty rules as everything else — where the true answer is "it
  * depends", the page says what it depends on and how to work it out.
  */
-export type AnswerTopic = "SEO" | "Local SEO" | "AI search" | "Paid media" | "Agencies" | "Websites & CRO" | "Brand" | "Measurement" | "Content & email" | "Industries";
+export type AnswerTopic = "AI & automation" | "Development" | "SEO" | "Local SEO" | "AI search" | "Paid media" | "Agencies" | "Websites & CRO" | "Brand" | "Measurement" | "Content & email" | "Industries";
 
 export interface AnswerPage extends SeoMeta {
   /** The question as people type it, cleaned up. The page's h1. */

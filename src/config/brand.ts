@@ -13,10 +13,10 @@ export const brand = {
   /** Legal entity, used in the footer and legal pages. */
   legalName: "ascndix",
   /** Core positioning line. */
-  positioning: "Brand. Product. Growth. Intelligence.",
-  tagline: "Build what growth requires.",
+  positioning: "AI Agents, Automation & Software Engineering",
+  tagline: "AI that does the work.",
   description:
-    "We combine brand, product, growth, automation and intelligence to build connected digital systems for ambitious companies.",
+    "ascndix designs and engineers AI agents, workflow automation and web apps, front end to back end, with the evaluation and guardrails production needs.",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://example.com",
   email: "studio@example.com",
   /**

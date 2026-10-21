@@ -1584,7 +1584,7 @@ html:not(.js) .glyph :global(*),
   font-weight: 460;
   white-space: nowrap;
   color: transparent;
-  -webkit-text-stroke: 1px rgb(241 239 234 / 0.22);
+  -webkit-text-stroke: 1px rgb(244 245 247 / 0.22);
 }
 .marqueeItem[data-alt] {
   -webkit-text-stroke: 0;

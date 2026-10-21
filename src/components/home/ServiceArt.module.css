@@ -47,7 +47,7 @@
   line-height: 1;
   letter-spacing: -0.06em;
   font-variation-settings: "wght" 200;
-  background: linear-gradient(180deg, #fffefb, rgb(241 239 234 / 0.55));
+  background: linear-gradient(180deg, #fffefb, rgb(244 245 247 / 0.55));
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -155,12 +155,12 @@
 .h1 {
   width: 78%;
   height: 1.6em;
-  background: linear-gradient(90deg, #f1efea, rgb(241 239 234 / 0.6));
+  background: linear-gradient(90deg, #f4f5f7, rgb(244 245 247 / 0.6));
 }
 .h1b {
   width: 52%;
   height: 1.6em;
-  background: rgb(241 239 234 / 0.4);
+  background: rgb(244 245 247 / 0.4);
 }
 .cta {
   width: 9em;

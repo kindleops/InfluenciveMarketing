@@ -7,36 +7,36 @@
 :root {
   color-scheme: dark;
 
-  /* ---- Surfaces: obsidian → charcoal, slightly warm ------------------- */
-  --color-void: #030303;
-  --color-background: #060606;
-  --color-background-warm: #0a0908;
-  --color-surface: #0c0c0d;
-  --color-surface-raised: #111112;
-  --color-surface-elevated: #18181a;
-  --color-surface-high: #222225;
+  /* ---- Surfaces: cool graphite, the near-black of a product UI -------- */
+  --color-void: #040506;
+  --color-background: #08090a;
+  --color-background-warm: #0b0c0e;
+  --color-surface: #0f1012;
+  --color-surface-raised: #141518;
+  --color-surface-elevated: #1b1c20;
+  --color-surface-high: #26272c;
 
-  /* ---- Text: ivory, not white ----------------------------------------- */
-  --color-ivory: #f1efea;
-  --text-primary: #f1efea;
+  /* ---- Text: cool white, a touch off pure --------------------------- */
+  --color-ivory: #f4f5f7;
+  --text-primary: #f4f5f7;
   /* Legibility floor: every text tone clears 4.5:1 on the darkest scene
      (#060606). Faint (~4.8:1) is the quietest voice — indices, metadata —
      and hierarchy below it is carried by size, family and weight, never by
      dropping under the floor. */
-  --text-secondary: rgb(241 239 234 / 0.7);
-  --text-muted: rgb(241 239 234 / 0.58);
-  --text-faint: rgb(241 239 234 / 0.5);
+  --text-secondary: rgb(244 245 247 / 0.72);
+  --text-muted: rgb(244 245 247 / 0.58);
+  --text-faint: rgb(244 245 247 / 0.5);
   /* The second tone of two-tone display type. */
-  --text-tone: rgb(241 239 234 / 0.38);
+  --text-tone: rgb(244 245 247 / 0.4);
   /* Opaque equivalent, for type set inside background-clipped lines. */
-  --text-tone-solid: #6f6d69;
+  --text-tone-solid: #6c6f76;
   --text-inverse: #0a0b0d;
 
   /* ---- Lines ---------------------------------------------------------- */
-  --border-hairline: rgb(241 239 234 / 0.06);
-  --border-subtle: rgb(241 239 234 / 0.09);
-  --border-default: rgb(241 239 234 / 0.14);
-  --border-strong: rgb(241 239 234 / 0.24);
+  --border-hairline: rgb(244 245 247 / 0.06);
+  --border-subtle: rgb(244 245 247 / 0.09);
+  --border-default: rgb(244 245 247 / 0.14);
+  --border-strong: rgb(244 245 247 / 0.24);
 
   /* ---- Light: controlled cobalt + restrained spectral accents --------- */
   --brand: #5b7cff;
@@ -81,8 +81,8 @@
   --lh-title: 1.25;
   --lh-body: 1.62;
 
-  --tracking-display: -0.046em;
-  --weight-display: 460;
+  --tracking-display: -0.045em;
+  --weight-display: 520;
   --tracking-heading: -0.032em;
   --tracking-title: -0.018em;
   --tracking-body: -0.006em;

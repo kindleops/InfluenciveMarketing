@@ -1,11 +1,14 @@
 import type { ServicePage } from "./types";
 import { localSeo } from "./local/local-seo";
+import { engineeringServices } from "./engineering/services";
 
 /**
  * High-intent service pages. Each maps to one of the eight disciplines on
  * /services and goes deeper into a single thing buyers search for.
  */
 export const servicePages: ServicePage[] = [
+  // AI, automation and engineering lead; growth services follow.
+  ...engineeringServices,
   {
     slug: "seo",
     name: "SEO",

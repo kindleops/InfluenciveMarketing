@@ -17,7 +17,7 @@
 }
 .dots {
   fill: none;
-  stroke: rgb(241 239 234 / 0.13);
+  stroke: rgb(244 245 247 / 0.13);
   stroke-width: 3.1;
   stroke-linecap: round;
 }
@@ -367,7 +367,7 @@
 }
 .stageDots {
   fill: none;
-  stroke: rgb(241 239 234 / 0.2);
+  stroke: rgb(244 245 247 / 0.2);
   stroke-width: 1.25;
   stroke-linecap: round;
 }
@@ -397,7 +397,7 @@
   stroke-dasharray: 2 2;
 }
 .neighbor circle {
-  fill: rgb(241 239 234 / 0.8);
+  fill: rgb(244 245 247 / 0.8);
 }
 .cross line {
   stroke: rgb(var(--light-blue) / 0.28);
@@ -410,7 +410,7 @@
   font-size: 4.2px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  fill: rgb(241 239 234 / 0.6);
+  fill: rgb(244 245 247 / 0.6);
 }
 .cross text {
   fill: rgb(var(--light-blue) / 0.8);
@@ -517,7 +517,7 @@
 }
 .backdropSvg .stageDots {
   stroke-width: 1.05;
-  stroke: rgb(241 239 234 / 0.17);
+  stroke: rgb(244 245 247 / 0.17);
 }
 .backdropSvg .stageLit {
   stroke-width: 1.2;

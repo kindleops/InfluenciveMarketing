@@ -48,7 +48,7 @@ export function FocusSheen() {
 /* ---- 01 Brand — the identity system ------------------------------------ */
 
 const SWATCHES = [
-  ["Ivory", "#f1efea", "16.8"],
+  ["Ivory", "#f4f5f7", "16.8"],
   ["Void", "#0e0f12", "—"],
   ["Cobalt", "#4a72ff", "5.1"],
   ["Iris", "#9b8cff", "7.4"],
@@ -232,7 +232,7 @@ const CHANNELS = [
   ["Paid social", 24, "#7fe0ff"],
   ["Search", 18, "#b09cff"],
   ["Lifecycle", 12, "#dcc08f"],
-  ["Referral", 8, "#f1efea"],
+  ["Referral", 8, "#f4f5f7"],
 ] as const;
 
 export function AcquisitionModule() {
@@ -274,7 +274,7 @@ export function AcquisitionModule() {
             <linearGradient id={lineId} x1="0" y1="0" x2="1" y2="0">
               <stop offset="0" stopColor="#7fe0ff" stopOpacity="0.5" />
               <stop offset="0.6" stopColor="#7a9bff" />
-              <stop offset="1" stopColor="#f1efea" />
+              <stop offset="1" stopColor="#f4f5f7" />
             </linearGradient>
           </defs>
           {[0, 40, 80, 120].map((y, i) => (

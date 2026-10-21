@@ -31,14 +31,14 @@
   letter-spacing: -0.042em;
   line-height: 1.02;
   max-width: 18ch;
-  background: linear-gradient(180deg, #fffefb 0%, var(--light) 50%, rgb(241 239 234 / 0.72) 100%);
+  background: linear-gradient(180deg, #fffefb 0%, var(--light) 50%, rgb(244 245 247 / 0.72) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 }
 .statement em {
   font-style: normal;
-  background: linear-gradient(180deg, rgb(241 239 234 / 0.55), rgb(241 239 234 / 0.34));
+  background: linear-gradient(180deg, rgb(244 245 247 / 0.55), rgb(244 245 247 / 0.34));
   -webkit-background-clip: text;
   background-clip: text;
 }

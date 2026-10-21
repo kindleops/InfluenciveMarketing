@@ -37,7 +37,7 @@ function Brand() {
       </svg>
       <span className={styles.glyph}>Aa</span>
       <div className={styles.swatches}>
-        {["#f1efea", "#18181a", "#5b7cff", "#c9b58f"].map((c, i) => (
+        {["#f4f5f7", "#18181a", "#5b7cff", "#c9b58f"].map((c, i) => (
           <i key={c} style={v({ "--c": c, "--i": i })} />
         ))}
       </div>

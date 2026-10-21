@@ -1,5 +1,6 @@
 import type { ComboPage } from "./types";
 import { localSeoCombos } from "./local/local-seo-combos";
+import { engineeringCombos } from "./engineering/combos";
 
 /**
  * Service × industry pages. Only pairings with real search demand and
@@ -471,4 +472,5 @@ export const comboPages: ComboPage[] = [
     ],
   },
   ...localSeoCombos,
+  ...engineeringCombos,
 ];

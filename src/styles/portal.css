@@ -11,9 +11,9 @@
   --p-panel-hover: rgb(255 255 255 / 0.042);
   --p-panel-strong: rgb(255 255 255 / 0.05);
   --p-well: rgb(0 0 0 / 0.22);
-  --p-line: rgb(241 239 234 / 0.075);
-  --p-line-strong: rgb(241 239 234 / 0.13);
-  --p-line-focus: rgb(241 239 234 / 0.5);
+  --p-line: rgb(244 245 247 / 0.075);
+  --p-line-strong: rgb(244 245 247 / 0.13);
+  --p-line-focus: rgb(244 245 247 / 0.5);
 
   /* Radii — one family, nested surfaces step down */
   --p-r-xl: 22px;
@@ -37,8 +37,8 @@
   --tone-progress: 157 176 255;
   --tone-attention: 226 200 150;
   --tone-blocked: 255 138 122;
-  --tone-done: 241 239 234;
-  --tone-quiet: 241 239 234;
+  --tone-done: 244 245 247;
+  --tone-quiet: 244 245 247;
 
   /* Client accent (set per account on the shell) */
   --p-accent: var(--light-gold);
@@ -112,7 +112,7 @@ html:has([data-portal] dialog[open]) {
 [data-portal] {
   --chart-1: #7289ff;
   --chart-2: #b88a3e;
-  --chart-cmp: rgb(241 239 234 / 0.3);
+  --chart-cmp: rgb(244 245 247 / 0.3);
   --chart-grid: rgb(255 255 255 / 0.06);
   --chart-axis: rgb(255 255 255 / 0.12);
 }

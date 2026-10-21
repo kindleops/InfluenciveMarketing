@@ -308,7 +308,7 @@
   font-size: clamp(1.13rem, 1.05rem + 0.25vw, 1.25rem);
   line-height: 1.68;
   letter-spacing: 0;
-  color: rgb(241 239 234 / 0.8);
+  color: rgb(244 245 247 / 0.8);
 }
 .prose > * + * {
   margin-top: 1.1em;

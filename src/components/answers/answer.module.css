@@ -45,7 +45,7 @@
   letter-spacing: -0.042em;
   font-weight: var(--weight-display);
   text-wrap: balance;
-  background: linear-gradient(180deg, #fffefb 0%, var(--light) 50%, rgb(241 239 234 / 0.75) 100%);
+  background: linear-gradient(180deg, #fffefb 0%, var(--light) 50%, rgb(244 245 247 / 0.75) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -204,7 +204,7 @@
   font-optical-sizing: auto;
   font-size: clamp(1.1rem, 1.04rem + 0.2vw, 1.2rem);
   line-height: 1.68;
-  color: rgb(241 239 234 / 0.8);
+  color: rgb(244 245 247 / 0.8);
 }
 .prose ul {
   display: grid;

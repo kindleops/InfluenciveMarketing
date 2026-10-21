@@ -19,8 +19,8 @@ export default function AppleIcon() {
         }}
       >
         <svg width="112" height="112" viewBox="0 0 24 24" style={{ marginTop: -6 }}>
-          <path d={MARK_PATHS.rear} fill="#f1efea" fillOpacity="0.45" />
-          <path d={MARK_PATHS.front} fill="#f1efea" />
+          <path d={MARK_PATHS.rear} fill="#f4f5f7" fillOpacity="0.45" />
+          <path d={MARK_PATHS.front} fill="#f4f5f7" />
         </svg>
       </div>
     ),

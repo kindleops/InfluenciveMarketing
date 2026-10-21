@@ -14,10 +14,10 @@ const description = "Straight answers to the questions people ask about SEO, AI 
 
 export const metadata: Metadata = pageMetadata({ title: "Answers", description, path: "/answers" });
 
-const ORDER: AnswerTopic[] = ["SEO", "Local SEO", "AI search", "Paid media", "Websites & CRO", "Agencies", "Brand", "Measurement", "Content & email", "Industries"];
+const ORDER: AnswerTopic[] = ["AI & automation", "Development", "SEO", "Local SEO", "AI search", "Paid media", "Websites & CRO", "Agencies", "Brand", "Measurement", "Content & email", "Industries"];
 
 // The hero asks a spread of the library's questions, one discipline each.
-const DEMO = ["how-much-does-seo-cost", "how-to-get-cited-in-chatgpt", "how-to-rank-higher-on-google-maps", "what-is-a-good-roas", "how-much-does-a-website-redesign-cost", "how-do-lawyers-get-clients"];
+const DEMO = ["what-is-an-ai-agent", "how-much-does-it-cost-to-build-an-ai-agent", "n8n-vs-zapier-vs-make", "how-much-does-seo-cost", "how-to-get-cited-in-chatgpt", "how-to-rank-higher-on-google-maps", "what-is-a-good-roas", "how-much-does-a-website-redesign-cost", "how-do-lawyers-get-clients"];
 
 export default function AnswersHub() {
   const items = published.answers;
@@ -32,7 +32,7 @@ export default function AnswersHub() {
         eyebrow="Answers"
         tone="teal"
         title={["Straight answers.", "Then the reasoning."]}
-        lead="The questions buyers actually ask — about SEO, AI search, paid media, websites, agencies and measurement. Each answered in the first paragraph, honestly, including when the answer is “it depends”."
+        lead="The questions buyers actually ask — about AI agents, automation, software, SEO, AI search, paid media and measurement. Each answered in the first paragraph, honestly, including when the answer is “it depends”."
         primary={{ label: "Browse the questions", href: "#index" }}
         secondary={{ label: "Ask us yours", href: "/start" }}
         visual={<AskDemo items={DEMO.map((slug) => items.find((a) => a.slug === slug) ?? items[0]).concat(items.filter((a) => !DEMO.includes(a.slug)).slice(0, 4)).map((a) => ({ q: a.question, a: a.shortAnswer, href: `/answers/${a.slug}` }))} total={items.length} />}

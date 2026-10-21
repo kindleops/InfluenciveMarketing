@@ -224,7 +224,7 @@
   height: 3px;
   width: var(--w);
   border-radius: 3px;
-  background: linear-gradient(90deg, rgb(241 239 234 / 0.75), rgb(241 239 234 / 0.2));
+  background: linear-gradient(90deg, rgb(244 245 247 / 0.75), rgb(244 245 247 / 0.2));
   transform-origin: left;
 }
 .scale em {
@@ -472,7 +472,7 @@
   width: var(--w);
   height: 7px;
   border-radius: 2px;
-  background: linear-gradient(90deg, rgb(241 239 234 / 0.75), rgb(241 239 234 / 0.35));
+  background: linear-gradient(90deg, rgb(244 245 247 / 0.75), rgb(244 245 247 / 0.35));
 }
 .siteCta {
   width: 44px;
@@ -511,7 +511,7 @@
   height: 7px;
   width: 44%;
   border-radius: 2px;
-  background: rgb(241 239 234 / 0.6);
+  background: rgb(244 245 247 / 0.6);
 }
 .plan span {
   height: 7px;
@@ -693,7 +693,7 @@
 .axisText {
   font-family: var(--font-mono);
   font-size: 7px;
-  fill: rgb(241 239 234 / 0.5);
+  fill: rgb(244 245 247 / 0.5);
 }
 .marker line {
   stroke: rgb(220 192 143 / 0.5);
@@ -712,7 +712,7 @@
 }
 .spend {
   fill: none;
-  stroke: rgb(241 239 234 / 0.35);
+  stroke: rgb(244 245 247 / 0.35);
   stroke-width: 1;
   stroke-dasharray: 3 3;
 }
@@ -929,7 +929,7 @@
   width: var(--w);
   height: 100%;
   border-radius: inherit;
-  background: rgb(241 239 234 / 0.35);
+  background: rgb(244 245 247 / 0.35);
   transform-origin: left;
 }
 .variant[data-lead] b {
@@ -1017,7 +1017,7 @@
 .node text {
   font-family: var(--font-mono);
   font-size: 7.5px;
-  fill: rgb(241 239 234 / 0.85);
+  fill: rgb(244 245 247 / 0.85);
 }
 .node[data-kind="ai"] rect {
   fill: rgb(122 155 255 / 0.18);
@@ -1227,7 +1227,7 @@
 }
 .hist {
   fill: none;
-  stroke: rgb(241 239 234 / 0.7);
+  stroke: rgb(244 245 247 / 0.7);
   stroke-width: 1.2;
   vector-effect: non-scaling-stroke;
 }

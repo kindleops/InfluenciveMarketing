@@ -20,7 +20,7 @@ export function GET() {
     "",
     `> ${brand.description}`,
     "",
-    "A growth studio: brand, websites, SEO and AI search, paid media, conversion, analytics and automation — for companies with meaningful deal values. Pages below answer buyers' questions directly; reports state what they rest on; nothing on the site invents statistics or client results.",
+    "An AI, automation and software studio: AI agents, workflow automation, custom LLM apps, and web app development front end to back end — plus SEO, paid media, conversion and analytics around them. Pages below answer buyers' questions directly; reports state what they rest on; nothing on the site invents statistics or client results.",
     "",
     section("Answers", ["answer"]),
     section("Services", ["service", "combo"]),

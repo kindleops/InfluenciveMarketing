@@ -55,7 +55,7 @@ test.describe("home page", () => {
     await skipIntro(page);
     const problems = watchConsole(page);
     await page.goto("/", { waitUntil: "networkidle" });
-    await expect(page.getByRole("heading", { level: 1, name: "Build what growth requires." })).toBeVisible();
+    await expect(page.getByRole("heading", { level: 1, name: /AI that does the work/ })).toBeVisible();
     await traverse(page);
     expect(problems.filter((p) => /hydrat/i.test(p)), "hydration").toEqual([]);
     expect(problems).toEqual([]);
@@ -77,39 +77,26 @@ test.describe("home page", () => {
     });
   }
 
-  test("signature scenes render and settle", async ({ page }) => {
+  test("the agent console plays a run and the workflow switches routes", async ({ page }) => {
     await skipIntro(page);
     await page.goto("/", { waitUntil: "networkidle" });
 
-    // Hero glass renders into a WebGL canvas.
-    await expect(page.locator("section[aria-labelledby='hero-title'] canvas")).toHaveCount(1);
+    // Hero: the agent works the request step by step, then waits for a person.
+    const trace = page.locator("section[aria-labelledby='hero-title'] ol").first();
+    await expect(trace.locator("li[data-kind='Review']")).toHaveCount(1, { timeout: 20_000 });
+    await expect(trace.locator("li[data-kind='Action']")).toHaveCount(1, { timeout: 10_000 });
 
-    // Platform: the machine lands on the horizon, then the camera takes
-    // each layer in turn and pulls back to the whole.
-    const stage = page.locator("section[aria-labelledby='platform-title'] [data-beat]");
-    const scrollTrack = (segments: number) =>
-      page.evaluate((k) => {
-        const t = document.querySelector("section[aria-labelledby='platform-title'] [class*='track']") as HTMLElement;
-        const seg = (t.offsetHeight - window.innerHeight) / 8;
-        window.scrollTo(0, t.getBoundingClientRect().top + window.scrollY + seg * k);
-      }, segments);
-    await scrollTrack(0.95);
-    await expect(stage).toHaveAttribute("data-landed");
-    await scrollTrack(3.5);
-    await expect(stage).toHaveAttribute("data-beat", "2");
-    await expect(stage).toHaveAttribute("data-focus");
-    await expect(stage.locator("[data-module='Acquisition'][data-active]")).toHaveCount(1);
-    await scrollTrack(7.5);
-    await expect(stage).toHaveAttribute("data-beat", "6");
-    await expect(stage).not.toHaveAttribute("data-focus");
+    // Automation: choosing the request changes which route is lit.
+    const flow = page.getByRole("radiogroup", { name: "Run the workflow with" });
+    await flow.scrollIntoViewIfNeeded();
+    const steps = page.locator("section[aria-labelledby='flow-title'] ol li[data-on]");
+    await expect(steps.filter({ hasText: "Owner reviews" })).toHaveCount(1);
+    await flow.getByRole("radio", { name: "Routine question" }).click();
+    await expect(flow.getByRole("radio", { name: "Routine question" })).toHaveAttribute("aria-checked", "true");
+    await expect(steps.filter({ hasText: "Draft answer" })).toHaveCount(1);
+    await expect(steps.filter({ hasText: "Owner reviews" })).toHaveCount(0);
 
-    // AI infrastructure: the field assembles when it arrives.
-    const field = page.locator("[class*='IntelligenceField'][class*='field']").first();
-    await field.scrollIntoViewIfNeeded();
-    await expect(field).toHaveAttribute("data-assembled", "");
-    await expect(field).toHaveAttribute("data-live", "");
-
-    // Finale: the scene settles as the glass reaches the centre.
+    // Finale: the closing scene still settles as it reaches the centre.
     await page.locator("section[aria-labelledby='cta-title'] [class*='stageGap']").scrollIntoViewIfNeeded();
     const readSettle = () =>
       page.evaluate(() =>
@@ -123,30 +110,19 @@ test.describe("home page", () => {
       .toBeGreaterThan(0.5);
   });
 
-  test("disciplines respond to keyboard and pointer", async ({ page }) => {
+  test("the services menu opens from the header", async ({ page }) => {
     await skipIntro(page);
     await page.goto("/", { waitUntil: "networkidle" });
-    const list = page.getByRole("tablist", { name: "Disciplines" });
-    await list.scrollIntoViewIfNeeded();
-    const tabs = list.getByRole("tab");
-    await expect(tabs).toHaveCount(8);
-
-    await tabs.nth(0).focus();
-    await page.keyboard.press("ArrowDown");
-    await expect(tabs.nth(1)).toHaveAttribute("aria-selected", "true");
-    await expect(tabs.nth(1)).toBeFocused();
-    await page.keyboard.press("End");
-    await expect(tabs.nth(7)).toHaveAttribute("aria-selected", "true");
-
-    await tabs.nth(3).hover();
-    await expect(tabs.nth(3)).toHaveAttribute("aria-selected", "true");
-    const panel = page.getByRole("tabpanel");
-    await expect(panel).toHaveAttribute("aria-labelledby", (await tabs.nth(3).getAttribute("id"))!);
-
-    // The lens has moved to the active row.
-    const lensY = await list.evaluate((el) => getComputedStyle(el).getPropertyValue("--lens-y"));
-    const rowTop = await tabs.nth(3).evaluate((el) => (el as HTMLElement).offsetTop);
-    expect(parseFloat(lensY)).toBe(rowTop);
+    const nav = page.getByRole("navigation", { name: "Primary" });
+    await nav.getByRole("link", { name: "Services", exact: true }).hover();
+    const ai = nav.getByRole("link", { name: /AI agent development/ });
+    await expect(ai).toBeVisible();
+    await page.mouse.move(700, 800);
+    await expect(ai).toBeHidden();
+    // Keyboard reaches the same links.
+    await nav.getByRole("link", { name: "Services", exact: true }).focus();
+    await page.keyboard.press("Tab");
+    await expect(nav.getByRole("link", { name: /AI automation/ }).first()).toBeFocused();
   });
 
   test("pointer light releases when the pointer leaves", async ({ page }) => {
@@ -154,7 +130,7 @@ test.describe("home page", () => {
     await page.goto("/", { waitUntil: "networkidle" });
     const nav = page.getByRole("navigation", { name: "Primary" });
     const highlight = nav.locator("li[aria-hidden='true']");
-    await nav.getByRole("link", { name: "Services" }).hover();
+    await nav.getByRole("link", { name: "Services", exact: true }).hover();
     await expect(highlight).toHaveAttribute("data-on");
     await page.mouse.move(700, 600);
     await expect(highlight).not.toHaveAttribute("data-on");
@@ -183,7 +159,7 @@ test.describe("home page", () => {
     await traverse(page, 900);
     // Rest on a static scene, away from the WebGL surfaces.
     await page.evaluate(() => {
-      const el = document.querySelector("section[aria-labelledby='pov-title']") as HTMLElement;
+      const el = document.querySelector("section[aria-labelledby='ship-title']") as HTMLElement;
       window.scrollTo(0, el.getBoundingClientRect().top + window.scrollY + 200);
     });
     await page.waitForTimeout(1500);
@@ -209,7 +185,6 @@ test.describe("reduced motion", () => {
     const problems = watchConsole(page);
     await page.goto("/", { waitUntil: "networkidle" });
     await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
-    await expect(page.locator("section[aria-label='Interlude']")).toHaveAttribute("data-reduced");
     // The hero holds its opening frame (visibility checks ignore opacity).
     await page.waitForTimeout(500);
     const heroOpacity = await page.evaluate(() => {
@@ -224,25 +199,13 @@ test.describe("reduced motion", () => {
     expect(heroOpacity).toBeGreaterThan(0.95);
     await traverse(page);
 
-    // The system's chapter card is shown as a still frame, readable.
-    await page.evaluate(() => {
-      const t = document.querySelector("section[aria-labelledby='platform-title'] [class*='track']") as HTMLElement;
-      window.scrollTo(0, t.getBoundingClientRect().top + window.scrollY + 20);
-    });
-    await expect
-      .poll(() => page.evaluate(() => parseFloat(getComputedStyle(document.querySelector("#platform-title")!.parentElement!).opacity)), { timeout: 15_000 })
-      .toBeGreaterThan(0.95);
+    // The agent console shows the finished run, not an empty frame.
+    await expect(page.locator("section[aria-labelledby='hero-title'] ol").first().locator("li")).toHaveCount(7);
 
-    // Unpinned scenes are recomposed, not left to overflow.
+    // Nothing overflows sideways once motion is removed.
     const overflow = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);
     expect(overflow).toBeLessThanOrEqual(0);
 
-    // The AI field is shown assembled; no signal animation runs.
-    const levelOpacity = await page.evaluate(() => {
-      const g = document.querySelector("[class*='IntelligenceField'] [class*='level']") as SVGGElement;
-      return parseFloat(getComputedStyle(g).opacity);
-    });
-    expect(levelOpacity).toBe(1);
     // Nothing loops or travels: no infinite or long-running CSS animation.
     await page.waitForTimeout(1200);
     const moving = await page.evaluate(() =>

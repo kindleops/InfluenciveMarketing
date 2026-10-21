@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import { useCallback, useEffect, useRef, useState, type CSSProperties } from "react";
 import { Wordmark } from "@/components/brand/BrandMark";
 import { Button } from "@/components/ui/Button";
-import { primaryCta, primaryNav } from "@/config/navigation";
+import { primaryCta, primaryNav, servicesMenu } from "@/config/navigation";
 import { brand } from "@/config/brand";
 import { getLenis } from "@/components/system/SmoothScroll";
 import { openSearch } from "@/components/search/CommandPalette";
@@ -16,6 +16,10 @@ export function SiteHeader() {
   const [scrolled, setScrolled] = useState(false);
   const [hidden, setHidden] = useState(false);
   const [open, setOpen] = useState(false);
+  // The services flyout is CSS hover/focus driven; after a choice it stays
+  // shut until the pointer (or focus) leaves, so it never lingers over the
+  // page it just opened.
+  const [megaOff, setMegaOff] = useState(false);
   const [hl, setHl] = useState<{ x: number; w: number; on: boolean }>({ x: 0, w: 0, on: false });
   const listRef = useRef<HTMLUListElement>(null);
   const menuRef = useRef<HTMLDivElement>(null);
@@ -49,7 +53,27 @@ export function SiteHeader() {
 
   const close = useCallback(() => setOpen(false), []);
 
-  useEffect(() => close(), [pathname, close]);
+  const lastPath = useRef(pathname);
+  useEffect(() => {
+    close();
+    if (lastPath.current !== pathname) {
+      lastPath.current = pathname;
+      setMegaOff(true);
+    }
+  }, [pathname, close]);
+
+  // Once the pointer moves anywhere outside the flyout, it may open again.
+  useEffect(() => {
+    if (!megaOff) return;
+    // Real movement only: hiding the panel makes the browser re-hit-test
+    // under a still pointer, which must not count as leaving.
+    const onMove = (e: PointerEvent) => {
+      if (!e.movementX && !e.movementY) return;
+      if (!(e.target as Element | null)?.closest?.(`.${styles.hasMenu}`)) setMegaOff(false);
+    };
+    window.addEventListener("pointermove", onMove, { passive: true });
+    return () => window.removeEventListener("pointermove", onMove);
+  }, [megaOff]);
 
   // Menu: lock scroll, trap focus, close on Escape.
   useEffect(() => {
@@ -127,7 +151,24 @@ export function SiteHeader() {
             >
               <li className={styles.highlight} data-on={hl.on || undefined} aria-hidden="true" role="presentation" />
               {primaryNav.map((item) => (
-                <li key={item.href}>
+                <li
+                  key={item.href}
+                  className={item.href === "/services" ? styles.hasMenu : undefined}
+                  {...(item.href === "/services"
+                    ? {
+                        "data-off": megaOff || undefined,
+                        onFocus: (e: React.FocusEvent<HTMLLIElement>) => {
+                          if (!e.currentTarget.contains(e.relatedTarget as Node)) setMegaOff(false);
+                        },
+                        onBlur: (e: React.FocusEvent<HTMLLIElement>) => {
+                          if (!e.currentTarget.contains(e.relatedTarget as Node)) setMegaOff(false);
+                        },
+                        onClick: (e: React.MouseEvent) => {
+                          if ((e.target as HTMLElement).closest("a")) setMegaOff(true);
+                        },
+                      }
+                    : {})}
+                >
                   <Link
                     href={item.href}
                     className={styles.link}
@@ -137,7 +178,39 @@ export function SiteHeader() {
                     onBlur={() => setHl((h) => ({ ...h, on: false }))}
                   >
                     {item.label}
+                    {item.href === "/services" && (
+                      <svg className={styles.chev} width="9" height="9" viewBox="0 0 10 10" fill="none" aria-hidden="true">
+                        <path d="m2.5 4 2.5 2.5L7.5 4" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
+                    )}
                   </Link>
+                  {item.href === "/services" && (
+                    <div className={styles.mega}>
+                      <div className={styles.megaInner}>
+                        {servicesMenu.map((g) => (
+                          <div key={g.title} className={styles.megaCol} data-group={g.title}>
+                            <p className={styles.megaTitle}>{g.title}</p>
+                            <ul role="list">
+                              {g.items.map((x) => (
+                                <li key={x.href}>
+                                  <Link href={x.href} className={styles.megaLink}>
+                                    <b>{x.label}</b>
+                                    {x.description && <span>{x.description}</span>}
+                                  </Link>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        ))}
+                      </div>
+                      <Link href="/services" className={styles.megaFoot}>
+                        All services
+                        <svg width="11" height="11" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                          <path d="M2 6h8M6.5 2.5 10 6 6.5 9.5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
+                      </Link>
+                    </div>
+                  )}
                 </li>
               ))}
             </ul>

@@ -66,14 +66,14 @@
   font-weight: 440;
   letter-spacing: -0.045em;
   line-height: 1.02;
-  background: linear-gradient(180deg, #fffefb, rgb(241 239 234 / 0.7));
+  background: linear-gradient(180deg, #fffefb, rgb(244 245 247 / 0.7));
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 }
 .title em {
   font-style: normal;
-  background: linear-gradient(180deg, rgb(241 239 234 / 0.6), rgb(241 239 234 / 0.36));
+  background: linear-gradient(180deg, rgb(244 245 247 / 0.6), rgb(244 245 247 / 0.36));
   -webkit-background-clip: text;
   background-clip: text;
 }

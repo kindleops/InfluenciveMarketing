@@ -155,7 +155,7 @@
   height: 2.6rem;
   border-radius: 50%;
   color: var(--color-void, #050505);
-  background: linear-gradient(180deg, #fff, rgb(241 239 234));
+  background: linear-gradient(180deg, #fff, rgb(244 245 247));
   box-shadow:
     inset 0 -2px 4px rgb(0 0 0 / 0.14),
     0 8px 22px -10px rgb(255 255 255 / 0.5);

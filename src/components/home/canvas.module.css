@@ -1,0 +1,261 @@
+/* The workflow canvas: a dotted board, hairline nodes, one lit route. */
+
+.wrap {
+  --w-line: rgb(255 255 255 / 0.08);
+  --w-ink: #f4f5f7;
+  --w-ink-2: rgb(244 245 247 / 0.64);
+  --w-ink-3: rgb(244 245 247 / 0.5);
+  --w-accent: #8f9bff;
+  --w-human: #f1c37a;
+  --w-ok: #6fdcaa;
+  overflow: hidden;
+  border-radius: 20px;
+  background: #0b0c0f;
+  box-shadow:
+    inset 0 0 0 1px rgb(255 255 255 / 0.1),
+    inset 0 1px 0 rgb(255 255 255 / 0.1),
+    0 40px 100px -50px rgb(0 0 0 / 0.9);
+}
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem 1.5rem;
+  padding: 12px 14px 12px 18px;
+  border-bottom: 1px solid var(--w-line);
+}
+.name {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  font-weight: 540;
+  color: var(--w-ink);
+}
+.name i {
+  width: 18px;
+  height: 18px;
+  border-radius: 5px;
+  background: linear-gradient(135deg, #8f9bff, #b49cff);
+  box-shadow: 0 0 14px rgb(143 155 255 / 0.5);
+}
+.switch {
+  display: inline-flex;
+  padding: 3px;
+  border-radius: 10px;
+  background: rgb(255 255 255 / 0.04);
+  box-shadow: inset 0 0 0 1px var(--w-line);
+}
+.switch button {
+  padding: 6px 12px;
+  border: 0;
+  border-radius: 7px;
+  background: transparent;
+  font: inherit;
+  font-size: 13px;
+  color: var(--w-ink-2);
+  cursor: pointer;
+  transition: background 200ms, color 200ms, box-shadow 200ms;
+}
+.switch button:hover {
+  color: var(--w-ink);
+}
+.switch button[aria-checked="true"] {
+  color: var(--w-ink);
+  background: rgb(255 255 255 / 0.09);
+  box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.1), 0 1px 2px rgb(0 0 0 / 0.4);
+}
+
+.canvas {
+  position: relative;
+  height: 400px;
+  margin: 0;
+  background-image: radial-gradient(rgb(255 255 255 / 0.09) 1px, transparent 1.2px);
+  background-size: 22px 22px;
+  background-position: 11px 11px;
+}
+.edges {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+.edge {
+  fill: none;
+  stroke: rgb(255 255 255 / 0.12);
+  stroke-width: 1.5;
+  transition: stroke 400ms;
+}
+.flow {
+  fill: none;
+  stroke: var(--w-accent);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-dasharray: 6 94;
+  opacity: 0;
+  transition: opacity 400ms;
+  filter: drop-shadow(0 0 4px rgb(143 155 255 / 0.9));
+}
+.edges g[data-on] .edge {
+  stroke: rgb(143 155 255 / 0.4);
+}
+.edges g[data-on] .flow {
+  opacity: 1;
+  animation: travel 2.4s linear infinite;
+}
+@keyframes travel {
+  from {
+    stroke-dashoffset: 100;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.nodes {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.node {
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  width: min(15.5%, 176px);
+  translate: -50% -50%;
+  display: grid;
+  gap: 2px;
+  padding: 10px 12px 11px;
+  border-radius: 12px;
+  background: #121318;
+  box-shadow:
+    inset 0 0 0 1px rgb(255 255 255 / 0.1),
+    0 12px 30px -12px rgb(0 0 0 / 0.8);
+  transition:
+    opacity 400ms var(--ease-out),
+    box-shadow 400ms var(--ease-out),
+    scale 500ms var(--ease-out);
+}
+.node:not([data-on]) {
+  opacity: 0.32;
+  scale: 0.97;
+}
+.node[data-on] {
+  box-shadow:
+    inset 0 0 0 1px rgb(255 255 255 / 0.14),
+    inset 0 1px 0 rgb(255 255 255 / 0.1),
+    0 16px 40px -14px rgb(0 0 0 / 0.9);
+}
+.node[data-on][data-kind="Model"] {
+  box-shadow:
+    inset 0 0 0 1px rgb(143 155 255 / 0.45),
+    0 0 0 4px rgb(143 155 255 / 0.08),
+    0 16px 40px -14px rgb(0 0 0 / 0.9);
+}
+.node[data-on][data-kind="Human"] {
+  box-shadow:
+    inset 0 0 0 1px rgb(241 195 122 / 0.45),
+    0 0 0 4px rgb(241 195 122 / 0.08),
+    0 16px 40px -14px rgb(0 0 0 / 0.9);
+}
+.kind {
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--w-ink-3);
+}
+.node[data-kind="Model"] .kind {
+  color: var(--w-accent);
+}
+.node[data-kind="Human"] .kind {
+  color: var(--w-human);
+}
+.node[data-kind="Action"] .kind {
+  color: var(--w-ok);
+}
+.node b {
+  font-size: 13.5px;
+  font-weight: 560;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  color: var(--w-ink);
+}
+.meta {
+  font-size: 11.5px;
+  line-height: 1.35;
+  color: var(--w-ink-2);
+}
+
+.foot {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.6rem;
+  padding: 12px 18px;
+  border-top: 1px solid var(--w-line);
+  font-size: 12.5px;
+  color: var(--w-ink-2);
+}
+.foot span {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.foot i {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+.foot i[data-tone="ok"] {
+  background: var(--w-ok);
+}
+.foot i[data-tone="warn"] {
+  background: var(--w-human);
+}
+.foot i[data-tone="accent"] {
+  background: var(--w-accent);
+}
+
+/* Narrow screens: the graph becomes its route, top to bottom. */
+@media (max-width: 860px) {
+  .canvas {
+    height: auto;
+    padding: 18px 16px 18px 34px;
+  }
+  .edges {
+    display: none;
+  }
+  .nodes {
+    position: relative;
+    display: grid;
+    gap: 12px;
+  }
+  .nodes::before {
+    content: "";
+    position: absolute;
+    left: -18px;
+    top: 12px;
+    bottom: 12px;
+    width: 1.5px;
+    background: linear-gradient(rgb(143 155 255 / 0.6), rgb(143 155 255 / 0.15));
+  }
+  .node {
+    position: relative;
+    left: auto;
+    top: auto;
+    width: auto;
+    translate: none;
+  }
+  .node:not([data-on]) {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .edges g[data-on] .flow {
+    animation: none;
+    stroke-dasharray: none;
+    opacity: 0.6;
+  }
+}

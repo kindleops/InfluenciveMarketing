@@ -268,7 +268,7 @@ em.t-accent {
 }
 [data-split="lines"].t-lit .split-line > span,
 [data-split="chars"].t-lit .char {
-  background: linear-gradient(180deg, #fffefb 0%, var(--light) 45%, rgb(241 239 234 / 0.72) 100%);
+  background: linear-gradient(180deg, #fffefb 0%, var(--light) 45%, rgb(244 245 247 / 0.72) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
