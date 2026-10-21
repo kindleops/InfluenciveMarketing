@@ -110,6 +110,23 @@ test.describe("home page", () => {
       .toBeGreaterThan(0.5);
   });
 
+  test("the team switcher responds to pointer and keyboard", async ({ page }) => {
+    await skipIntro(page);
+    await page.goto("/", { waitUntil: "networkidle" });
+    const list = page.getByRole("tablist", { name: "Teams" });
+    await list.scrollIntoViewIfNeeded();
+    const tabs = list.getByRole("tab");
+    await expect(tabs).toHaveCount(6);
+    await tabs.nth(1).click();
+    await expect(tabs.nth(1)).toHaveAttribute("aria-selected", "true");
+    await expect(page.getByRole("tabpanel")).toContainText("Triage and routing");
+    await page.keyboard.press("ArrowRight");
+    await expect(tabs.nth(2)).toBeFocused();
+    await expect(page.getByRole("tabpanel")).toContainText("Document intake");
+    await page.keyboard.press("End");
+    await expect(tabs.nth(5)).toHaveAttribute("aria-selected", "true");
+  });
+
   test("the services menu opens from the header", async ({ page }) => {
     await skipIntro(page);
     await page.goto("/", { waitUntil: "networkidle" });

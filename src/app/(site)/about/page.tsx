@@ -44,7 +44,7 @@ export default function AboutPage() {
         eyebrow="About"
         plate={relaunch}
         title={["The company", <em key="a" className="t-accent">behind the machine.</em>]}
-        lead={`${brand.name} is a strategy, design and engineering company. We build the connected systems that let ambitious companies look better, sell better and operate better — at the same time.`}
+        lead={`${brand.name} is a design and engineering company. We build the AI agents, automations and software that let ambitious companies operate faster, sell better and look the part, at the same time.`}
       />
 
       <Section tone="void" labelledBy="nature-title">

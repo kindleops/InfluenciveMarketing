@@ -80,7 +80,7 @@ export function PageHero({
           <>
             <div className={styles.topline} aria-hidden="true">
               <span>{eyebrow}</span>
-              <span className={styles.toplineCenter}>Brand · Product · Growth · Intelligence</span>
+              <span className={styles.toplineCenter}>AI · Automation · Engineering · Growth</span>
               <span>{brand.name}</span>
             </div>
             <p className="sr-only">{eyebrow}</p>

@@ -9,7 +9,7 @@ import s from "./home.module.css";
 
 function Cell({ title, text, children, wide, full }: { title: string; text: string; children: ReactNode; wide?: boolean; full?: boolean }) {
   return (
-    <li className={s.cell} data-wide={wide || undefined} data-full={full || undefined}>
+    <li className={s.cell} data-pointer-light="" data-wide={wide || undefined} data-full={full || undefined}>
       <div className={s.cellArt} aria-hidden="true">
         {children}
       </div>

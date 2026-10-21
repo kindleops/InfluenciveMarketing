@@ -104,8 +104,13 @@ ol[role="list"]:not(:where([data-portal] *)) {
 }
 
 ::selection {
-  background: var(--light);
-  color: var(--text-inverse);
+  background: rgb(143 155 255 / 0.38);
+  color: #fff;
+}
+
+html {
+  scrollbar-width: thin;
+  scrollbar-color: rgb(255 255 255 / 0.16) transparent;
 }
 
 :focus-visible {

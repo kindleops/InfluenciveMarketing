@@ -4,6 +4,11 @@ import { AgentConsole } from "@/components/home/AgentConsole";
 import { WorkflowCanvas } from "@/components/home/WorkflowCanvas";
 import { BackEndPanel, FrontEndPanel, Pipeline } from "@/components/home/Engineering";
 import { Production } from "@/components/home/Production";
+import { TeamAgents } from "@/components/home/TeamAgents";
+import { Integrations } from "@/components/home/Integrations";
+import { StreamFaqs } from "@/components/answers/Chat";
+import { JsonLd } from "@/components/seo/blocks";
+import { faqLd } from "@/seo/jsonld";
 import { ProjectCTA } from "@/components/home/ProjectCTA";
 import { Button, Arrow } from "@/components/ui/Button";
 import { published } from "@/seo/registry";
@@ -13,12 +18,15 @@ import s from "@/components/home/home.module.css";
  * The home page, in the order a buyer's questions arrive:
  *   Hero         What do you do?            an agent at work, end to end
  *   Build        What exactly do you build? agents · automation · software
+ *   Teams        Where would it help us?    agents by department
  *   Automation   What does that look like?  a workflow with a human fork
+ *   Integrations Will it work with our stack? the systems it connects
  *   Engineering  Can you build the software? front end, back end, pipeline
  *   Production   Will it hold up?           evals, guardrails, people, cost
  *   Cadence      How do you work?           five steps, one owner
  *   Growth       What else?                 the marketing layer
  *   Questions    What should I know?        straight answers
+ *   FAQ          The last objections        answered, streamed, in schema
  */
 
 const STACK = ["TypeScript", "React", "Next.js", "Node.js", "Python", "PostgreSQL", "Redis", "OpenAI", "Anthropic", "LangGraph", "n8n", "Supabase", "AWS", "Vercel"];
@@ -72,6 +80,33 @@ const GROWTH = [
   ["Web design", "/services/web-design"],
   ["Brand", "/services/branding"],
   ["Analytics", "/services/marketing-analytics"],
+];
+
+const FAQS = [
+  {
+    q: "What does ascndix build?",
+    a: "AI agents that work inside your tools, workflow automation between your systems, and the web apps, portals and internal tools around them, front end to back end. We also run the growth work (search, paid media, conversion) that brings demand into those systems.",
+  },
+  {
+    q: "Will it work with the software we already use?",
+    a: "Usually, yes. Most business systems have an API or webhooks, and that's what we build on: CRMs, help desks, accounting, email, chat, databases. Where a system has no usable API, we say so early and find the next-best route rather than promising one.",
+  },
+  {
+    q: "How do you stop an AI agent from making costly mistakes?",
+    a: "Four ways. We test it against a set of your real cases before launch. We constrain what it can read, write and say. We put a person in front of anything costly, public or irreversible. And we log every step so a wrong answer can be traced and fixed. Some tasks shouldn't be given to a model at all, and we'll tell you which.",
+  },
+  {
+    q: "Where does our data go?",
+    a: "Only where it needs to. We review each model provider's retention and training terms with you, redact personal data before it reaches a model where we can, and can run on your own cloud account. Access is scoped per agent and logged.",
+  },
+  {
+    q: "Who owns the code and the workflows?",
+    a: "You do. Code lives in your repository, workflows in your accounts, with documentation your team can run from. We can keep operating and improving the system, or hand it over.",
+  },
+  {
+    q: "How does an engagement start?",
+    a: "With the work itself. We map one process with the people who run it, estimate what automating it is worth, and build a working prototype on your real data before anything is hardened or launched widely.",
+  },
 ];
 
 const QUESTIONS = [
@@ -171,7 +206,7 @@ export default function Home() {
           <Head id="build-title" label="What we build" title={["Three things,", "built to work as one."]} lead="Agents decide, automation carries the work between systems, and software gives people a place to see it, approve it and run the business on it." />
           <ul className={s.pillars} role="list" data-stagger="">
             {PILLARS.map((p) => (
-              <li key={p.key} className={s.pillar} data-key={p.key}>
+              <li key={p.key} className={s.pillar} data-key={p.key} data-pointer-light="">
                 <div className={s.pillarArt} aria-hidden="true">
                   <PillarArt k={p.key} />
                 </div>
@@ -194,6 +229,14 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ---- Teams -------------------------------------------------- */}
+      <section className={s.section} aria-labelledby="teams-title">
+        <div className="container">
+          <Head id="teams-title" label="Where it helps" title={["Every team has work", "a system should do."]} lead="The best first agent is rarely the flashiest. It's the repetitive, rules-heavy work that eats hours every week, with a clear place for a person to stay in charge." />
+          <TeamAgents />
+        </div>
+      </section>
+
       {/* ---- Automation --------------------------------------------- */}
       <section className={s.section} aria-labelledby="flow-title">
         <div className="container">
@@ -205,12 +248,23 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ---- Integrations ------------------------------------------- */}
+      <section className={s.section} aria-labelledby="int-title">
+        <div className="container">
+          <Head id="int-title" label="Integrations" title={["It works inside your stack,", "not next to it."]} lead="Agents are only useful if they can read and act where the work already lives. We connect to the systems you run, through typed, monitored integrations your team can see." />
+          <div data-reveal="up">
+            <Integrations />
+          </div>
+          <p className={s.caption}>And anything else with an API or webhooks. Names shown are common integration targets, not partnerships.</p>
+        </div>
+      </section>
+
       {/* ---- Engineering -------------------------------------------- */}
       <section className={s.section} aria-labelledby="eng-title">
         <div className="container">
           <Head id="eng-title" label="Engineering" title={["Front end to back end.", "One team, one codebase."]} lead="The agent is only as good as the software around it. We build the interfaces people use and the services behind them, typed end to end and tested on every change." />
           <div className={s.engGrid}>
-            <article className={s.engCard} data-reveal="up">
+            <article className={s.engCard} data-pointer-light="" data-reveal="up">
               <div className={s.engText}>
                 <p className={s.pillarLabel}>Front end</p>
                 <h3>Fast, accessible interfaces your team can extend.</h3>
@@ -218,7 +272,7 @@ export default function Home() {
               </div>
               <FrontEndPanel />
             </article>
-            <article className={s.engCard} data-reveal="up" style={{ "--reveal-delay": "100ms" } as CSSProperties}>
+            <article className={s.engCard} data-pointer-light="" data-reveal="up" style={{ "--reveal-delay": "100ms" } as CSSProperties}>
               <div className={s.engText}>
                 <p className={s.pillarLabel}>Back end</p>
                 <h3>APIs, data and jobs that stay up when things go wrong.</h3>
@@ -309,6 +363,15 @@ export default function Home() {
           </div>
         </section>
       )}
+
+      {/* ---- FAQ ----------------------------------------------------- */}
+      <section className={s.section} aria-labelledby="faq-title">
+        <JsonLd data={faqLd(FAQS)} />
+        <div className="container">
+          <Head id="faq-title" label="Questions" title={["Before you ask,", "here's the answer."]} lead="Open one and it answers itself." />
+          <StreamFaqs faqs={FAQS} />
+        </div>
+      </section>
 
       <ProjectCTA />
     </>

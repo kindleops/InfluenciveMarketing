@@ -31,8 +31,8 @@ export default function OpengraphImage() {
           {brand.name}
         </div>
         <div style={{ display: "flex", flexDirection: "column", fontSize: 112, lineHeight: 0.92, letterSpacing: -6, fontWeight: 600 }}>
-          <span>Build what</span>
-          <span style={{ color: "#9fb5ff" }}>growth requires.</span>
+          <span>AI that does</span>
+          <span style={{ color: "#9fb5ff" }}>the work.</span>
         </div>
         <div style={{ display: "flex", fontSize: 22, letterSpacing: 6, textTransform: "uppercase", color: "rgba(236,232,225,0.6)" }}>
           {brand.positioning}

@@ -1,0 +1,185 @@
+.frame,
+.panelWrap {
+  width: min(100%, 30rem);
+  justify-self: end;
+}
+.frame {
+  display: grid;
+  gap: 14px;
+  padding: 16px;
+  border-radius: 20px;
+  background:
+    linear-gradient(180deg, rgb(255 255 255 / 0.05), rgb(255 255 255 / 0) 90px),
+    #0d0e11;
+  box-shadow:
+    inset 0 0 0 1px rgb(255 255 255 / 0.1),
+    inset 0 1px 0 rgb(255 255 255 / 0.1),
+    0 50px 100px -40px rgb(0 0 0 / 0.95),
+    0 0 80px -30px rgb(143 155 255 / 0.35);
+  font-size: 12.5px;
+  color: rgb(244 245 247 / 0.66);
+}
+.head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgb(255 255 255 / 0.07);
+  font-size: 13px;
+  font-weight: 540;
+  color: #f4f5f7;
+}
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 3px 9px;
+  border-radius: 999px;
+  font-size: 11.5px;
+  font-weight: 400;
+  color: rgb(244 245 247 / 0.7);
+  box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.12);
+}
+.status i {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #6fdcaa;
+  box-shadow: 0 0 10px #6fdcaa;
+}
+.note {
+  font-size: 11px;
+  color: rgb(244 245 247 / 0.5);
+}
+.panelWrap {
+  display: grid;
+  gap: 10px;
+}
+
+.kind {
+  font-size: 10.5px;
+  font-weight: 500;
+  color: rgb(244 245 247 / 0.5);
+}
+.kind[data-tone="ok"] {
+  color: #6fdcaa;
+}
+.kind[data-tone="warn"] {
+  color: #f1c37a;
+}
+
+/* Agent trace */
+.trace {
+  position: relative;
+  display: grid;
+  gap: 2px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.trace::before {
+  content: "";
+  position: absolute;
+  left: 4px;
+  top: 10px;
+  bottom: 10px;
+  width: 1px;
+  background: rgb(255 255 255 / 0.1);
+}
+.trace li {
+  display: grid;
+  grid-template-columns: 10px 58px minmax(0, 1fr);
+  column-gap: 10px;
+  row-gap: 2px;
+  align-items: baseline;
+  padding: 7px 0;
+}
+.dot {
+  align-self: center;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: rgb(244 245 247 / 0.5);
+  box-shadow: inset 0 0 0 2px #0d0e11;
+}
+.trace li[data-kind="Review"] .dot {
+  background: #f1c37a;
+  box-shadow: 0 0 0 4px rgb(241 195 122 / 0.15), 0 0 12px rgb(241 195 122 / 0.6);
+}
+.trace code {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  color: #f4f5f7;
+}
+.out {
+  grid-column: 3;
+}
+
+/* Workflow */
+.flow {
+  position: relative;
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 0 0 0 16px;
+  list-style: none;
+}
+.flow::before {
+  content: "";
+  position: absolute;
+  left: 4px;
+  top: 12px;
+  bottom: -18px;
+  width: 1.5px;
+  background: linear-gradient(rgb(143 155 255 / 0.7), rgb(143 155 255 / 0.2));
+}
+.flow li,
+.fork div {
+  display: grid;
+  gap: 2px;
+  padding: 9px 12px;
+  border-radius: 11px;
+  background: #121318;
+  box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.1);
+}
+.flow b,
+.fork b {
+  font-size: 13px;
+  font-weight: 540;
+  color: #f4f5f7;
+}
+.fork {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  padding-left: 16px;
+}
+.fork div[data-human] {
+  box-shadow: inset 0 0 0 1px rgb(241 195 122 / 0.4), 0 0 0 4px rgb(241 195 122 / 0.06);
+}
+
+/* Entrance, once the hero visual is revealed. */
+:global(html.js) [data-inview] .trace li,
+:global(html.js) [data-inview] .flow li,
+:global(html.js) [data-inview] .fork div {
+  animation: sv-in 520ms var(--ease-out) both;
+  animation-delay: calc(var(--i) * 140ms + 250ms);
+}
+@keyframes sv-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  :global(html.js) [data-inview] .trace li,
+  :global(html.js) [data-inview] .flow li,
+  :global(html.js) [data-inview] .fork div {
+    animation: none;
+  }
+}

@@ -923,3 +923,29 @@
     flex: 1;
   }
 }
+
+/* Cursor spotlight: a soft light follows the pointer across each card. */
+.pillar,
+.cell,
+.engCard {
+  position: relative;
+  isolation: isolate;
+}
+.pillar::after,
+.cell::after,
+.engCard::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background: radial-gradient(420px circle at var(--mx, 50%) var(--my, 0%), rgb(143 155 255 / 0.1), transparent 60%);
+  opacity: 0;
+  transition: opacity 300ms;
+  pointer-events: none;
+}
+.pillar:hover::after,
+.cell:hover::after,
+.engCard:hover::after {
+  opacity: 1;
+}

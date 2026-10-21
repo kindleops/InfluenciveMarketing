@@ -4,7 +4,7 @@ import { useEffect, useRef } from "react";
 import { BrandMark } from "@/components/brand/BrandMark";
 import styles from "./Intro.module.css";
 
-const WORDS = ["Brand", "Product", "Growth", "Intelligence"];
+const WORDS = ["Agents", "Automation", "Software", "Growth"];
 
 /**
  * First-visit title sequence (homepage, once per session, never with

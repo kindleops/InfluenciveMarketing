@@ -22,12 +22,12 @@ export function SiteFooter() {
           <SplitText
             as="h2"
             id="footer-statement"
-            lines={["Build what", <em key="a" className="t-accent">growth requires.</em>]}
+            lines={["Tell us what", <em key="a" className="t-accent">to automate.</em>]}
             className={`t-display-1 t-lit ${styles.statement}`}
           />
           <div className={styles.leadSide} data-reveal="up">
             <p className="t-lead">
-              Tell us where the business is going. We will design the system that gets it there.
+              Describe the work that eats your team’s week. We’ll show you what an agent, an automation or a piece of software would take off it.
             </p>
             <div className={styles.leadActions}>
               <Button href="/start" size="lg" arrow magnetic>
@@ -105,13 +105,13 @@ export function SiteFooter() {
         <div className={styles.horizonTrack}>
           {[0, 1].map((k) => (
             <span key={k} className={styles.horizonSet}>
-              <span>Brand</span>
+              <span>Agents</span>
               <i />
-              <span>Product</span>
+              <span>Automation</span>
+              <i />
+              <span>Software</span>
               <i />
               <span>Growth</span>
-              <i />
-              <span>Intelligence</span>
               <i />
             </span>
           ))}

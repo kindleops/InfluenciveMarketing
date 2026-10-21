@@ -9,6 +9,7 @@ import { ACCENT_TONE, DISCIPLINE_ACCENT, DISCIPLINE_NAME, DISCIPLINE_NEED } from
 import { breadcrumbLd, serviceLd } from "@/seo/jsonld";
 import { combosFor, industryBySlug, published, resolveRelated, serviceBySlug } from "@/seo/registry";
 import { pageMetadata } from "@/seo/site";
+import { serviceVisual } from "@/components/home/ServiceVisuals";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -32,6 +33,10 @@ export default async function ServiceLanding({ params }: Props) {
   const tone = ACCENT_TONE[DISCIPLINE_ACCENT[p.discipline]];
   const start = { label: "Start a project", href: `/start?need=${DISCIPLINE_NEED[p.discipline]}` };
   const combos = combosFor({ service: p.slug });
+  // AI and engineering services show the work product in the hero; the
+  // measures move into the page so nothing is lost.
+  const product = serviceVisual(p.slug);
+  const signal = <SignalPanel label="What we measure" aside={p.name} items={p.measures} chip={["Judged on", "Targets agreed before work begins"]} />;
   const trail = [
     { name: "Services", path: "/services" },
     { name: p.name, path },
@@ -54,7 +59,7 @@ export default async function ServiceLanding({ params }: Props) {
           { label: "Engagement", value: p.engagement.model },
           { label: "Timeframe", value: p.engagement.duration },
         ]}
-        visual={<SignalPanel label="What we measure" aside={p.name} items={p.measures} chip={["Judged on", "Targets agreed before work begins"]} />}
+        visual={product ?? signal}
       />
       <Marquee items={p.included.map((x) => x.title)} tone={tone} />
 
@@ -69,6 +74,12 @@ export default async function ServiceLanding({ params }: Props) {
       <Chapter id="process" eyebrow="How we run it" title={["A sequence,", "not a checklist."]}>
         <Process items={p.approach} />
       </Chapter>
+
+      {product && (
+        <Chapter id="measures" eyebrow="What we measure" title={["Judged on numbers", "agreed before we start."]} light tone={tone}>
+          <div style={{ maxWidth: "34rem" }}>{signal}</div>
+        </Chapter>
+      )}
 
       <Chapter id="fit" eyebrow="Fit" title={["Who this is for —", "and who it isn’t."]} light tone="violet">
         <FitCheck items={p.fit.for} notFor={p.fit.notFor} href={start.href} alt={{ label: "How to choose the right partner", href: "/guides/how-to-choose-a-marketing-agency" }} />

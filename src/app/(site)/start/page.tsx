@@ -22,7 +22,7 @@ export default function StartPage() {
             Start a project
           </p>
           <h1 id="start-title" className={`t-display-2 t-lit ${styles.title}`}>
-            Let’s build what <em className="t-accent">growth requires.</em>
+            Let’s build what <em className="t-accent">does the work.</em>
           </h1>
           <p className={styles.lead}>
             Eight short questions. Prefer email? Write to{" "}
