@@ -39,7 +39,13 @@ const LOOK: Record<string, Look> = {
 
 const d = (i: number) => ({ "--d": `${i * 90 + 180}ms` }) as CSSProperties;
 
-export function ScreenWindow({ sys, screen }: { sys: FlowSystem; screen: Screen }) {
+/** A screen always renders in the app it depicts, even when an agent is the one acting in it. */
+const HOME_APP: Partial<Record<Screen["t"], FlowSystem>> = {
+  ticket: { name: "Zendesk", logo: "zendesk" },
+};
+
+export function ScreenWindow({ sys: actor, screen }: { sys: FlowSystem; screen: Screen }) {
+  const sys = actor.name === "Agent" && screen.t !== "agent" ? (HOME_APP[screen.t] ?? actor) : actor;
   const look = LOOK[sys.name] ?? { url: sys.name.toLowerCase(), accent: "#8f9bff" };
   return (
     <div className={s.win} data-dark={look.dark || undefined} style={{ "--acc": look.accent } as CSSProperties}>
@@ -74,6 +80,9 @@ function Body({ screen: x }: { screen: Screen }) {
     case "order":
       return (
         <div className={s.shop}>
+          <div className={s.toast} data-after="arrive">
+            <i /> New order {x.id} · {x.total}
+          </div>
           <div className={s.shopTop}>
             <b>Orders</b>
             <span>›</span>
@@ -84,27 +93,31 @@ function Body({ screen: x }: { screen: Screen }) {
               </Pill>
             ))}
           </div>
-          <div className={s.shopGrid}>
-            <div className={s.cardL}>
-              <p className={s.h}>Unfulfilled ({x.items.length})</p>
-              {x.items.map(([name, q, price], i) => (
-                <div key={name} className={s.line} style={d(i)}>
-                  <span className={s.thumb} />
-                  <span className={s.grow}>{name}</span>
-                  <span className={s.dim}>× {q}</span>
-                  <b>{price}</b>
+          <div data-scroll="pane" className={s.pane}>
+            <div className={s.shopGrid}>
+              <div className={s.cardL}>
+                <p className={s.h}>Unfulfilled ({x.items.length})</p>
+                {x.items.map(([name, q, price], i) => (
+                  <div key={name} className={s.line} data-cue={`item${i}`} style={d(i)}>
+                    <span className={s.thumb} />
+                    <span className={s.grow}>{name}</span>
+                    <span className={s.dim}>× {q}</span>
+                    <b>{price}</b>
+                  </div>
+                ))}
+                <div className={s.totalRow} style={d(3)}>
+                  <span>Total</span>
+                  <b>{x.total}</b>
                 </div>
-              ))}
-              <div className={s.totalRow} style={d(3)}>
-                <span>Total</span>
-                <b>{x.total}</b>
               </div>
-            </div>
-            <div className={s.cardR} style={d(1)}>
-              <p className={s.h}>Customer</p>
-              <p>{x.customer}</p>
-              <p className={s.h}>Risk</p>
-              <p className={s.okText}>Low recommendation</p>
+              <div className={s.cardR} style={d(1)}>
+                <p className={s.h}>Customer</p>
+                <p>{x.customer}</p>
+                <p className={s.h}>Fraud analysis</p>
+                <p className={s.okText} data-cue="risk">
+                  Low · recommendation: fulfill
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -113,20 +126,28 @@ function Body({ screen: x }: { screen: Screen }) {
       return (
         <div className={s.stripe}>
           <p className={s.dim}>Payment</p>
-          <div className={s.amount} style={d(0)}>
-            {x.amount} <span>USD</span> <Pill t="ok">Succeeded</Pill>
+          <div className={s.amount} data-cue="amount" style={d(0)}>
+            {x.amount} <span>USD</span>{" "}
+            <span data-before="capture">
+              <Pill t="warn">Pending</Pill>
+            </span>
+            <span data-after="capture" className={s.pop}>
+              <Pill t="ok">Succeeded</Pill>
+            </span>
           </div>
           <div className={s.kv} style={d(1)}>
             <span>Customer</span>
             <b>{x.customer}</b>
             <span>Payment method</span>
-            <b>{x.method}</b>
+            <b data-cue="method">{x.method}</b>
             <span>Risk evaluation</span>
-            <b className={s.okText}>{x.risk}</b>
+            <b className={s.okText} data-cue="risk">
+              {x.risk}
+            </b>
           </div>
           <div className={s.timeline}>
             {x.events.map((e, i) => (
-              <span key={e} style={d(i + 2)}>
+              <span key={e} style={d(i + 2)} {...(i > 0 ? { "data-after": "capture" } : {})}>
                 <i />
                 {e}
               </span>
@@ -143,12 +164,17 @@ function Body({ screen: x }: { screen: Screen }) {
             <span className={s.dim}>run · structured output</span>
           </div>
           <p className={s.input} style={d(0)}>
-            <span>input</span> {x.input}
+            <span>input</span> <span data-type="input">{x.input}</span>
           </p>
-          <pre className={s.json} style={d(1)}>
+          <p className={s.thinkingRow} data-before="out">
+            <i />
+            <i />
+            <i />
+          </p>
+          <pre className={s.json} data-after="out">
             {"{\n"}
             {x.out.map(([k, v], i) => (
-              <span key={k} style={d(i + 2)}>
+              <span key={k} style={d(i)}>
                 {"  "}
                 <em>&quot;{k}&quot;</em>: <b>&quot;{v}&quot;</b>
                 {i < x.out.length - 1 ? ",\n" : "\n"}
@@ -156,7 +182,7 @@ function Body({ screen: x }: { screen: Screen }) {
             ))}
             {"}"}
           </pre>
-          <p className={s.verdict} data-t={x.tone} style={d(x.out.length + 2)}>
+          <p className={s.verdict} data-t={x.tone} data-after="out" data-cue="verdict" style={d(x.out.length)}>
             {x.verdict}
           </p>
         </div>
@@ -166,7 +192,9 @@ function Body({ screen: x }: { screen: Screen }) {
         <div className={s.qb}>
           <div className={s.qbTop}>
             <b>{x.doc}</b>
-            <Pill t="ok">{x.badge}</Pill>
+            <span data-after="save" className={s.pop}>
+              <Pill t="ok">{x.badge}</Pill>
+            </span>
           </div>
           <p className={s.dim}>
             {x.doc.startsWith("Bill") ? "Vendor" : "Customer"} · <b className={s.ink}>{x.party}</b>
@@ -175,14 +203,22 @@ function Body({ screen: x }: { screen: Screen }) {
             <span className={s.th}>Product/service</span>
             <span className={s.th}>Amount</span>
             {x.lines.map(([a, b], i) => (
-              <span key={a} className={s.qbRow} style={d(i)}>
+              <span key={a} className={s.qbRow} data-cue={`line${i}`} style={d(i)}>
                 <span>{a}</span>
                 <span>{b}</span>
               </span>
             ))}
           </div>
-          <div className={s.qbTotal} style={d(x.lines.length)}>
-            Total <b>{x.total}</b>
+          <div className={s.qbFoot}>
+            <span>
+              Total <b>{x.total}</b>
+            </span>
+            <span className={s.btnGreen} data-cue="save" data-before="save">
+              Save and close
+            </span>
+            <span className={s.savedNote} data-after="save">
+              ✓ Saved
+            </span>
           </div>
         </div>
       );
@@ -208,21 +244,30 @@ function Body({ screen: x }: { screen: Screen }) {
                 <small>to {x.to}</small>
               </span>
             </div>
-            {x.body.map((p, i) => (
-              <p key={i} className={s.para} style={d(i + 2)}>
+            <p className={s.para} style={d(2)}>
+              {x.folder === "Inbox" ? x.body[0] : <span data-type="body">{x.body[0]}</span>}
+            </p>
+            {x.body.slice(1).map((p, i) => (
+              <p key={i} className={s.para} style={d(i + 3)}>
                 {p}
               </p>
             ))}
             {x.attach && (
-              <span className={s.attach} style={d(4)}>
+              <span className={s.attach} data-cue="attach" style={d(4)}>
                 <i>PDF</i>
                 {x.attach}
+                <small data-after="attach">· read by agent</small>
               </span>
             )}
-            {x.sent && (
-              <span className={s.sentNote} style={d(4)}>
-                Message sent
-              </span>
+            {x.folder !== "Inbox" && (
+              <>
+                <span className={s.sendBtn} data-cue="send" data-before="send" style={d(4)}>
+                  Send
+                </span>
+                <span className={s.sentNote} data-after="send">
+                  Message sent
+                </span>
+              </>
             )}
           </div>
         </div>
@@ -240,7 +285,15 @@ function Body({ screen: x }: { screen: Screen }) {
           </div>
           <div className={s.sMain}>
             <p className={s.sHead}># {x.channel}</p>
-            <div className={s.msg} style={d(0)}>
+            <div className={s.msgOld}>
+              <span className={s.av}>J</span>
+              <p>
+                <b>Jordan</b> <span className={s.dim}>1:48 PM</span>
+                <br />
+                Thanks, all. Picking this up after lunch.
+              </p>
+            </div>
+            <div className={s.msg} data-after="post">
               <span className={s.botAv}>A</span>
               <div>
                 <p>
@@ -258,18 +311,24 @@ function Body({ screen: x }: { screen: Screen }) {
                   </div>
                 )}
                 {x.actions && (
-                  <div className={s.actions} style={d(2)}>
+                  <div className={s.actions} data-before="approve">
                     {x.actions.map((a, i) => (
-                      <span key={a} data-primary={i === 0 || undefined}>
+                      <span key={a} data-primary={i === 0 || undefined} {...(i === 0 ? { "data-cue": "approve" } : {})}>
                         {a}
                       </span>
                     ))}
                   </div>
                 )}
                 {x.approved && (
-                  <p className={s.approved} style={d(5)}>
+                  <p className={s.approved} data-after="approve">
                     ✓ {x.approved}
                   </p>
+                )}
+                {!x.actions && (
+                  <span className={s.react} data-cue="react">
+                    <span data-before="react">☺︎+</span>
+                    <span data-after="react">✅ 1</span>
+                  </span>
                 )}
               </div>
             </div>
@@ -282,19 +341,26 @@ function Body({ screen: x }: { screen: Screen }) {
           <p className={s.tfTitle}>
             {x.title} <Pill>New response</Pill>
           </p>
-          {x.answers.map(([q, a], i) => (
-            <div key={q} className={s.qa} style={d(i)}>
-              <small>
-                {i + 1} → {q}
-              </small>
-              <b>{a}</b>
+          <div className={s.tfPane}>
+            <div data-scroll="pane" className={s.pane}>
+              {x.answers.map(([q, a], i) => (
+                <div key={q} className={s.qa} data-cue={`a${i}`} style={d(i)}>
+                  <small>
+                    {i + 1} → {q}
+                  </small>
+                  <b>{a}</b>
+                </div>
+              ))}
             </div>
-          ))}
+          </div>
         </div>
       );
     case "crm":
       return (
         <div className={s.hub}>
+          <div className={s.toast} data-after="saved">
+            <i /> {x.kind === "Contact" ? "Contact created" : "Deal updated"}
+          </div>
           <div className={s.hubTop}>
             <span className={s.hubAv}>{x.name[0]}</span>
             <span>
@@ -306,7 +372,7 @@ function Body({ screen: x }: { screen: Screen }) {
           {x.stage && (
             <div className={s.stages} style={d(0)}>
               {x.stage.map((st, i) => (
-                <span key={st} data-on={i <= (x.at ?? 0) || undefined}>
+                <span key={st} data-on={i < (x.at ?? 0) || undefined} {...(i === (x.at ?? 0) ? { "data-cue": "advance" } : {})}>
                   {st}
                 </span>
               ))}
@@ -314,15 +380,25 @@ function Body({ screen: x }: { screen: Screen }) {
           )}
           <div className={s.props}>
             {x.props.map(([k, v], i) => (
-              <span key={k} style={d(i + 1)}>
+              <span key={k} style={d(i + 1)} {...(i === 0 ? { "data-cue": "p0" } : {})} {...(v === "Unassigned" ? { "data-cue": "owner" } : {})}>
                 <small>{k}</small>
-                {v}
+                {v === "Unassigned" ? (
+                  <>
+                    <span data-before="owner">Unassigned</span>
+                    <span data-after="owner" className={s.pop}>
+                      AE · West
+                    </span>
+                  </>
+                ) : (
+                  v
+                )}
               </span>
             ))}
           </div>
         </div>
       );
-    case "calendar":
+    case "calendar": {
+      const col = ["Mon", "Tue", "Wed", "Thu", "Fri"].findIndex((dd) => x.day.startsWith(dd));
       return (
         <div className={s.cal}>
           <div className={s.calHead}>
@@ -339,7 +415,14 @@ function Body({ screen: x }: { screen: Screen }) {
                 {h}
               </span>
             ))}
-            <div className={s.event} style={{ ...d(0), "--col": ["Mon", "Tue", "Wed", "Thu", "Fri"].findIndex((dd) => x.day.startsWith(dd)) } as CSSProperties}>
+            <span className={s.busy} style={{ "--col": (col + 2) % 5, "--top": "8px" } as CSSProperties}>
+              Team sync
+            </span>
+            <span className={s.busy} style={{ "--col": (col + 4) % 5, "--top": "112px" } as CSSProperties}>
+              1:1
+            </span>
+            <span className={s.slot} data-cue="slot" style={{ "--col": col } as CSSProperties} />
+            <div className={s.event} data-after="drop" style={{ "--col": col } as CSSProperties}>
               <b>{x.title}</b>
               <span>{x.time}</span>
               <span>{x.who.join(", ")}</span>
@@ -347,19 +430,26 @@ function Body({ screen: x }: { screen: Screen }) {
           </div>
         </div>
       );
+    }
     case "ticket":
       return (
         <div className={s.zd}>
           <div className={s.zdTop}>
             <b>{x.subject}</b>
             <span className={s.dim}>{x.id}</span>
-            {x.tags.map((t) => (
-              <Pill key={t} t={t === "solved" ? "ok" : t === "ai-draft" ? "info" : "muted"}>
-                {t}
-              </Pill>
-            ))}
+            {x.tags.map((t) =>
+              t === "solved" ? (
+                <span key={t} data-after="submit" className={s.pop}>
+                  <Pill t="ok">solved</Pill>
+                </span>
+              ) : (
+                <Pill key={t} t={t === "ai-draft" ? "info" : "muted"}>
+                  {t}
+                </Pill>
+              ),
+            )}
           </div>
-          <div className={s.zdMsg} style={d(0)}>
+          <div className={s.zdMsg} data-cue="message" style={d(0)}>
             <span className={s.av}>{x.requester[0]}</span>
             <div>
               <b>{x.requester}</b>
@@ -368,28 +458,42 @@ function Body({ screen: x }: { screen: Screen }) {
           </div>
           {x.draft && (
             <div className={s.zdDraft} data-public={x.solved || undefined} style={d(1)}>
-              <small>{x.solved ? "Public reply · sent" : "Draft reply · AI · needs approval"}</small>
-              <p>{x.draft}</p>
+              <small>{x.solved ? "Public reply" : "Draft reply · AI · needs approval"}</small>
+              <p>{x.solved ? x.draft : <span data-type="draft">{x.draft}</span>}</p>
             </div>
           )}
           <div className={s.zdBar} style={d(2)}>
-            <span data-solved={x.solved || undefined}>{x.solved ? "Solved" : "Submit as Open"}</span>
+            {x.solved ? (
+              <>
+                <span data-cue="submit" data-before="submit">
+                  Submit as Solved
+                </span>
+                <span data-after="submit" data-solved="">
+                  ✓ Solved
+                </span>
+              </>
+            ) : (
+              <span>Submit as Open</span>
+            )}
           </div>
         </div>
       );
     case "doc":
       return (
         <div className={s.notion}>
-          <span className={s.nIcon}>{x.icon}</span>
-          <p className={s.nTitle}>{x.title}</p>
-          {x.blocks.map((b, i) => (
-            <p key={i} className={s.nBlock} data-hl={x.hl.includes(i) || undefined} style={d(i)}>
-              {b}
+          <div data-scroll="pane" className={s.pane}>
+            <span className={s.nIcon}>{x.icon}</span>
+            <p className={s.nTitle}>{x.title}</p>
+            {x.blocks.map((b, i) => (
+              <p key={i} className={s.nBlock} {...(x.hl.includes(i) ? { "data-cue": "hl", "data-hlb": "" } : {})} style={d(i)}>
+                {x.hl.includes(i) && <span className={s.hlMark} data-after="hl" />}
+                {b}
+              </p>
+            ))}
+            <p className={s.nCite} data-after="hl">
+              Retrieved by agent · passage cited in the reply
             </p>
-          ))}
-          <p className={s.nCite} style={d(4)}>
-            Retrieved by agent · 2 passages cited
-          </p>
+          </div>
         </div>
       );
     case "table":
@@ -400,7 +504,12 @@ function Body({ screen: x }: { screen: Screen }) {
             {x.app === "snowflake" && <code className={s.sql}>{x.sql}</code>}
           </div>
           <div className={s.sheet} style={{ "--cols": x.cols.length } as CSSProperties}>
-            {x.app === "sheets" && x.cols.map((_, i) => <span key={i} className={s.colL}>{String.fromCharCode(65 + i)}</span>)}
+            {x.app === "sheets" &&
+              x.cols.map((_, i) => (
+                <span key={i} className={s.colL}>
+                  {String.fromCharCode(65 + i)}
+                </span>
+              ))}
             {x.cols.map((c) => (
               <span key={c} className={s.th}>
                 {c}
@@ -408,8 +517,15 @@ function Body({ screen: x }: { screen: Screen }) {
             ))}
             {x.rows.map((r, ri) =>
               r.map((cell, ci) => (
-                <span key={`${ri}-${ci}`} className={s.td} data-hl={ri === x.hl || undefined} style={d(ri)}>
-                  {cell}
+                <span
+                  key={`${ri}-${ci}`}
+                  className={s.td}
+                  data-row={ri === x.hl ? "hl" : undefined}
+                  style={d(ri)}
+                  {...(ci === 0 && ri < x.hl ? { "data-cue": `row${ri}` } : {})}
+                  {...(ci === 0 && ri === x.hl ? { "data-cue": "match" } : {})}
+                >
+                  {ri === x.hl && ci === r.length - 1 && x.app === "sheets" ? <span data-type="cell">{cell}</span> : cell}
                 </span>
               )),
             )}
@@ -418,6 +534,7 @@ function Body({ screen: x }: { screen: Screen }) {
       );
     case "chart": {
       const max = Math.max(...x.series);
+      const peak = x.series.indexOf(max);
       return (
         <div className={s.sentry}>
           <p className={s.sTitle}>
@@ -429,10 +546,16 @@ function Body({ screen: x }: { screen: Screen }) {
           <p className={s.dim}>{x.where}</p>
           <div className={s.bars}>
             {x.series.map((v, i) => (
-              <i key={i} data-hot={v > max / 3 || undefined} style={{ "--h": `${(v / max) * 100}%`, ...d(i / 2) } as CSSProperties} />
+              <i key={i} data-hot={v > max / 3 || undefined} {...(i === peak ? { "data-cue": "spike" } : {})} style={{ "--h": `${(v / max) * 100}%`, ...d(i / 2) } as CSSProperties}>
+                {i === peak && (
+                  <span className={s.tip} data-after="tip">
+                    {x.events}
+                  </span>
+                )}
+              </i>
             ))}
           </div>
-          <p className={s.badText}>{x.events}</p>
+          <p className={s.badText}>First seen 3 minutes after deploy</p>
         </div>
       );
     }
@@ -443,9 +566,16 @@ function Body({ screen: x }: { screen: Screen }) {
             <b>{x.repo}</b> · Commits on main
           </p>
           {x.items.map(([sha, msg, who, flag], i) => (
-            <div key={sha} className={s.commit} data-flag={flag || undefined} style={d(i)}>
+            <div key={sha} className={s.commit} data-cue={`c${i}`} data-flag={flag || undefined} style={d(i)}>
               <span>
-                <b>{msg}</b>
+                <b>
+                  {msg}{" "}
+                  {flag && (
+                    <span data-after="suspect" className={s.pop}>
+                      <Pill t="bad">suspect</Pill>
+                    </span>
+                  )}
+                </b>
                 <small>{who} committed 9 minutes ago</small>
               </span>
               <code>{sha}</code>
@@ -460,8 +590,8 @@ function Body({ screen: x }: { screen: Screen }) {
             <p className={s.dim}>
               {x.team} › {x.key}
             </p>
-            <p className={s.lTitle} style={d(0)}>
-              {x.title}
+            <p className={s.lTitle}>
+              <span data-type="title">{x.title}</span>
             </p>
             <p className={s.lBody} style={d(1)}>
               {x.body}
@@ -471,9 +601,14 @@ function Body({ screen: x }: { screen: Screen }) {
             <span>
               <small>Status</small>○ {x.status}
             </span>
-            <span>
+            <span data-cue="priority" className={s.lPick}>
               <small>Priority</small>
-              <b className={s.urgent}>! {x.priority}</b>
+              <b data-before="urgent" className={s.dim}>
+                — No priority
+              </b>
+              <b data-after="urgent" className={`${s.urgent} ${s.pop}`}>
+                ! {x.priority}
+              </b>
             </span>
             <span>
               <small>Labels</small>
@@ -486,7 +621,10 @@ function Body({ screen: x }: { screen: Screen }) {
       return (
         <div className={s.pd}>
           <p>
-            <Pill t="bad">Triggered</Pill> <Pill t="warn">{x.urgency} urgency</Pill>
+            <span className={s.pulseBadge}>
+              <Pill t="bad">Triggered</Pill>
+            </span>{" "}
+            <Pill t="warn">{x.urgency} urgency</Pill>
           </p>
           <p className={s.pdTitle} style={d(0)}>
             {x.title}
@@ -496,7 +634,7 @@ function Body({ screen: x }: { screen: Screen }) {
           </p>
           <div className={s.timeline}>
             {x.steps.map(([a, b], i) => (
-              <span key={a} style={d(i + 1)}>
+              <span key={a} style={d(i + 1)} {...(i === 1 ? { "data-after": "page", "data-cue": "notify" } : {})}>
                 <i />
                 {a} <small>{b}</small>
               </span>
@@ -507,12 +645,18 @@ function Body({ screen: x }: { screen: Screen }) {
     case "tasks":
       return (
         <div className={s.asana}>
-          <p className={s.aTitle}>{x.project}</p>
+          <div className={s.aHead}>
+            <p className={s.aTitle}>{x.project}</p>
+            <span className={s.aBtn} data-cue="assign">
+              <span data-before="assign">Assign all</span>
+              <span data-after="assign">✓ Assigned</span>
+            </span>
+          </div>
           {x.sections.map(([sec, items], si) => (
             <div key={sec}>
               <p className={s.aSec}>{sec}</p>
               {items.map(([t, who, due], i) => (
-                <div key={t} className={s.aRow} style={d(si * 3 + i)}>
+                <div key={t} className={s.aRow} data-cue={`t${si * 3 + i}`} style={d(si * 3 + i)}>
                   <span className={s.check} />
                   <span className={s.grow}>{t}</span>
                   <span className={s.dim}>{who}</span>
@@ -526,10 +670,15 @@ function Body({ screen: x }: { screen: Screen }) {
     case "files":
       return (
         <div className={s.drive}>
-          <p className={s.crumbs}>{x.path.join("  ›  ")}</p>
+          <div className={s.dHead}>
+            <p className={s.crumbs}>{x.path.join("  ›  ")}</p>
+            <span className={s.newBtn} data-cue="new">
+              + New
+            </span>
+          </div>
           <div className={s.fileGrid}>
             {x.files.map(([name, kind], i) => (
-              <span key={name} className={s.file} data-kind={kind} style={d(i)}>
+              <span key={name} className={s.file} data-kind={kind} style={d(i)} {...(i === 0 ? { "data-after": "folder" } : {})}>
                 <i />
                 {name}
               </span>
@@ -540,18 +689,23 @@ function Body({ screen: x }: { screen: Screen }) {
     case "esign":
       return (
         <div className={s.esign}>
-          <div className={s.done} style={d(0)}>
+          <div className={s.done} data-after="done" data-cue="doneBar">
             ✓ Completed · all parties have signed
           </div>
           <div className={s.paper} style={d(1)}>
             <b>{x.doc}</b>
             <span className={s.lines} />
             <span className={s.lines} />
-            <span className={s.sig}>Dana Ortiz</span>
+            <svg className={s.sigSvg} viewBox="0 0 160 40" data-after="sign" aria-hidden="true">
+              <path d="M6 28c10-18 18-22 20-12s-6 16-2 14 10-20 16-18-2 16 4 14 8-12 14-12 0 10 6 9 10-8 16-8 4 6 10 5 12-6 20-6 10 3 18 2" fill="none" stroke="#1f3a8a" strokeWidth="2" strokeLinecap="round" />
+            </svg>
           </div>
           {x.signers.map(([who, st], i) => (
             <p key={who} className={s.signer} style={d(i + 2)}>
-              {who} <Pill t="ok">{st}</Pill>
+              {who}{" "}
+              <span data-after={i === 0 ? "sign" : "done"} className={s.pop}>
+                <Pill t="ok">{st}</Pill>
+              </span>
             </p>
           ))}
         </div>
@@ -559,9 +713,13 @@ function Body({ screen: x }: { screen: Screen }) {
     case "terminal":
       return (
         <pre className={s.term}>
-          {x.lines.map((l, i) => (
-            <span key={i} style={d(i)}>
-              {i === 0 ? <em>{x.prompt} </em> : null}
+          <span>
+            <em>{x.prompt} </em>
+            <span data-type="query">{x.lines[0]}</span>
+            {"\n"}
+          </span>
+          {x.lines.slice(1).map((l, i) => (
+            <span key={i} data-after="run" style={d(i)}>
               {l}
               {"\n"}
             </span>

@@ -6,6 +6,7 @@ import { LOGOS } from "@/content/logos";
 import type { Flow, FlowStep, FlowSystem } from "@/content/flows";
 import { SCREENS } from "@/content/flow-screens";
 import { ScreenWindow } from "./Screens";
+import { Director, scriptMs } from "./Director";
 import s from "./theater.module.css";
 
 /*
@@ -75,7 +76,9 @@ export function FlowTheater({ flows, label = "Automation examples" }: { flows: F
   useEffect(() => {
     if (still || !playing || !visible) return;
     const current = flow.steps[Math.min(step, n - 1)];
-    const wait = step >= n ? END_MS : step === 0 ? 700 : current.kind === "human" ? HUMAN_MS : STEP_MS;
+    const sc = SCREENS[flow.id]?.[step - 1];
+    const base = current.kind === "human" ? HUMAN_MS : STEP_MS;
+    const wait = step >= n ? END_MS : step === 0 ? 700 : Math.max(base, sc ? scriptMs(sc) : 0);
     const t = setTimeout(() => {
       if (step >= n) {
         setF((x) => (x + 1) % flows.length);
@@ -173,12 +176,16 @@ export function FlowTheater({ flows, label = "Automation examples" }: { flows: F
         <div className={s.screens}>
           {layers.prev && layers.prev !== layers.cur && layerOf(layers.prev) && (
             <div className={s.layer} data-role="out" key={`out-${layers.prev}`}>
-              <ScreenWindow sys={layerOf(layers.prev)!.sys} screen={layerOf(layers.prev)!.sc} />
+              <Director screen={layerOf(layers.prev)!.sc} still>
+                <ScreenWindow sys={layerOf(layers.prev)!.sys} screen={layerOf(layers.prev)!.sc} />
+              </Director>
             </div>
           )}
           {screens[shownIdx] && (
             <div className={s.layer} data-role="in" key={`in-${curKey}`}>
-              <ScreenWindow sys={flow.steps[shownIdx].sys} screen={screens[shownIdx]} />
+              <Director screen={screens[shownIdx]} still={still || !playing}>
+                <ScreenWindow sys={flow.steps[shownIdx].sys} screen={screens[shownIdx]} />
+              </Director>
             </div>
           )}
           <span className={s.screenNote}>Illustrative recreation · not a screenshot</span>
