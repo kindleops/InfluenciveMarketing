@@ -4,6 +4,8 @@ import { useCallback, useEffect, useRef, useState, type CSSProperties } from "re
 import { BrandLogo } from "@/components/ui/BrandLogo";
 import { LOGOS } from "@/content/logos";
 import type { Flow, FlowStep, FlowSystem } from "@/content/flows";
+import { SCREENS } from "@/content/flow-screens";
+import { ScreenWindow } from "./Screens";
 import s from "./theater.module.css";
 
 /*
@@ -92,6 +94,20 @@ export function FlowTheater({ flows, label = "Automation examples" }: { flows: F
   );
 
   const active = Math.min(Math.max(step - 1, 0), n - 1);
+  // The window shows the tool the work is in; the one before recedes.
+  const screens = SCREENS[flow.id] ?? [];
+  const shownIdx = still ? n - 1 : active;
+  const curKey = `${flow.id}:${shownIdx}`;
+  const [layers, setLayers] = useState<{ cur: string; prev: string | null }>({ cur: curKey, prev: null });
+  useEffect(() => {
+    setLayers((l) => (l.cur === curKey ? l : { cur: curKey, prev: l.cur }));
+  }, [curKey]);
+  const layerOf = (key: string) => {
+    const [fid, i] = key.split(":");
+    const fl = flows.find((x) => x.id === fid);
+    const sc = SCREENS[fid]?.[Number(i)];
+    return fl && sc ? { sys: fl.steps[Number(i)].sys, sc } : null;
+  };
   const base = Date.UTC(2026, 0, 1, 14, 2, 31, 218);
   let t = 0;
   const times = flow.steps.map((st) => (t += st.ms + 40));
@@ -154,6 +170,19 @@ export function FlowTheater({ flows, label = "Automation examples" }: { flows: F
           <span className={s.flowTitle}>{flow.title}</span>
           <span className={s.flowSummary}>{flow.summary}</span>
         </div>
+        <div className={s.screens}>
+          {layers.prev && layers.prev !== layers.cur && layerOf(layers.prev) && (
+            <div className={s.layer} data-role="out" key={`out-${layers.prev}`}>
+              <ScreenWindow sys={layerOf(layers.prev)!.sys} screen={layerOf(layers.prev)!.sc} />
+            </div>
+          )}
+          {screens[shownIdx] && (
+            <div className={s.layer} data-role="in" key={`in-${curKey}`}>
+              <ScreenWindow sys={flow.steps[shownIdx].sys} screen={screens[shownIdx]} />
+            </div>
+          )}
+          <span className={s.screenNote}>Illustrative recreation · not a screenshot</span>
+        </div>
         <div className={s.track} style={{ "--i": still ? (n - 1) / 2 : active, "--n": n } as CSSProperties} key={flow.id}>
           {flow.steps.map((st, i) => {
             const state = still || i < active || (done && i === active) ? "done" : i === active && step > 0 ? "active" : "idle";
@@ -177,7 +206,6 @@ export function FlowTheater({ flows, label = "Automation examples" }: { flows: F
                   </div>
                   <code className={s.action}>{st.action}</code>
                   <p className={s.says}>{st.says}</p>
-                  <pre className={s.payload}>{st.payload}</pre>
                   {st.kind === "human" && <span className={s.approve}>{state === "active" ? "Waiting for approval" : "Approved"}</span>}
                 </div>
               </div>
