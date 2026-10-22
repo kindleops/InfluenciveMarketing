@@ -6,6 +6,8 @@ import { BackEndPanel, FrontEndPanel, Pipeline } from "@/components/home/Enginee
 import { Production } from "@/components/home/Production";
 import { TeamAgents } from "@/components/home/TeamAgents";
 import { Integrations } from "@/components/home/Integrations";
+import { FlowTheater } from "@/components/flows/FlowTheater";
+import { FLOWS, HOME_FLOWS } from "@/content/flows";
 import { StreamFaqs } from "@/components/answers/Chat";
 import { JsonLd } from "@/components/seo/blocks";
 import { faqLd } from "@/seo/jsonld";
@@ -23,6 +25,7 @@ import s from "@/components/home/home.module.css";
  *   Teams        Where would it help us?    agents by department
  *   Automation   What does that look like?  a workflow with a human fork
  *   Integrations Will it work with our stack? the systems it connects
+ *   Flows        Show me it working.        real tools, played end to end
  *   Engineering  Can you build the software? front end, back end, pipeline
  *   Production   Will it hold up?           evals, guardrails, people, cost
  *   Cadence      How do you work?           five steps, one owner
@@ -274,6 +277,21 @@ export default function Home() {
             <Integrations />
           </div>
           <p className={s.caption}>And anything else with an API or webhooks. Logos and names belong to their owners and show common integration targets, not partnerships or endorsements.</p>
+        </div>
+      </section>
+
+      {/* ---- Flows ------------------------------------------------- */}
+      <section className={s.section} aria-labelledby="flows-title">
+        <div className="container">
+          <Head id="flows-title" label="Flows in motion" title={["Watch the work move", "between your tools."]} lead="Real systems, real events, played end to end: what triggers the flow, where the model decides, where a person signs off and what lands in each tool." />
+          <div data-reveal="up">
+            <FlowTheater flows={HOME_FLOWS.map((id) => FLOWS.find((f) => f.id === id)!)} />
+          </div>
+          <p className={s.more}>
+            <Link href="/automations">
+              See every example <Arrow />
+            </Link>
+          </p>
         </div>
       </section>
 

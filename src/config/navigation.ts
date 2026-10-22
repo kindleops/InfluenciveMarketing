@@ -18,6 +18,7 @@ export const servicesMenu: { title: string; items: NavItem[] }[] = [
       { label: "AI agent development", href: "/services/ai-agent-development", description: "Agents that use your tools, with guardrails" },
       { label: "Workflow automation", href: "/services/workflow-automation", description: "n8n, Make or custom code, monitored" },
       { label: "Custom AI & LLM apps", href: "/services/custom-ai-development", description: "Retrieval, chat and AI features" },
+      { label: "Automation examples", href: "/automations", description: "Real tools, flows played end to end" },
     ],
   },
   {
@@ -78,6 +79,7 @@ export const footerNav: { title: string; items: NavItem[] }[] = [
   {
     title: "Resources",
     items: [
+      { label: "Automation examples", href: "/automations" },
       { label: "Research", href: "/research" },
       { label: "Answers", href: "/answers" },
       { label: "Markets", href: "/locations" },

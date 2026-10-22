@@ -127,6 +127,27 @@ test.describe("home page", () => {
     await expect(tabs.nth(5)).toHaveAttribute("aria-selected", "true");
   });
 
+  test("the automation theater plays, switches flows and pauses", async ({ page }) => {
+    await skipIntro(page);
+    await page.goto("/", { waitUntil: "networkidle" });
+    const theater = page.locator("section[aria-labelledby='flows-title'] [class*='theater']").first();
+    await theater.scrollIntoViewIfNeeded();
+    const log = theater.locator("[class*='log'] ol li");
+    // The run advances on its own: the log fills as events land.
+    await expect.poll(() => log.count(), { timeout: 15_000 }).toBeGreaterThan(2);
+    // Choosing a flow restarts the scene on that flow.
+    const scenes = theater.getByRole("group", { name: "Automation examples" });
+    await scenes.getByRole("button", { name: /Ticket to resolution/ }).click();
+    await expect(scenes.getByRole("button", { name: /Ticket to resolution/ })).toHaveAttribute("aria-pressed", "true");
+    await expect(theater.locator("[class*='flowTitle']")).toHaveText("Ticket to resolution");
+    // Pause holds the frame.
+    await theater.getByRole("button", { name: "Pause the examples" }).click();
+    const held = await log.count();
+    await page.waitForTimeout(2500);
+    expect(await log.count()).toBe(held);
+    await expect(theater.getByRole("button", { name: "Play the examples" })).toBeVisible();
+  });
+
   test("the services menu opens from the header", async ({ page }) => {
     await skipIntro(page);
     await page.goto("/", { waitUntil: "networkidle" });
@@ -218,6 +239,9 @@ test.describe("reduced motion", () => {
 
     // The agent console shows the finished run, not an empty frame.
     await expect(page.locator("section[aria-labelledby='hero-title'] ol").first().locator("li")).toHaveCount(7);
+
+    // The automation theater shows a whole flow, still.
+    await expect(page.locator("section[aria-labelledby='flows-title'] [class*='theater']").first()).toHaveAttribute("data-still");
 
     // Nothing overflows sideways once motion is removed.
     const overflow = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);

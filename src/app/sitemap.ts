@@ -3,7 +3,7 @@ import { SITE } from "@/seo/site";
 import { allEntries, published } from "@/seo/registry";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const core = ["", "/work", "/capabilities", "/services", "/approach", "/insights", "/about", "/start", "/privacy", "/terms"];
+  const core = ["", "/automations", "/work", "/capabilities", "/services", "/approach", "/insights", "/about", "/start", "/privacy", "/terms"];
   const hubs = [
     "/industries",
     "/solutions",
